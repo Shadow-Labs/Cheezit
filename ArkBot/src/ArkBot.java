@@ -20,7 +20,8 @@ public class ArkBot {
 	public static void main(String[] args) throws AWTException
 	{
         JFrame main = new JFrame("dummy...");
-        main.setSize(100,100);
+        main.setSize(480,900);
+        //main.setLocation(, y);
         main.setVisible(true);
 
         MouseObserver mo = new MouseObserver(main);
