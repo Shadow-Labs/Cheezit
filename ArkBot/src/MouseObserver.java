@@ -91,22 +91,22 @@ public class MouseObserver {
     }
 
     /* Testing the obvserver */
-    public static void main(String[] args) {
-        JFrame main = new JFrame("dummy...");
-        main.setSize(100,100);
-        main.setVisible(true);
-
-        MouseObserver mo = new MouseObserver(main);
-        mo.addMouseMotionListener(new MouseMotionListener() {
-                public void mouseMoved(MouseEvent e) {
-                    System.out.println("mouse moved: " + e.getPoint());
-                }
-
-                public void mouseDragged(MouseEvent e) {
-                    System.out.println("mouse dragged: " + e.getPoint());
-                }
-            });
-
-        mo.start();
-    }
+//    public static void main(String[] args) {
+//        JFrame main = new JFrame("dummy...");
+//        main.setSize(100,100);
+//        main.setVisible(true);
+//
+//        MouseObserver mo = new MouseObserver(main);
+//        mo.addMouseMotionListener(new MouseMotionListener() {
+//                public void mouseMoved(MouseEvent e) {
+//                    System.out.println("mouse moved: " + e.getPoint());
+//                }
+//
+//                public void mouseDragged(MouseEvent e) {
+//                    System.out.println("mouse dragged: " + e.getPoint());
+//                }
+//            });
+//
+//        mo.start();
+//    }
 }
