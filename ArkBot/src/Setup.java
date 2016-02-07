@@ -18,53 +18,55 @@ public class Setup {
 	//-----------------ADMINISTRATIVE FUNCTIONALITY-----------------
 	public void Settings() throws AWTException //Resolution must be set to 1440x900
 	{
-		MouseDrag drag = new MouseDrag(bot, p);
 		
-		// Focus ARK
-		bot.delay(PAUSE);
-		bot.mouseMove(720, 160);
-		bot.delay(PAUSE);
-		leftClick();
 		
-		// Click Options
-		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 720, 420);
-		bot.delay(PAUSE);
-		leftClick();
-		
-		// Click Camera FOV
-		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 634, 385);
-		bot.delay(PAUSE);
-		leftClick();
-		
-		// Set Horizontal Sensitivity
-		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 678, 440);
-		bot.delay(PAUSE);
-		leftClick();
-		
-		// Set Vertical Sensitivity
-		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 678, 475);
-		bot.delay(PAUSE);
-		leftClick();
-		
-		// Click Apply
-		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 797, 852);
-		bot.delay(500);
-		leftClick();
-		
-		// Click Save
-		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 582, 852);
-		bot.delay(PAUSE);
-		leftClick();
-		
-		// Press ESC
-		bot.delay(500);
-		type(KeyEvent.VK_ESCAPE);
+//		MouseDrag drag = new MouseDrag(bot, p);
+//		
+//		// Focus ARK
+//		bot.delay(PAUSE);
+//		bot.mouseMove(720, 160);
+//		bot.delay(PAUSE);
+//		leftClick();
+//		
+//		// Click Options
+//		bot.delay(PAUSE);
+//		drag.move(MouseInfo.getPointerInfo().getLocation(), 720, 420);
+//		bot.delay(PAUSE);
+//		leftClick();
+//		
+//		// Click Camera FOV
+//		bot.delay(PAUSE);
+//		drag.move(MouseInfo.getPointerInfo().getLocation(), 634, 385);
+//		bot.delay(PAUSE);
+//		leftClick();
+//		
+//		// Set Horizontal Sensitivity
+//		bot.delay(PAUSE);
+//		drag.move(MouseInfo.getPointerInfo().getLocation(), 678, 440);
+//		bot.delay(PAUSE);
+//		leftClick();
+//		
+//		// Set Vertical Sensitivity
+//		bot.delay(PAUSE);
+//		drag.move(MouseInfo.getPointerInfo().getLocation(), 678, 475);
+//		bot.delay(PAUSE);
+//		leftClick();
+//		
+//		// Click Apply
+//		bot.delay(PAUSE);
+//		drag.move(MouseInfo.getPointerInfo().getLocation(), 797, 852);
+//		bot.delay(500);
+//		leftClick();
+//		
+//		// Click Save
+//		bot.delay(PAUSE);
+//		drag.move(MouseInfo.getPointerInfo().getLocation(), 582, 852);
+//		bot.delay(PAUSE);
+//		leftClick();
+//		
+//		// Press ESC
+//		bot.delay(500);
+//		type(KeyEvent.VK_ESCAPE);
 		
 		
 		
