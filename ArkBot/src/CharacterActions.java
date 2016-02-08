@@ -3,16 +3,28 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
-public class CharacterMovement {
+public class CharacterActions {
 	
 	private Robot bot;
 	private Point p;
 	private int PAUSE;
-	public CharacterMovement(Robot bot, Point p, int PAUSE)  throws AWTException {
+	public CharacterActions(Robot bot, Point p, int PAUSE)  throws AWTException {
 		this.bot = bot;
 		this.p = p;
 		this.PAUSE = PAUSE;
 	}
+	
+	//--------------------Character Action Functionality-------------------
+	public int Pickup() {
+		int success = 0;
+		
+		return success;
+	}
+	
+	public void Facedown() {
+		
+	}
+	
 	// --------------------MOVEMENT FUNCTIONALITY-------------------
 	public void MoveForward (int duration, boolean sprint) {
 		if (sprint)

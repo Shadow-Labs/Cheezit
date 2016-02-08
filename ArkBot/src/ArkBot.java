@@ -75,7 +75,7 @@ public class ArkBot {
 		// Initialization
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);
-        CharacterMovement move = new CharacterMovement(bot, p,  PAUSE);
+        CharacterActions move = new CharacterActions(bot, p,  PAUSE);
         Setup setup = new Setup(bot, p,  PAUSE, log);
         
 	    bot.delay(PAUSE);
