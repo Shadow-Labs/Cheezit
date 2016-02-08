@@ -60,8 +60,8 @@ public class ArkBotGUI extends JFrame
         mousePanel.setLayout(new FlowLayout());
         PointerInfo q = MouseInfo.getPointerInfo();
         p = q.getLocation();
-        xPos = new JLabel("Mouse X: " + p.x);
-        yPos = new JLabel("Mouse Y: " + p.y);
+        xPos = new JLabel("" + p.x);
+        yPos = new JLabel("" + p.y);
         mousePanel.add(xPos);
         mousePanel.add(yPos);
         
@@ -85,6 +85,7 @@ public class ArkBotGUI extends JFrame
         scroll.setOpaque(false);
         scroll.getViewport().setOpaque(false);
         scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED );
+        scroll.setHorizontalScrollBarPolicy ( ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );
 
         Logger.add(scroll, BorderLayout.NORTH);
         Logger.add(mousePanel, BorderLayout.SOUTH);
@@ -100,8 +101,8 @@ public class ArkBotGUI extends JFrame
 	public static void SetMouse() {
 		PointerInfo q = MouseInfo.getPointerInfo();
         Point r = q.getLocation();
-        xPos.setText("Mouse X: " + r.x);
-        yPos.setText("Mouse Y: " + r.y);
+        xPos.setText("" + r.x);
+        yPos.setText("" + r.y);
 	}
 	
 	public static void GUIText (String text, ArkBotLog log) {

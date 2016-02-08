@@ -37,6 +37,7 @@ public class Setup {
 			ArkBotGUI.GUIText("Succesfully found GameUserSettings.ini", log);
 			try {
 				Files.copy(FROM,TO);
+				ArkBotGUI.GUIText("Succesfully copied GameUserSettings.ini to OldGameUsersSettings.ini.", log);
 			} catch (IOException e) {
 				StringWriter error = new StringWriter();
 				e.printStackTrace(new PrintWriter(error));
@@ -51,7 +52,7 @@ public class Setup {
 		}
 		
 		if (arkexe.exists()) {
-			ArkBotGUI.GUIText("Succesfully found GameUserSettings.ini", log);
+			ArkBotGUI.GUIText("Succesfully found ShooterGame.exe", log);
 		} else {
 			ArkBot.ERROR = "Setup Error";
 			ArkBotGUI.GUIText("ERROR: Could not find ShooterGame.exe", log);
