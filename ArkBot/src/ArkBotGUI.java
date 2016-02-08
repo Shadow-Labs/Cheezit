@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -26,32 +27,33 @@ public class ArkBotGUI extends JFrame
 {
 	private Point p;
 	private String version;
+	ArkBotLog log;
 	public static JFrame GUI;
 	public static JTextArea textLog;
 	public static JLabel xPos;
 	public static JLabel yPos;
 	
-	public ArkBotGUI(String version, Point p) 
+	public ArkBotGUI(String version, Point p, ArkBotLog log) 
 	{
 		this.p = p;
 		this.version = version;
+		this.log = log;
 	}
 	
 	public void Initialize() {
-		
         GUI = new JFrame("ArkBot " + version);
+
         JPanel bgPanel = new BgPanel();
         bgPanel.setLayout(new BorderLayout());
 		
-        Image icon = new ImageIcon("Files/Images/ArkBotLogoIcon.png").getImage();
+        Image icon = new ImageIcon("ArkBotFiles/Images/ArkBotLogoIcon.png").getImage();
         
         GUI.setIconImage(icon);
         GUI.setSize(480,935);
         GUI.setResizable(false);
         GUI.setLocation(1440, 0);
         GUI.setLayout(new FlowLayout());
-        //GUI.setContentPane(new ImagePanel(img));
-        GUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        GUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         // Mouse Position
         JPanel mousePanel = new JPanel();
@@ -102,9 +104,10 @@ public class ArkBotGUI extends JFrame
         yPos.setText("Mouse Y: " + r.y);
 	}
 	
-	public static void Log (String text) {
+	public static void GUIText (String text, ArkBotLog log) {
 		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
-		textLog.setText(textLog.getText() + "\n" + timeStamp + ": " + text);		
+		textLog.setText(textLog.getText() + "\n" + timeStamp + ": " + text);
+		log.WriteLog(timeStamp + ": " + text);
 	}
 	
 }

@@ -4,21 +4,59 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Setup {
 	private Robot bot;
+	private ArkBotLog log;
 	private Point p;
 	private int PAUSE;
-	public Setup(Robot bot, Point p, int PAUSE)  throws AWTException {
+	public Setup(Robot bot, Point p, int PAUSE, ArkBotLog log)  throws AWTException {
 		this.bot = bot;
+		this.log = log;
 		this.p = p;
 		this.PAUSE = PAUSE;
 	}
 	
 	//-----------------ADMINISTRATIVE FUNCTIONALITY-----------------
-	public void Settings() throws AWTException //Resolution must be set to 1440x900
+	public void Begin() throws AWTException //Resolution must be set to 1440x900
 	{
+		File userSettings = new File("ShooterGame/Saved/Config/WindowsNoEditor/GameUserSettings.ini");
+		Path FROM = Paths.get(userSettings.getAbsolutePath());
+		File oldUserSettings = new File("ShooterGame/Saved/Config/WindowsNoEditor/OldGameUserSettings.ini");
+		Path TO = Paths.get(oldUserSettings.getAbsolutePath());
+		File arkexe = new File ("ShooterGame/Binaries/Win64/ShooterGame.exe");
 		
+		if (userSettings.exists()) {
+			ArkBotGUI.GUIText("Succesfully found GameUserSettings.ini", log);
+			try {
+				Files.copy(FROM,TO);
+			} catch (IOException e) {
+				StringWriter error = new StringWriter();
+				e.printStackTrace(new PrintWriter(error));
+				ArkBotGUI.GUIText("ERROR: Unable to Copy GameUserSettings.ini.", log);
+				ArkBotGUI.GUIText(error.toString(), log);
+				e.printStackTrace();
+			}
+		} else {
+			ArkBot.ERROR = "Setup Error";
+			ArkBotGUI.GUIText("ERROR: Could not find GameUserSettings.ini", log);
+			ArkBotGUI.GUIText("ERROR: Ensure ArkBot.jar is located in steamapps/common/ARK", log);
+		}
+		
+		if (arkexe.exists()) {
+			ArkBotGUI.GUIText("Succesfully found GameUserSettings.ini", log);
+		} else {
+			ArkBot.ERROR = "Setup Error";
+			ArkBotGUI.GUIText("ERROR: Could not find ShooterGame.exe", log);
+			ArkBotGUI.GUIText("ERROR: Ensure ShooterGame.exe is located in steamapps/common/ARK/ShooterGame/Binaries/Win64", log);
+		}
 		
 //		MouseDrag drag = new MouseDrag(bot, p);
 //		

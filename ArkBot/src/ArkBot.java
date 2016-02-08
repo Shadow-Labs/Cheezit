@@ -1,26 +1,12 @@
 import java.awt.AWTException;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.PointerInfo;
 import java.awt.Robot;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.JOptionPane;
 
 class ImagePanel extends JComponent {
     /**
@@ -42,14 +28,29 @@ class ImagePanel extends JComponent {
 public class ArkBot {
 	
 	Robot bot = new Robot();
+	static ArkBotLog log;
 	public static int PAUSE = 50;
 	public static Point p;
 	public static String version = "v0.0.1";
+	public static String ERROR = "";
 	
 	public static void main(String[] args) throws AWTException
 	{
-		ArkBotGUI gui = new ArkBotGUI(version, p);
+		log = new ArkBotLog(version);
+		ArkBotGUI gui = new ArkBotGUI(version, p, log);
 		gui.Initialize();
+        ArkBotGUI.GUI.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(ArkBotGUI.GUI, "Are you sure you want to quit ArkBot?", "Quit", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                	log.CloseLog();
+                    System.exit(0);
+                }
+            }
+        });
+		
 		
         MouseObserver mo = new MouseObserver(ArkBotGUI.GUI);
         mo.addMouseMotionListener(new MouseMotionListener() {
@@ -75,13 +76,13 @@ public class ArkBot {
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);
         CharacterMovement move = new CharacterMovement(bot, p,  PAUSE);
-        Setup setup = new Setup(bot, p,  PAUSE);
+        Setup setup = new Setup(bot, p,  PAUSE, log);
         
-        // Setup Ark
-        //setup.Settings();
-	    //setup.FocusARK();
 	    bot.delay(PAUSE);
-	    ArkBotGUI.Log("Welcome to ArkBot " + version +"!");
+	    ArkBotGUI.GUIText("Welcome to ArkBot " + version +"!", log);
+	    
+        // Setup Ark
+        setup.Begin();
 	    
 	    //move.MoveForward(1000, true);
 
