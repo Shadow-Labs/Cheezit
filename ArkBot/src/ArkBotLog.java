@@ -50,8 +50,8 @@ public class ArkBotLog {
 		// Log Header
 		writer.println("ArkBotLog");
 		writer.println("ArkBot Version: " + version);
-		writer.println("Timestamp: " + timeStamp);
-		writer.println("=======================");
+		writer.println("Begin Timestamp: " + timeStamp);
+		writer.println("==================================================================================");
 	}
 	
 	public void WriteLog(String text) {
@@ -62,6 +62,15 @@ public class ArkBotLog {
 	}
 	
 	public void CloseLog() {
+		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+		long elapsed = (System.currentTimeMillis() - ArkBotGUI.start);
+        String display = String.format("%02d:%02d:%02d", (elapsed / (1000 * 60 * 60)) % 24, (elapsed / (1000 * 60)) % 60, (elapsed / 1000) % 60);
+        
+		// Log Footer
+		writer.println("==================================================================================");
+		writer.println("End Timestamp: " + timeStamp);
+		writer.println("Runtime: " + display);
+		
 		writer.close();
 	}
 	

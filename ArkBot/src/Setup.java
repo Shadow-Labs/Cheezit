@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Setup {
+	public static Process ArkProcess;
 	private Robot bot;
 	private ArkBotLog log;
 	private Point p;
@@ -53,6 +54,18 @@ public class Setup {
 		
 		if (arkexe.exists()) {
 			ArkBotGUI.GUIText("Succesfully found ShooterGame.exe", log);
+			ArkBotGUI.GUIText("Launching Ark Survival Evolved.", log);
+			try {
+				Process ArkProcess = new ProcessBuilder("ShooterGame/Binaries/Win64/ShooterGame.exe").start();
+			} catch (IOException e) {
+				ArkBot.ERROR = "Setup Error";
+				StringWriter error = new StringWriter();
+				e.printStackTrace(new PrintWriter(error));
+				ArkBotGUI.GUIText("ERROR: Unable to launch Ark Survival Evolved.", log);
+				ArkBotGUI.GUIText(error.toString(), log);
+				e.printStackTrace();
+			}
+			
 		} else {
 			ArkBot.ERROR = "Setup Error";
 			ArkBotGUI.GUIText("ERROR: Could not find ShooterGame.exe", log);

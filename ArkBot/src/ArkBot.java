@@ -45,6 +45,7 @@ public class ArkBot {
                 if (JOptionPane.showConfirmDialog(ArkBotGUI.GUI, "Are you sure you want to quit ArkBot?", "Quit", 
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                	ArkBotGUI.timer.stop();
                 	log.CloseLog();
                     System.exit(0);
                 }
@@ -64,7 +65,6 @@ public class ArkBot {
                 }
             });
         mo.start();
-
 		new ArkBot();
 		
 
@@ -75,7 +75,6 @@ public class ArkBot {
 		// Initialization
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);
-        CharacterActions move = new CharacterActions(bot, p,  PAUSE);
         Setup setup = new Setup(bot, p,  PAUSE, log);
         
 	    bot.delay(PAUSE);
@@ -84,11 +83,6 @@ public class ArkBot {
         // Setup Ark
         setup.Begin();
 	    
-	    //move.MoveForward(1000, true);
-
-	    bot.delay(500);
-	    //drag.move(bot, p, 350, 300);
-	    //System.exit(0);
 
 	  }
 	}
