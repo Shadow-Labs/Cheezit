@@ -60,10 +60,6 @@ public class ArkBot {
         mo.start();
 		new ArkBot();
 		
-		// OCR Initialization/Test
-//		OCRScannerDemo demo = new OCRScannerDemo();
-//		demo.OCRSomething("ArkBotFiles\\OCRImages\\ChatImages\\ChatTest1.png");
-		
 
 	}
 	
@@ -73,11 +69,17 @@ public class ArkBot {
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);
         Setup setup = new Setup(bot, p,  PAUSE);
+        ChatImageGrab g = new ChatImageGrab(bot);
         
 	    bot.delay(PAUSE);
-	    
+	    //g.Grab();
+	    g.InvertGrab();
         // Setup Ark
         //setup.Begin();
+	    
+		// OCR Initialization/Test
+		OCRScannerDemo demo = new OCRScannerDemo();
+		ArkBotGUI.GUIText("OCR: " + demo.OCRSomething("ArkBotFiles\\OCRImages\\ChatImageGrab\\grabInvert.png"));
 	    
 
 	  }

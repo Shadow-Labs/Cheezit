@@ -74,14 +74,14 @@ public class OCRScannerDemo
                     trainingImageDir + "asciiChatCleanInvert.png",
                     new CharacterRange('!', '~'),
                     trainingImageMap);
-            if (debug)
-            {
-                System.err.println("asciiChatClean2.png");
-            }
-            loader.load(
-                    trainingImageDir + "asciiChatClean2.png",
-                    new CharacterRange('!', '~'),
-                    trainingImageMap);
+//            if (debug)
+//            {
+//                System.err.println("asciiChatClean2.png");
+//            }
+//            loader.load(
+//                    trainingImageDir + "asciiChatClean2.png",
+//                    new CharacterRange('!', '~'),
+//                    trainingImageMap);
 //            if (debug)
 //            {
 //                System.err.println("digitsChatClean.png");
@@ -108,7 +108,7 @@ public class OCRScannerDemo
         }
     }
 
-    public void process(String imageFilename)
+    public String process(String imageFilename)
     {
         if (debug)
         {
@@ -126,7 +126,7 @@ public class OCRScannerDemo
         if (image == null)
         {
             System.err.println("Cannot find image file: " + imageFilename);
-            return;
+            return "";
         }
 
         if (debug)
@@ -153,14 +153,16 @@ public class OCRScannerDemo
         System.out.println(imageFilename + ":");
         String text = scanner.scan(image, 0, 0, 0, 0, null);
         System.out.println("[" + text + "]");
+        return text;
     }
 
-    public void OCRSomething(String image) {
+    public String OCRSomething(String image) {
         OCRScannerDemo demo = new OCRScannerDemo();
         String trainingImageDir = "ArkBotFiles\\OCRImages\\ChatImages";
         demo.loadTrainingImages(trainingImageDir);
-        demo.process(image);
+        String text = demo.process(image);
         System.out.println("done.");
+        return (text);
     }
     private static final Logger LOG = Logger.getLogger(OCRScannerDemo.class.getName());
 
