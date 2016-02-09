@@ -8,6 +8,8 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
+import net.sourceforge.javaocr.ocrPlugins.OCRDemo.OCRScannerDemo;
+
 class ImagePanel extends JComponent {
     /**
 	 * 
@@ -66,6 +68,10 @@ public class ArkBot {
             });
         mo.start();
 		new ArkBot();
+		
+		// OCR Initialization/Test
+		OCRScannerDemo demo = new OCRScannerDemo();
+		demo.OCRSomething("ArkBotFiles\\OCRImages\\ChatImages\\ChatTest1.png");
 		
 
 	}

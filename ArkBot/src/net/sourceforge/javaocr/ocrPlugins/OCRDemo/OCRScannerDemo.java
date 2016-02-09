@@ -66,42 +66,34 @@ public class OCRScannerDemo
             scanner.clearTrainingImages();
             TrainingImageLoader loader = new TrainingImageLoader();
             HashMap<Character, ArrayList<TrainingImage>> trainingImageMap = new HashMap<Character, ArrayList<TrainingImage>>();
+            if (debug)
+            {
+                System.err.println("asciiChatCleanInvert.png");
+            }
+            loader.load(
+                    trainingImageDir + "asciiChatCleanInvert.png",
+                    new CharacterRange('!', '~'),
+                    trainingImageMap);
+            if (debug)
+            {
+                System.err.println("asciiChatClean2.png");
+            }
+            loader.load(
+                    trainingImageDir + "asciiChatClean2.png",
+                    new CharacterRange('!', '~'),
+                    trainingImageMap);
 //            if (debug)
 //            {
-//                System.err.println("ascii.png");
+//                System.err.println("digitsChatClean.png");
 //            }
 //            loader.load(
-//                    trainingImageDir + "ascii.png",
-//                    new CharacterRange('!', '~'),
-//                    trainingImageMap);
-//            if (debug)
-//            {
-//                System.err.println("hpljPica.jpg");
-//            }
-//            loader.load(
-//                    trainingImageDir + "hpljPica.jpg",
-//                    new CharacterRange('!', '~'),
-//                    trainingImageMap);
-//            if (debug)
-//            {
-//                System.err.println("digits.jpg");
-//            }
-//            loader.load(
-//                    trainingImageDir + "digits.jpg",
+//                    trainingImageDir + "digitsChatClean.png",
 //                    new CharacterRange('0', '9'),
 //                    trainingImageMap);
-//            if (debug)
-//            {
-//                System.err.println("adding images");
-//            }
-          if (debug)
-          {
-        	  System.err.println("adding images");
-          }
-          loader.load(
-          trainingImageDir + "Candara.png",
-          new CharacterRange('A', ')'),
-          trainingImageMap);
+            if (debug)
+            {
+                System.err.println("adding images");
+            }
             
             scanner.addTrainingImages(trainingImageMap);
             if (debug)
@@ -163,28 +155,37 @@ public class OCRScannerDemo
         System.out.println("[" + text + "]");
     }
 
-    public static void main(String[] args)
-    {
-//        if (args.length < 1)
-//        {
-//            System.err.println("Please specify one or more image filenames.");
-//            System.exit(1);
-//        }
-//        String trainingImageDir = System.getProperty("TRAINING_IMAGE_DIR");
-//        if (trainingImageDir == null)
-//        {
-//            System.err.println("Please specify -DTRAINING_IMAGE_DIR=<dir> on "
-//                    + "the java command line.");
-//            return;
-//        }
+    public void OCRSomething(String image) {
         OCRScannerDemo demo = new OCRScannerDemo();
-        String trainingImageDir = "TestImage";
+        String trainingImageDir = "ArkBotFiles\\OCRImages\\ChatImages";
         demo.loadTrainingImages(trainingImageDir);
-        for (int i = 0; i < args.length; i++)
-        {
-            demo.process(args[i]);
-        }
+        demo.process(image);
         System.out.println("done.");
     }
     private static final Logger LOG = Logger.getLogger(OCRScannerDemo.class.getName());
+
+//    public static void main(String[] args)
+//    {
+////        if (args.length < 1)
+////        {
+////            System.err.println("Please specify one or more image filenames.");
+////            System.exit(1);
+////        }
+////        String trainingImageDir = System.getProperty("TRAINING_IMAGE_DIR");
+////        if (trainingImageDir == null)
+////        {
+////            System.err.println("Please specify -DTRAINING_IMAGE_DIR=<dir> on "
+////                    + "the java command line.");
+////            return;
+////        }
+//        OCRScannerDemo demo = new OCRScannerDemo();
+//        String trainingImageDir = "OCRImages\\ChatImages";
+//        demo.loadTrainingImages(trainingImageDir);
+//        for (int i = 0; i < args.length; i++)
+//        {
+//            demo.process(args[i]);
+//        }
+//        System.out.println("done.");
+//    }
+//    private static final Logger LOG = Logger.getLogger(OCRScannerDemo.class.getName());
 }
