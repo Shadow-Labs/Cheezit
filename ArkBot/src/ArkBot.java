@@ -30,29 +30,20 @@ class ImagePanel extends JComponent {
 public class ArkBot {
 	
 	Robot bot = new Robot();
-	static ArkBotLog log;
+	public static ArkBotLog log;
 	public static int PAUSE = 50;
 	public static Point p;
-	public static String version = "v0.0.1";
+	public static String version = "v0.0.5";
 	public static String ERROR = "";
 	
 	public static void main(String[] args) throws AWTException
 	{
 		log = new ArkBotLog(version);
-		ArkBotGUI gui = new ArkBotGUI(version, p, log);
+		ArkBotGUI gui = new ArkBotGUI(version, p);
 		gui.Initialize();
-        ArkBotGUI.GUI.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                if (JOptionPane.showConfirmDialog(ArkBotGUI.GUI, "Are you sure you want to quit ArkBot?", "Quit", 
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                	ArkBotGUI.timer.stop();
-                	log.CloseLog();
-                    System.exit(0);
-                }
-            }
-        });
+		ArkBotSettings settings = new ArkBotSettings();
+		gui.SetupPrompt();
+
 		
 		
         MouseObserver mo = new MouseObserver(ArkBotGUI.GUI);
@@ -70,8 +61,8 @@ public class ArkBot {
 		new ArkBot();
 		
 		// OCR Initialization/Test
-		OCRScannerDemo demo = new OCRScannerDemo();
-		demo.OCRSomething("ArkBotFiles\\OCRImages\\ChatImages\\ChatTest1.png");
+//		OCRScannerDemo demo = new OCRScannerDemo();
+//		demo.OCRSomething("ArkBotFiles\\OCRImages\\ChatImages\\ChatTest1.png");
 		
 
 	}
@@ -81,13 +72,12 @@ public class ArkBot {
 		// Initialization
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);
-        Setup setup = new Setup(bot, p,  PAUSE, log);
+        Setup setup = new Setup(bot, p,  PAUSE);
         
 	    bot.delay(PAUSE);
-	    ArkBotGUI.GUIText("Welcome to ArkBot " + version +"!", log);
 	    
         // Setup Ark
-        setup.Begin();
+        //setup.Begin();
 	    
 
 	  }

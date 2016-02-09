@@ -1,0 +1,31 @@
+ArkBot Version Updates/History
+
+v0.0.1
+- Basic Robot Mouse/Keyboard Interactions
+- Chat Functionality
+- Basic Movement Capabilities
+
+v0.0.2
+- Mouse Drag Capability
+- Mouse Observer/Tracker
+- Basic GUI
+- Java Reorganization
+
+v0.0.3
+- Logging Capabilities
+- GUI Upgrade
+	- Background Image
+	- Icon Image
+	- Log Text Display
+	- Mouse Location Display
+	
+v0.0.4
+- Initial OCR Introduction
+- Runtime Calculation
+- GUI
+	- Runtime Display
+	- Quit Prompt
+	
+v0.0.5
+- Setup Settings Prompt
+- Initial ArkBotSettings Implementation
