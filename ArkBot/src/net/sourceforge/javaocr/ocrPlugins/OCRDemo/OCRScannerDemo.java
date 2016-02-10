@@ -66,14 +66,38 @@ public class OCRScannerDemo
             scanner.clearTrainingImages();
             TrainingImageLoader loader = new TrainingImageLoader();
             HashMap<Character, ArrayList<TrainingImage>> trainingImageMap = new HashMap<Character, ArrayList<TrainingImage>>();
-            if (debug)
-            {
-                System.err.println("asciiChatCleanInvert.png");
-            }
-            loader.load(
-                    trainingImageDir + "asciiChatCleanInvert.png",
-                    new CharacterRange('!', '~'),
-                    trainingImageMap);
+          if (debug)
+          {
+              System.err.println("AlphaCapInvert.png");
+          }
+          loader.load(
+                  trainingImageDir + "AlphaCapInvert.png",
+                  new CharacterRange('A', 'Z'),
+                  trainingImageMap);
+          if (debug)
+          {
+              System.err.println("AlphaLowInvert.png");
+          }
+          loader.load(
+                  trainingImageDir + "AlphaLowInvert.png",
+                  new CharacterRange('a', 'z'),
+                  trainingImageMap);
+//            if (debug)
+//            {
+//                System.err.println("asciiChatInvert.png");
+//            }
+//            loader.load(
+//                    trainingImageDir + "asciiChatInvert.png",
+//                    new CharacterRange('!', '~'),
+//                    trainingImageMap);
+//            if (debug)
+//            {
+//                System.err.println("asciiChatCleanInvert.png");
+//            }
+//            loader.load(
+//                    trainingImageDir + "asciiChatCleanInvert.png",
+//                    new CharacterRange('!', '~'),
+//                    trainingImageMap);
 //            if (debug)
 //            {
 //                System.err.println("asciiChatClean2.png");
@@ -84,16 +108,16 @@ public class OCRScannerDemo
 //                    trainingImageMap);
 //            if (debug)
 //            {
-//                System.err.println("digitsChatClean.png");
+//                System.err.println("digitsChatInvert.png");
 //            }
 //            loader.load(
-//                    trainingImageDir + "digitsChatClean.png",
+//                    trainingImageDir + "digitsChatInvert.png",
 //                    new CharacterRange('0', '9'),
 //                    trainingImageMap);
-            if (debug)
-            {
-                System.err.println("adding images");
-            }
+//            if (debug)
+//            {
+//                System.err.println("adding images");
+//            }
             
             scanner.addTrainingImages(trainingImageMap);
             if (debug)
@@ -158,7 +182,7 @@ public class OCRScannerDemo
 
     public String OCRSomething(String image) {
         OCRScannerDemo demo = new OCRScannerDemo();
-        String trainingImageDir = "ArkBotFiles\\OCRImages\\ChatImages";
+        String trainingImageDir = "ArkBotFiles\\OCRImages\\TrainingImages";
         demo.loadTrainingImages(trainingImageDir);
         String text = demo.process(image);
         System.out.println("done.");

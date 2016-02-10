@@ -19,7 +19,7 @@ public class ChatImageGrab {
 	public Image Grab() {
 		BufferedImage img = bot.createScreenCapture(chatLoc);
 		try {
-			ImageIO.write(img, "png", new File("ArkBotFiles/OCRImages/ChatImageGrab/grab.png"));
+			ImageIO.write(img, "png", new File("ArkBotFiles/OCRImages/ChatImageGrab/grabExample.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class ChatImageGrab {
 	public void InvertGrab() {
 		BufferedImage inputFile = null;
         try {
-            inputFile = ImageIO.read(new File("ArkBotFiles/OCRImages/ChatImageGrab/grab.png"));
+            inputFile = ImageIO.read(new File("ArkBotFiles/OCRImages/ChatImageGrab/grabExample.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,7 +40,8 @@ public class ChatImageGrab {
             for (int y = 0; y < inputFile.getHeight(); y++) {
                 int rgba = inputFile.getRGB(x, y);
                 Color col = new Color(rgba, true);
-                if (col.getRed() > 180 && col.getGreen() > 180 && col.getBlue() > 180) {
+                int wl = 100;
+                if (col.getRed() > wl && col.getGreen() > wl && col.getBlue() > wl) {
                 	col = new Color(0, 0, 0);
                 } else {
                     col = new Color(255,255,255);
