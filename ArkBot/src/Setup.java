@@ -128,7 +128,7 @@ public class Setup {
 		MouseDrag drag = new MouseDrag(bot, p);
 		
 		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 720, 160);
+		bot.mouseMove(720, 160);
 		
 		bot.delay(PAUSE);
 		leftClick();

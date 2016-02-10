@@ -154,7 +154,7 @@ public class ArkBotGUI extends JFrame
 			JPanel msgPanel = new JPanel();
 			msgPanel.setLayout(new BorderLayout());
 			JLabel requirements = new JLabel("<html>Please ensure the following are true:<br>"
-					+ "1) Ark Resolution is set to 1440 x 900<br>"
+					+ "1) Ark Resolution is set to 1440 x 900, Windowed<br>"
 				    + "2) Ark window is located in the top left corner of your default monitor<br>"
 				    + "3) You are currently logged in/connected to a server<br> </html>");
 			JCheckBox dontAsk = new JCheckBox("Do not prompt me again");

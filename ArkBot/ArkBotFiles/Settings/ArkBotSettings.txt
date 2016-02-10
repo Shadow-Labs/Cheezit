@@ -1,2 +1,2 @@
 SetupPrompt = false
-SetupPromptAndrewIsAwesome = false
+AndrewIsAwesome = true

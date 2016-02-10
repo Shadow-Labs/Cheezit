@@ -70,16 +70,20 @@ public class ArkBot {
 	    bot.setAutoWaitForIdle(true);
         Setup setup = new Setup(bot, p,  PAUSE);
         ChatImageGrab g = new ChatImageGrab(bot);
+        CharacterActions action = new CharacterActions(bot, p, PAUSE);
+        
+        setup.FocusARK();
+        action.Pickup();
         
 	    bot.delay(PAUSE);
 	    //g.Grab();
-	    g.InvertGrab();
+	    //g.InvertGrab();
         // Setup Ark
         //setup.Begin();
 	    
 		// OCR Initialization/Test
-		OCRScannerDemo demo = new OCRScannerDemo();
-		ArkBotGUI.GUIText("OCR: " + demo.OCRSomething("ArkBotFiles\\OCRImages\\ChatImageGrab\\grabInvert.png"));
+		//OCRScannerDemo demo = new OCRScannerDemo();
+		//ArkBotGUI.GUIText("OCR: " + demo.OCRSomething("ArkBotFiles\\OCRImages\\ChatImageGrab\\grabInvert.png"));
 	    
 
 	  }

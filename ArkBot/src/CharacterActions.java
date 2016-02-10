@@ -1,4 +1,6 @@
 import java.awt.AWTException;
+import java.awt.Color;
+import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -17,7 +19,34 @@ public class CharacterActions {
 	//--------------------Character Action Functionality-------------------
 	public int Pickup() {
 		int success = 0;
-		
+		while(bot.getPixelColor(720, 440).getGreen() <= 250 && bot.getPixelColor(720, 440).getBlue() <= 250) {
+			LookDown(3);
+		}
+		while(bot.getPixelColor(720, 440).getGreen() >= 250 && bot.getPixelColor(720, 440).getBlue() >= 250) {
+			bot.delay(PAUSE);
+			bot.keyPress(KeyEvent.VK_E);
+			bot.delay(PAUSE);
+			bot.keyRelease(KeyEvent.VK_E);
+		}
+		success = 1;
+		return success;
+	}
+	
+	public int ObjectInventory() {
+		int success = 0;
+		Color pixel = bot.getPixelColor(720,440);
+		while(pixel.getGreen() <= 250 && pixel.getBlue() <= 250 && pixel.getRed() == 0) {
+			LookDown(3);
+			pixel = bot.getPixelColor(720,440);
+		}
+		while(pixel.getGreen() <= 250 && pixel.getBlue() <= 250 && pixel.getRed() == 0) {
+			bot.delay(PAUSE);
+			bot.keyPress(KeyEvent.VK_F);
+			bot.delay(PAUSE);
+			bot.keyRelease(KeyEvent.VK_F);
+			pixel = bot.getPixelColor(720,440);
+		}
+		success = 1;
 		return success;
 	}
 	
@@ -92,7 +121,7 @@ public class CharacterActions {
 		{
 			pixels--;
 			bot.delay(5);
-			bot.mouseMove(p.x, p.y + 1);
+			bot.mouseMove(p.x, p.y - 1);
 		}
 	}
 	public void LookDown (int pixels) {
@@ -100,8 +129,7 @@ public class CharacterActions {
 		while (pixels > 0)
 		{
 			pixels--;
-			bot.delay(5);
-			bot.mouseMove(p.x, p.y - 1);
+			bot.mouseMove(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y + 1);
 		}
 	}
 	public void LookLeft (int pixels) {
