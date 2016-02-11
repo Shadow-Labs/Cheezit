@@ -5,9 +5,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class BgPanel extends JPanel {
-	Image icon = new ImageIcon("ArkBotFiles/Images/ArkBotBackground.png").getImage();
+	Image imgIcon;
+	public BgPanel(Image icon) {
+		imgIcon = icon;
+	}
 	@Override
     public void paintComponent(Graphics g) {
-        g.drawImage(icon, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(imgIcon, 0, 0, getWidth(), getHeight(), this);
     }
 }

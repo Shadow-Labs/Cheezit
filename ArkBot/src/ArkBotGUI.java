@@ -1,7 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -18,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -52,8 +55,7 @@ public class ArkBotGUI extends JFrame
 		    public void actionPerformed(ActionEvent evt) {
 		    	SetMouse();  
 		    }
-		});		
-		timer.start();
+		});
 		
 		img = new ImageIcon("ArkBotFiles/Images/ArkBotLogo.png").getImage();
         icon = new ImageIcon(img.getScaledInstance(100, 100, 0));
@@ -61,9 +63,10 @@ public class ArkBotGUI extends JFrame
 	}
 	
 	public void Initialize() {
+		LoadingScreen();
         GUI = new JFrame("ArkBot " + version);
 
-        JPanel bgPanel = new BgPanel();
+        JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/ArkBotBackground.png").getImage());
         bgPanel.setLayout(new BorderLayout());
         
         GUI.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -131,6 +134,7 @@ public class ArkBotGUI extends JFrame
         GUI.setContentPane(bgPanel);
         
         GUI.setVisible(true);
+		timer.start();
         GUIText("Welcome to ArkBot " + version +"!");
 	}
 	
@@ -166,6 +170,69 @@ public class ArkBotGUI extends JFrame
 				ArkBotSettings.UpdateSetting("SetupPrompt", false);
 			}
 		}
+	}
+	
+	private void LoadingScreen() {
+		JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/LoadingScreenBackground.png").getImage());
+        bgPanel.setLayout(new BorderLayout());
+        
+		JFrame lScreen = new JFrame("Loading ArkBot " + version);
+		lScreen.setIconImage(img);
+        lScreen.setSize(360,200);
+        lScreen.setResizable(false);
+        lScreen.setLocationRelativeTo(null);
+        lScreen.setLayout(new GridLayout());
+        
+        JPanel barPanel = new JPanel();
+        barPanel.setOpaque(false);
+        JProgressBar bar = new JProgressBar();
+        bar.setOpaque(false);
+        bar.setForeground(Color.DARK_GRAY);
+        int MIN = 0;
+        int MAX = 100;
+        bar.setMinimum(MIN);
+        bar.setMaximum(MAX);
+        bar.setStringPainted(true);
+        
+        barPanel.add(bar);
+        bar.setPreferredSize(new Dimension (300,32));
+        
+        JLabel image = new JLabel("", icon, JLabel.CENTER);
+        JPanel imgPanel = new JPanel(new BorderLayout());
+        imgPanel.setOpaque(false);
+        imgPanel.add(image);
+        
+//        lScreen.add(imgPanel);
+//        lScreen.add(barPanel);
+        bgPanel.add(imgPanel, BorderLayout.NORTH);
+        bgPanel.add(barPanel, BorderLayout.CENTER);
+        lScreen.add(bgPanel);
+        lScreen.setContentPane(bgPanel);
+        lScreen.setVisible(true);
+        
+        int progress = MIN;
+        int load = 0;
+        while (progress < MAX) {
+			try {
+				Thread.sleep((long) (Math.random() * (MAX - progress)));
+				bar.setValue(progress);
+				if ((progress % 6) == 0) {
+					load++;
+					if (load % 3 == 0) {
+						bar.setString("Loading.  ");
+					} else if (load % 3 == 1) {
+						bar.setString("Loading.. ");
+					} else {
+						bar.setString("Loading...");
+					}
+				}
+		    	progress++;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+        }
+        
+        lScreen.dispose();
 	}
 	
 }
