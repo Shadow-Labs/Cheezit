@@ -4,16 +4,23 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class CharacterActions {
 	
 	private Robot bot;
 	private Point p;
 	private int PAUSE;
+	public static Point[] invPoints;
+	MouseDrag drag;
+	RobotType robtype;
 	public CharacterActions(Robot bot, Point p, int PAUSE)  throws AWTException {
 		this.bot = bot;
 		this.p = p;
 		this.PAUSE = PAUSE;
+		drag = new MouseDrag(bot, p);
+		robtype = new RobotType(bot);
+		invPoints = invPointSet();
 	}
 	
 	//--------------------Character Action Functionality-------------------
@@ -140,5 +147,75 @@ public class CharacterActions {
 			bot.delay(5);
 			bot.mouseMove(p.x - 1, p.y);
 		}
+	}
+	
+	
+	
+	
+	
+	public int InvSearch(String type) {
+		int stackCount = 0;
+		p = MouseInfo.getPointerInfo().getLocation();
+		drag.move(p, 470, 150);
+		bot.mousePress(MouseEvent.BUTTON1_MASK);
+		bot.delay(PAUSE);
+		bot.mouseRelease(MouseEvent.BUTTON1_MASK);
+		robtype.type(type);
+		
+		
+		return stackCount;
+	}
+	public void InvScreen() {
+		Color p1 = bot.getPixelColor(41,211);
+		Color p2 = bot.getPixelColor(34,224);
+		Color p3 = bot.getPixelColor(973,474);
+		if (p1.getBlue() >= 250 && p1.getGreen() >= 250 && p1.getRed() == 0
+				&& p2.getBlue() >= 250 && p2.getGreen() >= 250 && p2.getRed() == 0
+				&& p3.getBlue() >= 250 && p3.getGreen() >= 250 && p3.getRed() == 0) {
+		} else {
+			ArkBotGUI.GUIText("[ACTION]:Opening Inventory.");
+			bot.keyPress(KeyEvent.VK_I);
+			bot.delay(PAUSE);
+			bot.keyRelease(KeyEvent.VK_I);
+			bot.delay(500);			
+		}
+	}
+	
+	public void InvRemoveType(String type) {
+		
+	}
+	
+	
+	
+	
+	private Point[] invPointSet() {
+		Point[] points = {
+			new Point(82,280),
+			new Point(172,280),
+			new Point(262,280),
+			new Point(352,280),
+			new Point(442,280),
+			new Point(82,370),
+			new Point(172,370),
+			new Point(262,370),
+			new Point(352,370),
+			new Point(442,370),
+			new Point(82,460),
+			new Point(172,460),
+			new Point(262,460),
+			new Point(352,460),
+			new Point(442,460),
+			new Point(82,550),
+			new Point(172,550),
+			new Point(262,550),
+			new Point(352,550),
+			new Point(442,550),
+			new Point(82,640),
+			new Point(172,640),
+			new Point(262,640),
+			new Point(352,640),
+			new Point(442,640)
+			};
+		return points;
 	}
 }

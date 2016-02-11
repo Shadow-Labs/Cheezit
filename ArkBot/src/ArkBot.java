@@ -73,7 +73,10 @@ public class ArkBot {
         CharacterActions action = new CharacterActions(bot, p, PAUSE);
         
         setup.FocusARK();
-        action.Pickup();
+        bot.delay(1000);
+        //action.Pickup();
+        action.InvScreen();
+        action.InvSearch("Specimen Implant");
         
 	    bot.delay(PAUSE);
 	    //g.Grab();

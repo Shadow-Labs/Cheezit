@@ -29,3 +29,18 @@ v0.0.4
 v0.0.5
 - Setup Settings Prompt
 - Initial ArkBotSettings Implementation
+
+v0.0.6
+- Meat Splitter Implementation
+
+v0.0.6
+- NarcoGather
+
+v0.0.7
+- NarcoticBuilder
+
+v0.0.8
+- NarcoticStorage
+
+v0.1.0
+- Narcotics Start to finish
