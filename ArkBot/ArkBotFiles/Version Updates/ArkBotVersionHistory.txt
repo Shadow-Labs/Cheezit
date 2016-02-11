@@ -31,15 +31,21 @@ v0.0.5
 - Initial ArkBotSettings Implementation
 
 v0.0.6
-- Meat Splitter Implementation
-
-v0.0.6
-- NarcoGather
+- Loading Screen
+- String to Type Capability
+- Inventory Search
+- Inventory StackCount
 
 v0.0.7
-- NarcoticBuilder
+- Meat Splitter Implementation
 
 v0.0.8
+- NarcoGather
+
+v0.0.8
+- NarcoticBuilder
+
+v0.0.9
 - NarcoticStorage
 
 v0.1.0

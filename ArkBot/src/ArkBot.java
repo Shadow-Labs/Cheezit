@@ -33,7 +33,7 @@ public class ArkBot {
 	public static Global global;
 	public static ArkBotLog log;
 	public static Point p;
-	public static String version = "v0.0.5";
+	public static String version = "v0.0.6";
 	public static String ERROR = "";
 	
 	public static void main(String[] args) throws AWTException
@@ -71,11 +71,10 @@ public class ArkBot {
 	    bot.setAutoWaitForIdle(true);
         Setup setup = new Setup(bot, p,  global.PAUSE);
         ChatImageGrab g = new ChatImageGrab(bot);
+        MeatSplitter ms = new MeatSplitter(bot, p, global.PAUSE);
         CharacterActions action = new CharacterActions(bot, p, global.PAUSE);
         
         //action.InvSearch("jk");
-        MeatSplitter ms = new MeatSplitter(bot, p, global.PAUSE);
-        ms.SplitStack(global.INV_POINTS[0]);
         
 	    bot.delay(global.PAUSE);
 	    //g.Grab();
