@@ -19,9 +19,9 @@ public class ArkBotLog {
 		try {
 			File logfile = new File("ArkBotFiles/Logs/ArkBotLog_" + version + "_" + time + ".txt");
 			if (logfile.createNewFile()){
-			    System.out.println("File is created!");
-			  }else{
-			    System.out.println("File already exists.");
+				//Uhhh
+				}else{
+				//Duhhh
 			  }
 		} catch (IOException e1) {
 			StringWriter error = new StringWriter();

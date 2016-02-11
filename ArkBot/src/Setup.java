@@ -76,43 +76,43 @@ public class Setup {
 		
 		// Focus ARK
 		bot.delay(PAUSE);
-		bot.mouseMove(720, 160);
+		bot.mouseMove(ArkBot.global.FOCUS.x, ArkBot.global.FOCUS.y);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Click Options
 		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 720, 420);
+		drag.move(ArkBot.global.OPTIONS);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Click Camera FOV
 		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 634, 385);
+		drag.move(ArkBot.global.CAMERA_FOV);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Set Horizontal Sensitivity
 		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 678, 440);
+		drag.move(ArkBot.global.H_SENSITIVITY);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Set Vertical Sensitivity
 		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 678, 475);
+		drag.move(ArkBot.global.V_SENSITIVITY);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Click Apply
 		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 797, 852);
+		drag.move(ArkBot.global.APPLY);
 		bot.delay(500);
 		leftClick();
 		
 		// Click Save
 		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 582, 852);
+		drag.move(ArkBot.global.SAVE);
 		bot.delay(PAUSE);
 		leftClick();
 		
@@ -131,13 +131,6 @@ public class Setup {
 		bot.mouseMove(720, 160);
 		
 		bot.delay(PAUSE);
-		leftClick();
-		
-		bot.delay(PAUSE);
-		drag.move(MouseInfo.getPointerInfo().getLocation(), 720, 320);
-		
-		bot.delay(PAUSE);
-		leftClick();
 	}
 	
 	public void FocusView()

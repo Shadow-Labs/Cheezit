@@ -202,8 +202,6 @@ public class ArkBotGUI extends JFrame
         imgPanel.setOpaque(false);
         imgPanel.add(image);
         
-//        lScreen.add(imgPanel);
-//        lScreen.add(barPanel);
         bgPanel.add(imgPanel, BorderLayout.NORTH);
         bgPanel.add(barPanel, BorderLayout.CENTER);
         lScreen.add(bgPanel);
@@ -218,7 +216,7 @@ public class ArkBotGUI extends JFrame
 				bar.setValue(progress);
 				if ((progress % 6) == 0) {
 					load++;
-					if (load % 3 == 0) {
+					if (load % 6 == 0) {
 						bar.setString("Loading.  ");
 					} else if (load % 3 == 1) {
 						bar.setString("Loading.. ");
@@ -231,8 +229,14 @@ public class ArkBotGUI extends JFrame
 				e.printStackTrace();
 			}
         }
-        
-        lScreen.dispose();
+        try {
+			Thread.sleep(250);
+			lScreen.dispose();
+	        Thread.sleep(750);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

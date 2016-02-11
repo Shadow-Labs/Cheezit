@@ -11,6 +11,7 @@ public class RobotType {
     }
 
     public void type(String strng) {
+    	ArkBotGUI.GUIText("[ACTION]: Typing: " + strng);
         int length = strng.length();
         for (int i = 0; i < length; i++) {
             char character = strng.charAt(i);
@@ -130,10 +131,10 @@ public class RobotType {
         if (length == 0) {
             return;
         }
-        bot.delay(ArkBot.PAUSE);
+        bot.delay(ArkBot.global.PAUSE);
         bot.keyPress(keyCodes[offset]);
         doType(keyCodes, offset + 1, length - 1);
-        bot.delay(ArkBot.PAUSE);
+        bot.delay(ArkBot.global.PAUSE);
         bot.keyRelease(keyCodes[offset]);
     }
 

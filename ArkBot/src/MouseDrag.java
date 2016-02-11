@@ -1,4 +1,5 @@
 import java.awt.AWTException;
+import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
 
@@ -9,8 +10,11 @@ public class MouseDrag{
 		this.bot = bot;
 		this.p = p;
 	}
-	public void move(Point p, int x, int y) {
-		p.setLocation(p.x, p.y);
+	public void move(Point q) {
+		int x = q.x;
+		int y = q.y;
+		p = MouseInfo.getPointerInfo().getLocation();
+		bot.setAutoDelay(2);
 		if (p.x < x) {
 			if (p.y < y) {
 				if ((y-p.y) > (x-p.x)) {
@@ -80,5 +84,6 @@ public class MouseDrag{
 				}
 			}
 		}
+		bot.setAutoDelay(5);
 	}
 }

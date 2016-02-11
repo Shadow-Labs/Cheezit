@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -154,15 +155,27 @@ public class CharacterActions {
 	
 	
 	public int InvSearch(String type) {
+		ArkBotGUI.GUIText("[ACTION]: Searching Inventory");
 		int stackCount = 0;
 		p = MouseInfo.getPointerInfo().getLocation();
-		drag.move(p, 470, 150);
-		bot.mousePress(MouseEvent.BUTTON1_MASK);
-		bot.delay(PAUSE);
-		bot.mouseRelease(MouseEvent.BUTTON1_MASK);
+		drag.move(ArkBot.global.INV_SEARCH_BAR);
+		leftClick();
 		robtype.type(type);
-		
-		
+
+		// Stack Count
+		ArkBotGUI.GUIText("[ACTION]: Counting Stacks");
+		int p = 0;
+		int x1mod = 30;
+		int x2mod = 35;
+		while (p <= 19 && (bot.getPixelColor(invPoints[p].x + x1mod, invPoints[p].y).getRGB() < bot.getPixelColor(invPoints[p].x + x2mod, invPoints[p].y).getRGB())) {
+			stackCount++;
+			p++;
+			if (p == 20) {
+				// Scroll Down -- Check Scroll Bar
+				p = 15;
+			}
+		}
+		ArkBotGUI.GUIText("[RESULT]: Stack Count: " + stackCount);
 		return stackCount;
 	}
 	public void InvScreen() {
@@ -173,7 +186,7 @@ public class CharacterActions {
 				&& p2.getBlue() >= 250 && p2.getGreen() >= 250 && p2.getRed() == 0
 				&& p3.getBlue() >= 250 && p3.getGreen() >= 250 && p3.getRed() == 0) {
 		} else {
-			ArkBotGUI.GUIText("[ACTION]:Opening Inventory.");
+			ArkBotGUI.GUIText("[ACTION]: Opening Inventory");
 			bot.keyPress(KeyEvent.VK_I);
 			bot.delay(PAUSE);
 			bot.keyRelease(KeyEvent.VK_I);
@@ -218,4 +231,12 @@ public class CharacterActions {
 			};
 		return points;
 	}
+	
+	  private void leftClick()
+	  {
+	    bot.mousePress(InputEvent.BUTTON1_MASK);
+	    bot.delay(200);
+	    bot.mouseRelease(InputEvent.BUTTON1_MASK);
+	    bot.delay(200);
+	  }
 }

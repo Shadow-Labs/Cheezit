@@ -30,8 +30,8 @@ class ImagePanel extends JComponent {
 public class ArkBot {
 	
 	Robot bot = new Robot();
+	public static Global global;
 	public static ArkBotLog log;
-	public static int PAUSE = 50;
 	public static Point p;
 	public static String version = "v0.0.5";
 	public static String ERROR = "";
@@ -39,6 +39,7 @@ public class ArkBot {
 	public static void main(String[] args) throws AWTException
 	{
 		log = new ArkBotLog(version);
+		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
 		gui.Initialize();
 		ArkBotSettings settings = new ArkBotSettings();
@@ -68,17 +69,15 @@ public class ArkBot {
 		// Initialization
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);
-        Setup setup = new Setup(bot, p,  PAUSE);
+        Setup setup = new Setup(bot, p,  global.PAUSE);
         ChatImageGrab g = new ChatImageGrab(bot);
-        CharacterActions action = new CharacterActions(bot, p, PAUSE);
+        CharacterActions action = new CharacterActions(bot, p, global.PAUSE);
         
-        setup.FocusARK();
-        bot.delay(1000);
-        //action.Pickup();
-        action.InvScreen();
-        action.InvSearch("Specimen Implant");
+        //action.InvSearch("jk");
+        MeatSplitter ms = new MeatSplitter(bot, p, global.PAUSE);
+        ms.SplitStack(global.INV_POINTS[0]);
         
-	    bot.delay(PAUSE);
+	    bot.delay(global.PAUSE);
 	    //g.Grab();
 	    //g.InvertGrab();
         // Setup Ark
