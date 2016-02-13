@@ -242,9 +242,11 @@ public class CharacterActions {
 	
 	public int invYLocator() {
 		int Y = 227;
-		while (bot.getPixelColor(78, Y).getBlue() < 250
-				&& bot.getPixelColor(78, Y).getGreen() < 250
-				&& bot.getPixelColor(78, Y).getRed() != 0){
+		boolean found;
+		while ((bot.getPixelColor(40, Y).getBlue() < 250
+				&& bot.getPixelColor(40, Y).getGreen() < 250
+				&& bot.getPixelColor(40, Y).getRed() != 0)
+				&& Y <= 560){
 			Y--;
 		}
 		return Y;

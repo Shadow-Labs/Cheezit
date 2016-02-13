@@ -76,8 +76,8 @@ public class ArkBot {
 
         //setup.Begin();
         
-        int stacks = action.InvSearch("fiber");
-        ms.SplitStack(global.INV_POINTS[0], stacks);
+//        int stacks = action.InvSearch("fiber");
+//        ms.SplitStack(global.INV_POINTS[0], stacks);
         
 	    bot.delay(global.PAUSE);
 	    //g.Grab();

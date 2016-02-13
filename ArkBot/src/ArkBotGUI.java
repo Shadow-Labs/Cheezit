@@ -10,11 +10,13 @@ import java.awt.Point;
 import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,12 +33,13 @@ import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultCaret;
 
 
-public class ArkBotGUI extends JFrame 
+public class ArkBotGUI extends JFrame
 {
 	private Point p;
 	private String version;
 	public static long start;
 	ArkBotLog log;
+	InputRecorder recorder;
 	public static JFrame GUI;
 	public static JTextArea textLog;
 	public static JLabel mousePos;
@@ -51,6 +54,7 @@ public class ArkBotGUI extends JFrame
 		this.p = p;
 		this.version = version;
 		this.log = ArkBot.log;
+		recorder = new InputRecorder();
 		timer = new Timer(1000, new ActionListener() {
 		    public void actionPerformed(ActionEvent evt) {
 		    	SetMouse();  
@@ -90,19 +94,32 @@ public class ArkBotGUI extends JFrame
         GUI.setLayout(new FlowLayout());
         GUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        // Mouse Position
-        JPanel mousePanel = new JPanel();
-        mousePanel.setLayout(new BorderLayout());
-        PointerInfo q = MouseInfo.getPointerInfo();
-        p = q.getLocation();
-        long elapsed = (System.currentTimeMillis() - start);
-        String display = String.format("%02d:%02d:%02d", elapsed / 3600000, (elapsed % 3600000) / 60, (elapsed % 3600000));
-        Runtime = new JLabel("Runtime: " + display);
-        mousePos = new JLabel("Mouse: " + p.x + " " + p.y);
-        JLabel currentVersion = new JLabel("ArkBot " + version + "                               ", JLabel.RIGHT);
-        mousePanel.add(Runtime, BorderLayout.EAST);
-        mousePanel.add(currentVersion, BorderLayout.CENTER);
-        mousePanel.add(mousePos, BorderLayout.WEST);
+        
+        // Title Panel
+        JPanel Title = new JPanel();
+        Title.setLayout(new BorderLayout());
+        Title.setOpaque(false);
+        JLabel image = new JLabel("", new ImageIcon(img.getScaledInstance(200, 200, 0)), JLabel.CENTER);
+        JPanel imgPanel = new JPanel(new BorderLayout());
+        imgPanel.setOpaque(false);
+        imgPanel.add(image);
+        
+        // Main Panel
+        JPanel Main = new JPanel();
+        Main.setLayout(new FlowLayout());
+        Main.setOpaque(false);
+        Main.setBorder(BorderFactory.createTitledBorder(new EmptyBorder(0,0,0,0), "ArkBot Controls", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        
+        // Input Recording
+        JButton inputB = new JButton("Start/Stop Recording");
+        inputB.setMnemonic(KeyEvent.VK_MINUS);
+        inputB.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		recorder.Record();
+        	}
+        });
+        
+        Main.add(inputB);
         
         // textLog
         JPanel Logger = new JPanel();
@@ -124,14 +141,34 @@ public class ArkBotGUI extends JFrame
         scroll.getViewport().setOpaque(false);
         scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED );
         scroll.setHorizontalScrollBarPolicy ( ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );
-
+        
+        // Mouse Position
+        JPanel mousePanel = new JPanel();
+        mousePanel.setLayout(new BorderLayout());
+        PointerInfo q = MouseInfo.getPointerInfo();
+        p = q.getLocation();
+        long elapsed = (System.currentTimeMillis() - start);
+        String display = String.format("%02d:%02d:%02d", elapsed / 3600000, (elapsed % 3600000) / 60, (elapsed % 3600000));
+        Runtime = new JLabel("Runtime: " + display);
+        mousePos = new JLabel("Mouse: " + p.x + " " + p.y);
+        JLabel currentVersion = new JLabel("ArkBot " + version + "                               ", JLabel.RIGHT);
+        mousePanel.add(Runtime, BorderLayout.EAST);
+        mousePanel.add(currentVersion, BorderLayout.CENTER);
+        mousePanel.add(mousePos, BorderLayout.WEST);
+        
+        
+        Title.add(imgPanel, BorderLayout.CENTER);
+        
         Logger.add(scroll, BorderLayout.NORTH);
         Logger.add(mousePanel, BorderLayout.SOUTH);
-        
+                
+        bgPanel.add(Title, BorderLayout.NORTH);
+        bgPanel.add(Main, BorderLayout.CENTER);
         bgPanel.add(Logger, BorderLayout.SOUTH);
         
         GUI.add(bgPanel);
         GUI.setContentPane(bgPanel);
+        
         
         GUI.setVisible(true);
 		timer.start();
