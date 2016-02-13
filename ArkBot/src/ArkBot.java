@@ -73,8 +73,11 @@ public class ArkBot {
         ChatImageGrab g = new ChatImageGrab(bot);
         MeatSplitter ms = new MeatSplitter(bot, p, global.PAUSE);
         CharacterActions action = new CharacterActions(bot, p, global.PAUSE);
+
+        //setup.Begin();
         
-        //action.InvSearch("jk");
+        int stacks = action.InvSearch("fiber");
+        ms.SplitStack(global.INV_POINTS[0], stacks);
         
 	    bot.delay(global.PAUSE);
 	    //g.Grab();

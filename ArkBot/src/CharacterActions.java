@@ -12,7 +12,6 @@ public class CharacterActions {
 	private Robot bot;
 	private Point p;
 	private int PAUSE;
-	public static Point[] invPoints;
 	MouseDrag drag;
 	RobotType robtype;
 	public CharacterActions(Robot bot, Point p, int PAUSE)  throws AWTException {
@@ -21,7 +20,6 @@ public class CharacterActions {
 		this.PAUSE = PAUSE;
 		drag = new MouseDrag(bot, p);
 		robtype = new RobotType(bot);
-		invPoints = invPointSet();
 	}
 	
 	//--------------------Character Action Functionality-------------------
@@ -155,27 +153,42 @@ public class CharacterActions {
 	
 	
 	public int InvSearch(String type) {
-		ArkBotGUI.GUIText("[ACTION]: Searching Inventory");
+		ArkBotGUI.GUIText("[ACTION]: Searching inventory");
 		int stackCount = 0;
 		p = MouseInfo.getPointerInfo().getLocation();
 		drag.move(ArkBot.global.INV_SEARCH_BAR);
 		leftClick();
+		bot.delay(Global.PAUSE);
+		leftClick();
 		robtype.type(type);
 
 		// Stack Count
-		ArkBotGUI.GUIText("[ACTION]: Counting Stacks");
+		ArkBotGUI.GUIText("[ACTION]: Counting stacks");
 		int p = 0;
-		int x1mod = 30;
-		int x2mod = 35;
-		while (p <= 19 && (bot.getPixelColor(invPoints[p].x + x1mod, invPoints[p].y).getRGB() < bot.getPixelColor(invPoints[p].x + x2mod, invPoints[p].y).getRGB())) {
-			stackCount++;
-			p++;
-			if (p == 20) {
-				// Scroll Down -- Check Scroll Bar
-				p = 15;
+		int ymod = -18;
+		int pixelA = bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB();
+		int pixelB = bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB();
+		int pixelC = bot.getPixelColor(Global.INV_POINTS[p].x - 60, Global.INV_POINTS[p].y).getRGB();
+		System.out.println("PA: " + pixelA);
+		System.out.println("PB: " + pixelB);
+		System.out.println("PC: " + pixelC);
+		if (pixelA-pixelC > 1000 || pixelA-pixelC < -1000 ) {
+			System.out.println("Pass");
+			while (p <= 19 && (pixelA-pixelB < 1000 && pixelA-pixelB > -1000)) {
+				stackCount++;
+				p++;
+				if (p == 20) {
+					// Scroll Down -- Check Scroll Bar
+					p = 15;
+				}
+				pixelA = bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB();
+				pixelB = bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB();
+				System.out.println("P1: " + p + " " + bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB());
+				System.out.println("P2: " + p + " " + bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB());
 			}
+			stackCount++;
 		}
-		ArkBotGUI.GUIText("[RESULT]: Stack Count: " + stackCount);
+		ArkBotGUI.GUIText("[RESULT]: Stack count: " + stackCount);
 		return stackCount;
 	}
 	public void InvScreen() {
@@ -186,7 +199,7 @@ public class CharacterActions {
 				&& p2.getBlue() >= 250 && p2.getGreen() >= 250 && p2.getRed() == 0
 				&& p3.getBlue() >= 250 && p3.getGreen() >= 250 && p3.getRed() == 0) {
 		} else {
-			ArkBotGUI.GUIText("[ACTION]: Opening Inventory");
+			ArkBotGUI.GUIText("[ACTION]: Opening inventory");
 			bot.keyPress(KeyEvent.VK_I);
 			bot.delay(PAUSE);
 			bot.keyRelease(KeyEvent.VK_I);
@@ -198,38 +211,43 @@ public class CharacterActions {
 		
 	}
 	
-	
-	
-	
-	private Point[] invPointSet() {
+	public boolean PixelRange(Point q) {
+		boolean found = false;
+		int i = 0;
+		int s = 7;
+		
+		q.setLocation(q.x, invYLocator());
+		
 		Point[] points = {
-			new Point(82,280),
-			new Point(172,280),
-			new Point(262,280),
-			new Point(352,280),
-			new Point(442,280),
-			new Point(82,370),
-			new Point(172,370),
-			new Point(262,370),
-			new Point(352,370),
-			new Point(442,370),
-			new Point(82,460),
-			new Point(172,460),
-			new Point(262,460),
-			new Point(352,460),
-			new Point(442,460),
-			new Point(82,550),
-			new Point(172,550),
-			new Point(262,550),
-			new Point(352,550),
-			new Point(442,550),
-			new Point(82,640),
-			new Point(172,640),
-			new Point(262,640),
-			new Point(352,640),
-			new Point(442,640)
-			};
-		return points;
+				new Point(q.x,q.y),
+				new Point(q.x - s,q.y),
+				new Point(q.x - s,q.y - s),
+				new Point(q.x,q.y - s),
+				new Point(q.x + s,q.y - s),
+				new Point(q.x + s,q.y),
+				new Point(q.x + s,q.y + s),
+				new Point(q.x,q.y + s),
+				new Point(q.x - s,q.y + s),
+				};
+		while (!found && i < 9) {
+			if (bot.getPixelColor(points[i].x, points[i].y).getBlue() >= 250
+					&& bot.getPixelColor(points[i].x, points[i].y).getGreen() >= 250
+					&& bot.getPixelColor(points[i].x, points[i].y).getRed() == 0) {
+				found = true;
+			}
+			i++;
+		}
+		return found;
+	}
+	
+	public int invYLocator() {
+		int Y = 227;
+		while (bot.getPixelColor(78, Y).getBlue() < 250
+				&& bot.getPixelColor(78, Y).getGreen() < 250
+				&& bot.getPixelColor(78, Y).getRed() != 0){
+			Y--;
+		}
+		return Y;
 	}
 	
 	  private void leftClick()

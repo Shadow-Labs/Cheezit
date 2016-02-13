@@ -120,7 +120,32 @@ public class Setup {
 		bot.delay(500);
 		type(KeyEvent.VK_ESCAPE);
 		
+		// Click Save
+		bot.delay(PAUSE);
+		drag.move(ArkBot.global.MENU_INVENTORY);
+		bot.delay(PAUSE);
+		leftClick();
 		
+		//Set Inventory Mode
+		bot.delay(500);
+		System.out.println("Blue: " + bot.getPixelColor(83, 266).getBlue());
+		System.out.println("Green: " + bot.getPixelColor(83, 266).getGreen());
+		System.out.println("Red: " + bot.getPixelColor(83, 266).getRed());
+		if (bot.getPixelColor(83, 266).getBlue() > 130
+				&& bot.getPixelColor(83, 266).getGreen() > 130
+				&& bot.getPixelColor(83, 266).getRed() > 130) {
+			bot.keyPress(KeyEvent.VK_Q);
+			bot.delay(Global.PAUSE);
+			bot.keyRelease(KeyEvent.VK_Q);
+		}
+		
+		// Press ESC
+		bot.delay(500);
+		type(KeyEvent.VK_ESCAPE);
+		
+		// Press ESC
+		bot.delay(500);
+		type(KeyEvent.VK_ESCAPE);
 		
 	}
 	public void FocusARK() throws AWTException
