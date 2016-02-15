@@ -34,6 +34,20 @@ public class MouseObserver {
         /* poll mouse coordinates at the given rate */
         timer = new Timer(DELAY, new ActionListener() {
                 private Point lastPoint = MouseInfo.getPointerInfo().getLocation();
+                
+                public void mouseClicked(MouseEvent e) {
+                    /*if (e.getClickCount() > 2) {
+                        return;
+                    }
+                    lastEvent = e;
+                    if (timer.isRunning()) {
+                        timer.stop();
+                        doubleClick(lastEvent);
+                    } else {
+                        timer.restart();
+                    }*/
+                	System.out.println("MouseClicked!");
+                }
 
                 /* called every DELAY milliseconds to fetch the
                  * current mouse coordinates */

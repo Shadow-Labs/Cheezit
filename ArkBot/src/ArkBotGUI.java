@@ -11,6 +11,8 @@ import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.BorderFactory;
@@ -169,7 +171,6 @@ public class ArkBotGUI extends JFrame
         GUI.add(bgPanel);
         GUI.setContentPane(bgPanel);
         
-        
         GUI.setVisible(true);
 		timer.start();
         GUIText("Welcome to ArkBot " + version +"!");
@@ -274,6 +275,5 @@ public class ArkBotGUI extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
+	}	
 }
