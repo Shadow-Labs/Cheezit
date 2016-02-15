@@ -1,27 +1,35 @@
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class InputRecorder {
 	static boolean recording;
 	static Thread recordThread;
+	static Point p;
 	public InputRecorder() {
 		recording = false;
+		p = new Point(MouseInfo.getPointerInfo().getLocation());
 		recordThread = new Thread() {
 			public void run() {
-		        try {
-		            System.out.println("Does it work?");
-
-		            Thread.sleep(1000);
-
-		            System.out.println("Nope, it doesnt...again.");
-		        } catch(InterruptedException v) {
-		            System.out.println(v);
-		        }
+	        	MouseObserver mo = new MouseObserver(ArkBotGUI.GUI);
+                mo.addMouseMotionListener(new MouseMotionListener() {
+                        public void mouseMoved(MouseEvent e) {                            
+                        }
+                        public void mouseDragged(MouseEvent e) {
+                        }
+                    });
+                mo.start();
+                System.out.println("Recording: " + recording);
+	            while (recording) {
+	            }
+	            System.out.println("Stopped Running.");
 			}
 		};
 	}
 	public void Record() {
 		if (recording) {
 			recording = false;
-			recordThread.stop();
 			System.out.println("Done recording.");
 		} else {
 			recording = true;

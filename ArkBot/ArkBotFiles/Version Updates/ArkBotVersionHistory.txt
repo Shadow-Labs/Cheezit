@@ -34,19 +34,14 @@ v0.0.6
 - Loading Screen
 - String to Type Capability
 - Inventory Search
-- Inventory StackCount
 
 v0.0.7
+- Input Recorder
+
+Future Implementations
+- Inventory StackCount
 - Meat Splitter Implementation
-
-v0.0.8
 - NarcoGather
-
-v0.0.8
 - NarcoticBuilder
-
-v0.0.9
 - NarcoticStorage
-
-v0.1.0
 - Narcotics Start to finish
