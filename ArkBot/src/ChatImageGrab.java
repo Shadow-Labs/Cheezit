@@ -40,7 +40,7 @@ public class ChatImageGrab {
             for (int y = 0; y < inputFile.getHeight(); y++) {
                 int rgba = inputFile.getRGB(x, y);
                 Color col = new Color(rgba, true);
-                int wl = 100;
+                int wl = 182;
                 if (col.getRed() > wl && col.getGreen() > wl && col.getBlue() > wl) {
                 	col = new Color(0, 0, 0);
                 } else {

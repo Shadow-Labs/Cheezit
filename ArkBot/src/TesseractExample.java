@@ -3,7 +3,7 @@ import net.sourceforge.tess4j.*;
 
 public class TesseractExample {
 	public TesseractExample() {
-		File image = new File("ArkBotFiles\\OCRImages\\ChatImages\\asciiChatClean2.png");
+		File image = new File("ArkBotFiles\\OCRImages\\ChatImageGrab\\grabInvert.png");
 		ITesseract instance = new Tesseract();
 		
 		try {

@@ -74,15 +74,14 @@ public class ArkBot {
 
         //setup.Begin();
         
-        new TesseractExample();
-        
         
 //        int stacks = action.InvSearch("fiber");
 //        ms.SplitStack(global.INV_POINTS[0], stacks);
         
 	    // bot.delay(global.PAUSE);
-	    //g.Grab();
-	    //g.InvertGrab();
+	    g.Grab();
+	    g.InvertGrab();
+        new TesseractExample();
         // Setup Ark
         //setup.Begin();
 	    
