@@ -5,10 +5,8 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 
-import net.sourceforge.javaocr.ocrPlugins.OCRDemo.OCRScannerDemo;
+import javax.swing.JComponent;
 
 class ImagePanel extends JComponent {
     /**
@@ -75,6 +73,8 @@ public class ArkBot {
         CharacterActions action = new CharacterActions(bot, p, global.PAUSE);
 
         //setup.Begin();
+        
+        new TesseractExample();
         
         
 //        int stacks = action.InvSearch("fiber");
