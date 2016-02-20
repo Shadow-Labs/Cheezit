@@ -217,7 +217,8 @@ public class ArkBotGUI extends JFrame
         });
         
         // Taming Button/Prompt
-        JButton tameButton = new JButton("Tame Something");
+        JButton tameButton = new JButton("Tamer ");
+        tameButton.setMnemonic(KeyEvent.VK_ASTERISK);
         tameButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (ArkBot.tame.taming) {
@@ -245,6 +246,23 @@ public class ArkBotGUI extends JFrame
         	}
         });
         
+        // AutoClicker
+        JButton AutoClickButton = new JButton("AutoClicker");
+        AutoClickButton.setMnemonic(KeyEvent.VK_MINUS);
+        AutoClickButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (ArkBot.clicker.clicking) {
+        			ArkBot.clicker.clicking = false;
+        			ArkBotGUI.GUIText("Stopped AutoClicker.");
+        		} else {
+        			ArkBot.clicker.pause = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoClicker Delay (seconds)"));
+        			ArkBotGUI.GUIText("Begin AutoClicking every " + ArkBot.clicker.pause + " seconds.");
+        			
+        			ArkBot.clicker.clicking = true;
+        		}
+        	}
+        });
+        
         //Main.add(inputB);
         Main.add(drumButton1);
         Main.add(drumButton2);
@@ -254,6 +272,7 @@ public class ArkBotGUI extends JFrame
         Main.add(drumButton6);
         //Main.add(drumButton7);
         Main.add(tameButton);
+        Main.add(AutoClickButton);
         
         // textLog
         JPanel Logger = new JPanel();

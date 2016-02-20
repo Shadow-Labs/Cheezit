@@ -41,9 +41,12 @@ v0.0.7
 v0.1.0
 - Taming 1.0
 
-v0.1.0
+v0.1.1
 - Taming 1.1
 	- AutoFeed Feature
+	
+v0.1.2
+- AutoClicker
 
 Future Implementations
 - Input Recorder

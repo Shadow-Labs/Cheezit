@@ -29,28 +29,31 @@ public class Taming {
 	}
 	private void Tame() {
 		ArkBotGUI.GUIText("Taming...");
-		long start = System.currentTimeMillis();
+		long foodStart = System.currentTimeMillis();
+		long narcStart = System.currentTimeMillis();
 		while (taming) {
-			//Click First Stack
-			drag.move(ArkBot.global.EXT_INV_FIRSTSLOT);
-			leftClick();
-			
-			// Click RemoteUse
-			drag.move(ArkBot.global.EXT_INV_REMOTEUSE);
-			leftClick();
-			
-			// Torpor Wait
-			bot.delay(time * 1000);
+			// Narc
+			if (System.currentTimeMillis() - narcStart > (time * 1000)) {
+				//Click First Stack
+				drag.move(ArkBot.global.EXT_INV_FIRSTSLOT);
+				leftClick();
+				
+				// Click RemoteUse
+				drag.move(ArkBot.global.EXT_INV_REMOTEUSE);
+				leftClick();
+				
+				narcStart = System.currentTimeMillis();
+			}
 			
 			// Food
-			if (System.currentTimeMillis() - start > (foodWait * 1000) && foodWait != 0) {
+			if (System.currentTimeMillis() - foodStart > (foodWait * 1000) && foodWait != 0) {
 				drag.move(ArkBot.global.EXT_PERSON_INV_FIRSTSLOT);
 				leftClick();
 				
 				drag.move(ArkBot.global.EXT_PERSON_INV_USEITEM);
 				leftClick();
 				
-				start = System.currentTimeMillis();
+				foodStart = System.currentTimeMillis();
 			}
 		}
 	}

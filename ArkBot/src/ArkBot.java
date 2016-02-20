@@ -31,8 +31,9 @@ public class ArkBot {
 	public static Global global;
 	public static ArkBotLog log;
 	public static Taming tame;
+	public static AutoClicker clicker;
 	public static Point p;
-	public static String version = "v0.1.1";
+	public static String version = "v0.1.2";
 	public static String ERROR = "";
 	
 	public static void main(String[] args) throws AWTException
@@ -40,6 +41,7 @@ public class ArkBot {
 		bot = new Robot();
 		log = new ArkBotLog(version);
 		tame = new Taming();
+		clicker = new AutoClicker();
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
 		gui.Initialize();
@@ -84,6 +86,7 @@ public class ArkBot {
         while (true) {
         	drum.Drumming();
         	tame.Tamin();
+        	clicker.Clickin();
         	System.out.println("Do I really have to do this?");
         }
         
