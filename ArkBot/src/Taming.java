@@ -12,6 +12,7 @@ public class Taming {
 	RobotType robtype;
 	boolean taming;
 	int time;
+	int foodWait;
 	public Taming() throws AWTException {
 		bot = ArkBot.bot;
 		p = ArkBot.p;
@@ -19,6 +20,7 @@ public class Taming {
 		robtype = new RobotType(bot);
 		taming = false;
 		time = 5;
+		foodWait = 15;
 	}
 	public void Tamin() {
 		if (taming) {
@@ -27,6 +29,7 @@ public class Taming {
 	}
 	private void Tame() {
 		ArkBotGUI.GUIText("Taming...");
+		long start = System.currentTimeMillis();
 		while (taming) {
 			//Click First Stack
 			drag.move(ArkBot.global.EXT_INV_FIRSTSLOT);
@@ -38,6 +41,17 @@ public class Taming {
 			
 			// Torpor Wait
 			bot.delay(time * 1000);
+			
+			// Food
+			if (System.currentTimeMillis() - start > (foodWait * 1000) && foodWait != 0) {
+				drag.move(ArkBot.global.EXT_PERSON_INV_FIRSTSLOT);
+				leftClick();
+				
+				drag.move(ArkBot.global.EXT_PERSON_INV_USEITEM);
+				leftClick();
+				
+				start = System.currentTimeMillis();
+			}
 		}
 	}
 	private void InvSearch(String type) {

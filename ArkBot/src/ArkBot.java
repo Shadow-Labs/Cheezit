@@ -32,7 +32,7 @@ public class ArkBot {
 	public static ArkBotLog log;
 	public static Taming tame;
 	public static Point p;
-	public static String version = "v0.1.0";
+	public static String version = "v0.1.1";
 	public static String ERROR = "";
 	
 	public static void main(String[] args) throws AWTException

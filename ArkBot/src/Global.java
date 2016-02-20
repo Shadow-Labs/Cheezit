@@ -6,6 +6,8 @@ public class Global {
 	static Point INV_SEARCH_BAR;
 	static Point INV_SCROLL_BOT;
 	static Point INV_SCROLLTEST_PIXEL;
+	static Point EXT_PERSON_INV_FIRSTSLOT;
+	static Point EXT_PERSON_INV_USEITEM;
 	static Point EXT_INV_SEARCHBAR;
 	static Point EXT_INV_REMOTEUSE;
 	static Point EXT_INV_FIRSTSLOT;
@@ -26,6 +28,8 @@ public class Global {
 			INV_SEARCH_BAR = new Point(470, 150);
 			INV_SCROLL_BOT = new Point(481, 563);
 			INV_SCROLLTEST_PIXEL = new Point(481,232);
+			EXT_PERSON_INV_FIRSTSLOT = new Point(75, 275);
+			EXT_PERSON_INV_USEITEM = new Point(184, 582);
 			EXT_INV_SEARCHBAR = new Point(928, 128);
 			EXT_INV_REMOTEUSE = new Point(884, 653);
 			EXT_INV_FIRSTSLOT = new Point(550, 320);

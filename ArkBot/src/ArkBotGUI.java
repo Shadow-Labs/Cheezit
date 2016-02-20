@@ -49,6 +49,7 @@ public class ArkBotGUI extends JFrame
 	public static JLabel Runtime;
 	public static Timer timer;
 	public static ImageIcon icon;
+	public static ImageIcon icon2;
 	private static Image img;
 	
 	public ArkBotGUI(String version, Point p)
@@ -67,6 +68,7 @@ public class ArkBotGUI extends JFrame
 		
 		img = new ImageIcon("ArkBotFiles/Images/ArkBotLogo.png").getImage();
         icon = new ImageIcon(img.getScaledInstance(100, 100, 0));
+        icon2 = new ImageIcon(new ImageIcon("ArkBotFiles/Images/ShadowLabsSmall.png").getImage().getScaledInstance(100, 100, 0));
 		
 	}
 	
@@ -225,9 +227,19 @@ public class ArkBotGUI extends JFrame
         			ArkBot.tame.time = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
         					+ "1) Bot had dino inventory open.\n"
         					+ "2) Narcotics are the first items in dino's inventory.\n"
-        					+ "3) To stop taming, press the taming button between narcotic applications.\n\n"
+        					+ "3) To stop taming, press the taming button between narcotic applications."
+        					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
         					+ "Time between narcotics (seconds)"));
         			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.tame.time + " seconds.");
+        			
+        			ArkBot.tame.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
+        					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
+        			if (ArkBot.tame.foodWait != 0) {
+        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.tame.foodWait + " seconds.");
+        			} else {
+        				ArkBotGUI.GUIText("No AutoFeed.");
+        			}
+        			
         			ArkBot.tame.taming = true;
         		}
         	}
@@ -355,10 +367,12 @@ public class ArkBotGUI extends JFrame
         barPanel.add(bar);
         bar.setPreferredSize(new Dimension (300,32));
         
-        JLabel image = new JLabel("", icon, JLabel.CENTER);
-        JPanel imgPanel = new JPanel(new BorderLayout());
+        JLabel image1 = new JLabel("", icon, JLabel.CENTER);
+        JLabel image2 = new JLabel("", icon2, JLabel.CENTER);
+        JPanel imgPanel = new JPanel(new FlowLayout());
         imgPanel.setOpaque(false);
-        imgPanel.add(image);
+        imgPanel.add(image2);
+        imgPanel.add(image1);        
         
         bgPanel.add(imgPanel, BorderLayout.NORTH);
         bgPanel.add(barPanel, BorderLayout.CENTER);
