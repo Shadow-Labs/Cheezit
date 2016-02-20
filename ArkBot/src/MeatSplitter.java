@@ -14,8 +14,8 @@ public class MeatSplitter {
 		this.bot = bot;
 		this.p = p;
 		this.PAUSE = PAUSE;
-		drag = new MouseDrag(bot, p);
-		action = new CharacterActions(bot, p, Global.PAUSE);
+		drag = new MouseDrag(p);
+		action = new CharacterActions(p, Global.PAUSE);
 	}
 	public void CharInvSearch() {
 		

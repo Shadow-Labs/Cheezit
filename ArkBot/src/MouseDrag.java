@@ -6,8 +6,8 @@ import java.awt.Robot;
 public class MouseDrag{
 	private Robot bot;
 	private Point p;
-	public MouseDrag(Robot bot, Point p)  throws AWTException	{
-		this.bot = bot;
+	public MouseDrag(Point p)  throws AWTException	{
+		this.bot = ArkBot.bot;
 		this.p = p;
 	}
 	public void move(Point q) {

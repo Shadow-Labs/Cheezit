@@ -27,15 +27,16 @@ class ImagePanel extends JComponent {
 
 public class ArkBot {
 	
-	Robot bot = new Robot();
+	public static Robot bot;
 	public static Global global;
 	public static ArkBotLog log;
 	public static Point p;
-	public static String version = "v0.0.6";
+	public static String version = "v0.0.7";
 	public static String ERROR = "";
 	
 	public static void main(String[] args) throws AWTException
 	{
+		bot = new Robot();
 		log = new ArkBotLog(version);
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
@@ -70,18 +71,25 @@ public class ArkBot {
         Setup setup = new Setup(bot, p,  global.PAUSE);
         ChatImageGrab g = new ChatImageGrab(bot);
         MeatSplitter ms = new MeatSplitter(bot, p, global.PAUSE);
-        CharacterActions action = new CharacterActions(bot, p, global.PAUSE);
+        CharacterActions action = new CharacterActions(p, global.PAUSE);
+        WarDrum drum = new WarDrum();
+        
+//        drum.DeathMarch();
 
         //setup.Begin();
         
+        while (true) {
+        	drum.Drumming();
+        	System.out.println("Do I really have to do this?");
+        }
         
 //        int stacks = action.InvSearch("fiber");
 //        ms.SplitStack(global.INV_POINTS[0], stacks);
         
 	    // bot.delay(global.PAUSE);
-	    g.Grab();
-	    g.InvertGrab();
-        new TesseractExample();
+//	    g.Grab();
+//	    g.InvertGrab();
+//        new TesseractExample();
         // Setup Ark
         //setup.Begin();
 	    

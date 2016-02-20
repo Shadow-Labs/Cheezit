@@ -72,7 +72,7 @@ public class Setup {
 //			ArkBotGUI.GUIText("ERROR: Ensure ShooterGame.exe is located in steamapps/common/ARK/ShooterGame/Binaries/Win64", log);
 //		}
 		
-		MouseDrag drag = new MouseDrag(bot, p);
+		MouseDrag drag = new MouseDrag(p);
 		
 		// Focus ARK
 		bot.delay(PAUSE);
@@ -150,7 +150,7 @@ public class Setup {
 	}
 	public void FocusARK() throws AWTException
 	{
-		MouseDrag drag = new MouseDrag(bot, p);
+		MouseDrag drag = new MouseDrag(p);
 		
 		bot.delay(PAUSE);
 		bot.mouseMove(720, 160);

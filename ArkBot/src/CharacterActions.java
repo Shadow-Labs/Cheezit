@@ -14,11 +14,11 @@ public class CharacterActions {
 	private int PAUSE;
 	MouseDrag drag;
 	RobotType robtype;
-	public CharacterActions(Robot bot, Point p, int PAUSE)  throws AWTException {
-		this.bot = bot;
+	public CharacterActions(Point p, int PAUSE)  throws AWTException {
+		this.bot = ArkBot.bot;
 		this.p = p;
 		this.PAUSE = PAUSE;
-		drag = new MouseDrag(bot, p);
+		drag = new MouseDrag(p);
 		robtype = new RobotType(bot);
 	}
 	

@@ -42,6 +42,7 @@ public class ArkBotGUI extends JFrame
 	public static long start;
 	ArkBotLog log;
 	InputRecorder recorder;
+	WarDrum drum;
 	public static JFrame GUI;
 	public static JTextArea textLog;
 	public static JLabel mousePos;
@@ -50,13 +51,14 @@ public class ArkBotGUI extends JFrame
 	public static ImageIcon icon;
 	private static Image img;
 	
-	public ArkBotGUI(String version, Point p) 
+	public ArkBotGUI(String version, Point p)
 	{
 		start = System.currentTimeMillis();
 		this.p = p;
 		this.version = version;
 		this.log = ArkBot.log;
 		recorder = new InputRecorder();
+		drum = new WarDrum();
 		timer = new Timer(1000, new ActionListener() {
 		    public void actionPerformed(ActionEvent evt) {
 		    	SetMouse();  
@@ -120,8 +122,107 @@ public class ArkBotGUI extends JFrame
         		recorder.Record();
         	}
         });
+        // War Drums - DeathMarch
+        JButton drumButton1 = new JButton("Drum - DeathMarch");
+        drumButton1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (!WarDrum.play) {
+	        		WarDrum.play = true;
+	        		WarDrum.playDM = true;
+        		} else {
+        			WarDrum.play = false;
+        			WarDrum.playDM = false;
+        		}
+        	}
+        });
+     // War Drums - WarFrenzy
+        JButton drumButton2 = new JButton("Drum - WarFrenzy");
+        drumButton2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (!WarDrum.play) {
+	        		WarDrum.play = true;
+	        		WarDrum.playWF = true;
+        		} else {
+        			WarDrum.play = false;
+        			WarDrum.playWF = false;
+        		}
+        	}
+        });
+        // War Drums - NativeAmericanChant
+        JButton drumButton3 = new JButton("Drum - NativeAmericanChant");
+        drumButton3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (!WarDrum.play) {
+	        		WarDrum.play = true;
+	        		WarDrum.playNAC = true;
+        		} else {
+        			WarDrum.play = false;
+        			WarDrum.playNAC = false;
+        		}
+        	}
+        });
+        // War Drums - DarkKnightRises
+        JButton drumButton4 = new JButton("Drum - DarkKnightRises");
+        drumButton4.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (!WarDrum.play) {
+	        		WarDrum.play = true;
+	        		WarDrum.playDKR = true;
+        		} else {
+        			WarDrum.play = false;
+        			WarDrum.playDKR = false;
+        		}
+        	}
+        });
+     // War Drums - Charge
+        JButton drumButton5 = new JButton("Drum - Charge");
+        drumButton5.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (!WarDrum.play) {
+	        		WarDrum.play = true;
+	        		WarDrum.playC = true;
+        		} else {
+        			WarDrum.play = false;
+        			WarDrum.playC = false;
+        		}
+        	}
+        });
+        // War Drums - IntensityOne
+        JButton drumButton6 = new JButton("Drum - IntensityOne");
+        drumButton6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (!WarDrum.play) {
+	        		WarDrum.play = true;
+	        		WarDrum.playI1 = true;
+        		} else {
+        			WarDrum.play = false;
+        			WarDrum.playI1 = false;
+        		}
+        	}
+        });
+        // War Drums - Train
+        JButton drumButton7 = new JButton("Drum - Train");
+        drumButton7.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (!WarDrum.play) {
+	        		WarDrum.play = true;
+	        		WarDrum.playT = true;
+        		} else {
+        			WarDrum.play = false;
+        			WarDrum.playT = false;
+        		}
+        	}
+        });
         
-        Main.add(inputB);
+        
+        //Main.add(inputB);
+        Main.add(drumButton1);
+        Main.add(drumButton2);
+        //Main.add(drumButton3);
+        Main.add(drumButton4);
+        Main.add(drumButton5);
+        Main.add(drumButton6);
+        //Main.add(drumButton7);
         
         // textLog
         JPanel Logger = new JPanel();
