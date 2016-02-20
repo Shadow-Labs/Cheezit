@@ -38,6 +38,9 @@ v0.0.6
 v0.0.7
 - War Drums!
 
+v0.1.0
+- Taming 1.0
+
 Future Implementations
 - Input Recorder
 - Inventory StackCount

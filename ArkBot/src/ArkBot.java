@@ -30,14 +30,16 @@ public class ArkBot {
 	public static Robot bot;
 	public static Global global;
 	public static ArkBotLog log;
+	public static Taming tame;
 	public static Point p;
-	public static String version = "v0.0.7";
+	public static String version = "v0.1.0";
 	public static String ERROR = "";
 	
 	public static void main(String[] args) throws AWTException
 	{
 		bot = new Robot();
 		log = new ArkBotLog(version);
+		tame = new Taming();
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
 		gui.Initialize();
@@ -74,12 +76,14 @@ public class ArkBot {
         CharacterActions action = new CharacterActions(p, global.PAUSE);
         WarDrum drum = new WarDrum();
         
+        
 //        drum.DeathMarch();
 
         //setup.Begin();
         
         while (true) {
         	drum.Drumming();
+        	tame.Tamin();
         	System.out.println("Do I really have to do this?");
         }
         

@@ -6,6 +6,9 @@ public class Global {
 	static Point INV_SEARCH_BAR;
 	static Point INV_SCROLL_BOT;
 	static Point INV_SCROLLTEST_PIXEL;
+	static Point EXT_INV_SEARCHBAR;
+	static Point EXT_INV_REMOTEUSE;
+	static Point EXT_INV_FIRSTSLOT;
 	static Point FOCUS;
 	static Point OPTIONS;
 	static Point MENU_INVENTORY;
@@ -23,6 +26,9 @@ public class Global {
 			INV_SEARCH_BAR = new Point(470, 150);
 			INV_SCROLL_BOT = new Point(481, 563);
 			INV_SCROLLTEST_PIXEL = new Point(481,232);
+			EXT_INV_SEARCHBAR = new Point(928, 128);
+			EXT_INV_REMOTEUSE = new Point(884, 653);
+			EXT_INV_FIRSTSLOT = new Point(550, 320);
 			FOCUS = new Point(center.x, 160);
 			OPTIONS = new Point(center.x, 423);
 			MENU_INVENTORY = new Point(center.x, 508);

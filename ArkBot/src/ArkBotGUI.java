@@ -214,6 +214,24 @@ public class ArkBotGUI extends JFrame
         	}
         });
         
+        // Taming Button/Prompt
+        JButton tameButton = new JButton("Tame Something");
+        tameButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (ArkBot.tame.taming) {
+        			ArkBot.tame.taming = false;
+        			ArkBotGUI.GUIText("Stopped Taming.");
+        		} else {
+        			ArkBot.tame.time = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
+        					+ "1) Bot had dino inventory open.\n"
+        					+ "2) Narcotics are the first items in dino's inventory.\n"
+        					+ "3) To stop taming, press the taming button between narcotic applications.\n\n"
+        					+ "Time between narcotics (seconds)"));
+        			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.tame.time + " seconds.");
+        			ArkBot.tame.taming = true;
+        		}
+        	}
+        });
         
         //Main.add(inputB);
         Main.add(drumButton1);
@@ -223,6 +241,7 @@ public class ArkBotGUI extends JFrame
         Main.add(drumButton5);
         Main.add(drumButton6);
         //Main.add(drumButton7);
+        Main.add(tameButton);
         
         // textLog
         JPanel Logger = new JPanel();
