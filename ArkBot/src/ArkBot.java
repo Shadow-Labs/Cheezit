@@ -30,7 +30,8 @@ public class ArkBot {
 	public static Robot bot;
 	public static Global global;
 	public static ArkBotLog log;
-	public static Taming tame;
+	public static Tamer tame;
+	public static Breeder breed;
 	public static AutoClicker clicker;
 	public static Point p;
 	public static String version = "v0.1.2";
@@ -40,7 +41,8 @@ public class ArkBot {
 	{
 		bot = new Robot();
 		log = new ArkBotLog(version);
-		tame = new Taming();
+		tame = new Tamer();
+		breed = new Breeder();
 		clicker = new AutoClicker();
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
@@ -86,6 +88,7 @@ public class ArkBot {
         while (true) {
         	drum.Drumming();
         	tame.Tamin();
+        	breed.Breedin();
         	clicker.Clickin();
         	System.out.println("Do I really have to do this?");
         }

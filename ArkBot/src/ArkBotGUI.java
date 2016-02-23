@@ -226,7 +226,37 @@ public class ArkBotGUI extends JFrame
         			ArkBotGUI.GUIText("Stopped Taming.");
         		} else {
         			ArkBot.tame.time = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
-        					+ "1) Bot had dino inventory open.\n"
+        					+ "1) Bot has dino inventory open.\n"
+        					+ "2) Narcotics are the first items in dino's inventory.\n"
+        					+ "3) To stop taming, press the taming button between narcotic applications."
+        					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
+        					+ "Time between narcotics (seconds)"));
+        			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.tame.time + " seconds.");
+        			
+        			ArkBot.tame.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
+        					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
+        			if (ArkBot.tame.foodWait != 0) {
+        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.tame.foodWait + " seconds.");
+        			} else {
+        				ArkBotGUI.GUIText("No AutoFeed.");
+        			}
+        			
+        			ArkBot.tame.taming = true;
+        		}
+        	}
+        });
+        
+     // Breeding Button/Prompt
+        JButton breedButton = new JButton("Breeder ");
+        breedButton.setMnemonic(KeyEvent.VK_ASTERISK);
+        breedButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (ArkBot.breed.breeding) {
+        			ArkBot.breed.breeding = false;
+        			ArkBotGUI.GUIText("Stopped Taming.");
+        		} else {
+        			ArkBot.tame.time = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
+        					+ "1) Bot has fridge inventory open.\n"
         					+ "2) Narcotics are the first items in dino's inventory.\n"
         					+ "3) To stop taming, press the taming button between narcotic applications."
         					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
