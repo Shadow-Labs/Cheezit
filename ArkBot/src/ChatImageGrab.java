@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 public class ChatImageGrab {
 	private Robot bot;
 	private Rectangle chatLoc = new Rectangle();
-	public ChatImageGrab (Robot bot) {
-		this.bot = bot;
+	public ChatImageGrab () {
+		this.bot = ArkBot.bot;
 		chatLoc.setBounds(12, 260, 450, 140);
 	}
 	

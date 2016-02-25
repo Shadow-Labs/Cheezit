@@ -18,11 +18,11 @@ public class Setup {
 	private ArkBotLog log;
 	private Point p;
 	private int PAUSE;
-	public Setup(Robot bot, Point p, int PAUSE)  throws AWTException {
-		this.bot = bot;
+	public Setup()  throws AWTException {
+		this.bot = ArkBot.bot;
 		this.log = ArkBot.log;
-		this.p = p;
-		this.PAUSE = PAUSE;
+		this.p = ArkBot.p;
+		this.PAUSE = ArkBot.global.PAUSE;
 	}
 	
 	//-----------------ADMINISTRATIVE FUNCTIONALITY-----------------

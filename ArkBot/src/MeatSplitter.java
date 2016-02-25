@@ -10,12 +10,12 @@ public class MeatSplitter {
 	private int PAUSE;
 	MouseDrag drag;
 	CharacterActions action;
-	public MeatSplitter(Robot bot, Point p, int PAUSE)  throws AWTException {
-		this.bot = bot;
-		this.p = p;
-		this.PAUSE = PAUSE;
+	public MeatSplitter()  throws AWTException {
+		this.bot = ArkBot.bot;
+		this.p = ArkBot.p;
+		this.PAUSE = ArkBot.global.PAUSE;
 		drag = new MouseDrag(p);
-		action = new CharacterActions(p, Global.PAUSE);
+		action = new CharacterActions();
 	}
 	public void CharInvSearch() {
 		
@@ -41,9 +41,10 @@ public class MeatSplitter {
 			// WHILE CYAN split,
 			drag.move(q);
 			bot.keyPress(KeyEvent.VK_CONTROL);
-			System.out.println(action.PixelRange(q) + " Split " + stacks);
-			while (action.PixelRange(q) && stacks > 0) {
-				System.out.println(action.PixelRange(q) + " Split " + stacks);
+			int pixelRange = 7;
+			System.out.println(action.PixelRange(q, pixelRange) + " Split " + stacks);
+			while (action.PixelRange(q, pixelRange) && stacks > 0) {
+				System.out.println(action.PixelRange(q, pixelRange) + " Split " + stacks);
 				drag.move(q);
 				bot.delay(PAUSE);
 				bot.mousePress(InputEvent.BUTTON1_MASK);

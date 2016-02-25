@@ -12,6 +12,7 @@ public class Global {
 	static Point EXT_INV_REMOTEUSE;
 	static Point EXT_INV_FIRSTSLOT;
 	static Point FOCUS;
+	static Point CENTER;
 	static Point OPTIONS;
 	static Point MENU_INVENTORY;
 	static Point CAMERA_FOV;
@@ -34,6 +35,7 @@ public class Global {
 			EXT_INV_REMOTEUSE = new Point(884, 653);
 			EXT_INV_FIRSTSLOT = new Point(550, 320);
 			FOCUS = new Point(center.x, 160);
+			CENTER = new Point(center);
 			OPTIONS = new Point(center.x, 423);
 			MENU_INVENTORY = new Point(center.x, 508);
 			CAMERA_FOV = new Point(634, 385);

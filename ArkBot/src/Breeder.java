@@ -4,20 +4,25 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class Breeder {
 	Robot bot;
+	CharacterActions act;
 	private Point p;
 	MouseDrag drag;
 	RobotType robtype;
+	ArrayList breedSetup;
 	boolean breeding;
 	int time;
 	int foodWait;
 	public Breeder() throws AWTException {
 		bot = ArkBot.bot;
+		act = new CharacterActions();
 		p = ArkBot.p;
 		drag = new MouseDrag(ArkBot.p);
 		robtype = new RobotType(bot);
+		breedSetup = new ArrayList();
 		breeding = false;
 		time = 5;
 		foodWait = 15;
@@ -33,9 +38,15 @@ public class Breeder {
 		long narcStart = System.currentTimeMillis();
 		
 		// Setup Locations (Fridge, Carnos, Herbis)
+		
+		
+		
+		
 		while (breeding) {
 			// Look Left Till Inventory
-			
+			while (!act.PixelRange(MouseInfo.getPointerInfo().getLocation(), 10)) {
+				act.LookLeft(5);
+			}
 			// Switch Fridge, Carno, Herbi Inv Search & Feed/refill
 			
 			// Autofeed

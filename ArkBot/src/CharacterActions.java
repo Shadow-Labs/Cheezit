@@ -14,10 +14,10 @@ public class CharacterActions {
 	private int PAUSE;
 	MouseDrag drag;
 	RobotType robtype;
-	public CharacterActions(Point p, int PAUSE)  throws AWTException {
+	public CharacterActions()  throws AWTException {
 		this.bot = ArkBot.bot;
-		this.p = p;
-		this.PAUSE = PAUSE;
+		this.p = ArkBot.p;
+		this.PAUSE = ArkBot.global.PAUSE;
 		drag = new MouseDrag(p);
 		robtype = new RobotType(bot);
 	}
@@ -117,8 +117,9 @@ public class CharacterActions {
 		while (pixels > 0)
 		{
 			pixels--;
-			bot.delay(5);
-			bot.mouseMove(p.x + 1, p.y);
+			bot.keyPress(KeyEvent.VK_RIGHT);
+			bot.delay(PAUSE);
+			bot.keyRelease(KeyEvent.VK_RIGHT);
 		}
 	}
 	public void LookUp (int pixels) {
@@ -126,8 +127,9 @@ public class CharacterActions {
 		while (pixels > 0)
 		{
 			pixels--;
-			bot.delay(5);
-			bot.mouseMove(p.x, p.y - 1);
+			bot.keyPress(KeyEvent.VK_UP);
+			bot.delay(PAUSE);
+			bot.keyRelease(KeyEvent.VK_UP);
 		}
 	}
 	public void LookDown (int pixels) {
@@ -135,7 +137,9 @@ public class CharacterActions {
 		while (pixels > 0)
 		{
 			pixels--;
-			bot.mouseMove(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y + 1);
+			bot.keyPress(KeyEvent.VK_DOWN);
+			bot.delay(PAUSE);
+			bot.keyRelease(KeyEvent.VK_DOWN);
 		}
 	}
 	public void LookLeft (int pixels) {
@@ -143,8 +147,9 @@ public class CharacterActions {
 		while (pixels > 0)
 		{
 			pixels--;
-			bot.delay(5);
-			bot.mouseMove(p.x - 1, p.y);
+			bot.keyPress(KeyEvent.VK_LEFT);
+			bot.delay(PAUSE);
+			bot.keyRelease(KeyEvent.VK_LEFT);
 		}
 	}
 	
@@ -203,7 +208,7 @@ public class CharacterActions {
 			bot.keyPress(KeyEvent.VK_I);
 			bot.delay(PAUSE);
 			bot.keyRelease(KeyEvent.VK_I);
-			bot.delay(500);			
+			bot.delay(500);
 		}
 	}
 	
@@ -211,23 +216,20 @@ public class CharacterActions {
 		
 	}
 	
-	public boolean PixelRange(Point q) {
+	public boolean PixelRange(Point q, int range) {
 		boolean found = false;
 		int i = 0;
-		int s = 7;
-		
-		q.setLocation(q.x, invYLocator());
 		
 		Point[] points = {
 				new Point(q.x,q.y),
-				new Point(q.x - s,q.y),
-				new Point(q.x - s,q.y - s),
-				new Point(q.x,q.y - s),
-				new Point(q.x + s,q.y - s),
-				new Point(q.x + s,q.y),
-				new Point(q.x + s,q.y + s),
-				new Point(q.x,q.y + s),
-				new Point(q.x - s,q.y + s),
+				new Point(q.x - range,q.y),
+				new Point(q.x - range,q.y - range),
+				new Point(q.x,q.y - range),
+				new Point(q.x + range,q.y - range),
+				new Point(q.x + range,q.y),
+				new Point(q.x + range,q.y + range),
+				new Point(q.x,q.y + range),
+				new Point(q.x - range,q.y + range),
 				};
 		while (!found && i < 9) {
 			if (bot.getPixelColor(points[i].x, points[i].y).getBlue() >= 250

@@ -74,10 +74,10 @@ public class ArkBot {
 		// Initialization
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);
-        Setup setup = new Setup(bot, p,  global.PAUSE);
-        ChatImageGrab g = new ChatImageGrab(bot);
-        MeatSplitter ms = new MeatSplitter(bot, p, global.PAUSE);
-        CharacterActions action = new CharacterActions(p, global.PAUSE);
+        Setup setup = new Setup();
+        ChatImageGrab g = new ChatImageGrab();
+        MeatSplitter ms = new MeatSplitter();
+        CharacterActions action = new CharacterActions();
         WarDrum drum = new WarDrum();
         
         
