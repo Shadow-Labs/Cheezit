@@ -4,7 +4,7 @@ import java.awt.event.InputEvent;
 public class AutoClicker {
 	Robot bot;
 	public boolean clicking;
-	public int pause;
+	public float pause;
 	public AutoClicker() {
 		this.bot = ArkBot.bot;
 		clicking = false;
@@ -19,7 +19,7 @@ public class AutoClicker {
 	public void Click() {
 		while (clicking) {
 			leftClick();
-			bot.delay(pause * 1000);
+			bot.delay((int)(pause * 1000));
 		}
 	}
 	private void leftClick()

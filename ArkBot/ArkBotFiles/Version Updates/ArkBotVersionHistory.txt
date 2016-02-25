@@ -48,6 +48,10 @@ v0.1.1
 v0.1.2
 - AutoClicker
 
+v0.1.2.1
+- Changed AutoClicker from int to float
+
+
 Future Implementations
 - Input Recorder
 - Inventory StackCount

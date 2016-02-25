@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.Timer;
 import javax.swing.WindowConstants;
@@ -277,6 +278,7 @@ public class ArkBotGUI extends JFrame
         });
         
         // AutoClicker
+        String ACS = "ACS";
         JButton AutoClickButton = new JButton("AutoClicker");
         AutoClickButton.setMnemonic(KeyEvent.VK_MINUS);
         AutoClickButton.addActionListener(new ActionListener() {
@@ -292,6 +294,9 @@ public class ArkBotGUI extends JFrame
         		}
         	}
         });
+        
+        // Shortcuts
+        AutoClickButton.getInputMap().put(KeyStroke.getKeyStroke("-"), ACS);
         
         //Main.add(inputB);
         Main.add(drumButton1);
