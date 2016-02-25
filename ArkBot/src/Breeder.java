@@ -34,11 +34,13 @@ public class Breeder {
 	}
 	private void Breed() {
 		ArkBotGUI.GUIText("Breeding...");
+		int i = 0;
 		long foodStart = System.currentTimeMillis();
 		long narcStart = System.currentTimeMillis();
 		
 		// Setup Locations (Fridge, Carnos, Herbis)
 		
+		// Todo: Setup fix for reopening inv
 		
 		
 		
@@ -47,7 +49,16 @@ public class Breeder {
 			while (!act.PixelRange(MouseInfo.getPointerInfo().getLocation(), 10)) {
 				act.LookLeft(5);
 			}
-			// Switch Fridge, Carno, Herbi Inv Search & Feed/refill
+			// Open Inv
+			bot.keyPress(KeyEvent.VK_F);
+			bot.delay(ArkBot.global.PAUSE);
+			bot.keyRelease(KeyEvent.VK_F);
+			
+			// Switch Fridge - 0, Carno - 1, Herbi - 2 Inv Search & Feed/refill
+			switch ((int)breedSetup.get(i)) {
+			case 1:
+			}
+			
 			
 			// Autofeed
 		}

@@ -249,19 +249,35 @@ public class ArkBotGUI extends JFrame
      // Breeding Button/Prompt
         JButton breedButton = new JButton("Breeder ");
         breedButton.setMnemonic(KeyEvent.VK_ASTERISK);
+        String[] BreedOptions = {"Carnivore", "Herbivore"};
         breedButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (ArkBot.breed.breeding) {
         			ArkBot.breed.breeding = false;
-        			ArkBotGUI.GUIText("Stopped Taming.");
+        			ArkBotGUI.GUIText("Stopped Breeding.");
         		} else {
-        			ArkBot.tame.time = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
+        			int breedNumber = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
         					+ "1) Bot has fridge inventory open.\n"
         					+ "2) Narcotics are the first items in dino's inventory.\n"
-        					+ "3) To stop taming, press the taming button between narcotic applications."
+        					+ "3) To stop taming, press the taming button between narcotic applications.\n"
         					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
-        					+ "Time between narcotics (seconds)"));
-        			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.tame.time + " seconds.");
+        					+ "Number of breeds:"));
+        			
+        			int c = breedNumber;
+        			// Add Fridge
+        			ArkBot.breed.breedSetup.add(0);
+        			while (c != 0) {
+        				String breedType = (String)JOptionPane.showInputDialog(GUI,"Proceeding left, breed " + (breedNumber - (c - 1)) + " of " + breedNumber + ".",
+        	                    "Breed Types", JOptionPane.PLAIN_MESSAGE, icon, BreedOptions, "Carnivore");
+        				if (breedType.equals("Carnivore")) {
+        					ArkBot.breed.breedSetup.add(1);
+        				} else {
+        					ArkBot.breed.breedSetup.add(2);
+        				}
+        				c--;
+        			}
+        			
+        			ArkBotGUI.GUIText("Begin breeding at 1 Narcotic every");
         			
         			ArkBot.tame.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
         					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
@@ -271,7 +287,7 @@ public class ArkBotGUI extends JFrame
         				ArkBotGUI.GUIText("No AutoFeed.");
         			}
         			
-        			ArkBot.tame.taming = true;
+        			ArkBot.breed.breeding = true;
         		}
         	}
         });
@@ -302,6 +318,7 @@ public class ArkBotGUI extends JFrame
         Main.add(drumButton6);
         //Main.add(drumButton7);
         Main.add(tameButton);
+        Main.add(breedButton);
         Main.add(AutoClickButton);
         
         // textLog
