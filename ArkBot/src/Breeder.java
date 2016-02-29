@@ -14,7 +14,6 @@ public class Breeder {
 	RobotType robtype;
 	ArrayList breedSetup;
 	boolean breeding;
-	int time;
 	int foodWait;
 	public Breeder() throws AWTException {
 		bot = ArkBot.bot;
@@ -24,7 +23,6 @@ public class Breeder {
 		robtype = new RobotType(bot);
 		breedSetup = new ArrayList();
 		breeding = false;
-		time = 5;
 		foodWait = 15;
 	}
 	public void Breedin() {
@@ -36,7 +34,6 @@ public class Breeder {
 		ArkBotGUI.GUIText("Breeding...");
 		int i = 0;
 		long foodStart = System.currentTimeMillis();
-		long narcStart = System.currentTimeMillis();
 	
 		// Setup Locations (Fridge, Carnos, Herbis)
 		
@@ -45,10 +42,11 @@ public class Breeder {
 		
 		
 		while (breeding) {
-			// Look Left Till Inventory
-			while (!act.PixelRange(MouseInfo.getPointerInfo().getLocation(), 10)) {
+			// Look Left Till Inventory - NEED TO TEST
+			while (!act.CyanPixelRange(MouseInfo.getPointerInfo().getLocation(), 10)) {
 				act.LookLeft(5);
 			}
+			
 			// Open Inv
 			bot.keyPress(KeyEvent.VK_F);
 			bot.delay(ArkBot.global.PAUSE);
@@ -56,21 +54,73 @@ public class Breeder {
 			
 			// Switch Fridge - 0, Carno - 1, Herbi - 2 Inv Search & Feed/refill
 			switch ((int)breedSetup.get(i)) {
-			case 1:
+			case 0: // Fridge
+				Refill();
+				break;
+			case 1:	// Carnivore
+				Feed(1);
+				break;
+			case 2: // Herbivore
+				Feed(2);
+				break;
 			}
 			
+			// Set i
+			i++;
+			if (i == breedSetup.size()) {
+				i = 0;
+			}
 			
-			// Autofeed
+			// AutoFeed
+			if (foodWait != 0 && System.currentTimeMillis() - foodStart > (foodWait * 1000)) {
+				drag.move(ArkBot.global.CHAR_INV_FIRSTSLOT);
+				leftClick();
+				
+				drag.move(ArkBot.global.CHAR_INV_USEITEM);
+				leftClick();
+				
+				foodStart = System.currentTimeMillis();
+			}
 		}
 	}
-	private void InvSearch(String type) {
-		ArkBotGUI.GUIText("[ACTION]: Searching inventory");
-		p = MouseInfo.getPointerInfo().getLocation();
-		drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
-		leftClick();
-		bot.delay(Global.PAUSE);
-		leftClick();
-		robtype.type(type);
+	private void Refill() {
+		// Open Fridge Inv
+		bot.keyPress(KeyEvent.VK_F);
+		bot.delay(ArkBot.global.PAUSE);
+		bot.keyRelease(KeyEvent.VK_F);
+		
+		//Search Berries
+		act.ExtInvSearch("Mejo");
+		
+		// Transfer Stack
+		drag.move(Global.EXT_INV_FIRSTSLOT);
+		act.Transfer(1);
+		
+		// Carnivores
+		if (breedSetup.contains(1)) {
+			act.ExtInvSearch("Raw Meat");
+			drag.move(Global.EXT_INV_FIRSTSLOT);
+			act.Transfer(5);
+		}
+		
+	}
+	
+	private void Feed(int type) {
+		// Open Dino Inv
+		bot.keyPress(KeyEvent.VK_F);
+		bot.delay(ArkBot.global.PAUSE);
+		bot.keyRelease(KeyEvent.VK_F);
+		
+		if (type == 1) { // Carnivore
+			// Search Raw Meat
+			act.CharInvSearch("Raw Meat");
+			
+			// Transfer Stacks
+			drag.move(Global.CHAR_INV_FIRSTSLOT);
+			act.Transfer(3);
+		} else {  // Herbivore
+			
+		}
 	}
 	
 	  private void leftClick()

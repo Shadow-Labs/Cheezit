@@ -311,20 +311,30 @@ public class ArkBotGUI extends JFrame
         	}
         });
         
+        // Update ArkBot
+        JButton UpdaterButton = new JButton("Update ArkBot");
+        UpdaterButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Updater updt = new Updater();
+        		updt.download();
+        	}
+        });
+        
         // Shortcuts
         AutoClickButton.getInputMap().put(KeyStroke.getKeyStroke("-"), ACS);
         
         //Main.add(inputB);
-        Main.add(drumButton1);
-        Main.add(drumButton2);
+//        Main.add(drumButton1);
+//        Main.add(drumButton2);
         //Main.add(drumButton3);
-        Main.add(drumButton4);
-        Main.add(drumButton5);
-        Main.add(drumButton6);
+//        Main.add(drumButton4);
+//        Main.add(drumButton5);
+//        Main.add(drumButton6);
         //Main.add(drumButton7);
         Main.add(tameButton);
         Main.add(breedButton);
         Main.add(AutoClickButton);
+        Main.add(UpdaterButton);
         
         // textLog
         JPanel Logger = new JPanel();
@@ -401,7 +411,8 @@ public class ArkBotGUI extends JFrame
 			JLabel requirements = new JLabel("<html>Please ensure the following are true:<br>"
 					+ "1) Ark Resolution is set to 1440 x 900, Windowed<br>"
 				    + "2) Ark window is located in the top left corner of your default monitor<br>"
-				    + "3) You are currently logged in/connected to a server<br> </html>");
+				    + "3) You are currently logged in/connected to a server<br>"
+				    + "4) Inventory is in small mode (press q while in inventory)<br> </html>");
 			JCheckBox dontAsk = new JCheckBox("Do not prompt me again");
 			dontAsk.setHorizontalAlignment(JCheckBox.RIGHT);
 			msgPanel.add(requirements, BorderLayout.NORTH);

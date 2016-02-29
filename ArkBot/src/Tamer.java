@@ -47,10 +47,10 @@ public class Tamer {
 			
 			// Food
 			if (System.currentTimeMillis() - foodStart > (foodWait * 1000) && foodWait != 0) {
-				drag.move(ArkBot.global.EXT_PERSON_INV_FIRSTSLOT);
+				drag.move(ArkBot.global.CHAR_INV_FIRSTSLOT);
 				leftClick();
 				
-				drag.move(ArkBot.global.EXT_PERSON_INV_USEITEM);
+				drag.move(ArkBot.global.CHAR_INV_USEITEM);
 				leftClick();
 				
 				foodStart = System.currentTimeMillis();

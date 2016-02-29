@@ -38,26 +38,66 @@ public class CharacterActions {
 		return success;
 	}
 	
-	public int ObjectInventory() {
-		int success = 0;
-		Color pixel = bot.getPixelColor(720,440);
-		while(pixel.getGreen() <= 250 && pixel.getBlue() <= 250 && pixel.getRed() == 0) {
-			LookDown(3);
-			pixel = bot.getPixelColor(720,440);
-		}
-		while(pixel.getGreen() <= 250 && pixel.getBlue() <= 250 && pixel.getRed() == 0) {
-			bot.delay(PAUSE);
-			bot.keyPress(KeyEvent.VK_F);
-			bot.delay(PAUSE);
-			bot.keyRelease(KeyEvent.VK_F);
-			pixel = bot.getPixelColor(720,440);
-		}
-		success = 1;
-		return success;
+	public void CharInvSearch(String type) {
+		ArkBotGUI.GUIText("[ACTION]: Searching character inventory");
+		p = MouseInfo.getPointerInfo().getLocation();
+		drag.move(ArkBot.global.CHAR_INV_SEARCH_BAR);
+		leftClick();
+		bot.delay(Global.PAUSE);
+		leftClick();
+		robtype.type(type);
 	}
 	
-	public void Facedown() {
-		
+	public void ExtInvSearch(String type) {
+		ArkBotGUI.GUIText("[ACTION]: Searching external inventory");
+		p = MouseInfo.getPointerInfo().getLocation();
+		drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
+		leftClick();
+		bot.delay(Global.PAUSE);
+		leftClick();
+		robtype.type(type);
+	}
+	
+	public void Transfer(int count) {
+		if (count == 0) {
+			while (itemExists()) {
+				ArkBot.bot.delay(250);
+				ArkBot.bot.keyPress(KeyEvent.VK_T);
+				ArkBot.bot.delay(PAUSE);
+				ArkBot.bot.keyRelease(KeyEvent.VK_T);
+			}
+		} else {
+			while (count > 0) {
+				ArkBot.bot.delay(250);
+				ArkBot.bot.keyPress(KeyEvent.VK_T);
+				ArkBot.bot.delay(PAUSE);
+				ArkBot.bot.keyRelease(KeyEvent.VK_T);
+				count--;
+			}
+		}
+	}
+	
+	public void Drop(int count) {		
+		if (count == 0) {
+			while (itemExists()) {
+				ArkBot.bot.delay(250);
+				ArkBot.bot.keyPress(KeyEvent.VK_O);
+				ArkBot.bot.delay(PAUSE);
+				ArkBot.bot.keyRelease(KeyEvent.VK_O);
+			}
+		} else {
+			while (count > 0) {
+				ArkBot.bot.delay(250);
+				ArkBot.bot.keyPress(KeyEvent.VK_O);
+				ArkBot.bot.delay(PAUSE);
+				ArkBot.bot.keyRelease(KeyEvent.VK_O);
+				count--;
+			}
+		}
+	}
+	
+	public boolean itemExists() {
+		return WhitePixelRange(Global.CHAR_INV_FIRSTSLOT_NAME, 3);
 	}
 	
 	// --------------------MOVEMENT FUNCTIONALITY-------------------
@@ -112,6 +152,16 @@ public class CharacterActions {
 		bot.delay(PAUSE);
 		bot.keyRelease(KeyEvent.VK_S);
 	}
+	public void LookLeft (int pixels) {
+		bot.delay(250);
+		while (pixels > 0)
+		{
+			pixels--;
+			bot.keyPress(KeyEvent.VK_LEFT);
+			bot.delay(PAUSE);
+			bot.keyRelease(KeyEvent.VK_LEFT);
+		}
+	}
 	public void LookRight (int pixels) {
 		bot.delay(250);
 		while (pixels > 0)
@@ -142,60 +192,47 @@ public class CharacterActions {
 			bot.keyRelease(KeyEvent.VK_DOWN);
 		}
 	}
-	public void LookLeft (int pixels) {
-		bot.delay(250);
-		while (pixels > 0)
-		{
-			pixels--;
-			bot.keyPress(KeyEvent.VK_LEFT);
-			bot.delay(PAUSE);
-			bot.keyRelease(KeyEvent.VK_LEFT);
-		}
-	}
 	
-	
-	
-	
-	
-	public int InvSearch(String type) {
-		ArkBotGUI.GUIText("[ACTION]: Searching inventory");
-		int stackCount = 0;
-		p = MouseInfo.getPointerInfo().getLocation();
-		drag.move(ArkBot.global.INV_SEARCH_BAR);
-		leftClick();
-		bot.delay(Global.PAUSE);
-		leftClick();
-		robtype.type(type);
-
-		// Stack Count
-		ArkBotGUI.GUIText("[ACTION]: Counting stacks");
-		int p = 0;
-		int ymod = -18;
-		int pixelA = bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB();
-		int pixelB = bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB();
-		int pixelC = bot.getPixelColor(Global.INV_POINTS[p].x - 60, Global.INV_POINTS[p].y).getRGB();
-		System.out.println("PA: " + pixelA);
-		System.out.println("PB: " + pixelB);
-		System.out.println("PC: " + pixelC);
-		if (pixelA-pixelC > 1000 || pixelA-pixelC < -1000 ) {
-			System.out.println("Pass");
-			while (p <= 19 && (pixelA-pixelB < 1000 && pixelA-pixelB > -1000)) {
-				stackCount++;
-				p++;
-				if (p == 20) {
-					// Scroll Down -- Check Scroll Bar
-					p = 15;
-				}
-				pixelA = bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB();
-				pixelB = bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB();
-				System.out.println("P1: " + p + " " + bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB());
-				System.out.println("P2: " + p + " " + bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB());
-			}
-			stackCount++;
-		}
-		ArkBotGUI.GUIText("[RESULT]: Stack count: " + stackCount);
-		return stackCount;
-	}
+		
+//	public int InvSearch(String type) {
+//		ArkBotGUI.GUIText("[ACTION]: Searching inventory");
+//		int stackCount = 0;
+//		p = MouseInfo.getPointerInfo().getLocation();
+//		drag.move(ArkBot.global.INV_SEARCH_BAR);
+//		leftClick();
+//		bot.delay(Global.PAUSE);
+//		leftClick();
+//		robtype.type(type);
+//
+//		// Stack Count
+//		ArkBotGUI.GUIText("[ACTION]: Counting stacks");
+//		int p = 0;
+//		int ymod = -18;
+//		int pixelA = bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB();
+//		int pixelB = bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB();
+//		int pixelC = bot.getPixelColor(Global.INV_POINTS[p].x - 60, Global.INV_POINTS[p].y).getRGB();
+//		System.out.println("PA: " + pixelA);
+//		System.out.println("PB: " + pixelB);
+//		System.out.println("PC: " + pixelC);
+//		if (pixelA-pixelC > 1000 || pixelA-pixelC < -1000 ) {
+//			System.out.println("Pass");
+//			while (p <= 19 && (pixelA-pixelB < 1000 && pixelA-pixelB > -1000)) {
+//				stackCount++;
+//				p++;
+//				if (p == 20) {
+//					// Scroll Down -- Check Scroll Bar
+//					p = 15;
+//				}
+//				pixelA = bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB();
+//				pixelB = bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB();
+//				System.out.println("P1: " + p + " " + bot.getPixelColor(Global.INV_POINTS[p].x,Global.INV_POINTS[p].y + ymod).getRGB());
+//				System.out.println("P2: " + p + " " + bot.getPixelColor(Global.INV_POINTS[p+1].x, Global.INV_POINTS[p+1].y + ymod).getRGB());
+//			}
+//			stackCount++;
+//		}
+//		ArkBotGUI.GUIText("[RESULT]: Stack count: " + stackCount);
+//		return stackCount;
+//	}
 	public void InvScreen() {
 		Color p1 = bot.getPixelColor(41,211);
 		Color p2 = bot.getPixelColor(34,224);
@@ -212,11 +249,9 @@ public class CharacterActions {
 		}
 	}
 	
-	public void InvRemoveType(String type) {
-		
-	}
+
 	
-	public boolean PixelRange(Point q, int range) {
+	public boolean CyanPixelRange(Point q, int range) {
 		boolean found = false;
 		int i = 0;
 		
@@ -235,6 +270,32 @@ public class CharacterActions {
 			if (bot.getPixelColor(points[i].x, points[i].y).getBlue() >= 250
 					&& bot.getPixelColor(points[i].x, points[i].y).getGreen() >= 250
 					&& bot.getPixelColor(points[i].x, points[i].y).getRed() == 0) {
+				found = true;
+			}
+			i++;
+		}
+		return found;
+	}
+	
+	public boolean WhitePixelRange(Point q, int range) {
+		boolean found = false;
+		int i = 0;
+		
+		Point[] points = {
+				new Point(q.x,q.y),
+				new Point(q.x - range,q.y),
+				new Point(q.x - range,q.y - range),
+				new Point(q.x,q.y - range),
+				new Point(q.x + range,q.y - range),
+				new Point(q.x + range,q.y),
+				new Point(q.x + range,q.y + range),
+				new Point(q.x,q.y + range),
+				new Point(q.x - range,q.y + range),
+				};
+		while (!found && i < 9) {
+			if (bot.getPixelColor(points[i].x, points[i].y).getBlue() >= 250
+					&& bot.getPixelColor(points[i].x, points[i].y).getGreen() >= 250
+					&& bot.getPixelColor(points[i].x, points[i].y).getRed() >= 250) {
 				found = true;
 			}
 			i++;
