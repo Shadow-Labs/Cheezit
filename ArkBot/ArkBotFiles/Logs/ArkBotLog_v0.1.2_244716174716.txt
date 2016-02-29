@@ -1,0 +1,10 @@
+ArkBotLog
+ArkBot Version: v0.1.2
+Begin Timestamp: 17:47:16
+==================================================================================
+17:47:19: Welcome to ArkBot v0.1.2!
+17:47:27: Begin AutoClicking every 1.0 seconds.
+17:47:31: Stopped AutoClicker.
+==================================================================================
+End Timestamp: 17:52:15
+Runtime: 00:04:59
