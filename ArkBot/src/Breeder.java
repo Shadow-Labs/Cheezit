@@ -38,6 +38,7 @@ public class Breeder {
 		long foodStart = System.currentTimeMillis();
 		long narcStart = System.currentTimeMillis();
 		
+		
 		// Setup Locations (Fridge, Carnos, Herbis)
 		
 		// Todo: Setup fix for reopening inv
