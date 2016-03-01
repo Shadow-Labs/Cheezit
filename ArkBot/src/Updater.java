@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 //http://www.dreamincode.net/forums/topic/190944-creating-an-updater-in-java/
 public class Updater {
 	private final static String versionURL = "https://github.com/Shadow-Labs/ArkBot/zipball/master";
-	private final static String historyURL = "";
 	private final String root = "update/";
 	
 	public static String getLatestVersion() throws Exception{
@@ -61,18 +60,21 @@ public class Updater {
 	
     public void download()
     {
-        try {
-            downloadFile("https://drive.google.com/uc?export=download&id=0B_m1MC45_ER8TW5KQ1NvZTFNMDQ");
-            unzip();
-            copyFiles(new File(root),new File("").getAbsolutePath());
-            cleanup();
-            ArkBotGUI.GUIText("Update Finished.");
-            launch();
-        } catch (Exception ex) {
-        	ArkBotGUI.GUIText("JAVA ERROR: " + ex.getMessage());
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "An error occured while preforming update!");
-        }
+    	if (newVersionExists()) {
+	        try {
+	        	ArkBotGUI.GUIText("Updating ArkBot...");
+	            downloadFile("https://github.com/Shadow-Labs/ArkBot/raw/master/ArkBot/ArkBot" + ArkBot.version + ".jar");
+	            //unzip();
+	            //copyFiles(new File(root),new File("").getAbsolutePath());
+	            //cleanup();
+	            ArkBotGUI.GUIText("Update Finished.");
+	            launch();
+	        } catch (Exception ex) {
+	        	ArkBotGUI.GUIText("JAVA ERROR: " + ex.getMessage());
+	            ex.printStackTrace();
+	            JOptionPane.showMessageDialog(null, "An error occured while preforming update!");
+	        }
+    	}
     }
     private void launch()
     {
@@ -184,7 +186,7 @@ public class Updater {
         InputStream is = conn.getInputStream();
         long max = conn.getContentLength();
         ArkBotGUI.GUIText("Downloading file. Update Size: " + max + "Bytes");
-        BufferedOutputStream fOut = new BufferedOutputStream(new FileOutputStream(new File("update.zip")));
+        BufferedOutputStream fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot.Jar")));
         byte[] buffer = new byte[32 * 1024];
         int bytesRead = 0;
         int in = 0;
@@ -198,23 +200,10 @@ public class Updater {
         ArkBotGUI.GUIText("Download Complete");
 
     }
-    private String getDownloadLinkFromHost() throws MalformedURLException, IOException
-    {
-        String path = "https://github.com/Shadow-Labs/ArkBot/zipball/master";
-        URL url = new URL(path);
-
-        InputStream html = null;
-
-        html = url.openStream();
-
-        int c = 0;
-        StringBuilder buffer = new StringBuilder("");
-
-        while(c != -1) {
-            c = html.read();
-        buffer.append((char)c);
-
-        }
-        return buffer.substring(buffer.indexOf("[url]")+5,buffer.indexOf("[/url]"));
+    private boolean newVersionExists() {
+    	boolean version = false;
+    	
+    	
+    	return version;
     }
 }

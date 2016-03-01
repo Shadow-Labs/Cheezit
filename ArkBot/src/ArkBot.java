@@ -5,6 +5,10 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JComponent;
 
@@ -34,11 +38,24 @@ public class ArkBot {
 	public static Breeder breed;
 	public static AutoClicker clicker;
 	public static Point p;
-	public static String version = "v0.1.2";
+	public static String version;
 	public static String ERROR = "";
 	
 	public static void main(String[] args) throws AWTException
 	{
+		// Get Version
+		try {
+			File vfile = new File("ArkBotFiles/Version/CurrentVersion.txt");
+			FileInputStream vfis;
+			vfis = new FileInputStream(vfile);
+			byte[] vdata = new byte[(int) vfile.length()];
+			vfis.read(vdata);
+			vfis.close();
+			version = new String(vdata, "UTF-8");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		bot = new Robot();
 		log = new ArkBotLog(version);
 		tame = new Tamer();
