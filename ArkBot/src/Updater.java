@@ -62,7 +62,7 @@ public class Updater {
     public void download()
     {
         try {
-            downloadFile("https://github.com/Shadow-Labs/ArkBot/zipball/master");
+            downloadFile("https://drive.google.com/uc?export=download&id=0B_m1MC45_ER8TW5KQ1NvZTFNMDQ");
             unzip();
             copyFiles(new File(root),new File("").getAbsolutePath());
             cleanup();
