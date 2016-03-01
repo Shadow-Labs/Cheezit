@@ -51,6 +51,9 @@ v0.1.2
 v0.1.2.1
 - Changed AutoClicker from int to float
 
+v0.1.3
+- Implemented ArkBot AutoUpdater
+
 
 Future Implementations
 - Input Recorder

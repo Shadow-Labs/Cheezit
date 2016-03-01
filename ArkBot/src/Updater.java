@@ -191,127 +191,127 @@ public class Updater {
         }
         
         // Update Version
-//        ArkBotGUI.GUIText("Updating CurrentVersion.txt");
-//        PrintWriter writer = new PrintWriter ("ArkBotFiles\\Version\\CurrentVersion.txt", "UTF-8");
-//        writer.println(webVersion);
-//        writer.close();
+        ArkBotGUI.GUIText("Updating CurrentVersion.txt");
+        PrintWriter writer = new PrintWriter ("ArkBotFiles\\Version\\CurrentVersion.txt", "UTF-8");
+        writer.println(webVersion);
+        writer.close();
         
         ArkBot.log.CloseLog();
         System.exit(0);
     }
-    private void cleanup()
-    {
-    	ArkBotGUI.GUIText("Performing Cleanup");
-        File f = new File("update.zip");
-        f.delete();
-        remove(new File(root));
-        new File(root).delete();
-    }
-    private void remove(File f)
-    {
-        File[]files = f.listFiles();
-        for(File ff:files)
-        {
-            if(ff.isDirectory())
-            {
-                remove(ff);
-                ff.delete();
-            }
-            else
-            {
-                ff.delete();
-            }
-        }
-    }
-    private void copyFiles(File f,String dir) throws IOException
-    {
-        File[]files = f.listFiles();
-        for(File ff:files)
-        {
-            if(ff.isDirectory()){
-                new File(dir+"/"+ff.getName()).mkdir();
-                copyFiles(ff,dir+"/"+ff.getName());
-            }
-            else
-            {
-                copy(ff.getAbsolutePath(),dir+"/"+ff.getName());
-            }
-
-        }
-    }
-    public void copy(String srFile, String dtFile) throws FileNotFoundException, IOException{
-
-          File f1 = new File(srFile);
-          File f2 = new File(dtFile);
-
-          InputStream in = new FileInputStream(f1);
-
-          OutputStream out = new FileOutputStream(f2);
-
-          byte[] buf = new byte[1024];
-          int len;
-          while ((len = in.read(buf)) > 0){
-            out.write(buf, 0, len);
-          }
-          in.close();
-          out.close();
-      }
-    private void unzip() throws IOException
-    {
-         int BUFFER = 2048;
-         BufferedOutputStream dest = null;
-         BufferedInputStream is = null;
-         ZipEntry entry;
-         ZipFile zipfile = new ZipFile("update.zip");
-         Enumeration e = zipfile.entries();
-         (new File(root)).mkdir();
-         while(e.hasMoreElements()) {
-            entry = (ZipEntry) e.nextElement();
-            ArkBotGUI.GUIText("Extracting " + entry);
-            if(entry.isDirectory())
-                (new File(root+entry.getName())).mkdir();
-            else{
-                (new File(root+entry.getName())).createNewFile();
-                is = new BufferedInputStream
-                  (zipfile.getInputStream(entry));
-                int count;
-                byte data[] = new byte[BUFFER];
-                FileOutputStream fos = new
-                  FileOutputStream(root+entry.getName());
-                dest = new
-                  BufferedOutputStream(fos, BUFFER);
-                while ((count = is.read(data, 0, BUFFER))
-                  != -1) {
-                   dest.write(data, 0, count);
-                }
-                dest.flush();
-                dest.close();
-                is.close();
-            }
-         }
-
-    }
-    private void downloadFile(String link) throws MalformedURLException, IOException
-    {
-        URL url = new URL(link);
-        URLConnection conn = url.openConnection();
-        InputStream is = conn.getInputStream();
-        long max = conn.getContentLength();
-        ArkBotGUI.GUIText("Downloading file. Update Size: " + max + "Bytes");
-        BufferedOutputStream fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot" + webVersion + ".Jar")));
-        byte[] buffer = new byte[32 * 1024];
-        int bytesRead = 0;
-        int in = 0;
-        while ((bytesRead = is.read(buffer)) != -1) {
-            in += bytesRead;
-            fOut.write(buffer, 0, bytesRead);
-        }
-        fOut.flush();
-        fOut.close();
-        is.close();
-        ArkBotGUI.GUIText("Download Complete");
-
-    }
+//    private void cleanup()
+//    {
+//    	ArkBotGUI.GUIText("Performing Cleanup");
+//        File f = new File("update.zip");
+//        f.delete();
+//        remove(new File(root));
+//        new File(root).delete();
+//    }
+//    private void remove(File f)
+//    {
+//        File[]files = f.listFiles();
+//        for(File ff:files)
+//        {
+//            if(ff.isDirectory())
+//            {
+//                remove(ff);
+//                ff.delete();
+//            }
+//            else
+//            {
+//                ff.delete();
+//            }
+//        }
+//    }
+//    private void copyFiles(File f,String dir) throws IOException
+//    {
+//        File[]files = f.listFiles();
+//        for(File ff:files)
+//        {
+//            if(ff.isDirectory()){
+//                new File(dir+"/"+ff.getName()).mkdir();
+//                copyFiles(ff,dir+"/"+ff.getName());
+//            }
+//            else
+//            {
+//                copy(ff.getAbsolutePath(),dir+"/"+ff.getName());
+//            }
+//
+//        }
+//    }
+//    public void copy(String srFile, String dtFile) throws FileNotFoundException, IOException{
+//
+//          File f1 = new File(srFile);
+//          File f2 = new File(dtFile);
+//
+//          InputStream in = new FileInputStream(f1);
+//
+//          OutputStream out = new FileOutputStream(f2);
+//
+//          byte[] buf = new byte[1024];
+//          int len;
+//          while ((len = in.read(buf)) > 0){
+//            out.write(buf, 0, len);
+//          }
+//          in.close();
+//          out.close();
+//      }
+//    private void unzip() throws IOException
+//    {
+//         int BUFFER = 2048;
+//         BufferedOutputStream dest = null;
+//         BufferedInputStream is = null;
+//         ZipEntry entry;
+//         ZipFile zipfile = new ZipFile("update.zip");
+//         Enumeration e = zipfile.entries();
+//         (new File(root)).mkdir();
+//         while(e.hasMoreElements()) {
+//            entry = (ZipEntry) e.nextElement();
+//            ArkBotGUI.GUIText("Extracting " + entry);
+//            if(entry.isDirectory())
+//                (new File(root+entry.getName())).mkdir();
+//            else{
+//                (new File(root+entry.getName())).createNewFile();
+//                is = new BufferedInputStream
+//                  (zipfile.getInputStream(entry));
+//                int count;
+//                byte data[] = new byte[BUFFER];
+//                FileOutputStream fos = new
+//                  FileOutputStream(root+entry.getName());
+//                dest = new
+//                  BufferedOutputStream(fos, BUFFER);
+//                while ((count = is.read(data, 0, BUFFER))
+//                  != -1) {
+//                   dest.write(data, 0, count);
+//                }
+//                dest.flush();
+//                dest.close();
+//                is.close();
+//            }
+//         }
+//
+//    }
+//    private void downloadFile(String link) throws MalformedURLException, IOException
+//    {
+//        URL url = new URL(link);
+//        URLConnection conn = url.openConnection();
+//        InputStream is = conn.getInputStream();
+//        long max = conn.getContentLength();
+//        ArkBotGUI.GUIText("Downloading file. Update Size: " + max + "Bytes");
+//        BufferedOutputStream fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot" + webVersion + ".Jar")));
+//        byte[] buffer = new byte[32 * 1024];
+//        int bytesRead = 0;
+//        int in = 0;
+//        while ((bytesRead = is.read(buffer)) != -1) {
+//            in += bytesRead;
+//            fOut.write(buffer, 0, bytesRead);
+//        }
+//        fOut.flush();
+//        fOut.close();
+//        is.close();
+//        ArkBotGUI.GUIText("Download Complete");
+//
+//    }
     private boolean newVersionExists() throws Exception {
     	boolean version = false;
     	if (!ArkBot.version.equals(getLatestVersion())) {
