@@ -9,15 +9,13 @@ import java.util.Calendar;
 
 public class ArkBotLog {
 	File log;
-	String version;
 	PrintWriter writer;
-	public ArkBotLog(String version) {
-		this.version = version;
+	public ArkBotLog() {
 		String time = new SimpleDateFormat("ddmmyyHHmmss").format(Calendar.getInstance().getTime());
 		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
 		
 		try {
-			File logfile = new File("ArkBotFiles/Logs/ArkBotLog_" + version + "_" + time + ".txt");
+			File logfile = new File("ArkBotFiles/Logs/ArkBotLog_" + ArkBot.version + "_" + time + ".txt");
 			if (logfile.createNewFile()){
 				//Uhhh
 				}else{
@@ -32,7 +30,7 @@ public class ArkBotLog {
 		}
 		
 		try {
-			writer = new PrintWriter ("ArkBotFiles\\Logs\\ArkBotLog_" + version + "_" + time + ".txt", "UTF-8");
+			writer = new PrintWriter ("ArkBotFiles\\Logs\\ArkBotLog_" + ArkBot.version + "_" + time + ".txt", "UTF-8");
 		} catch (FileNotFoundException e) {
 			StringWriter error = new StringWriter();
 			e.printStackTrace(new PrintWriter(error));
@@ -49,7 +47,7 @@ public class ArkBotLog {
 		
 		// Log Header
 		writer.println("ArkBotLog");
-		writer.println("ArkBot Version: " + version);
+		writer.println("ArkBot Version: " + ArkBot.version);
 		writer.println("Begin Timestamp: " + timeStamp);
 		writer.println("==================================================================================");
 	}

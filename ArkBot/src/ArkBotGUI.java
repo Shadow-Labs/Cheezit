@@ -311,15 +311,6 @@ public class ArkBotGUI extends JFrame
         	}
         });
         
-        // Update ArkBot
-        JButton UpdaterButton = new JButton("Update ArkBot");
-        UpdaterButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		Updater updt = new Updater();
-        		updt.download();
-        	}
-        });
-        
         // Shortcuts
         AutoClickButton.getInputMap().put(KeyStroke.getKeyStroke("-"), ACS);
         
@@ -334,7 +325,6 @@ public class ArkBotGUI extends JFrame
         Main.add(tameButton);
         Main.add(breedButton);
         Main.add(AutoClickButton);
-        Main.add(UpdaterButton);
         
         // textLog
         JPanel Logger = new JPanel();

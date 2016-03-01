@@ -51,13 +51,13 @@ public class ArkBot {
 			byte[] vdata = new byte[(int) vfile.length()];
 			vfis.read(vdata);
 			vfis.close();
-			version = new String(vdata, "UTF-8");
+			version = new String(vdata);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		
 		bot = new Robot();
-		log = new ArkBotLog(version);
+		log = new ArkBotLog();
 		tame = new Tamer();
 		breed = new Breeder();
 		clicker = new AutoClicker();
@@ -88,6 +88,15 @@ public class ArkBot {
 	
 	public ArkBot() throws AWTException
 	{
+		// Check for Updated Version
+		Updater updt = new Updater();
+		try {
+			updt.download();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		// Initialization
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);

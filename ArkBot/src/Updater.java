@@ -1,3 +1,10 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.HeadlessException;
+import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -7,6 +14,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -14,21 +23,24 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 //http://www.dreamincode.net/forums/topic/190944-creating-an-updater-in-java/
 public class Updater {
-	private final static String versionURL = "https://github.com/Shadow-Labs/ArkBot/zipball/master";
+	private final static String versionURL = "https://raw.githubusercontent.com/Shadow-Labs/ArkBot/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
+	private static String webVersion = "";
 	private final String root = "update/";
 	
 	public static String getLatestVersion() throws Exception{
 		String data = getData(versionURL);
-		return data.substring(data.indexOf("[version]") + 9, data.indexOf("[/version]"));
-	}
-	
-	public static String getWhatsNew() throws Exception{
-		String data = getData(historyURL);
-		return data.substring(data.indexOf("[history]") + 9, data.indexOf("[/history]"));
+		webVersion = data.substring(0,6);
+		return data.substring(0, 6);
 	}
 	
 	public static String getData(String address) {
@@ -54,19 +66,112 @@ public class Updater {
 		return "";
 	}
 	
+	private void UpdateWindow() {
+		Image img = new ImageIcon("ArkBotFiles/Images/ArkBotLogo.png").getImage();
+		ImageIcon icon = new ImageIcon(img.getScaledInstance(100, 100, 0));
+        ImageIcon icon2 = new ImageIcon(new ImageIcon("ArkBotFiles/Images/ShadowLabsSmall.png").getImage().getScaledInstance(100, 100, 0));
+		
+		JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/LoadingScreenBackground.png").getImage());
+        bgPanel.setLayout(new BorderLayout());
+        
+		JFrame lScreen = new JFrame("Updating to ArkBot" + webVersion);
+		lScreen.setIconImage(img);
+        lScreen.setSize(360,200);
+        lScreen.setResizable(false);
+        lScreen.setLocationRelativeTo(null);
+        lScreen.setLayout(new GridLayout());
+        
+        JPanel barPanel = new JPanel();
+        barPanel.setOpaque(false);
+        JProgressBar bar = new JProgressBar();
+        bar.setOpaque(false);
+        bar.setForeground(Color.DARK_GRAY);
+        int MIN = 0;
+        int MAX = 100;
+        bar.setMinimum(MIN);
+        bar.setMaximum(MAX);
+        bar.setStringPainted(true);
+        
+        barPanel.add(bar);
+        bar.setPreferredSize(new Dimension (300,32));
+        
+        JLabel image1 = new JLabel("", icon, JLabel.CENTER);
+        JLabel image2 = new JLabel("", icon2, JLabel.CENTER);
+        JPanel imgPanel = new JPanel(new FlowLayout());
+        imgPanel.setOpaque(false);
+        imgPanel.add(image2);
+        imgPanel.add(image1);        
+        
+        bgPanel.add(imgPanel, BorderLayout.NORTH);
+        bgPanel.add(barPanel, BorderLayout.CENTER);
+        lScreen.add(bgPanel);
+        lScreen.setContentPane(bgPanel);
+        lScreen.setVisible(true);
+        
+        // Download File
+        int progress = MIN;
+        int load = 0;
+		try {
+			URL url = new URL("https://github.com/Shadow-Labs/ArkBot/raw/master/ArkBot/ArkBot" + webVersion + ".jar");
+	        URLConnection conn = url.openConnection();
+	        InputStream is = conn.getInputStream();
+	        long max = conn.getContentLength();
+	        bar.setMaximum((int) max);
+	        BufferedOutputStream fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot" + webVersion + ".Jar")));
+	        byte[] buffer = new byte[32 * 1024];
+	        int bytesRead = 0;
+	        int in = 0;
+	        while ((bytesRead = is.read(buffer)) != -1) {
+	        	bar.setString("Downloading " + in + " of " + max);
+	        	bar.setValue(in);
+	        	System.out.println(bytesRead);
+	            in += bytesRead;
+	            fOut.write(buffer, 0, bytesRead);
+	        }
+	        fOut.flush();
+	        fOut.close();
+	        is.close();
+	        ArkBotGUI.GUIText("Download Complete");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+        try {
+			Thread.sleep(250);
+			lScreen.dispose();
+	        Thread.sleep(750);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
+	private boolean UpdatePrompt() {
+			JPanel msgPanel = new JPanel();
+			msgPanel.setLayout(new BorderLayout());
+			JLabel requirements = new JLabel("<html>ArkBot has found a new version.<br><br>"
+							+ "Current Version: " + ArkBot.version + "<br>"
+				    		+ "Updated Version: " + webVersion + "<br><br>"
+				    		+ "Would you like to update?<br></html>");
+			msgPanel.add(requirements, BorderLayout.NORTH);
+			int value = (JOptionPane.showConfirmDialog(ArkBotGUI.GUI, msgPanel,"Update Avaliable", JOptionPane.YES_NO_OPTION));
+			if (value == 0) {
+				return true;
+			}
+			return false;
+	}
 	
-	
-	
-    public void download()
+    public void download() throws HeadlessException, Exception
     {
-    	if (newVersionExists()) {
+    	if (newVersionExists() && UpdatePrompt()) {
 	        try {
-	        	ArkBotGUI.GUIText("Updating ArkBot...");
-	            downloadFile("https://github.com/Shadow-Labs/ArkBot/raw/master/ArkBot/ArkBot" + ArkBot.version + ".jar");
-	            //unzip();
-	            //copyFiles(new File(root),new File("").getAbsolutePath());
-	            //cleanup();
+	        	UpdateWindow();
+	        	//ArkBotGUI.GUIText("Updating ArkBot from" + ArkBot.version + " to " + webVersion);
+	            //downloadFile("https://github.com/Shadow-Labs/ArkBot/raw/master/ArkBot/ArkBot" + webVersion + ".jar");
+//	            unzip();
+//	            copyFiles(new File(root),new File("").getAbsolutePath());
+//	            cleanup();
 	            ArkBotGUI.GUIText("Update Finished.");
 	            launch();
 	        } catch (Exception ex) {
@@ -76,14 +181,21 @@ public class Updater {
 	        }
     	}
     }
-    private void launch()
+    private void launch() throws FileNotFoundException, UnsupportedEncodingException
     {
-        String[] run = {"java","-jar","update app.jar"};
+        String[] run = {"java","-jar","ArkBot" + webVersion + ".jar"};
         try {
             Runtime.getRuntime().exec(run);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+        // Update Version
+//        ArkBotGUI.GUIText("Updating CurrentVersion.txt");
+//        PrintWriter writer = new PrintWriter ("ArkBotFiles\\Version\\CurrentVersion.txt", "UTF-8");
+//        writer.println(webVersion);
+//        writer.close();
+        
         ArkBot.log.CloseLog();
         System.exit(0);
     }
@@ -186,7 +298,7 @@ public class Updater {
         InputStream is = conn.getInputStream();
         long max = conn.getContentLength();
         ArkBotGUI.GUIText("Downloading file. Update Size: " + max + "Bytes");
-        BufferedOutputStream fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot.Jar")));
+        BufferedOutputStream fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot" + webVersion + ".Jar")));
         byte[] buffer = new byte[32 * 1024];
         int bytesRead = 0;
         int in = 0;
@@ -200,9 +312,11 @@ public class Updater {
         ArkBotGUI.GUIText("Download Complete");
 
     }
-    private boolean newVersionExists() {
+    private boolean newVersionExists() throws Exception {
     	boolean version = false;
-    	
+    	if (!ArkBot.version.equals(getLatestVersion())) {
+    		version = true;
+    	}
     	
     	return version;
     }
