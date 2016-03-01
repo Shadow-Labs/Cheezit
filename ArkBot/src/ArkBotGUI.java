@@ -278,11 +278,11 @@ public class ArkBotGUI extends JFrame
         				c--;
         			}
         			
-        			ArkBotGUI.GUIText("Begin breeding at 1 Narcotic every");
+        			ArkBotGUI.GUIText("Begin breeding " + (ArkBot.breed.breedSetup.size() - 1) + " dinos.");
         			
-        			ArkBot.tame.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
+        			ArkBot.breed.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
         					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
-        			if (ArkBot.tame.foodWait != 0) {
+        			if (ArkBot.breed.foodWait != 0) {
         				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.tame.foodWait + " seconds.");
         			} else {
         				ArkBotGUI.GUIText("No AutoFeed.");

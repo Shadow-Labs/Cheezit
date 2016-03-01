@@ -3,6 +3,8 @@ import java.awt.event.KeyEvent;
 
 public class Global {
 	static int PAUSE;
+	static int ResX;
+	static int ResY;
 	static Point[] INV_POINTS;
 	static Point CHAR_INV_SEARCH_BAR;
 	static Point CHAR_INV_SCROLL_BOT;
@@ -28,6 +30,8 @@ public class Global {
 		PAUSE = 50;
 		
 		if (ResX == 1440 && ResY == 900) {
+			Global.ResX = ResX;
+			Global.ResY = ResY;
 			CHAR_INV_SEARCH_BAR = new Point(470, 150);
 			CHAR_INV_SCROLL_BOT = new Point(481, 563);
 			CHAR_INV_SCROLLTEST_PIXEL = new Point(481,232);

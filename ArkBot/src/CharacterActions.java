@@ -279,7 +279,7 @@ public class CharacterActions {
 	
 	public boolean WhitePixelRange(Point q, int range) {
 		boolean found = false;
-		int i = 0;
+		int i = 32;
 		
 		Point[] points = {
 				new Point(q.x,q.y),
@@ -303,9 +303,22 @@ public class CharacterActions {
 		return found;
 	}
 	
+	public boolean CyanCenter(int gap) {
+		boolean cyan = false;
+		int i = 0;
+		while (!cyan && i < Global.ResY) {
+			Color p = bot.getPixelColor(Global.CENTER.x, i);
+			if (p.getBlue() >= 250 && p.getGreen() >= 250 && p.getRed() == 0) {
+				cyan = true;
+			}
+			i += gap;
+		}
+		
+		return cyan;
+	}
+	
 	public int invYLocator() {
 		int Y = 227;
-		boolean found;
 		while ((bot.getPixelColor(40, Y).getBlue() < 250
 				&& bot.getPixelColor(40, Y).getGreen() < 250
 				&& bot.getPixelColor(40, Y).getRed() != 0)

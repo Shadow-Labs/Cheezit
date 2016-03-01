@@ -35,6 +35,8 @@ public class Breeder {
 		int i = 0;
 		long foodStart = System.currentTimeMillis();
 	
+		drag.move(new Point(1330,60));
+		leftClick();
 		// Setup Locations (Fridge, Carnos, Herbis)
 		
 		// Todo: Setup fix for reopening inv
@@ -43,14 +45,16 @@ public class Breeder {
 		
 		while (breeding) {
 			// Look Left Till Inventory - NEED TO TEST
-			while (!act.CyanPixelRange(MouseInfo.getPointerInfo().getLocation(), 10)) {
+			while (!act.CyanCenter(8)) {
 				act.LookLeft(5);
 			}
+			ArkBotGUI.GUIText("Cyan Center!");
 			
 			// Open Inv
 			bot.keyPress(KeyEvent.VK_F);
 			bot.delay(ArkBot.global.PAUSE);
 			bot.keyRelease(KeyEvent.VK_F);
+			bot.delay(250);
 			
 			// Switch Fridge - 0, Carno - 1, Herbi - 2 Inv Search & Feed/refill
 			switch ((int)breedSetup.get(i)) {
@@ -81,13 +85,17 @@ public class Breeder {
 				
 				foodStart = System.currentTimeMillis();
 			}
+			
+			// Exit Inventory and look left
+			bot.keyPress(KeyEvent.VK_ESCAPE);
+			bot.delay(Global.PAUSE);
+			bot.keyRelease(KeyEvent.VK_ESCAPE);
+			bot.delay(250);
+
+			act.LookLeft(50);
 		}
 	}
 	private void Refill() {
-		// Open Fridge Inv
-		bot.keyPress(KeyEvent.VK_F);
-		bot.delay(ArkBot.global.PAUSE);
-		bot.keyRelease(KeyEvent.VK_F);
 		
 		//Search Berries
 		act.ExtInvSearch("Mejo");
@@ -106,10 +114,6 @@ public class Breeder {
 	}
 	
 	private void Feed(int type) {
-		// Open Dino Inv
-		bot.keyPress(KeyEvent.VK_F);
-		bot.delay(ArkBot.global.PAUSE);
-		bot.keyRelease(KeyEvent.VK_F);
 		
 		if (type == 1) { // Carnivore
 			// Search Raw Meat
@@ -119,7 +123,12 @@ public class Breeder {
 			drag.move(Global.CHAR_INV_FIRSTSLOT);
 			act.Transfer(3);
 		} else {  // Herbivore
+			// Search Raw Meat
+			act.CharInvSearch("Mejo");
 			
+			// Transfer Stacks
+			drag.move(Global.CHAR_INV_FIRSTSLOT);
+			act.Transfer(1);
 		}
 	}
 	
