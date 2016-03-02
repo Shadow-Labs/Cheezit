@@ -45,8 +45,8 @@ public class Breeder {
 		
 		while (breeding) {
 			// Look Left Till Inventory - NEED TO TEST
-			while (!act.CyanCenter(8)) {
-				act.LookLeft(5);
+			while (!act.CyanCenter(6)) {
+				act.LookLeft(2);
 			}
 			ArkBotGUI.GUIText("Cyan Center!");
 			
@@ -87,32 +87,37 @@ public class Breeder {
 			}
 			
 			// Exit Inventory and look left
-			bot.keyPress(KeyEvent.VK_ESCAPE);
+			bot.keyPress(KeyEvent.VK_F);
 			bot.delay(Global.PAUSE);
-			bot.keyRelease(KeyEvent.VK_ESCAPE);
+			bot.keyRelease(KeyEvent.VK_F);
 			bot.delay(250);
+			
+			ArkBotGUI.GUIText("Got Here!");
 
-			act.LookLeft(50);
+			act.LookLeft(20);
 		}
 	}
 	private void Refill() {
 		
 		//Search Berries
-		act.ExtInvSearch("Mejo");
+		act.ExtInvSearch("berry");
 		
 		// Transfer Stack
 		drag.move(Global.EXT_INV_FIRSTSLOT);
+		leftClick();
 		act.Transfer(1);
 		
 		// Carnivores
 		if (breedSetup.contains(1)) {
 			act.ExtInvSearch("Raw Meat");
 			drag.move(Global.EXT_INV_FIRSTSLOT);
+			leftClick();
 			act.Transfer(5);
 		}
 		
 	}
 	
+	// REMOVE SPOILED MEAT
 	private void Feed(int type) {
 		
 		if (type == 1) { // Carnivore
@@ -121,13 +126,15 @@ public class Breeder {
 			
 			// Transfer Stacks
 			drag.move(Global.CHAR_INV_FIRSTSLOT);
+			leftClick();
 			act.Transfer(3);
 		} else {  // Herbivore
 			// Search Raw Meat
-			act.CharInvSearch("Mejo");
+			act.CharInvSearch("berry");
 			
 			// Transfer Stacks
 			drag.move(Global.CHAR_INV_FIRSTSLOT);
+			leftClick();
 			act.Transfer(1);
 		}
 	}

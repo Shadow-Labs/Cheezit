@@ -305,8 +305,8 @@ public class CharacterActions {
 	
 	public boolean CyanCenter(int gap) {
 		boolean cyan = false;
-		int i = 0;
-		while (!cyan && i < Global.ResY) {
+		int i = Global.CENTER.y - (Global.CENTER.y/6);
+		while (!cyan && i < (Global.CENTER.y + (Global.CENTER.y/6))) {
 			Color p = bot.getPixelColor(Global.CENTER.x, i);
 			if (p.getBlue() >= 250 && p.getGreen() >= 250 && p.getRed() == 0) {
 				cyan = true;

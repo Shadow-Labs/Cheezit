@@ -33,7 +33,7 @@ import javax.swing.JProgressBar;
 
 //http://www.dreamincode.net/forums/topic/190944-creating-an-updater-in-java/
 public class Updater {
-	private final static String versionURL = "https://raw.githubusercontent.com/Shadow-Labs/ArkBot/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
+	private final static String versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
 	private static String webVersion = "";
 	private final String root = "update/";
 	
@@ -112,7 +112,7 @@ public class Updater {
         int progress = MIN;
         int load = 0;
 		try {
-			URL url = new URL("https://github.com/Shadow-Labs/ArkBot/raw/master/ArkBot/ArkBot" + webVersion + ".jar");
+			URL url = new URL("https://github.com/Shadow-Labs/Cheezeit/raw/master/ArkBot/ArkBot" + webVersion + ".jar");
 	        URLConnection conn = url.openConnection();
 	        InputStream is = conn.getInputStream();
 	        long max = conn.getContentLength();
