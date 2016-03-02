@@ -15,6 +15,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -292,27 +294,41 @@ public class ArkBotGUI extends JFrame
         		}
         	}
         });
-        
-        // AutoClicker
-        String ACS = "ACS";
-        JButton AutoClickButton = new JButton("AutoClicker");
-        AutoClickButton.setMnemonic(KeyEvent.VK_MINUS);
-        AutoClickButton.addActionListener(new ActionListener() {
+                
+        // AutoGatherer
+        String AGS = "AGS";
+        JButton AutoGatherButton = new JButton("AutoGatherer");
+        AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
+        AutoGatherButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		if (ArkBot.clicker.clicking) {
-        			ArkBot.clicker.clicking = false;
-        			ArkBotGUI.GUIText("Stopped AutoClicker.");
+        		if (ArkBot.gatherer.gathering) {
+        			ArkBot.gatherer.gathering = false;
+        			ArkBot.gatherer.clicking = false;
+        			ArkBotGUI.GUIText("Stopped AutoGatherer.");
         		} else {
-        			ArkBot.clicker.pause = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoClicker Delay (seconds)"));
-        			ArkBotGUI.GUIText("Begin AutoClicking every " + ArkBot.clicker.pause + " seconds.");
+        			ArkBot.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoClicker Delay (seconds)"));
+        			ArkBotGUI.GUIText("Press '-' to begin AutoClicking every " + ArkBot.gatherer.pause + " seconds.");
         			
-        			ArkBot.clicker.clicking = true;
+        			ArkBot.gatherer.gathering = true;
         		}
         	}
         });
         
         // Shortcuts
-        AutoClickButton.getInputMap().put(KeyStroke.getKeyStroke("-"), ACS);
+        AutoGatherButton.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, 0), AGS);
+        AutoGatherButton.getActionMap().put(AGS, new GatherShortcut());
+        
+        // Shortcut Actions
+//        private class GatherShortcut extends AbstractAction {
+//        	GatherShortcut() {
+//        		ArkBotGUI.GUIText("Shortcut Pressed!");
+//        	}
+//        	
+//        	@Override
+//        	public void actionPerformed(ActionEvent e) {
+//        		ArkBotGUI.GUIText("Different Shortcut Pressed!");
+//        	}
+//        }
         
         //Main.add(inputB);
 //        Main.add(drumButton1);
@@ -324,7 +340,7 @@ public class ArkBotGUI extends JFrame
         //Main.add(drumButton7);
         Main.add(tameButton);
         Main.add(breedButton);
-        Main.add(AutoClickButton);
+        Main.add(AutoGatherButton);
         
         // textLog
         JPanel Logger = new JPanel();

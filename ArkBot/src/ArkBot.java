@@ -12,6 +12,9 @@ import java.io.IOException;
 
 import javax.swing.JComponent;
 
+import org.jnativehook.GlobalScreen;
+import org.jnativehook.NativeHookException;
+
 class ImagePanel extends JComponent {
     /**
 	 * 
@@ -36,7 +39,7 @@ public class ArkBot {
 	public static ArkBotLog log;
 	public static Tamer tame;
 	public static Breeder breed;
-	public static AutoClicker clicker;
+	public static AutoGatherer gatherer;
 	public static Point p;
 	public static String version;
 	public static String ERROR = "";
@@ -60,7 +63,7 @@ public class ArkBot {
 		log = new ArkBotLog();
 		tame = new Tamer();
 		breed = new Breeder();
-		clicker = new AutoClicker();
+		gatherer = new AutoGatherer();
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
 		gui.Initialize();
@@ -107,15 +110,24 @@ public class ArkBot {
         WarDrum drum = new WarDrum();
         
         
-//        drum.DeathMarch();
 
-        //setup.Begin();
+        try {
+            GlobalScreen.registerNativeHook();
+        }
+        catch (NativeHookException ex) {
+            System.err.println("There was a problem registering the native hook.");
+            System.err.println(ex.getMessage());
+
+            System.exit(1);
+        }
+
+        GlobalScreen.addNativeKeyListener(new ShortcutManager());
         
         while (true) {
         	drum.Drumming();
         	tame.Tamin();
         	breed.Breedin();
-        	clicker.Clickin();
+        	gatherer.Gatherin();
         	System.out.println("Do I really have to do this?");
         }
         

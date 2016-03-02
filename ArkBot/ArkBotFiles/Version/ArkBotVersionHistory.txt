@@ -54,6 +54,12 @@ v0.1.2.1
 v0.1.3
 - Implemented ArkBot AutoUpdater
 
+v0.1.4
+- Implemented Hotkey Capability
+
+v0.1.5
+- Upgraded AutoClicker to AutoGatherer
+
 
 Future Implementations
 - Input Recorder
