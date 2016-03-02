@@ -25,6 +25,7 @@ public class ShortcutManager implements NativeKeyListener {
 //        ArkBotGUI.GUIText("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
         
         
+        
         // AutoGatheringShortcuts
         if (ArkBot.gatherer.gathering) {
 	        if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("Minus") || NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Subtract")) {
