@@ -14,10 +14,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -296,7 +298,8 @@ public class ArkBotGUI extends JFrame
         });
                 
         // AutoGatherer
-        String AGS = "AGS";
+        JPanel AGBPanel = new JPanel();
+        AGBPanel.setLayout(new BoxLayout(AGBPanel, BoxLayout.PAGE_AXIS));
         JButton AutoGatherButton = new JButton("AutoGatherer");
         AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
         AutoGatherButton.addActionListener(new ActionListener() {
@@ -307,28 +310,23 @@ public class ArkBotGUI extends JFrame
         			ArkBotGUI.GUIText("Stopped AutoGatherer.");
         		} else {
         			ArkBot.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoClicker Delay (seconds)"));
+        			
+        			int i = 0;
+        			JCheckBox boxes[] = new JCheckBox[ArkBot.gatherer.materials.length];
+        			while (i < ArkBot.gatherer.materials.length) {
+        				boxes[i] = new JCheckBox(ArkBot.gatherer.materials[i]);
+        				AGBPanel.add(boxes[i]);
+        				i++;
+        			}
+        			JOptionPane.showConfirmDialog(GUI, AGBPanel,"Material Selection", JOptionPane.PLAIN_MESSAGE);
+        			
         			ArkBotGUI.GUIText("Press '-' to begin AutoClicking every " + ArkBot.gatherer.pause + " seconds.");
         			
         			ArkBot.gatherer.gathering = true;
         		}
         	}
         });
-        
-        // Shortcuts
-        AutoGatherButton.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, 0), AGS);
-        AutoGatherButton.getActionMap().put(AGS, new GatherShortcut());
-        
-        // Shortcut Actions
-//        private class GatherShortcut extends AbstractAction {
-//        	GatherShortcut() {
-//        		ArkBotGUI.GUIText("Shortcut Pressed!");
-//        	}
-//        	
-//        	@Override
-//        	public void actionPerformed(ActionEvent e) {
-//        		ArkBotGUI.GUIText("Different Shortcut Pressed!");
-//        	}
-//        }
+
         
         //Main.add(inputB);
 //        Main.add(drumButton1);
