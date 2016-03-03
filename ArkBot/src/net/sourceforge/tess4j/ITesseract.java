@@ -233,4 +233,6 @@ public interface ITesseract {
      * @return list of <code>Word</code>
      */
     List<Word> getWords(BufferedImage bi, int pageIteratorLevel);
+    
+    void dispose();
 }

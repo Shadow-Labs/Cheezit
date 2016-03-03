@@ -1,10 +1,16 @@
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 public class Global {
 	static int PAUSE;
 	static int ResX;
 	static int ResY;
+	
+	static Rectangle CHATBOX;
+	static Rectangle TRIBELOG;
+	static Rectangle STATS;
+	
 	static Point[] INV_POINTS;
 	static Point CHAR_INV_SEARCH_BAR;
 	static Point CHAR_INV_SCROLL_BOT;
@@ -32,6 +38,11 @@ public class Global {
 		if (ResX == 1440 && ResY == 900) {
 			Global.ResX = ResX;
 			Global.ResY = ResY;
+			
+			CHATBOX = new Rectangle(12, 260, 450, 140);
+			TRIBELOG = new Rectangle();
+			STATS = new Rectangle();
+			
 			CHAR_INV_SEARCH_BAR = new Point(470, 150);
 			CHAR_INV_SCROLL_BOT = new Point(481, 563);
 			CHAR_INV_SCROLLTEST_PIXEL = new Point(481,232);

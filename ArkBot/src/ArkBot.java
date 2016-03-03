@@ -40,6 +40,7 @@ public class ArkBot {
 	public static Tamer tame;
 	public static Breeder breed;
 	public static AutoGatherer gatherer;
+	public static ScreenReader screenReader;
 	public static Point p;
 	public static String version;
 	public static String ERROR = "";
@@ -64,6 +65,7 @@ public class ArkBot {
 		tame = new Tamer();
 		breed = new Breeder();
 		gatherer = new AutoGatherer();
+		screenReader = new ScreenReader();
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
 		gui.Initialize();
@@ -85,8 +87,6 @@ public class ArkBot {
             });
         mo.start();
 		new ArkBot();
-		
-
 	}
 	
 	public ArkBot() throws AWTException
@@ -104,7 +104,7 @@ public class ArkBot {
 		bot.setAutoDelay(5);
 	    bot.setAutoWaitForIdle(true);
         Setup setup = new Setup();
-        ChatImageGrab g = new ChatImageGrab();
+        ImageGrab g = new ImageGrab();
         MeatSplitter ms = new MeatSplitter();
         CharacterActions action = new CharacterActions();
         WarDrum drum = new WarDrum();
@@ -123,27 +123,24 @@ public class ArkBot {
 
         GlobalScreen.addNativeKeyListener(new ShortcutManager());
         
-        while (true) {
-        	drum.Drumming();
-        	tame.Tamin();
-        	breed.Breedin();
-        	gatherer.Gatherin();
-        	System.out.println("Do I really have to do this?");
-        }
+        screenReader.Grab(2);
+        
+//        while (true) {
+//        	drum.Drumming();
+//        	tame.Tamin();
+//        	breed.Breedin();
+//        	gatherer.Gatherin();
+//        	System.out.println("Do I really have to do this?");
+//        }
         
 //        int stacks = action.InvSearch("fiber");
 //        ms.SplitStack(global.INV_POINTS[0], stacks);
         
 	    // bot.delay(global.PAUSE);
-//	    g.Grab();
-//	    g.InvertGrab();
+
 //        new TesseractExample();
         // Setup Ark
         //setup.Begin();
-	    
-		// OCR Initialization/Test
-		//OCRScannerDemo demo = new OCRScannerDemo();
-		//ArkBotGUI.GUIText("OCR: " + demo.OCRSomething("ArkBotFiles\\OCRImages\\ChatImageGrab\\grabInvert.png"));
 	    
 
 	  }
