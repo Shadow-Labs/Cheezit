@@ -13,6 +13,8 @@ public class Breeder {
 	MouseDrag drag;
 	RobotType robtype;
 	ArrayList breedSetup;
+	int herbs;
+	int carns;
 	boolean breeding;
 	int foodWait;
 	public Breeder() throws AWTException {
@@ -22,6 +24,8 @@ public class Breeder {
 		drag = new MouseDrag(ArkBot.p);
 		robtype = new RobotType(bot);
 		breedSetup = new ArrayList();
+		herbs = 0;
+		carns = 0;
 		breeding = false;
 		foodWait = 15;
 	}
@@ -31,7 +35,6 @@ public class Breeder {
 		}
 	}
 	private void Breed() {
-		ArkBotGUI.GUIText("Breeding...");
 		int i = 0;
 		long foodStart = System.currentTimeMillis();
 	
@@ -39,16 +42,28 @@ public class Breeder {
 		leftClick();
 		// Setup Locations (Fridge, Carnos, Herbis)
 		
-		// Todo: Setup fix for reopening inv
+		// Initial Fridge routine
+		Refill();
+		i++;
+		// Exit Inventory and look left
+		bot.keyPress(KeyEvent.VK_F);
+		bot.delay(Global.PAUSE);
+		bot.keyRelease(KeyEvent.VK_F);
+		bot.delay(250);
+
+		act.LookLeft(120/breedSetup.size());
 		
 		
 		
 		while (breeding) {
 			// Look Left Till Inventory - NEED TO TEST
-			while (!act.CyanCenter(6)) {
+			while (!act.CyanBreeder(6) && breeding) {
 				act.LookLeft(2);
 			}
-			ArkBotGUI.GUIText("Cyan Center!");
+			
+			if (!breeding) {
+				break;
+			}
 			
 			// Open Inv
 			bot.keyPress(KeyEvent.VK_F);
@@ -77,11 +92,15 @@ public class Breeder {
 			
 			// AutoFeed
 			if (foodWait != 0 && System.currentTimeMillis() - foodStart > (foodWait * 1000)) {
-				drag.move(ArkBot.global.CHAR_INV_FIRSTSLOT);
-				leftClick();
+//				drag.move(ArkBot.global.CHAR_INV_FIRSTSLOT);
+//				leftClick();
+//				
+//				drag.move(ArkBot.global.CHAR_INV_USEITEM);
+//				leftClick();
 				
-				drag.move(ArkBot.global.CHAR_INV_USEITEM);
-				leftClick();
+				bot.keyPress(KeyEvent.VK_5);
+				bot.delay(Global.PAUSE);
+				bot.keyRelease(KeyEvent.VK_5);
 				
 				foodStart = System.currentTimeMillis();
 			}
@@ -91,10 +110,8 @@ public class Breeder {
 			bot.delay(Global.PAUSE);
 			bot.keyRelease(KeyEvent.VK_F);
 			bot.delay(250);
-			
-			ArkBotGUI.GUIText("Got Here!");
 
-			act.LookLeft(20);
+			act.LookLeft(120/breedSetup.size());
 		}
 	}
 	private void Refill() {
@@ -105,14 +122,14 @@ public class Breeder {
 		// Transfer Stack
 		drag.move(Global.EXT_INV_FIRSTSLOT);
 		leftClick();
-		act.Transfer(1);
+		act.Transfer(herbs);
 		
 		// Carnivores
 		if (breedSetup.contains(1)) {
 			act.ExtInvSearch("Raw Meat");
 			drag.move(Global.EXT_INV_FIRSTSLOT);
 			leftClick();
-			act.Transfer(5);
+			act.Transfer(carns * 3);
 		}
 		
 	}

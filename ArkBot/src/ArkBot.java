@@ -40,6 +40,7 @@ public class ArkBot {
 	public static Tamer tame;
 	public static Breeder breed;
 	public static AutoGatherer gatherer;
+	public static Updater updt;
 	public static ScreenReader screenReader;
 	public static Point p;
 	public static String version;
@@ -65,6 +66,7 @@ public class ArkBot {
 		tame = new Tamer();
 		breed = new Breeder();
 		gatherer = new AutoGatherer();
+		updt = new Updater();
 		screenReader = new ScreenReader();
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
@@ -92,7 +94,6 @@ public class ArkBot {
 	public ArkBot() throws AWTException
 	{
 		// Check for Updated Version
-		Updater updt = new Updater();
 		try {
 			updt.download();
 		} catch (Exception e1) {

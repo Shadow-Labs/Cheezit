@@ -317,6 +317,20 @@ public class CharacterActions {
 		return cyan;
 	}
 	
+	public boolean CyanBreeder(int gap) {
+		boolean cyan = false;
+		int i = Global.ResY - (Global.ResY/3);
+		while (!cyan && i < (Global.ResY)); {
+			Color p = bot.getPixelColor(Global.CENTER.x, i);
+			if (p.getBlue() >= 250 && p.getGreen() >= 250 && p.getRed() == 0) {
+				cyan = true;
+			}
+			i += gap;
+		}
+		
+		return cyan;
+	}
+	
 	public int invYLocator() {
 		int Y = 227;
 		while ((bot.getPixelColor(40, Y).getBlue() < 250

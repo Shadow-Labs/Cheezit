@@ -33,9 +33,22 @@ import javax.swing.JProgressBar;
 
 //http://www.dreamincode.net/forums/topic/190944-creating-an-updater-in-java/
 public class Updater {
-	private final static String versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
 	private static String webVersion = "";
-	private final String root = "update/";
+	private static String versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
+	private static String jarURL = "";
+	private static String zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
+	private String root = "update/";
+	
+	public Updater() {
+		try {
+			webVersion = getLatestVersion();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
+		zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
+	}
 	
 	public static String getLatestVersion() throws Exception{
 		String data = getData(versionURL);
@@ -66,7 +79,11 @@ public class Updater {
 		return "";
 	}
 	
-	private void UpdateWindow() {
+	public void DownloadZip() {
+		UpdateWindow(zipURL);
+	}
+	
+	private void UpdateWindow(String downloadURL) {
 		Image img = new ImageIcon("ArkBotFiles/Images/ArkBotLogo.png").getImage();
 		ImageIcon icon = new ImageIcon(img.getScaledInstance(100, 100, 0));
         ImageIcon icon2 = new ImageIcon(new ImageIcon("ArkBotFiles/Images/ShadowLabsSmall.png").getImage().getScaledInstance(100, 100, 0));
@@ -74,7 +91,12 @@ public class Updater {
 		JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/LoadingScreenBackground.png").getImage());
         bgPanel.setLayout(new BorderLayout());
         
-		JFrame lScreen = new JFrame("Updating to ArkBot" + webVersion);
+        JFrame lScreen = new JFrame("");
+        if (downloadURL == zipURL) {
+        	lScreen = new JFrame("Downloading ArkBot" + webVersion);
+        } else if (downloadURL == jarURL) {
+        	lScreen = new JFrame("Updating to ArkBot" + webVersion);
+        }
 		lScreen.setIconImage(img);
         lScreen.setSize(360,200);
         lScreen.setResizable(false);
@@ -112,12 +134,17 @@ public class Updater {
         int progress = MIN;
         int load = 0;
 		try {
-			URL url = new URL("https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true");
+			URL url = new URL(downloadURL);
 	        URLConnection conn = url.openConnection();
 	        InputStream is = conn.getInputStream();
 	        long max = conn.getContentLength();
 	        bar.setMaximum((int) max);
-	        BufferedOutputStream fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot" + webVersion + ".Jar")));
+	        BufferedOutputStream fOut = null;
+	        if (downloadURL == zipURL) {
+	        	fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot" + webVersion + ".zip")));
+	        } else if (downloadURL == jarURL) {
+	        	fOut = new BufferedOutputStream(new FileOutputStream(new File("ArkBot" + webVersion + ".Jar")));
+	        }
 	        byte[] buffer = new byte[32 * 1024];
 	        int bytesRead = 0;
 	        int in = 0;
@@ -150,7 +177,7 @@ public class Updater {
 	private boolean UpdatePrompt() {
 			JPanel msgPanel = new JPanel();
 			msgPanel.setLayout(new BorderLayout());
-			JLabel requirements = new JLabel("<html>ArkBot has found a new version.<br><br>"
+			JLabel requirements = new JLabel("<html>ArkBot has detected a newer version.<br><br>"
 							+ "Current Version: " + ArkBot.version + "<br>"
 				    		+ "Updated Version: " + webVersion + "<br><br>"
 				    		+ "Would you like to update?<br></html>");
@@ -166,13 +193,19 @@ public class Updater {
     {
     	if (newVersionExists() && UpdatePrompt()) {
 	        try {
-	        	UpdateWindow();
+	        	UpdateWindow(jarURL);
 	        	//ArkBotGUI.GUIText("Updating ArkBot from" + ArkBot.version + " to " + webVersion);
 	            //downloadFile("https://github.com/Shadow-Labs/ArkBot/raw/master/ArkBot/ArkBot" + webVersion + ".jar");
 //	            unzip();
 //	            copyFiles(new File(root),new File("").getAbsolutePath());
 //	            cleanup();
 	            ArkBotGUI.GUIText("Update Finished.");
+	            ArkBotGUI.GUIText("Lauching ArkBot" + webVersion + " in 3...");
+	            ArkBot.bot.delay(1000);
+	            ArkBotGUI.GUIText("Lauching ArkBot" + webVersion + " in 2...");
+	            ArkBot.bot.delay(1000);
+	            ArkBotGUI.GUIText("Lauching ArkBot" + webVersion + " in 1...");
+	            ArkBot.bot.delay(1000);
 	            launch();
 	        } catch (Exception ex) {
 	        	ArkBotGUI.GUIText("JAVA ERROR: " + ex.getMessage());
@@ -191,7 +224,7 @@ public class Updater {
         }
         
         // Update Version
-        ArkBotGUI.GUIText("Updating CurrentVersion.txt");
+        ArkBotGUI.GUIText("Updated CurrentVersion.txt");
         PrintWriter writer = new PrintWriter ("ArkBotFiles\\Version\\CurrentVersion.txt", "UTF-8");
         writer.print(webVersion);
         writer.close();

@@ -269,9 +269,8 @@ public class ArkBotGUI extends JFrame
         		} else {
         			int breedNumber = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
         					+ "1) Bot has fridge inventory open.\n"
-        					+ "2) Narcotics are the first items in dino's inventory.\n"
-        					+ "3) To stop taming, press the taming button between narcotic applications.\n"
-        					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
+        					+ "2) To stop breeding, press the breeding button while bot is turning.\n"
+        					+ "3) AutoFeed function requires food in slot 5 of the hotbar.\n\n"
         					+ "Number of breeds:"));
         			
         			int c = breedNumber;
@@ -282,18 +281,20 @@ public class ArkBotGUI extends JFrame
         	                    "Breed Types", JOptionPane.PLAIN_MESSAGE, icon, BreedOptions, "Carnivore");
         				if (breedType.equals("Carnivore")) {
         					ArkBot.breed.breedSetup.add(1);
+        					ArkBot.breed.carns++;
         				} else {
         					ArkBot.breed.breedSetup.add(2);
+        					ArkBot.breed.herbs++;
         				}
         				c--;
         			}
         			
-        			ArkBotGUI.GUIText("Begin breeding " + (ArkBot.breed.breedSetup.size() - 1) + " dinos.");
+        			ArkBotGUI.GUIText("Begin breeding " + ArkBot.breed.carns + " carnivores and " + ArkBot.breed.herbs + " herbivores.");
         			
         			ArkBot.breed.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
         					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
         			if (ArkBot.breed.foodWait != 0) {
-        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.tame.foodWait + " seconds.");
+        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.breed.foodWait + " seconds.");
         			} else {
         				ArkBotGUI.GUIText("No AutoFeed.");
         			}
@@ -338,6 +339,14 @@ public class ArkBotGUI extends JFrame
         		}
         	}
         });
+        
+        // Download Zip Button
+        JButton zipDButton = new JButton("Download *.zip");
+        zipDButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ArkBot.updt.DownloadZip();
+        	}
+        });
 
         
         //Main.add(inputB);
@@ -351,6 +360,7 @@ public class ArkBotGUI extends JFrame
         Main.add(tameButton);
         Main.add(breedButton);
         Main.add(AutoGatherButton);
+        Main.add(zipDButton);
         
         // textLog
         JPanel Logger = new JPanel();
