@@ -193,7 +193,7 @@ public class Updater {
         // Update Version
         ArkBotGUI.GUIText("Updating CurrentVersion.txt");
         PrintWriter writer = new PrintWriter ("ArkBotFiles\\Version\\CurrentVersion.txt", "UTF-8");
-        writer.println(webVersion);
+        writer.print(webVersion);
         writer.close();
         
         ArkBot.log.CloseLog();
