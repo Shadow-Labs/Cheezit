@@ -58,10 +58,11 @@ v0.1.4
 - Implemented Hotkey Capability
 
 v0.1.5
-- Upgraded AutoClicker to AutoGatherer
+- Fixed Memory Leak and Various Bug Fixes
 
 
 Future Implementations
+- Upgrade AutoClicker to AutoGatherer
 - Input Recorder
 - Inventory StackCount
 - Meat Splitter Implementation

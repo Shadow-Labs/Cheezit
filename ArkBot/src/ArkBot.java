@@ -111,27 +111,27 @@ public class ArkBot {
         
         
 
-        try {
-            GlobalScreen.registerNativeHook();
-        }
-        catch (NativeHookException ex) {
-            System.err.println("There was a problem registering the native hook.");
-            System.err.println(ex.getMessage());
-
-            System.exit(1);
-        }
-
-        GlobalScreen.addNativeKeyListener(new ShortcutManager());
-        
-        screenReader.Grab(2);
-        
-//        while (true) {
-//        	drum.Drumming();
-//        	tame.Tamin();
-//        	breed.Breedin();
-//        	gatherer.Gatherin();
-//        	System.out.println("Do I really have to do this?");
+//        try {
+//            GlobalScreen.registerNativeHook();
 //        }
+//        catch (NativeHookException ex) {
+//            System.err.println("There was a problem registering the native hook.");
+//            System.err.println(ex.getMessage());
+//
+//            System.exit(1);
+//        }
+//
+//        GlobalScreen.addNativeKeyListener(new ShortcutManager());
+//        
+//        screenReader.Grab(2);
+        
+        while (true) {
+        	//drum.Drumming();
+        	tame.Tamin();
+        	breed.Breedin();
+        	gatherer.Gatherin();
+        	System.out.println("Do I really have to do this?");
+        }
         
 //        int stacks = action.InvSearch("fiber");
 //        ms.SplitStack(global.INV_POINTS[0], stacks);
