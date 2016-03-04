@@ -100,7 +100,7 @@ public class Updater {
         JPanel imgPanel = new JPanel(new FlowLayout());
         imgPanel.setOpaque(false);
         imgPanel.add(image2);
-        imgPanel.add(image1);        
+        imgPanel.add(image1);
         
         bgPanel.add(imgPanel, BorderLayout.NORTH);
         bgPanel.add(barPanel, BorderLayout.CENTER);
@@ -112,7 +112,7 @@ public class Updater {
         int progress = MIN;
         int load = 0;
 		try {
-			URL url = new URL("https://github.com/Shadow-Labs/Cheezeit/raw/master/ArkBot/ArkBot" + webVersion + ".jar");
+			URL url = new URL("https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true");
 	        URLConnection conn = url.openConnection();
 	        InputStream is = conn.getInputStream();
 	        long max = conn.getContentLength();
