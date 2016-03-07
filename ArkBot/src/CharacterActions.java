@@ -44,10 +44,14 @@ public class CharacterActions {
 		drag.move(ArkBot.global.CHAR_INV_SEARCH_BAR);
 		leftClick();
 
-		bot.keyPress(KeyEvent.VK_BACK_SPACE);
-		bot.delay(1000);
-		bot.keyRelease(KeyEvent.VK_BACK_SPACE);
-		bot.delay(Global.PAUSE);
+		int i = 20;
+		while (i > 0) {
+			bot.keyPress(KeyEvent.VK_BACK_SPACE);
+			bot.delay(Global.PAUSE);
+			bot.keyRelease(KeyEvent.VK_BACK_SPACE);
+			bot.delay(Global.PAUSE);
+			i--;
+		}
 		
 		robtype.type(type);
 		
@@ -62,11 +66,14 @@ public class CharacterActions {
 		drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
 		leftClick();
 
-		bot.keyPress(KeyEvent.VK_BACK_SPACE);
-		bot.delay(1000);
-		bot.keyRelease(KeyEvent.VK_BACK_SPACE);
-		bot.delay(Global.PAUSE);
-		
+		int i = 20;
+		while (i > 0) {
+			bot.keyPress(KeyEvent.VK_BACK_SPACE);
+			bot.delay(Global.PAUSE);
+			bot.keyRelease(KeyEvent.VK_BACK_SPACE);
+			bot.delay(Global.PAUSE);
+			i--;
+		}
 		robtype.type(type);
 		
 		bot.keyPress(KeyEvent.VK_ESCAPE);
@@ -113,7 +120,7 @@ public class CharacterActions {
 	}
 	
 	public boolean itemExists() {
-		return WhitePixelRange(Global.CHAR_INV_FIRSTSLOT_NAME, 3);
+		return WhitePixelRange(Global.CHAR_INV_FIRSTSLOT_NAME, 4);
 	}
 	
 	// --------------------MOVEMENT FUNCTIONALITY-------------------
