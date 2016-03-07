@@ -70,9 +70,9 @@ public class AutoGatherer {
 		}
 		
 		// Exit Ext Inv
-		bot.keyPress(KeyEvent.VK_F);
+		bot.keyPress(KeyEvent.VK_ESCAPE);
 		bot.delay(Global.PAUSE);
-		bot.keyRelease(KeyEvent.VK_F);
+		bot.keyRelease(KeyEvent.VK_ESCAPE);
 		bot.delay(Global.PAUSE);
 		
 		

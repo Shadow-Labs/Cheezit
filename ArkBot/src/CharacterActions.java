@@ -43,11 +43,17 @@ public class CharacterActions {
 		p = MouseInfo.getPointerInfo().getLocation();
 		drag.move(ArkBot.global.CHAR_INV_SEARCH_BAR);
 		leftClick();
+
+		bot.keyPress(KeyEvent.VK_BACK_SPACE);
+		bot.delay(1000);
+		bot.keyRelease(KeyEvent.VK_BACK_SPACE);
 		bot.delay(Global.PAUSE);
-		leftClick();
-		bot.delay(Global.PAUSE);
-		leftClick();
+		
 		robtype.type(type);
+		
+		bot.keyPress(KeyEvent.VK_ESCAPE);
+		bot.delay(Global.PAUSE);
+		bot.keyRelease(KeyEvent.VK_ESCAPE);
 	}
 	
 	public void ExtInvSearch(String type) {
@@ -55,11 +61,17 @@ public class CharacterActions {
 		p = MouseInfo.getPointerInfo().getLocation();
 		drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
 		leftClick();
+
+		bot.keyPress(KeyEvent.VK_BACK_SPACE);
+		bot.delay(1000);
+		bot.keyRelease(KeyEvent.VK_BACK_SPACE);
 		bot.delay(Global.PAUSE);
-		leftClick();
-		bot.delay(Global.PAUSE);
-		leftClick();
+		
 		robtype.type(type);
+		
+		bot.keyPress(KeyEvent.VK_ESCAPE);
+		bot.delay(Global.PAUSE);
+		bot.keyRelease(KeyEvent.VK_ESCAPE);
 	}
 	
 	public void Transfer(int count) {

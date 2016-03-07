@@ -311,6 +311,13 @@ public class ArkBotGUI extends JFrame
         AGBPanel.setLayout(new BoxLayout(AGBPanel, BoxLayout.PAGE_AXIS));
         JButton AutoGatherButton = new JButton("Start AutoGathering");
         AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
+		JCheckBox boxes[] = new JCheckBox[ArkBot.gatherer.materials.length];
+		int i = 0;
+		while (i < ArkBot.gatherer.materials.length) {
+			boxes[i] = new JCheckBox(ArkBot.gatherer.materials[i]);
+			AGBPanel.add(boxes[i]);
+			i++;
+		}
         AutoGatherButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (ArkBot.gatherer.gathering) {
@@ -321,17 +328,9 @@ public class ArkBotGUI extends JFrame
         			ArkBotGUI.GUIText("[ACTION] Stopped AutoGatherer.");
         		} else {
         			ArkBot.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoClicker Delay (seconds)"));
-        			
-        			int i = 0;
-        			JCheckBox boxes[] = new JCheckBox[ArkBot.gatherer.materials.length];
-        			while (i < ArkBot.gatherer.materials.length) {
-        				boxes[i] = new JCheckBox(ArkBot.gatherer.materials[i]);
-        				AGBPanel.add(boxes[i]);
-        				i++;
-        			}
         			JOptionPane.showConfirmDialog(GUI, AGBPanel,"Material Selection", JOptionPane.PLAIN_MESSAGE);
         			
-        			i = 0;
+        			int i = 0;
         			while (i < ArkBot.gatherer.materials.length) {
         				if (boxes[i].isSelected()) {
         					ArkBot.gatherer.keepMats.add(ArkBot.gatherer.materials[i]);
