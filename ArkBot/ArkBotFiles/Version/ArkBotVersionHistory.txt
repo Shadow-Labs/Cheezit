@@ -2,7 +2,7 @@ ArkBot Version Updates/History
 
 
 Future Implementations
-- Upgrade AutoClicker to AutoGatherer
+- Upgrade AutoClicker to AutoGatherer (Need to work on dropping)
 - Input Recorder
 - Inventory StackCount
 - Meat Splitter Implementation
