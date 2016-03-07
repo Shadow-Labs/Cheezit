@@ -7,7 +7,7 @@ import org.jnativehook.keyboard.NativeKeyListener;
 
 public class ShortcutManager implements NativeKeyListener {
     public void nativeKeyPressed(NativeKeyEvent e) {
-        System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+ //       System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
         //ArkBotGUI.GUIText("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 
         if (e.getKeyCode() == NativeKeyEvent.VC_F8) {
@@ -21,7 +21,7 @@ public class ShortcutManager implements NativeKeyListener {
     }
 
     public void nativeKeyReleased(NativeKeyEvent e) {
-        System.out.println("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+//        System.out.println("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 //        ArkBotGUI.GUIText("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
         
         
@@ -31,13 +31,6 @@ public class ShortcutManager implements NativeKeyListener {
 	        if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("Minus") || NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Subtract")) {
 	        	System.out.println("gather: " + ArkBot.gatherer.gathering + " click: " + ArkBot.gatherer.clicking);
 	        	ArkBot.gatherer.StartStop();
-//	    		if (ArkBot.gatherer.clicking) {
-//	    			ArkBotGUI.GUIText("Paused AutoClicking");
-//	    			ArkBot.gatherer.clicking = false;
-//	    		} else {
-//	    			ArkBotGUI.GUIText("Resumed AutoClicking");
-//	    			ArkBot.gatherer.clicking = true;
-//	    		}
 	        } else if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Multiply")) {
 	        	if (ArkBot.gatherer.clicking) {
 	        		ArkBot.gatherer.StartStop();
@@ -51,7 +44,7 @@ public class ShortcutManager implements NativeKeyListener {
     }
 
     public void nativeKeyTyped(NativeKeyEvent e) {
-        System.out.println("Key Typed: " + e.getKeyText(e.getKeyCode()));
+//        System.out.println("Key Typed: " + e.getKeyText(e.getKeyCode()));
 //        ArkBotGUI.GUIText("Key Typed: " + e.getKeyText(e.getKeyCode()));
     }
 

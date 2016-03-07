@@ -37,6 +37,7 @@ public class ArkBot {
 	public static Robot bot;
 	public static Global global;
 	public static ArkBotLog log;
+	public static CharacterActions act;
 	public static Tamer tame;
 	public static Breeder breed;
 	public static AutoGatherer gatherer;
@@ -63,6 +64,7 @@ public class ArkBot {
 		
 		bot = new Robot();
 		log = new ArkBotLog();
+		act = new CharacterActions();
 		tame = new Tamer();
 		breed = new Breeder();
 		gatherer = new AutoGatherer();
@@ -107,22 +109,21 @@ public class ArkBot {
         Setup setup = new Setup();
         ImageGrab g = new ImageGrab();
         MeatSplitter ms = new MeatSplitter();
-        CharacterActions action = new CharacterActions();
         WarDrum drum = new WarDrum();
         
         
 
-//        try {
-//            GlobalScreen.registerNativeHook();
-//        }
-//        catch (NativeHookException ex) {
-//            System.err.println("There was a problem registering the native hook.");
-//            System.err.println(ex.getMessage());
-//
-//            System.exit(1);
-//        }
-//
-//        GlobalScreen.addNativeKeyListener(new ShortcutManager());
+        try {
+            GlobalScreen.registerNativeHook();
+        }
+        catch (NativeHookException ex) {
+            System.err.println("There was a problem registering the native hook.");
+            System.err.println(ex.getMessage());
+
+            System.exit(1);
+        }
+
+        GlobalScreen.addNativeKeyListener(new ShortcutManager());
 //        
 //        screenReader.Grab(2);
         

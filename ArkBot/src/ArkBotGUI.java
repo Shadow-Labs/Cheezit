@@ -318,7 +318,7 @@ public class ArkBotGUI extends JFrame
         			ArkBot.gatherer.clicking = false;
         			AutoGatherButton.setText("Start AutoGathering");
         			AutoGatherButton.setBackground(new JButton().getBackground());
-        			ArkBotGUI.GUIText("Stopped AutoGatherer.");
+        			ArkBotGUI.GUIText("[ACTION] Stopped AutoGatherer.");
         		} else {
         			ArkBot.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoClicker Delay (seconds)"));
         			
@@ -330,6 +330,15 @@ public class ArkBotGUI extends JFrame
         				i++;
         			}
         			JOptionPane.showConfirmDialog(GUI, AGBPanel,"Material Selection", JOptionPane.PLAIN_MESSAGE);
+        			
+        			i = 0;
+        			while (i < ArkBot.gatherer.materials.length) {
+        				if (boxes[i].isSelected()) {
+        					ArkBot.gatherer.keepMats.add(ArkBot.gatherer.materials[i]);
+        				}
+        				i++;
+        			}
+        			
         			
         			ArkBotGUI.GUIText("Press '-' to begin AutoClicking every " + ArkBot.gatherer.pause + " seconds.");
         			
