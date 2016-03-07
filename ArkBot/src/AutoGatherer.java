@@ -68,6 +68,14 @@ public class AutoGatherer {
 			}
 			i++;
 		}
+		
+		// Exit Ext Inv
+		bot.keyPress(KeyEvent.VK_F);
+		bot.delay(Global.PAUSE);
+		bot.keyRelease(KeyEvent.VK_F);
+		bot.delay(Global.PAUSE);
+		
+		
 		ArkBotGUI.GUIText("[ACTION] Finished dropping.");
 	}
 	

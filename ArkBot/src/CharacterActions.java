@@ -45,6 +45,8 @@ public class CharacterActions {
 		leftClick();
 		bot.delay(Global.PAUSE);
 		leftClick();
+		bot.delay(Global.PAUSE);
+		leftClick();
 		robtype.type(type);
 	}
 	
@@ -52,6 +54,8 @@ public class CharacterActions {
 		ArkBotGUI.GUIText("[ACTION]: Searching external inventory");
 		p = MouseInfo.getPointerInfo().getLocation();
 		drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
+		leftClick();
+		bot.delay(Global.PAUSE);
 		leftClick();
 		bot.delay(Global.PAUSE);
 		leftClick();
