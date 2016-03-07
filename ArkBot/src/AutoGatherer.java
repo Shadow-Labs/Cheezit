@@ -65,7 +65,8 @@ public class AutoGatherer {
 			} else {
 				// Drop All
 				ArkBot.act.ExtInvSearch(mat);
-				ArkBot.act.Drop(0);
+				ArkBot.drag.move(Global.EXT_INV_CENTERSLOT);
+				ArkBot.act.Drop(1);
 			}
 			i++;
 		}

@@ -7,16 +7,12 @@ import java.awt.event.KeyEvent;
 
 public class Tamer {
 	Robot bot;
-	private Point p;
-	MouseDrag drag;
 	RobotType robtype;
 	boolean taming;
 	int time;
 	int foodWait;
 	public Tamer() throws AWTException {
 		bot = ArkBot.bot;
-		p = ArkBot.p;
-		drag = new MouseDrag(ArkBot.p);
 		robtype = new RobotType(bot);
 		taming = false;
 		time = 5;
@@ -35,11 +31,11 @@ public class Tamer {
 			// Narc
 			if (System.currentTimeMillis() - narcStart > (time * 1000)) {
 				//Click First Stack
-				drag.move(ArkBot.global.EXT_INV_FIRSTSLOT);
+				ArkBot.drag.move(ArkBot.global.EXT_INV_FIRSTSLOT);
 				leftClick();
 				
 				// Click RemoteUse
-				drag.move(ArkBot.global.EXT_INV_REMOTEUSE);
+				ArkBot.drag.move(ArkBot.global.EXT_INV_REMOTEUSE);
 				leftClick();
 				
 				narcStart = System.currentTimeMillis();
@@ -47,10 +43,10 @@ public class Tamer {
 			
 			// Food
 			if (System.currentTimeMillis() - foodStart > (foodWait * 1000) && foodWait != 0) {
-				drag.move(ArkBot.global.CHAR_INV_FIRSTSLOT);
+				ArkBot.drag.move(ArkBot.global.CHAR_INV_FIRSTSLOT);
 				leftClick();
 				
-				drag.move(ArkBot.global.CHAR_INV_USEITEM);
+				ArkBot.drag.move(ArkBot.global.CHAR_INV_USEITEM);
 				leftClick();
 				
 				foodStart = System.currentTimeMillis();
@@ -59,8 +55,7 @@ public class Tamer {
 	}
 	private void InvSearch(String type) {
 		ArkBotGUI.GUIText("[ACTION]: Searching inventory");
-		p = MouseInfo.getPointerInfo().getLocation();
-		drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
+		ArkBot.drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
 		leftClick();
 		bot.delay(Global.PAUSE);
 		leftClick();

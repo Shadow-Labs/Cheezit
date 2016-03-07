@@ -12,13 +12,11 @@ public class CharacterActions {
 	private Robot bot;
 	private Point p;
 	private int PAUSE;
-	MouseDrag drag;
 	RobotType robtype;
 	public CharacterActions()  throws AWTException {
 		this.bot = ArkBot.bot;
 		this.p = ArkBot.p;
 		this.PAUSE = ArkBot.global.PAUSE;
-		drag = new MouseDrag(p);
 		robtype = new RobotType(bot);
 	}
 	
@@ -41,7 +39,7 @@ public class CharacterActions {
 	public void CharInvSearch(String type) {
 		ArkBotGUI.GUIText("[ACTION]: Searching character inventory");
 		p = MouseInfo.getPointerInfo().getLocation();
-		drag.move(ArkBot.global.CHAR_INV_SEARCH_BAR);
+		ArkBot.drag.move(ArkBot.global.CHAR_INV_SEARCH_BAR);
 		leftClick();
 
 		int i = 10;
@@ -68,7 +66,7 @@ public class CharacterActions {
 	public void ExtInvSearch(String type) {
 		ArkBotGUI.GUIText("[ACTION]: Searching external inventory");
 		p = MouseInfo.getPointerInfo().getLocation();
-		drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
+		ArkBot.drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
 		leftClick();
 
 		int i = 10;

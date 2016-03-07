@@ -35,6 +35,7 @@ class ImagePanel extends JComponent {
 public class ArkBot {
 	
 	public static Robot bot;
+	public static MouseDrag drag;
 	public static Global global;
 	public static ArkBotLog log;
 	public static CharacterActions act;
@@ -63,6 +64,7 @@ public class ArkBot {
 		}
 		
 		bot = new Robot();
+		drag = new MouseDrag();
 		log = new ArkBotLog();
 		act = new CharacterActions();
 		tame = new Tamer();

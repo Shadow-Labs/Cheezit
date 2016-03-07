@@ -5,15 +5,13 @@ import java.awt.Robot;
 
 public class MouseDrag{
 	private Robot bot;
-	private Point p;
-	public MouseDrag(Point p)  throws AWTException	{
+	public MouseDrag()  throws AWTException	{
 		this.bot = ArkBot.bot;
-		this.p = p;
 	}
 	public void move(Point q) {
 		int x = q.x;
 		int y = q.y;
-		p = MouseInfo.getPointerInfo().getLocation();
+		Point p = MouseInfo.getPointerInfo().getLocation();
 		bot.setAutoDelay(2);
 		if (p.x < x) {
 			if (p.y < y) {

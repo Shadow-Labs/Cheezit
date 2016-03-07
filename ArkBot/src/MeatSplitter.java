@@ -6,15 +6,10 @@ import java.awt.event.KeyEvent;
 
 public class MeatSplitter {
 	private Robot bot;
-	private Point p;
-	private int PAUSE;
 	MouseDrag drag;
 	CharacterActions action;
 	public MeatSplitter()  throws AWTException {
 		this.bot = ArkBot.bot;
-		this.p = ArkBot.p;
-		this.PAUSE = ArkBot.global.PAUSE;
-		drag = new MouseDrag(p);
 		action = new CharacterActions();
 	}
 	public void CharInvSearch() {

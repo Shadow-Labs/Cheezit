@@ -21,6 +21,7 @@ public class Global {
 	static Point EXT_INV_SEARCHBAR;
 	static Point EXT_INV_REMOTEUSE;
 	static Point EXT_INV_FIRSTSLOT;
+	static Point EXT_INV_CENTERSLOT;
 	static Point FOCUS;
 	static Point CENTER;
 	static Point OPTIONS;
@@ -52,6 +53,7 @@ public class Global {
 			EXT_INV_SEARCHBAR = new Point(928, 128);
 			EXT_INV_REMOTEUSE = new Point(884, 653);
 			EXT_INV_FIRSTSLOT = new Point(550, 320);
+			EXT_INV_CENTERSLOT = new Point(710, 320);
 			FOCUS = new Point(center.x, 160);
 			CENTER = new Point(center);
 			OPTIONS = new Point(center.x, 423);

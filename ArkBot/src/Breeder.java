@@ -9,8 +9,6 @@ import java.util.ArrayList;
 public class Breeder {
 	Robot bot;
 	CharacterActions act;
-	private Point p;
-	MouseDrag drag;
 	RobotType robtype;
 	ArrayList breedSetup;
 	int herbs;
@@ -20,8 +18,6 @@ public class Breeder {
 	public Breeder() throws AWTException {
 		bot = ArkBot.bot;
 		act = new CharacterActions();
-		p = ArkBot.p;
-		drag = new MouseDrag(ArkBot.p);
 		robtype = new RobotType(bot);
 		breedSetup = new ArrayList();
 		herbs = 0;
@@ -38,7 +34,7 @@ public class Breeder {
 		int i = 0;
 		long foodStart = System.currentTimeMillis();
 	
-		drag.move(new Point(1330,60));
+		ArkBot.drag.move(new Point(1330,60));
 		leftClick();
 		// Setup Locations (Fridge, Carnos, Herbis)
 		
@@ -120,14 +116,14 @@ public class Breeder {
 		act.ExtInvSearch("berry");
 		
 		// Transfer Stack
-		drag.move(Global.EXT_INV_FIRSTSLOT);
+		ArkBot.drag.move(Global.EXT_INV_FIRSTSLOT);
 		leftClick();
 		act.Transfer(herbs);
 		
 		// Carnivores
 		if (breedSetup.contains(1)) {
 			act.ExtInvSearch("Raw Meat");
-			drag.move(Global.EXT_INV_FIRSTSLOT);
+			ArkBot.drag.move(Global.EXT_INV_FIRSTSLOT);
 			leftClick();
 			act.Transfer(carns * 3);
 		}
@@ -142,7 +138,7 @@ public class Breeder {
 			act.CharInvSearch("Raw Meat");
 			
 			// Transfer Stacks
-			drag.move(Global.CHAR_INV_FIRSTSLOT);
+			ArkBot.drag.move(Global.CHAR_INV_FIRSTSLOT);
 			leftClick();
 			act.Transfer(3);
 		} else {  // Herbivore
@@ -150,7 +146,7 @@ public class Breeder {
 			act.CharInvSearch("berry");
 			
 			// Transfer Stacks
-			drag.move(Global.CHAR_INV_FIRSTSLOT);
+			ArkBot.drag.move(Global.CHAR_INV_FIRSTSLOT);
 			leftClick();
 			act.Transfer(1);
 		}

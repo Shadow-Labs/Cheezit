@@ -71,9 +71,7 @@ public class Setup {
 //			ArkBotGUI.GUIText("ERROR: Could not find ShooterGame.exe", log);
 //			ArkBotGUI.GUIText("ERROR: Ensure ShooterGame.exe is located in steamapps/common/ARK/ShooterGame/Binaries/Win64", log);
 //		}
-		
-		MouseDrag drag = new MouseDrag(p);
-		
+			
 		// Focus ARK
 		bot.delay(PAUSE);
 		bot.mouseMove(ArkBot.global.FOCUS.x, ArkBot.global.FOCUS.y);
@@ -82,37 +80,37 @@ public class Setup {
 		
 		// Click Options
 		bot.delay(PAUSE);
-		drag.move(ArkBot.global.OPTIONS);
+		ArkBot.drag.move(ArkBot.global.OPTIONS);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Click Camera FOV
 		bot.delay(PAUSE);
-		drag.move(ArkBot.global.CAMERA_FOV);
+		ArkBot.drag.move(ArkBot.global.CAMERA_FOV);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Set Horizontal Sensitivity
 		bot.delay(PAUSE);
-		drag.move(ArkBot.global.H_SENSITIVITY);
+		ArkBot.drag.move(ArkBot.global.H_SENSITIVITY);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Set Vertical Sensitivity
 		bot.delay(PAUSE);
-		drag.move(ArkBot.global.V_SENSITIVITY);
+		ArkBot.drag.move(ArkBot.global.V_SENSITIVITY);
 		bot.delay(PAUSE);
 		leftClick();
 		
 		// Click Apply
 		bot.delay(PAUSE);
-		drag.move(ArkBot.global.APPLY);
+		ArkBot.drag.move(ArkBot.global.APPLY);
 		bot.delay(500);
 		leftClick();
 		
 		// Click Save
 		bot.delay(PAUSE);
-		drag.move(ArkBot.global.SAVE);
+		ArkBot.drag.move(ArkBot.global.SAVE);
 		bot.delay(PAUSE);
 		leftClick();
 		
@@ -122,7 +120,7 @@ public class Setup {
 		
 		// Click Save
 		bot.delay(PAUSE);
-		drag.move(ArkBot.global.MENU_INVENTORY);
+		ArkBot.drag.move(ArkBot.global.MENU_INVENTORY);
 		bot.delay(PAUSE);
 		leftClick();
 		
@@ -150,7 +148,6 @@ public class Setup {
 	}
 	public void FocusARK() throws AWTException
 	{
-		MouseDrag drag = new MouseDrag(p);
 		
 		bot.delay(PAUSE);
 		bot.mouseMove(720, 160);
