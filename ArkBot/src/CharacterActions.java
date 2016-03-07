@@ -92,14 +92,16 @@ public class CharacterActions {
 	public void Transfer(int count) {
 		if (count == 0) {
 			while (itemExists()) {
-				ArkBot.bot.delay(250);
+				leftClick();
+				ArkBot.bot.delay(PAUSE);
 				ArkBot.bot.keyPress(KeyEvent.VK_T);
 				ArkBot.bot.delay(PAUSE);
 				ArkBot.bot.keyRelease(KeyEvent.VK_T);
 			}
 		} else {
 			while (count > 0) {
-				ArkBot.bot.delay(250);
+				leftClick();
+				ArkBot.bot.delay(PAUSE);
 				ArkBot.bot.keyPress(KeyEvent.VK_T);
 				ArkBot.bot.delay(PAUSE);
 				ArkBot.bot.keyRelease(KeyEvent.VK_T);
@@ -111,14 +113,16 @@ public class CharacterActions {
 	public void Drop(int count) {		
 		if (count == 0) {
 			while (itemExists()) {
-				ArkBot.bot.delay(250);
+				leftClick();
+				ArkBot.bot.delay(PAUSE);
 				ArkBot.bot.keyPress(KeyEvent.VK_O);
 				ArkBot.bot.delay(PAUSE);
 				ArkBot.bot.keyRelease(KeyEvent.VK_O);
 			}
 		} else {
 			while (count > 0) {
-				ArkBot.bot.delay(250);
+				leftClick();
+				ArkBot.bot.delay(PAUSE);
 				ArkBot.bot.keyPress(KeyEvent.VK_O);
 				ArkBot.bot.delay(PAUSE);
 				ArkBot.bot.keyRelease(KeyEvent.VK_O);
