@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class AutoGatherer {
 	Robot bot;
 	public String [] materials = {"Metal", "Stone", "Flint", "Wood", "Thatch", "Fiber",
-			"Berries", "Seed", "Mushroom", "Flower", "Oil", "Raw Meat", "Spoiled Meat", "Hide"};
+			"Berry", "Seed", "Mushroom", "Flower", "Oil", "Raw Meat", "Spoiled Meat", "Hide"};
 	public ArrayList<String> keepMats = new ArrayList<String>();
 	public boolean gathering;
 	public boolean clicking;

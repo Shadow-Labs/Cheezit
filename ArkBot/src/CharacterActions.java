@@ -44,11 +44,16 @@ public class CharacterActions {
 		drag.move(ArkBot.global.CHAR_INV_SEARCH_BAR);
 		leftClick();
 
-		int i = 20;
+		int i = 10;
 		while (i > 0) {
 			bot.keyPress(KeyEvent.VK_BACK_SPACE);
 			bot.delay(Global.PAUSE);
 			bot.keyRelease(KeyEvent.VK_BACK_SPACE);
+			bot.delay(Global.PAUSE);
+			
+			bot.keyPress(KeyEvent.VK_DELETE);
+			bot.delay(Global.PAUSE);
+			bot.keyRelease(KeyEvent.VK_DELETE);
 			bot.delay(Global.PAUSE);
 			i--;
 		}
@@ -66,11 +71,16 @@ public class CharacterActions {
 		drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
 		leftClick();
 
-		int i = 20;
+		int i = 10;
 		while (i > 0) {
 			bot.keyPress(KeyEvent.VK_BACK_SPACE);
 			bot.delay(Global.PAUSE);
 			bot.keyRelease(KeyEvent.VK_BACK_SPACE);
+			bot.delay(Global.PAUSE);
+			
+			bot.keyPress(KeyEvent.VK_DELETE);
+			bot.delay(Global.PAUSE);
+			bot.keyRelease(KeyEvent.VK_DELETE);
 			bot.delay(Global.PAUSE);
 			i--;
 		}
