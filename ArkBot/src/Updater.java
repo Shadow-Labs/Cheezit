@@ -33,7 +33,7 @@ import javax.swing.JProgressBar;
 
 //http://www.dreamincode.net/forums/topic/190944-creating-an-updater-in-java/
 public class Updater {
-	private static String webVersion = "";
+	public static String webVersion = "";
 	private static String versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
 	private static String jarURL = "";
 	private static String zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
@@ -88,7 +88,7 @@ public class Updater {
 		ImageIcon icon = new ImageIcon(img.getScaledInstance(100, 100, 0));
         ImageIcon icon2 = new ImageIcon(new ImageIcon("ArkBotFiles/Images/ShadowLabsSmall.png").getImage().getScaledInstance(100, 100, 0));
 		
-		JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/LoadingScreenBackground.png").getImage());
+        JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/LoadingScreenBackground.png").getImage());
         bgPanel.setLayout(new BorderLayout());
         
         JFrame lScreen = new JFrame("");
@@ -120,7 +120,7 @@ public class Updater {
         JLabel image1 = new JLabel("", icon, JLabel.CENTER);
         JLabel image2 = new JLabel("", icon2, JLabel.CENTER);
         JPanel imgPanel = new JPanel(new FlowLayout());
-        imgPanel.setOpaque(false);
+        //imgPanel.setOpaque(false);
         imgPanel.add(image2);
         imgPanel.add(image1);
         

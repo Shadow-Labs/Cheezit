@@ -117,7 +117,7 @@ public class ArkBotGUI extends JFrame
         
         // Main Panel
         JPanel Main = new JPanel();
-        Main.setLayout(new FlowLayout());
+        Main.setLayout(new GridLayout(0,2));
         Main.setOpaque(false);
         Main.setBorder(BorderFactory.createTitledBorder(new EmptyBorder(0,0,0,0), "ArkBot Controls", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
@@ -221,7 +221,13 @@ public class ArkBotGUI extends JFrame
         	}
         });
         
-        // Taming Button/Prompt
+        // Taming - Panel
+        JPanel PTaming = new JPanel();
+        PTaming.setLayout(new FlowLayout());
+        PTaming.setOpaque(false);
+        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.ORANGE), "Taming", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.ORANGE));
+        
+        // Taming - Button
         JButton tameButton = new JButton("Start Taming");
         tameButton.setMnemonic(KeyEvent.VK_ASTERISK);
         tameButton.addActionListener(new ActionListener() {
@@ -255,7 +261,15 @@ public class ArkBotGUI extends JFrame
         	}
         });
         
-     // Breeding Button/Prompt
+        PTaming.add(tameButton);
+        
+        // Breeding - Panel
+        JPanel PBreeding = new JPanel();
+        PBreeding.setLayout(new FlowLayout());
+        PBreeding.setOpaque(false);
+        PBreeding.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.MAGENTA), "Breeding", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.MAGENTA));
+        
+        // Breeding - Button/Prompt
         JButton breedButton = new JButton("Start Breeding");
         breedButton.setMnemonic(KeyEvent.VK_ASTERISK);
         String[] BreedOptions = {"Carnivore", "Herbivore"};
@@ -305,12 +319,21 @@ public class ArkBotGUI extends JFrame
         		}
         	}
         });
+        PBreeding.add(breedButton);
                 
-        // AutoGatherer
+        // AutoGatherer - Panel
+        JPanel PAutoGatherer = new JPanel();
+        PAutoGatherer.setLayout(new FlowLayout());
+        PAutoGatherer.setOpaque(false);
+        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GREEN));
+        
+        
+        // AutoGatherer - Button
         JPanel AGBPanel = new JPanel();
         AGBPanel.setLayout(new BoxLayout(AGBPanel, BoxLayout.PAGE_AXIS));
         JButton AutoGatherButton = new JButton("Start AutoGathering");
         AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
+        JCheckBox AutoDrop = new JCheckBox("AutoDrop Functionality");
 		JCheckBox boxes[] = new JCheckBox[ArkBot.gatherer.materials.length];
 		int i = 0;
 		while (i < ArkBot.gatherer.materials.length) {
@@ -327,7 +350,7 @@ public class ArkBotGUI extends JFrame
         			AutoGatherButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("[ACTION] Stopped AutoGatherer.");
         		} else {
-        			ArkBot.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoClicker Delay (seconds)"));
+        			ArkBot.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, AutoDrop, "AutoClicker Delay (seconds)"));
         			JOptionPane.showConfirmDialog(GUI, AGBPanel,"Material Selection", JOptionPane.PLAIN_MESSAGE);
         			
         			int i = 0;
@@ -348,27 +371,36 @@ public class ArkBotGUI extends JFrame
         	}
         });
         
-        // Download Zip Button
-        JButton zipDButton = new JButton("Download *.zip");
+        PAutoGatherer.add(AutoGatherButton);
+        
+        // Download Zip - Panel
+        JPanel PDZip = new JPanel();
+        PDZip.setLayout(new FlowLayout());
+        PDZip.setOpaque(false);
+        PDZip.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.DARK_GRAY), "Download ArkBot.zip", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.DARK_GRAY));
+        
+        // Download Zip - Button
+        JButton zipDButton = new JButton("Download ArkBot" + ArkBot.updt.webVersion + ".zip");
         zipDButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		ArkBot.updt.DownloadZip();
         	}
         });
 
+        PDZip.add(zipDButton);
         
-        //Main.add(inputB);
+//        Main.add(inputB);
 //        Main.add(drumButton1);
 //        Main.add(drumButton2);
-        //Main.add(drumButton3);
+//        Main.add(drumButton3);
 //        Main.add(drumButton4);
 //        Main.add(drumButton5);
 //        Main.add(drumButton6);
-        //Main.add(drumButton7);
-        Main.add(tameButton);
-        Main.add(breedButton);
-        Main.add(AutoGatherButton);
-        Main.add(zipDButton);
+//        Main.add(drumButton7);
+        Main.add(PTaming);
+        Main.add(PBreeding);
+        Main.add(PAutoGatherer);
+        Main.add(PDZip);
         
         // textLog
         JPanel Logger = new JPanel();
