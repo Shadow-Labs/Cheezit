@@ -16,10 +16,14 @@ Known Bugs
 - Manual Download downloading screen is all white?
 - CharacterActions ItemExists() does not work
 
+Next Version:
+v0.1.6
+- Updated GUI
+- AutoDrop is now optional
 
 Current Version:
 v0.1.5
-- Fixed Memory Leak and Various Bug Fixes
+- Memory Leak and Various Bug Fixes
 
 
 Past Versions:
