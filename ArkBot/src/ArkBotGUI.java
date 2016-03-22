@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -223,9 +224,9 @@ public class ArkBotGUI extends JFrame
         
         // Taming - Panel
         JPanel PTaming = new JPanel();
-        PTaming.setLayout(new FlowLayout());
+        PTaming.setLayout(new FlowLayout(FlowLayout.LEFT));
         PTaming.setOpaque(false);
-        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.ORANGE), "Taming", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.ORANGE));
+        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.ORANGE), "Taming", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Taming - Button
         JButton tameButton = new JButton("Start Taming");
@@ -263,11 +264,12 @@ public class ArkBotGUI extends JFrame
         
         PTaming.add(tameButton);
         
+        
         // Breeding - Panel
         JPanel PBreeding = new JPanel();
-        PBreeding.setLayout(new FlowLayout());
+        PBreeding.setLayout(new FlowLayout(FlowLayout.LEFT));
         PBreeding.setOpaque(false);
-        PBreeding.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.MAGENTA), "Breeding", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.MAGENTA));
+        PBreeding.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.MAGENTA), "Breeding", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Breeding - Button/Prompt
         JButton breedButton = new JButton("Start Breeding");
@@ -320,13 +322,13 @@ public class ArkBotGUI extends JFrame
         	}
         });
         PBreeding.add(breedButton);
-                
+            
+        
         // AutoGatherer - Panel
         JPanel PAutoGatherer = new JPanel();
-        PAutoGatherer.setLayout(new FlowLayout());
+        PAutoGatherer.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoGatherer.setOpaque(false);
-        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GREEN));
-        
+        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // AutoGatherer - Button
         JPanel AGBPanel = new JPanel();
@@ -373,11 +375,12 @@ public class ArkBotGUI extends JFrame
         
         PAutoGatherer.add(AutoGatherButton);
         
+        
         // Download Zip - Panel
         JPanel PDZip = new JPanel();
-        PDZip.setLayout(new FlowLayout());
+        PDZip.setLayout(new FlowLayout(FlowLayout.LEFT));
         PDZip.setOpaque(false);
-        PDZip.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.DARK_GRAY), "Download ArkBot.zip", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.DARK_GRAY));
+        PDZip.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Download ArkBot.zip", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Download Zip - Button
         JButton zipDButton = new JButton("Download ArkBot" + ArkBot.updt.webVersion + ".zip");
@@ -388,6 +391,145 @@ public class ArkBotGUI extends JFrame
         });
 
         PDZip.add(zipDButton);
+        
+        
+        
+        // Something1 - Panel
+        JPanel Something1 = new JPanel();
+        Something1.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Something1.setOpaque(false);
+        Something1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // Something1 - Button
+        JButton Something1Button = new JButton("Something 1");
+        Something1Button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Something
+        	}
+        });
+
+        Something1.add(Something1Button);
+        
+        
+        // Something2 - Panel
+        JPanel Something2 = new JPanel();
+        Something2.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Something2.setOpaque(false);
+        Something2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something2", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // Something2 - Button
+        JButton Something2Button = new JButton("Something 2");
+        Something2Button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Something
+        	}
+        });
+
+        Something2.add(Something2Button);
+        
+        
+        // Something3 - Panel
+        JPanel Something3 = new JPanel();
+        Something3.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Something3.setOpaque(false);
+        Something3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something3", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // Something3 - Button
+        JButton Something3Button = new JButton("Something 3");
+        Something3Button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Something
+        	}
+        });
+
+        Something3.add(Something3Button);
+        
+        
+        // Something4 - Panel
+        JPanel Something4 = new JPanel();
+        Something4.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Something4.setOpaque(false);
+        Something4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something4", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // Something4 - Button
+        JButton Something4Button = new JButton("Something 4");
+        Something4Button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Something
+        	}
+        });
+
+        Something4.add(Something4Button);
+        
+        
+        // Something5 - Panel
+        JPanel Something5 = new JPanel();
+        Something5.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Something5.setOpaque(false);
+        Something5.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something5", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // Something3 - Button
+        JButton Something5Button = new JButton("Something 5");
+        Something5Button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Something
+        	}
+        });
+
+        Something5.add(Something5Button);
+        
+        
+        // Something6 - Panel
+        JPanel Something6 = new JPanel();
+        Something6.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Something6.setOpaque(false);
+        Something6.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something6", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // Something6 - Button
+        JButton Something6Button = new JButton("Something 6");
+        Something6Button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Something
+        	}
+        });
+
+        Something6.add(Something6Button);
+        
+        
+        // Something7 - Panel
+        JPanel Something7 = new JPanel();
+        Something7.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Something7.setOpaque(false);
+        Something7.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something7", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // Something3 - Button
+        JButton Something7Button = new JButton("Something 7");
+        Something7Button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Something
+        	}
+        });
+
+        Something7.add(Something7Button);
+        
+        
+        // Something8 - Panel
+        JPanel Something8 = new JPanel();
+        Something8.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Something8.setOpaque(false);
+        Something8.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something8", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // Something8 - Button
+        JButton Something8Button = new JButton("Something 8");
+        Something8Button.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Something
+        	}
+        });
+
+        Something8.add(Something8Button);
+        
+        
         
 //        Main.add(inputB);
 //        Main.add(drumButton1);
@@ -401,6 +543,14 @@ public class ArkBotGUI extends JFrame
         Main.add(PBreeding);
         Main.add(PAutoGatherer);
         Main.add(PDZip);
+        Main.add(Something1);
+        Main.add(Something2);
+        Main.add(Something3);
+        Main.add(Something4);
+        Main.add(Something5);
+        Main.add(Something6);
+        Main.add(Something7);
+        Main.add(Something8);
         
         // textLog
         JPanel Logger = new JPanel();
