@@ -10,12 +10,14 @@ public class AutoGatherer {
 	public ArrayList<String> keepMats = new ArrayList<String>();
 	public boolean gathering;
 	public boolean clicking;
+	public boolean dropping;
 	public float pause;
 	
 	public AutoGatherer() {
 		this.bot = ArkBot.bot;
 		gathering = false;
 		clicking = false;
+		dropping = false;
 	}
 	
 	public void Gatherin() {

@@ -32,12 +32,14 @@ public class ShortcutManager implements NativeKeyListener {
 	        	System.out.println("gather: " + ArkBot.gatherer.gathering + " click: " + ArkBot.gatherer.clicking);
 	        	ArkBot.gatherer.StartStop();
 	        } else if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Multiply")) {
-	        	if (ArkBot.gatherer.clicking) {
-	        		ArkBot.gatherer.StartStop();
-	        		ArkBot.gatherer.Drop();
-	        		ArkBot.gatherer.StartStop();
-	        	} else {
-	        		ArkBot.gatherer.Drop();
+	        	if (ArkBot.gatherer.dropping) {
+		        	if (ArkBot.gatherer.clicking) {
+		        		ArkBot.gatherer.StartStop();
+		        		ArkBot.gatherer.Drop();
+		        		ArkBot.gatherer.StartStop();
+		        	} else {
+		        		ArkBot.gatherer.Drop();
+		        	}
 	        	}
 	        }
         }
