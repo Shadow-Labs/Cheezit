@@ -122,7 +122,7 @@ public class ArkBotGUI extends JFrame
         Main.setOpaque(false);
         Main.setBorder(BorderFactory.createTitledBorder(new EmptyBorder(0,0,0,0), "ArkBot Controls", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
-        // Input Recording
+        //{{ Input Recording
         JButton inputB = new JButton("Start/Stop Recording");
         inputB.setMnemonic(KeyEvent.VK_MINUS);
         inputB.addActionListener(new ActionListener() {
@@ -130,6 +130,9 @@ public class ArkBotGUI extends JFrame
         		recorder.Record();
         	}
         });
+      //}}
+        
+        //{{ War Drums
         // War Drums - DeathMarch
         JButton drumButton1 = new JButton("Drum - DeathMarch");
         drumButton1.addActionListener(new ActionListener() {
@@ -221,8 +224,9 @@ public class ArkBotGUI extends JFrame
         		}
         	}
         });
-        
-        // Taming - Panel
+      //}}
+       
+        //{{ Taming - Panel
         JPanel PTaming = new JPanel();
         PTaming.setLayout(new FlowLayout(FlowLayout.LEFT));
         PTaming.setOpaque(false);
@@ -263,9 +267,9 @@ public class ArkBotGUI extends JFrame
         });
         
         PTaming.add(tameButton);
+      //}}
         
-        
-        // Breeding - Panel
+        //{{ Breeding - Panel
         JPanel PBreeding = new JPanel();
         PBreeding.setLayout(new FlowLayout(FlowLayout.LEFT));
         PBreeding.setOpaque(false);
@@ -322,9 +326,9 @@ public class ArkBotGUI extends JFrame
         	}
         });
         PBreeding.add(breedButton);
-            
+      //}}
         
-        // AutoGatherer - Panel
+        //{{ AutoGatherer - Panel
         JPanel PAutoGatherer = new JPanel();
         PAutoGatherer.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoGatherer.setOpaque(false);
@@ -376,9 +380,9 @@ public class ArkBotGUI extends JFrame
         });
         
         PAutoGatherer.add(AutoGatherButton);
+      //}}
         
-        
-        // Download Zip - Panel
+        //{{ Download Zip - Panel
         JPanel PDZip = new JPanel();
         PDZip.setLayout(new FlowLayout(FlowLayout.LEFT));
         PDZip.setOpaque(false);
@@ -393,10 +397,9 @@ public class ArkBotGUI extends JFrame
         });
 
         PDZip.add(zipDButton);
+      //}}
         
-        
-        
-        // Something1 - Panel
+        //{{ Something1 - Panel
         JPanel Something1 = new JPanel();
         Something1.setLayout(new FlowLayout(FlowLayout.LEFT));
         Something1.setOpaque(false);
@@ -411,9 +414,9 @@ public class ArkBotGUI extends JFrame
         });
 
         Something1.add(Something1Button);
+        //}}
         
-        
-        // Something2 - Panel
+        //{{ Something2 - Panel
         JPanel Something2 = new JPanel();
         Something2.setLayout(new FlowLayout(FlowLayout.LEFT));
         Something2.setOpaque(false);
@@ -428,9 +431,9 @@ public class ArkBotGUI extends JFrame
         });
 
         Something2.add(Something2Button);
+        //}}
         
-        
-        // Something3 - Panel
+        //{{ Something3 - Panel
         JPanel Something3 = new JPanel();
         Something3.setLayout(new FlowLayout(FlowLayout.LEFT));
         Something3.setOpaque(false);
@@ -445,9 +448,9 @@ public class ArkBotGUI extends JFrame
         });
 
         Something3.add(Something3Button);
+        //}}
         
-        
-        // Something4 - Panel
+        //{{ Something4 - Panel
         JPanel Something4 = new JPanel();
         Something4.setLayout(new FlowLayout(FlowLayout.LEFT));
         Something4.setOpaque(false);
@@ -462,15 +465,16 @@ public class ArkBotGUI extends JFrame
         });
 
         Something4.add(Something4Button);
+        //}}
+
+        //{{ Something5 - Panel
         
-        
-        // Something5 - Panel
         JPanel Something5 = new JPanel();
         Something5.setLayout(new FlowLayout(FlowLayout.LEFT));
         Something5.setOpaque(false);
         Something5.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something5", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
         
-        // Something3 - Button
+        // Something5 - Button
         JButton Something5Button = new JButton("Something 5");
         Something5Button.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -479,9 +483,9 @@ public class ArkBotGUI extends JFrame
         });
 
         Something5.add(Something5Button);
+        //}}
         
-        
-        // Something6 - Panel
+        //{{ Something6 - Panel
         JPanel Something6 = new JPanel();
         Something6.setLayout(new FlowLayout(FlowLayout.LEFT));
         Something6.setOpaque(false);
@@ -496,15 +500,15 @@ public class ArkBotGUI extends JFrame
         });
 
         Something6.add(Something6Button);
+        //}}
         
-        
-        // Something7 - Panel
+        //{{ Something7 - Panel
         JPanel Something7 = new JPanel();
         Something7.setLayout(new FlowLayout(FlowLayout.LEFT));
         Something7.setOpaque(false);
         Something7.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something7", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
         
-        // Something3 - Button
+        // Something7 - Button
         JButton Something7Button = new JButton("Something 7");
         Something7Button.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -513,9 +517,9 @@ public class ArkBotGUI extends JFrame
         });
 
         Something7.add(Something7Button);
+      //}}
         
-        
-        // Something8 - Panel
+        //{{ Something8 - Panel
         JPanel Something8 = new JPanel();
         Something8.setLayout(new FlowLayout(FlowLayout.LEFT));
         Something8.setOpaque(false);
@@ -530,7 +534,7 @@ public class ArkBotGUI extends JFrame
         });
 
         Something8.add(Something8Button);
-        
+        //}}
         
         
 //        Main.add(inputB);
@@ -554,7 +558,7 @@ public class ArkBotGUI extends JFrame
         Main.add(Something7);
         Main.add(Something8);
         
-        // textLog
+        //{{ textLog
         JPanel Logger = new JPanel();
         Logger.setLayout(new BorderLayout());
         Logger.setOpaque(false);
@@ -574,8 +578,9 @@ public class ArkBotGUI extends JFrame
         scroll.getViewport().setOpaque(false);
         scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED );
         scroll.setHorizontalScrollBarPolicy ( ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );
+      //}}
         
-        // Mouse Position
+        //{{ Mouse Position
         JPanel mousePanel = new JPanel();
         mousePanel.setLayout(new BorderLayout());
         PointerInfo q = MouseInfo.getPointerInfo();
@@ -588,7 +593,7 @@ public class ArkBotGUI extends JFrame
         mousePanel.add(Runtime, BorderLayout.EAST);
         mousePanel.add(currentVersion, BorderLayout.CENTER);
         mousePanel.add(mousePos, BorderLayout.WEST);
-        
+      //}}
         
         Title.add(imgPanel, BorderLayout.CENTER);
         

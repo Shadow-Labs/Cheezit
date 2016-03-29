@@ -50,7 +50,7 @@ public class ArkBot {
 	
 	public static void main(String[] args) throws AWTException
 	{
-		// Get Version
+		//{{ Get Version
 		try {
 			File vfile = new File("ArkBotFiles/Version/CurrentVersion.txt");
 			FileInputStream vfis;
@@ -62,6 +62,7 @@ public class ArkBot {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		//}}
 		
 		bot = new Robot();
 		drag = new MouseDrag();
