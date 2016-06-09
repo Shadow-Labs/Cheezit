@@ -51,6 +51,7 @@ public class ArkBotGUI extends JFrame
 	WarDrum drum;
 	public static JFrame GUI;
 	public static JTextArea textLog;
+	public static JTextArea chatText;
 	public static JLabel mousePos;
 	public static JLabel Runtime;
 	public static Timer timer;
@@ -414,6 +415,7 @@ public class ArkBotGUI extends JFrame
         });
 
         Something1.add(Something1Button);
+        Something1.setVisible(false);
         //}}
         
         //{{ Something2 - Panel
@@ -431,6 +433,7 @@ public class ArkBotGUI extends JFrame
         });
 
         Something2.add(Something2Button);
+        Something2.setVisible(false);
         //}}
         
         //{{ Something3 - Panel
@@ -448,6 +451,7 @@ public class ArkBotGUI extends JFrame
         });
 
         Something3.add(Something3Button);
+        Something3.setVisible(false);
         //}}
         
         //{{ Something4 - Panel
@@ -465,6 +469,7 @@ public class ArkBotGUI extends JFrame
         });
 
         Something4.add(Something4Button);
+        Something4.setVisible(false);
         //}}
 
         //{{ Something5 - Panel
@@ -483,6 +488,7 @@ public class ArkBotGUI extends JFrame
         });
 
         Something5.add(Something5Button);
+        Something5.setVisible(false);
         //}}
         
         //{{ Something6 - Panel
@@ -500,6 +506,7 @@ public class ArkBotGUI extends JFrame
         });
 
         Something6.add(Something6Button);
+        Something6.setVisible(false);
         //}}
         
         //{{ Something7 - Panel
@@ -517,23 +524,28 @@ public class ArkBotGUI extends JFrame
         });
 
         Something7.add(Something7Button);
+        Something7.setVisible(false);        
       //}}
         
         //{{ Something8 - Panel
-        JPanel Something8 = new JPanel();
-        Something8.setLayout(new FlowLayout(FlowLayout.LEFT));
-        Something8.setOpaque(false);
-        Something8.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something8", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        JPanel ChatTextP = new JPanel();
+        ChatTextP.setLayout(new FlowLayout(FlowLayout.CENTER));
+        ChatTextP.setOpaque(false);
+        ChatTextP.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Chat Text v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
         
-        // Something8 - Button
-        JButton Something8Button = new JButton("Something 8");
-        Something8Button.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		// Something
-        	}
-        });
-
-        Something8.add(Something8Button);
+        // Something8 - chatText
+        chatText = new JTextArea(14,4);
+        DefaultCaret caret = (DefaultCaret)chatText.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        Font font = new Font("Arial", Font.PLAIN, 12);
+        chatText.setFont(font);
+        chatText.setForeground(Color.WHITE);
+        chatText.setEditable ( false );
+        chatText.setLineWrap(true);
+        chatText.setOpaque(false);
+        
+        ChatTextP.add(chatText);
+        //Something8.setVisible(false);
         //}}
         
         
@@ -548,15 +560,16 @@ public class ArkBotGUI extends JFrame
         Main.add(PTaming);
         Main.add(PBreeding);
         Main.add(PAutoGatherer);
-        Main.add(PDZip);
         Main.add(Something1);
         Main.add(Something2);
         Main.add(Something3);
         Main.add(Something4);
         Main.add(Something5);
         Main.add(Something6);
-        Main.add(Something7);
-        Main.add(Something8);
+        //Main.add(Something7);
+        Main.add(PDZip);
+        Main.add(ChatTextP);
+        
         
         //{{ textLog
         JPanel Logger = new JPanel();
@@ -565,9 +578,9 @@ public class ArkBotGUI extends JFrame
         Logger.setBorder(BorderFactory.createTitledBorder(new EmptyBorder(0,0,0,0), "ArkBot Log", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         textLog = new JTextArea(14, 10);
-        DefaultCaret caret = (DefaultCaret)textLog.getCaret();
+        caret = (DefaultCaret)textLog.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        Font font = new Font("Arial", Font.PLAIN, 12);
+        font = new Font("Arial", Font.PLAIN, 12);
         textLog.setFont(font);
         textLog.setForeground(Color.WHITE);
         textLog.setEditable ( false );
@@ -624,7 +637,13 @@ public class ArkBotGUI extends JFrame
 	public static void GUIText (String text) {
 		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
 		textLog.setText(textLog.getText() + "\n" + timeStamp + ": " + text);
-		ArkBot.log.WriteLog(timeStamp + ": " + text);
+		ArkBot.log.WriteLog("Console: " + timeStamp + ": " + text);
+	}
+	
+	public static void ChatText (String text) {
+		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+		chatText.setText(chatText.getText() + "\n" + timeStamp + ": " + text);
+		ArkBot.log.WriteLog("Chat: " + timeStamp + ": " + text);
 	}
 	
 	public void SetupPrompt() {

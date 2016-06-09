@@ -128,7 +128,8 @@ public class ArkBot {
 
         GlobalScreen.addNativeKeyListener(new ShortcutManager());
 //        
-//        screenReader.Grab(2);
+        //Screen Reader loop management
+        int i = 0;
         
         while (true) {
         	//drum.Drumming();
@@ -136,6 +137,12 @@ public class ArkBot {
         	breed.Breedin();
         	gatherer.Gatherin();
         	System.out.println("Do I really have to do this?");
+        	
+        	if (i == 100) {
+        		screenReader.Grab(0);
+        		i = 0;
+        	}
+        	i++;
         }
         
 //        int stacks = action.InvSearch("fiber");

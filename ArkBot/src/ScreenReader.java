@@ -37,9 +37,9 @@ public class ScreenReader {
 		
 		try {
 			result = instance.doOCR(image);
-			ArkBotGUI.GUIText("\n\n" + result);
+			ArkBotGUI.ChatText("\n\n" + result);
 			System.out.println(result);
-			image.delete();
+			//image.delete();
 			instance.dispose();
 		} catch (TesseractException e) {
 			System.err.println(e.getMessage());
