@@ -230,7 +230,7 @@ public class ArkBotGUI extends JFrame
         JPanel PTaming = new JPanel();
         PTaming.setLayout(new FlowLayout(FlowLayout.LEFT));
         PTaming.setOpaque(false);
-        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.ORANGE), "Taming", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.ORANGE), "Taming v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Taming - Button
         JButton tameButton = new JButton("Start Taming");
@@ -273,7 +273,7 @@ public class ArkBotGUI extends JFrame
         JPanel PBreeding = new JPanel();
         PBreeding.setLayout(new FlowLayout(FlowLayout.LEFT));
         PBreeding.setOpaque(false);
-        PBreeding.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.MAGENTA), "Breeding", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PBreeding.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.MAGENTA), "Breeding v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Breeding - Button/Prompt
         JButton breedButton = new JButton("Start Breeding");
@@ -332,7 +332,7 @@ public class ArkBotGUI extends JFrame
         JPanel PAutoGatherer = new JPanel();
         PAutoGatherer.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoGatherer.setOpaque(false);
-        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer v0.5", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // AutoGatherer - Button
         JPanel AGBPanel = new JPanel();
@@ -386,7 +386,7 @@ public class ArkBotGUI extends JFrame
         JPanel PDZip = new JPanel();
         PDZip.setLayout(new FlowLayout(FlowLayout.LEFT));
         PDZip.setOpaque(false);
-        PDZip.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Download ArkBot.zip", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PDZip.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Download ArkBot.zip v0.8", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Download Zip - Button
         JButton zipDButton = new JButton("Download ArkBot" + ArkBot.updt.webVersion + ".zip");
@@ -605,7 +605,7 @@ public class ArkBotGUI extends JFrame
         bgPanel.add(Logger, BorderLayout.SOUTH);
         
         GUI.add(bgPanel);
-        GUI.setContentPane(bgPanel);
+        GUI.setContentPane(bgPanel); 
         
         GUI.setVisible(true);
 		timer.start();
