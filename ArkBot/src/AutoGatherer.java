@@ -32,7 +32,7 @@ public class AutoGatherer {
 			System.out.print("");
 			while (clicking) {
 				// Neccessary to run..smh
-				System.out.print("");
+				System.out.print("\nClick");
 				leftClick();
 				bot.delay((int)(pause * 1000));
 			}
@@ -86,8 +86,8 @@ public class AutoGatherer {
 	private void leftClick()
 	  {
 	    bot.mousePress(InputEvent.BUTTON1_MASK);
-	    //bot.delay(10);
+	    bot.delay(10);
 	    bot.mouseRelease(InputEvent.BUTTON1_MASK);
-	    //bot.delay(10);
+	    bot.delay(10);
 	  }
 }

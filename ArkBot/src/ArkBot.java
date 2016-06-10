@@ -138,11 +138,11 @@ public class ArkBot {
         	gatherer.Gatherin();
         	System.out.println("Do I really have to do this?");
         	
-        	if (i == 100) {
-        		screenReader.Grab(0);
-        		i = 0;
-        	}
-        	i++;
+//        	if (i == 100) {
+//        		screenReader.Grab(0);
+//        		i = 0;
+//        	}
+//        	i++;
         }
         
 //        int stacks = action.InvSearch("fiber");

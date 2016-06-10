@@ -14,7 +14,7 @@ public class ScreenReader {
 		switch (loc) {
 		// ChatBox
 		case 0: g.Grab(Global.CHATBOX);
-				g.WhiteConvert();
+				//g.WhiteConvert();
 				result = Decode();
 				break;
 		// Stats
@@ -37,7 +37,7 @@ public class ScreenReader {
 		
 		try {
 			result = instance.doOCR(image);
-			ArkBotGUI.ChatText("\n\n" + result);
+			ArkBotGUI.ChatText("\n" + result);
 			System.out.println(result);
 			//image.delete();
 			instance.dispose();

@@ -84,7 +84,7 @@ public class ArkBotGUI extends JFrame
         GUI = new JFrame("ArkBot " + version);
 
         JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/ArkBotBackground.png").getImage());
-        bgPanel.setLayout(new BorderLayout());
+        bgPanel.setLayout(new FlowLayout());
         
         GUI.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -250,10 +250,10 @@ public class ArkBotGUI extends JFrame
         					+ "3) To stop taming, press the taming button between narcotic applications.\n"
         					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
         					+ "Time between narcotics (seconds)"));
-        			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.tame.time + " seconds.");
         			
         			ArkBot.tame.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
         					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
+        			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.tame.time + " seconds.");
         			if (ArkBot.tame.foodWait != 0) {
         				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.tame.foodWait + " seconds.");
         			} else {
@@ -527,27 +527,6 @@ public class ArkBotGUI extends JFrame
         Something7.setVisible(false);        
       //}}
         
-        //{{ Something8 - Panel
-        JPanel ChatTextP = new JPanel();
-        ChatTextP.setLayout(new FlowLayout(FlowLayout.CENTER));
-        ChatTextP.setOpaque(false);
-        ChatTextP.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Chat Text v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
-        
-        // Something8 - chatText
-        chatText = new JTextArea(14,4);
-        DefaultCaret caret = (DefaultCaret)chatText.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        chatText.setFont(font);
-        chatText.setForeground(Color.WHITE);
-        chatText.setEditable ( false );
-        chatText.setLineWrap(true);
-        chatText.setOpaque(false);
-        
-        ChatTextP.add(chatText);
-        //Something8.setVisible(false);
-        //}}
-        
         
 //        Main.add(inputB);
 //        Main.add(drumButton1);
@@ -560,15 +539,43 @@ public class ArkBotGUI extends JFrame
         Main.add(PTaming);
         Main.add(PBreeding);
         Main.add(PAutoGatherer);
-        Main.add(Something1);
-        Main.add(Something2);
-        Main.add(Something3);
-        Main.add(Something4);
-        Main.add(Something5);
-        Main.add(Something6);
+        //Main.add(Something1);
+        //Main.add(Something2);
+        //Main.add(Something3);
+        //Main.add(Something4);
+        //Main.add(Something5);
+        //Main.add(Something6);
         //Main.add(Something7);
         Main.add(PDZip);
-        Main.add(ChatTextP);
+        
+        
+        // Text Display Panel
+        JPanel textDisplay = new JPanel();
+        textDisplay.setLayout(new GridLayout(0,1));
+        textDisplay.setOpaque(false);
+        
+        //{{ chatLog
+        JPanel chatLogger = new JPanel();
+        chatLogger.setLayout(new BorderLayout());
+        chatLogger.setOpaque(false);
+        chatLogger.setBorder(BorderFactory.createTitledBorder(new EmptyBorder(0,0,0,0), "Chat Text", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        
+        chatText = new JTextArea(14, 10);
+        DefaultCaret caret = (DefaultCaret)chatText.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        Font font = new Font("Arial", Font.PLAIN, 12);
+        chatText.setFont(font);
+        chatText.setForeground(Color.WHITE);
+        chatText.setEditable ( false );
+        chatText.setLineWrap(false);
+        chatText.setOpaque(false);
+        JScrollPane scrollc = new JScrollPane ( chatText );
+        scrollc.setOpaque(false);
+        scrollc.getViewport().setOpaque(false);
+        scrollc.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED );
+        scrollc.setHorizontalScrollBarPolicy ( ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );
+        
+        //}}
         
         
         //{{ textLog
@@ -595,27 +602,30 @@ public class ArkBotGUI extends JFrame
         
         //{{ Mouse Position
         JPanel mousePanel = new JPanel();
-        mousePanel.setLayout(new BorderLayout());
+        mousePanel.setLayout(new GridLayout(1,3));
         PointerInfo q = MouseInfo.getPointerInfo();
         p = q.getLocation();
         long elapsed = (System.currentTimeMillis() - start);
         String display = String.format("%02d:%02d:%02d", elapsed / 3600000, (elapsed % 3600000) / 60, (elapsed % 3600000));
-        Runtime = new JLabel("Runtime: " + display);
-        mousePos = new JLabel("Mouse: " + p.x + " " + p.y);
-        JLabel currentVersion = new JLabel("ArkBot " + version + "                               ", JLabel.RIGHT);
-        mousePanel.add(Runtime, BorderLayout.EAST);
-        mousePanel.add(currentVersion, BorderLayout.CENTER);
-        mousePanel.add(mousePos, BorderLayout.WEST);
+        Runtime = new JLabel("Runtime: " + display, JLabel.RIGHT);
+        mousePos = new JLabel("Mouse: " + p.x + " " + p.y + "                        ");
+        JLabel currentVersion = new JLabel("          ArkBot " + version + "                ", JLabel.RIGHT);
+        mousePanel.add(mousePos);
+        mousePanel.add(currentVersion);
+        mousePanel.add(Runtime);
       //}}
         
         Title.add(imgPanel, BorderLayout.CENTER);
         
         Logger.add(scroll, BorderLayout.NORTH);
         Logger.add(mousePanel, BorderLayout.SOUTH);
+        
+        textDisplay.add(chatLogger, BorderLayout.NORTH);
+        textDisplay.add(Logger, BorderLayout.SOUTH);
                 
         bgPanel.add(Title, BorderLayout.NORTH);
         bgPanel.add(Main, BorderLayout.CENTER);
-        bgPanel.add(Logger, BorderLayout.SOUTH);
+        bgPanel.add(textDisplay, BorderLayout.SOUTH);
         
         GUI.add(bgPanel);
         GUI.setContentPane(bgPanel); 
