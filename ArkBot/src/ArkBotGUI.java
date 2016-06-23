@@ -401,21 +401,21 @@ public class ArkBotGUI extends JFrame
       //}}
         
         //{{ Something1 - Panel
-        JPanel Something1 = new JPanel();
-        Something1.setLayout(new FlowLayout(FlowLayout.LEFT));
-        Something1.setOpaque(false);
-        Something1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        JPanel ClientConnect = new JPanel();
+        ClientConnect.setLayout(new FlowLayout(FlowLayout.LEFT));
+        ClientConnect.setOpaque(false);
+        ClientConnect.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Connect to ArkBot Server", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
         
         // Something1 - Button
-        JButton Something1Button = new JButton("Something 1");
+        JButton Something1Button = new JButton("Connect");
         Something1Button.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		// Something
+        		ArkBot.client.Start();
         	}
         });
 
-        Something1.add(Something1Button);
-        Something1.setVisible(false);
+        ClientConnect.add(Something1Button);
+        ClientConnect.setVisible(true);
         //}}
         
         //{{ Something2 - Panel
@@ -540,7 +540,7 @@ public class ArkBotGUI extends JFrame
         Main.add(PBreeding);
         Main.add(PAutoGatherer);
         Main.add(PDZip);
-        Main.add(Something1);
+        Main.add(ClientConnect);
         Main.add(Something2);
         Main.add(Something3);
         Main.add(Something4);

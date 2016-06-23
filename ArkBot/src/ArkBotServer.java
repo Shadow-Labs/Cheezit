@@ -5,19 +5,17 @@ public class ArkBotServer {
 	public void Start() {
 		
 		// Setup Server
+		ServerSocket serverSocket = null;
 		try {
-			ServerSocket serverSocket = new ServerSocket(ArkBot.global.PORT);
+			serverSocket = new ServerSocket(ArkBot.global.PORT);
 		} catch (IOException e) {
 			ArkBotGUI.GUIText("SERVER ERROR: Could not listen on port " + ArkBot.global.PORT);
 		}
 		
-		ServerSocket serverSocket = null;
 		boolean listeningSocket = true;
 		while(listeningSocket) {
-			Socket clientSocket;
 			try {
-				clientSocket = serverSocket.accept();
-
+				Socket clientSocket = serverSocket.accept();
 				ArkBotGUI.GUIText("SERVER: Accepted Client: " + clientSocket.getInetAddress());
 				SuperServer ss = new SuperServer(clientSocket);
 				ss.start();
