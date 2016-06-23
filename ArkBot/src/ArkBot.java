@@ -35,7 +35,9 @@ class ImagePanel extends JComponent {
 
 public class ArkBot {
 	
-	public static boolean serve;
+	public static boolean connect;
+	public static boolean connection;
+	public static boolean serverStart;
 	public static ArkBotServer server;
 	public static ArkBotClient client;
 	public static Robot bot;
@@ -68,7 +70,9 @@ public class ArkBot {
 		}
 		//}}
 		
-		serve = false;
+		connect = false;
+		connection = false;
+		serverStart = false;
 		server = new ArkBotServer();
 		client = new ArkBotClient();
 		bot = new Robot();
@@ -134,7 +138,9 @@ public class ArkBot {
         }
 
         GlobalScreen.addNativeKeyListener(new ShortcutManager());
-//        
+
+        Thread clientThread = new Thread(new ArkBotClient());
+        
         //Screen Reader loop management
         int i = 0;
         
@@ -145,23 +151,26 @@ public class ArkBot {
         	gatherer.Gatherin();
         	
         	// Server Start - Password: ArkBotFTW
-        	if (serve) {
-        		if (JOptionPane.showInputDialog(ArkBotGUI.GUI, "Server Password:").equals("ArkBotFTW")) {
+        	if (serverStart) {
+        		if (JOptionPane.showInputDialog(ArkBotGUI.GUI, "Server Password:").equals("asdf")) {
             		while (true) {
             			System.out.println("SERVER");
             			server.Start();
             		}
         		} else {
-        			while (true) {
-        				client.Start();
-        			}
-        			
-//        			Object[] options = { "OK", "CANCEL" };
-//        			JOptionPane.showOptionDialog(ArkBotGUI.GUI, "Incorrect Password.", "Bad Password",
-//        			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-//        			null, options, options[0]);
-//            		serve = false;
+        			Object[] options = { "OK", "CANCEL" };
+        			JOptionPane.showOptionDialog(ArkBotGUI.GUI, "Incorrect Password.", "Bad Password",
+        			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+        			null, options, options[0]);
+            		serverStart = false;
         		}
+        	}
+        	
+        	// Client Connection
+        	if (connect && !connection) {
+        		clientThread.start();
+        	} else if (!connect && connection) {
+        		clientThread.stop();
         	}
         	System.out.println("CLIENT");
         	

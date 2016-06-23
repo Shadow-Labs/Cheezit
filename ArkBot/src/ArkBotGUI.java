@@ -400,21 +400,28 @@ public class ArkBotGUI extends JFrame
         PDZip.add(zipDButton);
       //}}
         
-        //{{ Something1 - Panel
+        //{{ ClientConnect - Panel
         JPanel ClientConnect = new JPanel();
         ClientConnect.setLayout(new FlowLayout(FlowLayout.LEFT));
         ClientConnect.setOpaque(false);
         ClientConnect.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Connect to ArkBot Server", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
         
-        // Something1 - Button
-        JButton Something1Button = new JButton("Connect");
-        Something1Button.addActionListener(new ActionListener() {
+        // ClientConnect - Button
+        JButton ClientButton = new JButton("Connect");
+        if (ArkBot.connection) {
+			ClientButton.setText("Disconnect");
+		}
+        ClientButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		ArkBot.client.Start();
+        		if (ArkBot.connection) {
+        			ArkBot.connect = false;
+        		} else {
+        			ArkBot.connect = true;;
+        		}
         	}
         });
 
-        ClientConnect.add(Something1Button);
+        ClientConnect.add(ClientButton);
         ClientConnect.setVisible(true);
         //}}
         

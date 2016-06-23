@@ -1,22 +1,23 @@
 import java.io.*;
 import java.net.*;
 
-public class ArkBotClient {
-	public void Start() {
+public class ArkBotClient implements Runnable{
 
+	@Override
+	public void run() {
     	String hostName = ArkBot.global.HOST;
     	int portNumber = ArkBot.global.PORT;
 	    try (	    	
-	        Socket kkSocket = new Socket(hostName, portNumber);
-	        PrintWriter out = new PrintWriter(kkSocket.getOutputStream(), true);
-	        BufferedReader in = new BufferedReader(
-	            new InputStreamReader(kkSocket.getInputStream()));
+	        Socket sSocket = new Socket(hostName, portNumber);
+	        PrintWriter out = new PrintWriter(sSocket.getOutputStream(), true);
+	        BufferedReader in = new BufferedReader(new InputStreamReader(sSocket.getInputStream()));
 	    ) {
-	        BufferedReader stdIn =
-	            new BufferedReader(new InputStreamReader(System.in));
+	    	ArkBot.connection = true;
+	    	ArkBotGUI.GUIText("CLIENT: Connection Established with ArkBotServer.");
+	        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 	        String fromServer;
 	        String fromUser;
-	
+
 	        while ((fromServer = in.readLine()) != null) {
 	            System.out.println("Server: " + fromServer);
 	            if (fromServer.equals("Bye."))
@@ -28,13 +29,14 @@ public class ArkBotClient {
 	                out.println(fromUser);
 	            }
 	        }
+	    	ArkBot.connection = false;
+	    	ArkBotGUI.GUIText("CLIENT: Disconnected from ArkBotServer.");
 	    } catch (UnknownHostException e) {
-	        System.err.println("Don't know about host " + hostName);
-	        System.exit(1);
+	        ArkBotGUI.GUIText("CLIENT: Unkown Host " + hostName);
 	    } catch (IOException e) {
-	        System.err.println("Couldn't get I/O for the connection to " +
+	        ArkBotGUI.GUIText("CLIENT: Unable to create I/O Connection " +
 	            hostName);
-	        System.exit(1);
 	    }
+		
 	}
 }
