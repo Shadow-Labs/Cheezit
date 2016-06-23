@@ -11,6 +11,7 @@ public class ArkBotServer {
 		} catch (IOException e) {
 			ArkBotGUI.GUIText("SERVER ERROR: Could not listen on port " + ArkBot.global.PORT);
 		}
+		ArkBotGUI.GUIText("SERVER: Now listening on port " + ArkBot.global.PORT);
 		Socket clientSocket = null;
 		boolean listeningSocket = true;
 		while(listeningSocket) {
