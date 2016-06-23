@@ -11,11 +11,11 @@ public class ArkBotServer {
 		} catch (IOException e) {
 			ArkBotGUI.GUIText("SERVER ERROR: Could not listen on port " + ArkBot.global.PORT);
 		}
-		
+		Socket clientSocket = null;
 		boolean listeningSocket = true;
 		while(listeningSocket) {
 			try {
-				Socket clientSocket = serverSocket.accept();
+				clientSocket = serverSocket.accept();
 				ArkBotGUI.GUIText("SERVER: Accepted Client: " + clientSocket.getInetAddress());
 				SuperServer ss = new SuperServer(clientSocket);
 				ss.start();
@@ -24,6 +24,7 @@ public class ArkBotServer {
 				e.printStackTrace();
 			}
 		}
+		ArkBotGUI.GUIText("SERVER: Client Disconnected: " + clientSocket.getInetAddress());
 		try {
 			serverSocket.close();
 		} catch (IOException e) {
