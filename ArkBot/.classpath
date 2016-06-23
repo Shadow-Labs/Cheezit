@@ -35,6 +35,6 @@
 	<classpathentry kind="lib" path="ArkBotFiles/Tess4J/lib/rococoa-core-0.5.jar"/>
 	<classpathentry kind="lib" path="ArkBotFiles/Tess4J/lib/xmlgraphics-commons-1.5.jar"/>
 	<classpathentry kind="lib" path="ArkBotFiles/JNH/src/java/org"/>
-	<classpathentry kind="lib" path="jnativehook.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lee.5121a/git/ArkBot/ArkBot/ArkBotFiles/jnativehook.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
