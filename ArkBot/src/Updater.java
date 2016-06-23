@@ -199,6 +199,7 @@ public class Updater {
 //	            unzip();
 //	            copyFiles(new File(root),new File("").getAbsolutePath());
 //	            cleanup();
+	        	
 	            ArkBotGUI.GUIText("Update Finished.");
 	            ArkBotGUI.GUIText("Lauching ArkBot" + webVersion + " in 3...");
 	            ArkBot.bot.delay(1000);
@@ -228,6 +229,9 @@ public class Updater {
         PrintWriter writer = new PrintWriter ("ArkBotFiles\\Version\\CurrentVersion.txt", "UTF-8");
         writer.print(webVersion);
         writer.close();
+        
+        // Reset Settings
+        ArkBotSettings.ResetSettings();
         
         ArkBot.log.CloseLog();
         System.exit(0);

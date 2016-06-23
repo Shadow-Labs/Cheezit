@@ -10,6 +10,13 @@ public class ShortcutManager implements NativeKeyListener {
  //       System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
         //ArkBotGUI.GUIText("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 
+    	// ServerStartShortcut (Home)
+        if (e.getKeyCode() == 0xE47) {
+        	ArkBot.serve = true;
+        }
+    	
+    	
+    	
         if (e.getKeyCode() == NativeKeyEvent.VC_F8) {
             try {
 				GlobalScreen.unregisterNativeHook();
@@ -23,8 +30,6 @@ public class ShortcutManager implements NativeKeyListener {
     public void nativeKeyReleased(NativeKeyEvent e) {
 //        System.out.println("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 //        ArkBotGUI.GUIText("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
-        
-        
         
         // AutoGatheringShortcuts
         if (ArkBot.gatherer.gathering) {

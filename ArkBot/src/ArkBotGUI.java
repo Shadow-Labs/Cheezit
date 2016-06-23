@@ -84,7 +84,7 @@ public class ArkBotGUI extends JFrame
         GUI = new JFrame("ArkBot " + version);
 
         JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/ArkBotBackground.png").getImage());
-        bgPanel.setLayout(new FlowLayout());
+        bgPanel.setLayout(new BorderLayout());
         
         GUI.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -539,14 +539,14 @@ public class ArkBotGUI extends JFrame
         Main.add(PTaming);
         Main.add(PBreeding);
         Main.add(PAutoGatherer);
-        //Main.add(Something1);
-        //Main.add(Something2);
-        //Main.add(Something3);
-        //Main.add(Something4);
-        //Main.add(Something5);
-        //Main.add(Something6);
-        //Main.add(Something7);
         Main.add(PDZip);
+        Main.add(Something1);
+        Main.add(Something2);
+        Main.add(Something3);
+        Main.add(Something4);
+        Main.add(Something5);
+        Main.add(Something6);
+        Main.add(Something7);
         
         
         // Text Display Panel
@@ -620,7 +620,7 @@ public class ArkBotGUI extends JFrame
         Logger.add(scroll, BorderLayout.NORTH);
         Logger.add(mousePanel, BorderLayout.SOUTH);
         
-        textDisplay.add(chatLogger, BorderLayout.NORTH);
+        //textDisplay.add(chatLogger, BorderLayout.NORTH);
         textDisplay.add(Logger, BorderLayout.SOUTH);
                 
         bgPanel.add(Title, BorderLayout.NORTH);
@@ -632,7 +632,7 @@ public class ArkBotGUI extends JFrame
         
         GUI.setVisible(true);
 		timer.start();
-        GUIText("Welcome to ArkBot " + version +"!");
+        GUIText("Welcome to ArkBot " + version + " " + ArkBotSettings.GetSetting("Username") +"!");
 	}
 	
 	public static void SetMouse() {
@@ -657,7 +657,11 @@ public class ArkBotGUI extends JFrame
 	}
 	
 	public void SetupPrompt() {
-		if (ArkBotSettings.CheckSetting("SetupPrompt")) {
+		if (ArkBotSettings.GetSetting("Username").equals("default")) {
+			String user = JOptionPane.showInputDialog(GUI, "Welcome to Arkbot!\nPlease enter your username:");
+			ArkBotSettings.UpdateSetting("Username", user);
+		}
+		if (ArkBotSettings.GetSetting("SetupPrompt").equals("true")) {
 			JPanel msgPanel = new JPanel();
 			msgPanel.setLayout(new BorderLayout());
 			JLabel requirements = new JLabel("<html>Please ensure the following are true:<br>"
@@ -671,9 +675,13 @@ public class ArkBotGUI extends JFrame
 			msgPanel.add(dontAsk, BorderLayout.SOUTH);
 			JOptionPane.showConfirmDialog(GUI, msgPanel,"Ark Settings", JOptionPane.PLAIN_MESSAGE);
 			if (dontAsk.isSelected()) {
-				ArkBotSettings.UpdateSetting("SetupPrompt", false);
+				ArkBotSettings.UpdateSetting("SetupPrompt", "false");
 			}
 		}
+	}
+	
+	private void ServerClientSelector() {
+		
 	}
 	
 	private void LoadingScreen() {

@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
@@ -34,6 +35,9 @@ class ImagePanel extends JComponent {
 
 public class ArkBot {
 	
+	public static boolean serve;
+	public static ArkBotServer server;
+	public static ArkBotClient client;
 	public static Robot bot;
 	public static MouseDrag drag;
 	public static Global global;
@@ -64,6 +68,9 @@ public class ArkBot {
 		}
 		//}}
 		
+		serve = false;
+		server = new ArkBotServer();
+		client = new ArkBotClient();
 		bot = new Robot();
 		drag = new MouseDrag();
 		log = new ArkBotLog();
@@ -75,8 +82,8 @@ public class ArkBot {
 		screenReader = new ScreenReader();
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
-		gui.Initialize();
 		ArkBotSettings settings = new ArkBotSettings();
+		gui.Initialize();
 		gui.SetupPrompt();
 
 		
@@ -136,7 +143,28 @@ public class ArkBot {
         	tame.Tamin();
         	breed.Breedin();
         	gatherer.Gatherin();
-        	System.out.println("Do I really have to do this?");
+        	
+        	// Server Start - Password: ArkBotFTW
+        	if (serve) {
+        		if (JOptionPane.showInputDialog(ArkBotGUI.GUI, "Server Password:").equals("ArkBotFTW")) {
+            		while (true) {
+            			System.out.println("SERVER");
+            			server.Start();
+            		}
+        		} else {
+        			while (true) {
+        				client.Start();
+        			}
+        			
+//        			Object[] options = { "OK", "CANCEL" };
+//        			JOptionPane.showOptionDialog(ArkBotGUI.GUI, "Incorrect Password.", "Bad Password",
+//        			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+//        			null, options, options[0]);
+//            		serve = false;
+        		}
+        	}
+        	System.out.println("CLIENT");
+        	
         	
 //        	if (i == 100) {
 //        		screenReader.Grab(0);

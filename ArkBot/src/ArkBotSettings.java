@@ -18,6 +18,7 @@ public class ArkBotSettings {
 	}
 	
 	public static void ResetSettings() {
+		setdic.put("Username", "default");
 		setdic.put("SetupPrompt", "true");
 		setdic.put("AndrewIsAwesome", "true");
 		WriteSettings(true);
@@ -42,13 +43,8 @@ public class ArkBotSettings {
 				Enumeration<String> element = setdic.elements();
 				while(key.hasMoreElements()) {
 					String name = key.nextElement().toString();
-					if (setdic.get(name).equals("true")) {
-						writer.println(name + " = true");
-						element.nextElement();
-					} else {
-						writer.println(name + " = false");
-						element.nextElement();
-					}
+					writer.println(name + " = " + setdic.get(name));
+					element.nextElement();
 				}
 				writer.close();
 			} catch (FileNotFoundException e) {
@@ -64,19 +60,15 @@ public class ArkBotSettings {
 		}
 	}
 	
-	public static boolean CheckSetting(String name) {
-		return (setdic.get(name).equals("true"));
+	// Returns Setting value
+	public static String GetSetting(String name) {
+		return setdic.get(name);
 	}
 	
-	public static void UpdateSetting(String name, boolean value) {
+	public static void UpdateSetting(String name, String value) {
 		setdic.remove(name);
-		if (value) {
-			ArkBotGUI.GUIText("Updated ArkBotSettings.txt " + name + " true");
-			setdic.put(name, "true");
-		} else {
-			ArkBotGUI.GUIText("Updated ArkBotSettings.txt " + name + " false");	
-			setdic.put(name, "false");
-		}
+		setdic.put(name, value);
+		ArkBotGUI.GUIText("Updated ArkBotSettings.txt " + name + " = " + value);
 		WriteSettings(true);
 	}
 	
@@ -85,10 +77,10 @@ public class ArkBotSettings {
 		try {
 			br = new BufferedReader(new FileReader("ArkBotFiles/Settings/ArkBotSettings.txt"));
 		    String line = br.readLine();
-		    String name = "";
-		    String value = "";
 		    
 		    while (line != null) {
+			    String name = "";
+			    String value = "";
 		        char text[] = line.toCharArray();
 		        // read name
 		        int i = 0;
@@ -105,12 +97,7 @@ public class ArkBotSettings {
 		        	value = value + text[i];
 		        	i++;
 		        }
-		        // add to dic
-				if (value.equals("true")) {
-					setdic.put(name, "true");
-				} else {
-					setdic.put(name, "false");
-				}
+		        setdic.put(name, value);
 		        line = br.readLine();
 		    }
 		    br.close();
@@ -121,6 +108,16 @@ public class ArkBotSettings {
 			ArkBotGUI.GUIText("ERROR: Could not read from ArkBotSettings.txt");
 			ArkBotGUI.GUIText(error.toString());
 			e.printStackTrace();
+		}
+	}
+	
+	public static void printDic() {
+		Enumeration<String> key = setdic.keys();
+		Enumeration<String> element = setdic.elements();
+		while(key.hasMoreElements()) {
+			String name = key.nextElement().toString();
+			System.out.println(name + " = " + setdic.get(name));
+			element.nextElement();
 		}
 	}
 	

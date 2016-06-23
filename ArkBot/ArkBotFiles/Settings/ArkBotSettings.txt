@@ -1,2 +1,3 @@
+Username = RedLeeder
 SetupPrompt = false
-SetupPromptAndrewIsAwesome = false
+AndrewIsAwesome = true

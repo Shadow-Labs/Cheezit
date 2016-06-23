@@ -3,6 +3,10 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 public class Global {
+	
+	static String HOST;
+	static int PORT;
+	
 	static int PAUSE;
 	static int ResX;
 	static int ResY;
@@ -33,6 +37,9 @@ public class Global {
 	static Point SAVE;
 	
 	public Global(int ResX, int ResY) {
+		HOST = "76.181.91.208";
+		PORT = 3132;
+		
 		Point center = new Point(ResX/2, ResY/2);
 		PAUSE = 50;
 		
