@@ -66,22 +66,17 @@ public class CharacterActions {
 	public void ExtInvSearch(String type) {
 		ArkBotGUI.GUIText("[ACTION]: Searching external inventory");
 		p = MouseInfo.getPointerInfo().getLocation();
-		ArkBot.drag.move(ArkBot.global.EXT_INV_SEARCHBAR);
+		ArkBot.drag.set(ArkBot.global.EXT_INV_SEARCHBAR);
 		leftClick();
-
-		int i = 10;
-		while (i > 0) {
-			bot.keyPress(KeyEvent.VK_BACK_SPACE);
-			bot.delay(Global.PAUSE);
-			bot.keyRelease(KeyEvent.VK_BACK_SPACE);
-			bot.delay(Global.PAUSE);
-			
-			bot.keyPress(KeyEvent.VK_DELETE);
-			bot.delay(Global.PAUSE);
-			bot.keyRelease(KeyEvent.VK_DELETE);
-			bot.delay(Global.PAUSE);
-			i--;
-		}
+		leftClick();
+		
+		bot.keyPress(KeyEvent.VK_BACK_SPACE);
+		
+		leftClick();
+		leftClick();
+		
+		bot.keyPress(KeyEvent.VK_BACK_SPACE);
+		
 		robtype.type(type);
 		
 		bot.keyPress(KeyEvent.VK_ESCAPE);
@@ -133,6 +128,10 @@ public class CharacterActions {
 	}
 	public void DropAll(){
 		ArkBot.drag.set(ArkBot.global.EXT_INV_DROPALL);
+		ArkBot.bot.delay(PAUSE);
+		leftClick();
+		ArkBot.bot.delay(PAUSE);
+		ArkBot.drag.set(ArkBot.global.DROP_ACCEPT);
 		ArkBot.bot.delay(PAUSE);
 		leftClick();
 		ArkBot.bot.delay(PAUSE);

@@ -29,14 +29,17 @@ v0.2.0
 ---------------
 
 Current Version:
+v0.1.7
+- AutoDrop v1.0
+
+---------------
+
+Past Versions:
 v0.1.6
 - Updated GUI
 - AutoDrop is now optional
 - AutoDrop hotkey is inactive when AutoDrop is not selected
 
----------------
-
-Past Versions:
 v0.1.5
 - Memory Leak and Various Bug Fixes
 

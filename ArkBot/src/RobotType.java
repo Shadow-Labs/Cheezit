@@ -131,10 +131,10 @@ public class RobotType {
         if (length == 0) {
             return;
         }
-        bot.delay(ArkBot.global.PAUSE);
+        //bot.delay(ArkBot.global.PAUSE);
         bot.keyPress(keyCodes[offset]);
         doType(keyCodes, offset + 1, length - 1);
-        bot.delay(ArkBot.global.PAUSE);
+        //bot.delay(ArkBot.global.PAUSE);
         bot.keyRelease(keyCodes[offset]);
     }
 

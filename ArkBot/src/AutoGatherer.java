@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 public class AutoGatherer {
 	Robot bot;
-	public String [] materials = {"Metal", "Stone", "Flint", "Wood", "Thatch", "Fiber",
-			"Berry", "Seed", "Mushroom", "Flower", "Oil", "Raw Meat", "Spoiled Meat", "Hide"};
+	public String [] materials = {"Metal", "Stone", "Flint", "Obsidian", "Crystal", "Oil", "Wood", "Thatch", "Fiber",
+			"Hide", "Amarberry", "Azulberry", "Tintoberry", "Mejoberry", "Narcoberry", "Stimberry", "Seed", 
+			"Mushroom", "Flower", "Raw Meat", "Prime Meat", "Spoiled Meat"};
 	public ArrayList<String> keepMats = new ArrayList<String>();
 	public boolean gathering;
 	public boolean clicking;
@@ -60,14 +61,13 @@ public class AutoGatherer {
 		
 		
 		int i = 0;
-		while (i < materials.length) {
+		while (i < materials.length && gathering) {
 			String mat = materials[i];
 			if (keepMats.contains(mat)) {
 				// Do Nothing
 			} else {
 				// Drop All
 				ArkBot.act.ExtInvSearch(mat);
-				ArkBot.drag.move(Global.EXT_INV_CENTERSLOT);
 				ArkBot.act.DropAll();
 			}
 			i++;

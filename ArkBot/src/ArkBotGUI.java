@@ -382,20 +382,44 @@ public class ArkBotGUI extends JFrame
         JPanel PAutoGatherer = new JPanel();
         PAutoGatherer.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoGatherer.setOpaque(false);
-        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer v0.5", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // AutoGatherer - Button
         JPanel AGBPanel = new JPanel();
         AGBPanel.setLayout(new BoxLayout(AGBPanel, BoxLayout.PAGE_AXIS));
+        
+        int i = 3;
+        int j = 9;
+        JPanel[][] panelHolder = new JPanel[i][j];    
+        setLayout(new GridLayout(i,j));
+
+        for(int m = 0; m < i; m++) {
+           for(int n = 0; n < j; n++) {
+              panelHolder[m][n] = new JPanel();
+              add(panelHolder[m][n]);
+           }
+        }
         JButton AutoGatherButton = new JButton("Start AutoGathering");
         AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
         JCheckBox AutoDrop = new JCheckBox("AutoDrop Functionality");
-		JCheckBox boxes[] = new JCheckBox[ArkBot.gatherer.materials.length];
-		int i = 0;
+        JCheckBox boxes[] = new JCheckBox[ArkBot.gatherer.materials.length];
+		i = 0;
+		int m = 0;
+		int n = 0;
 		while (i < ArkBot.gatherer.materials.length) {
 			boxes[i] = new JCheckBox(ArkBot.gatherer.materials[i]);
+			panelHolder[m][n].add(boxes[i]);
 			AGBPanel.add(boxes[i]);
 			i++;
+			n++;
+			if (i == 9) {
+				m = 1;
+				n = 0;
+			} else if (i == 16) {
+				m = 2;
+				n = 0;
+			}
+			System.out.println(i + " " + m + " " + n);
 		}
         AutoGatherButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -410,7 +434,7 @@ public class ArkBotGUI extends JFrame
         			ArkBot.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, AutoDrop, "AutoClicker Delay (seconds)"));
         			if (AutoDrop.isSelected()) {
         				ArkBot.gatherer.dropping = true;        				
-	        			JOptionPane.showConfirmDialog(GUI, AGBPanel,"Material Selection", JOptionPane.PLAIN_MESSAGE);
+	        			JOptionPane.showConfirmDialog(GUI, AGBPanel, "Material Selection", JOptionPane.PLAIN_MESSAGE);
 	        			
 	        			int i = 0;
 	        			while (i < ArkBot.gatherer.materials.length) {
