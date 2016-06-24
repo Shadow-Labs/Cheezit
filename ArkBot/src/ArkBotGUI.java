@@ -118,9 +118,34 @@ public class ArkBotGUI extends JFrame
         JMenu mServer = new JMenu("Server");
         JMenu mSettings = new JMenu("Settings");
         
+        // File
         JMenuItem iAbout = new JMenuItem("About");
+        JMenuItem iQuit = new JMenuItem("Quit");
+        iQuit.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+            	ArkBotGUI.timer.stop();
+            	log.CloseLog();
+                System.exit(0);
+        	}
+        });
+        // Client
+        JMenuItem iConnect = new JMenuItem("Connect");
+        JMenuItem iDisconnect = new JMenuItem("Disconnect");
+        JMenuItem iControl = new JMenuItem("Control");
+        // Server
+        JMenuItem iStart = new JMenuItem("Start");
+        // Settings
+        JMenuItem iEdit = new JMenuItem("Edit");
+        JMenuItem iSetDefault = new JMenuItem("Set Default");
         
         mFile.add(iAbout);
+        mFile.add(iQuit);
+        mClient.add(iConnect);
+        mClient.add(iDisconnect);
+        mClient.add(iControl);
+        mServer.add(iStart);
+        mSettings.add(iEdit);
+        mSettings.add(iSetDefault);
         
         menuBar.add(mFile);
         menuBar.add(mClient);

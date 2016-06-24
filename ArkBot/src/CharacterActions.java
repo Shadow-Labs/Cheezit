@@ -132,7 +132,10 @@ public class CharacterActions {
 		}
 	}
 	public void DropAll(){
-		//ArkBot.drag.set(ArkBot.global); TODO
+		ArkBot.drag.set(ArkBot.global.EXT_INV_DROPALL);
+		ArkBot.bot.delay(PAUSE);
+		leftClick();
+		ArkBot.bot.delay(PAUSE);
 	}
 	
 	public boolean itemExists() {
