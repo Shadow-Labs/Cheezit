@@ -19,7 +19,12 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.1.7
+v0.2.0
+- Added MenuBar
+- Client Functionality
+- Client States
+- Server Functionality
+- Revamped AutoDrop Functionality
 
 ---------------
 

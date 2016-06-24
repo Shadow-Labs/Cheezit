@@ -110,6 +110,7 @@ public class CharacterActions {
 		}
 	}
 	
+	// Possibly Outdated Function
 	public void Drop(int count) {		
 		if (count == 0) {
 			while (itemExists()) {
@@ -129,6 +130,9 @@ public class CharacterActions {
 				count--;
 			}
 		}
+	}
+	public void DropAll(){
+		//ArkBot.drag.set(ArkBot.global); TODO
 	}
 	
 	public boolean itemExists() {

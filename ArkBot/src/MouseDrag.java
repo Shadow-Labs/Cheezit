@@ -8,6 +8,11 @@ public class MouseDrag{
 	public MouseDrag()  throws AWTException	{
 		this.bot = ArkBot.bot;
 	}
+	public void set(Point q) {
+		bot.delay(200);
+		bot.mouseMove(q.x, q.y);
+	}
+	
 	public void move(Point q) {
 		int x = q.x;
 		int y = q.y;

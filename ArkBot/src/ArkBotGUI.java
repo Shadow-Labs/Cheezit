@@ -27,6 +27,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -107,6 +110,27 @@ public class ArkBotGUI extends JFrame
         GUI.setLayout(new FlowLayout());
         GUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
+        //{{ Menu
+        JMenuBar menuBar = new JMenuBar();
+        
+        JMenu mFile = new JMenu("File");
+        JMenu mClient = new JMenu("Client");
+        JMenu mServer = new JMenu("Server");
+        JMenu mSettings = new JMenu("Settings");
+        
+        JMenuItem iAbout = new JMenuItem("About");
+        
+        mFile.add(iAbout);
+        
+        menuBar.add(mFile);
+        menuBar.add(mClient);
+        menuBar.add(mServer);
+        menuBar.add(mSettings);
+        
+        GUI.setJMenuBar(menuBar);
+        
+        
+        //}}
         
         // Title Panel
         JPanel Title = new JPanel();
