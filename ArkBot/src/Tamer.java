@@ -9,8 +9,8 @@ public class Tamer {
 	Robot bot;
 	RobotType robtype;
 	boolean taming;
-	int time;
-	int foodWait;
+	float time;
+	float foodWait;
 	public Tamer() throws AWTException {
 		bot = ArkBot.bot;
 		robtype = new RobotType(bot);

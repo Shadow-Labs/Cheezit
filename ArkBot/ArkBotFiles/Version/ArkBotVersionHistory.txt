@@ -25,6 +25,7 @@ v0.2.0
 - Client States
 - Server Functionality
 - Revamped AutoDrop Functionality
+- Tamer now allows float values
 
 ---------------
 

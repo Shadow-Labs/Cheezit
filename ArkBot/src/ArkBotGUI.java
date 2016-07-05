@@ -293,14 +293,14 @@ public class ArkBotGUI extends JFrame
         			tameButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("Stopped Taming.");
         		} else {
-        			ArkBot.tame.time = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
+        			ArkBot.tame.time = Float.parseFloat(JOptionPane.showInputDialog(GUI, "Instructions: \n"
         					+ "1) Bot has dino inventory open.\n"
         					+ "2) Narcotics are the first items in dino's inventory.\n"
         					+ "3) To stop taming, press the taming button between narcotic applications.\n"
         					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
         					+ "Time between narcotics (seconds)"));
         			
-        			ArkBot.tame.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
+        			ArkBot.tame.foodWait = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
         					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
         			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.tame.time + " seconds.");
         			if (ArkBot.tame.foodWait != 0) {
