@@ -16,6 +16,7 @@ public class ArkBotLog {
 		
 		try {
 			File logfile = new File("ArkBotFiles/Logs/ArkBotLog_" + ArkBot.version + "_" + time + ".txt");
+			System.out.println("ArkBotFiles/Logs/ArkBotLog_" + ArkBot.version + "_" + time + ".txt");
 			if (logfile.createNewFile()){
 				//Uhhh
 				}else{
@@ -24,8 +25,8 @@ public class ArkBotLog {
 		} catch (IOException e1) {
 			StringWriter error = new StringWriter();
 			e1.printStackTrace(new PrintWriter(error));
-			WriteLog("ERROR: Unable to create file.");
-			WriteLog(error.toString());
+			System.out.println("ERROR: Unable to create file.");
+			System.out.println(error.toString());
 			e1.printStackTrace();
 		}
 		

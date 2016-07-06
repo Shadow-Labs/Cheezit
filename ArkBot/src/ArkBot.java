@@ -172,7 +172,7 @@ public class ArkBot {
         	} else if (!connect && connection) {
         		clientThread.stop();
         	}
-        	//System.out.println("CLIENT");
+        	System.out.println("CLIENT");
         	
         	
 //        	if (i == 100) {

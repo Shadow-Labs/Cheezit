@@ -134,6 +134,11 @@ public class ArkBotGUI extends JFrame
         JMenuItem iControl = new JMenuItem("Control");
         // Server
         JMenuItem iStart = new JMenuItem("Start");
+        iStart.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+            	ArkBot.serverStart = true;
+        	}
+        });
         // Settings
         JMenuItem iEdit = new JMenuItem("Edit");
         JMenuItem iSetDefault = new JMenuItem("Set Default");
