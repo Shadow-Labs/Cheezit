@@ -53,6 +53,8 @@ public class Updater {
 	public static String getLatestVersion() throws Exception{
 		String data = getData(versionURL);
 		webVersion = data.substring(0,6);
+		ArkBotGUI.GUIText("Local Version: " + ArkBot.version);
+		ArkBotGUI.GUIText("Web Version: " + webVersion);
 		return data.substring(0, 6);
 	}
 	
@@ -354,7 +356,6 @@ public class Updater {
     	if (!ArkBot.version.equals(getLatestVersion())) {
     		version = true;
     	}
-    	
     	return version;
     }
 }

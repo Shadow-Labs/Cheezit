@@ -26,6 +26,8 @@ v0.2.0
 - Server Functionality
 - Revamped AutoDrop Functionality
 - Tamer now allows float values
+- AutoDrop wait() to prevent spazzing
+- Fixed Updater?
 
 ---------------
 
