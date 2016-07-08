@@ -1,6 +1,8 @@
 import java.awt.AWTException;
+import java.io.Serializable;
 
-public class ArkBotState {
+public class ArkBotState implements Serializable {
+	private static final long serialVersionUID = 1L;
 	public static CharacterActions act;
 	public static Tamer tame;
 	public static Breeder breed;
