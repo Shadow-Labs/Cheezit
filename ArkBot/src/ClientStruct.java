@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class ClientStruct {
+public class ClientStruct implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String address;
 	private ArkBotState state;
