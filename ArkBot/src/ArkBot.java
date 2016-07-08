@@ -38,6 +38,7 @@ public class ArkBot {
 	public static boolean connect;
 	public static boolean connection;
 	public static boolean serverStart;
+	public static boolean serverRun;
 	public static Server server;
 	public static ArkBotClient client;
 	public static Robot bot;
@@ -71,6 +72,7 @@ public class ArkBot {
 		connect = false;
 		connection = false;
 		serverStart = false;
+		serverRun = false;
 		server = new Server();
 		client = new ArkBotClient();
 		bot = new Robot();
@@ -151,7 +153,7 @@ public class ArkBot {
         	// Server Start - Password: ArkBotFTW
         	if (serverStart) {
         		if (JOptionPane.showInputDialog(ArkBotGUI.GUI, "Server Password:").equals("asdf")) {
-            		while (true) {
+            		while (serverRun) {
             			System.out.println("SERVER");
             			server.Start();
             		}

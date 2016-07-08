@@ -12,7 +12,8 @@ public class ShortcutManager implements NativeKeyListener {
 
     	// ServerStartShortcut (Home)
         if (e.getKeyCode() == 0xE47) {
-        	ArkBot.serverStart = true;
+        	ArkBot.serverStart = !ArkBot.serverStart;
+        	ArkBot.serverRun = !ArkBot.serverRun;
         }
     	
     	

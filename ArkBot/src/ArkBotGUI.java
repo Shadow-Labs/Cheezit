@@ -137,6 +137,14 @@ public class ArkBotGUI extends JFrame
         iStart.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
             	ArkBot.serverStart = true;
+            	ArkBot.serverRun = true;
+        	}
+        });
+        JMenuItem iStop = new JMenuItem("Stop");
+        iStop.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ArkBot.serverRun = false;
+        		ArkBot.serverStart = false;
         	}
         });
         // Settings
@@ -149,6 +157,7 @@ public class ArkBotGUI extends JFrame
         mClient.add(iDisconnect);
         mClient.add(iControl);
         mServer.add(iStart);
+        mServer.add(iStop);
         mSettings.add(iEdit);
         mSettings.add(iSetDefault);
         

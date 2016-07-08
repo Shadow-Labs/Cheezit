@@ -17,7 +17,7 @@ public class Server {
 		ArkBotGUI.GUIText("SERVER: Now listening on port " + ArkBot.global.PORT);
 		Socket clientSocket = null;
 		boolean listeningSocket = true;
-		while(listeningSocket) {
+		while(listeningSocket && ArkBot.serverRun) {
 			try {
 				clientSocket = serverSocket.accept();
 				ArkBotGUI.GUIText("SERVER: Accepted Client: " + clientSocket.getInetAddress());
