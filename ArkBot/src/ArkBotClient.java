@@ -9,26 +9,34 @@ public class ArkBotClient implements Runnable{
     	int portNumber = ArkBot.global.PORT;
 	    try (	    	
 	        Socket sSocket = new Socket(hostName, portNumber);
-	        PrintWriter out = new PrintWriter(sSocket.getOutputStream(), true);
-	        BufferedReader in = new BufferedReader(new InputStreamReader(sSocket.getInputStream()));
+//	        PrintWriter out = new PrintWriter(sSocket.getOutputStream(), true);
+//	        BufferedReader in = new BufferedReader(new InputStreamReader(sSocket.getInputStream()));
+	    		
+	    	ObjectOutputStream toServer = new ObjectOutputStream(sSocket.getOutputStream());
+	    	ObjectInputStream fromServer = new ObjectInputStream(sSocket.getInputStream());
 	    ) {
 	    	ArkBot.connection = true;
 	    	ArkBotGUI.GUIText("CLIENT: Connection Established with ArkBotServer.");
-	        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-	        String fromServer;
-	        String fromUser;
+//	        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+//	        String fromServer;
+//	        String fromUser;
+//
+//	        while ((fromServer = in.readLine()) != null) {
+//	            System.out.println("Server: " + fromServer);
+//	            if (fromServer.equals("Bye."))
+//	                break;
+//	             
+//	            fromUser = stdIn.readLine();
+//	            if (fromUser != null) {
+//	                System.out.println("Client: " + fromUser);
+//	                out.println(fromUser);
+//	            }
+//	        }
+	    	
+	    	// Send Client State
+	    	toServer.writeObject(ArkBot.cStruct);
 
-	        while ((fromServer = in.readLine()) != null) {
-	            System.out.println("Server: " + fromServer);
-	            if (fromServer.equals("Bye."))
-	                break;
-	             
-	            fromUser = stdIn.readLine();
-	            if (fromUser != null) {
-	                System.out.println("Client: " + fromUser);
-	                out.println(fromUser);
-	            }
-	        }
+	    	
 	    	ArkBot.connection = false;
 	    	ArkBotGUI.GUIText("CLIENT: Disconnected from ArkBotServer.");
 	    } catch (UnknownHostException e) {

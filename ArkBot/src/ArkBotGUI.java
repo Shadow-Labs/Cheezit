@@ -292,29 +292,29 @@ public class ArkBotGUI extends JFrame
         tameButton.setMnemonic(KeyEvent.VK_ASTERISK);
         tameButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		if (ArkBot.tame.taming) {
-        			ArkBot.tame.taming = false;
+        		if (ArkBot.state.tame.taming) {
+        			ArkBot.state.tame.taming = false;
         			tameButton.setText("Start Taming");
         			tameButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("Stopped Taming.");
         		} else {
-        			ArkBot.tame.time = Float.parseFloat(JOptionPane.showInputDialog(GUI, "Instructions: \n"
+        			ArkBot.state.tame.time = Float.parseFloat(JOptionPane.showInputDialog(GUI, "Instructions: \n"
         					+ "1) Bot has dino inventory open.\n"
         					+ "2) Narcotics are the first items in dino's inventory.\n"
         					+ "3) To stop taming, press the taming button between narcotic applications.\n"
         					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
         					+ "Time between narcotics (seconds)"));
         			
-        			ArkBot.tame.foodWait = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
+        			ArkBot.state.tame.foodWait = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
         					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
-        			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.tame.time + " seconds.");
-        			if (ArkBot.tame.foodWait != 0) {
-        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.tame.foodWait + " seconds.");
+        			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.state.tame.time + " seconds.");
+        			if (ArkBot.state.tame.foodWait != 0) {
+        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.state.tame.foodWait + " seconds.");
         			} else {
         				ArkBotGUI.GUIText("No AutoFeed.");
         			}
         			
-        			ArkBot.tame.taming = true;
+        			ArkBot.state.tame.taming = true;
         			tameButton.setText("Stop Taming ");
         			tameButton.setBackground(Color.GREEN);
         		}
@@ -336,8 +336,8 @@ public class ArkBotGUI extends JFrame
         String[] BreedOptions = {"Carnivore", "Herbivore"};
         breedButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		if (ArkBot.breed.breeding) {
-        			ArkBot.breed.breeding = false;
+        		if (ArkBot.state.breed.breeding) {
+        			ArkBot.state.breed.breeding = false;
         			breedButton.setText("Start Breeding");
         			breedButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("Stopped Breeding.");
@@ -350,31 +350,31 @@ public class ArkBotGUI extends JFrame
         			
         			int c = breedNumber;
         			// Add Fridge
-        			ArkBot.breed.breedSetup.add(0);
+        			ArkBot.state.breed.breedSetup.add(0);
         			while (c != 0) {
         				String breedType = (String)JOptionPane.showInputDialog(GUI,"Proceeding left, breed " + (breedNumber - (c - 1)) + " of " + breedNumber + ".",
         	                    "Breed Types", JOptionPane.PLAIN_MESSAGE, icon, BreedOptions, "Carnivore");
         				if (breedType.equals("Carnivore")) {
-        					ArkBot.breed.breedSetup.add(1);
-        					ArkBot.breed.carns++;
+        					ArkBot.state.breed.breedSetup.add(1);
+        					ArkBot.state.breed.carns++;
         				} else {
-        					ArkBot.breed.breedSetup.add(2);
-        					ArkBot.breed.herbs++;
+        					ArkBot.state.breed.breedSetup.add(2);
+        					ArkBot.state.breed.herbs++;
         				}
         				c--;
         			}
         			
-        			ArkBotGUI.GUIText("Begin breeding " + ArkBot.breed.carns + " carnivores and " + ArkBot.breed.herbs + " herbivores.");
+        			ArkBotGUI.GUIText("Begin breeding " + ArkBot.state.breed.carns + " carnivores and " + ArkBot.state.breed.herbs + " herbivores.");
         			
-        			ArkBot.breed.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
+        			ArkBot.state.breed.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
         					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
-        			if (ArkBot.breed.foodWait != 0) {
-        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.breed.foodWait + " seconds.");
+        			if (ArkBot.state.breed.foodWait != 0) {
+        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.state.breed.foodWait + " seconds.");
         			} else {
         				ArkBotGUI.GUIText("No AutoFeed.");
         			}
         			
-        			ArkBot.breed.breeding = true;
+        			ArkBot.state.breed.breeding = true;
         			breedButton.setText("Stop Breeding");
         			breedButton.setBackground(Color.GREEN);
         		}
@@ -407,12 +407,12 @@ public class ArkBotGUI extends JFrame
         JButton AutoGatherButton = new JButton("Start AutoGathering");
         AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
         JCheckBox AutoDrop = new JCheckBox("AutoDrop Functionality");
-        JCheckBox boxes[] = new JCheckBox[ArkBot.gatherer.materials.length];
+        JCheckBox boxes[] = new JCheckBox[ArkBot.state.gatherer.materials.length];
 		i = 0;
 		int m = 0;
 		int n = 0;
-		while (i < ArkBot.gatherer.materials.length) {
-			boxes[i] = new JCheckBox(ArkBot.gatherer.materials[i]);
+		while (i < ArkBot.state.gatherer.materials.length) {
+			boxes[i] = new JCheckBox(ArkBot.state.gatherer.materials[i]);
 			panelHolder[m][n].add(boxes[i]);
 			AGBPanel.add(boxes[i]);
 			i++;
@@ -428,29 +428,29 @@ public class ArkBotGUI extends JFrame
 		}
         AutoGatherButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		if (ArkBot.gatherer.gathering) {
-        			ArkBot.gatherer.gathering = false;
-        			ArkBot.gatherer.clicking = false;
-        			ArkBot.gatherer.dropping = false;
+        		if (ArkBot.state.gatherer.gathering) {
+        			ArkBot.state.gatherer.gathering = false;
+        			ArkBot.state.gatherer.clicking = false;
+        			ArkBot.state.gatherer.dropping = false;
         			AutoGatherButton.setText("Start AutoGathering");
         			AutoGatherButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("[ACTION] Stopped AutoGatherer.");
         		} else {
-        			ArkBot.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, AutoDrop, "AutoClicker Delay (seconds)"));
+        			ArkBot.state.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, AutoDrop, "AutoClicker Delay (seconds)"));
         			if (AutoDrop.isSelected()) {
-        				ArkBot.gatherer.dropping = true;        				
+        				ArkBot.state.gatherer.dropping = true;        				
 	        			JOptionPane.showConfirmDialog(GUI, AGBPanel, "Material Selection", JOptionPane.PLAIN_MESSAGE);
 	        			
 	        			int i = 0;
-	        			while (i < ArkBot.gatherer.materials.length) {
+	        			while (i < ArkBot.state.gatherer.materials.length) {
 	        				if (boxes[i].isSelected()) {
-	        					ArkBot.gatherer.keepMats.add(ArkBot.gatherer.materials[i]);
+	        					ArkBot.state.gatherer.keepMats.add(ArkBot.state.gatherer.materials[i]);
 	        				}
 	        				i++;
 	        			}
         			}
-        			ArkBot.gatherer.gathering = true;
-        			ArkBotGUI.GUIText("Press '-' to begin AutoClicking every " + ArkBot.gatherer.pause + " seconds.");
+        			ArkBot.state.gatherer.gathering = true;
+        			ArkBotGUI.GUIText("Press '-' to begin AutoClicking every " + ArkBot.state.gatherer.pause + " seconds.");
 
         			AutoGatherButton.setText("Stop AutoGathering");
         			AutoGatherButton.setBackground(Color.GREEN);

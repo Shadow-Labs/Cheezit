@@ -32,18 +32,18 @@ public class ShortcutManager implements NativeKeyListener {
 //        ArkBotGUI.GUIText("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
         
         // AutoGatheringShortcuts
-        if (ArkBot.gatherer.gathering) {
+        if (ArkBot.state.gatherer.gathering) {
 	        if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("Minus") || NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Subtract")) {
-	        	System.out.println("gather: " + ArkBot.gatherer.gathering + " click: " + ArkBot.gatherer.clicking);
-	        	ArkBot.gatherer.StartStop();
+	        	System.out.println("gather: " + ArkBot.state.gatherer.gathering + " click: " + ArkBot.state.gatherer.clicking);
+	        	ArkBot.state.gatherer.StartStop();
 	        } else if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Multiply")) {
-	        	if (ArkBot.gatherer.dropping) {
-		        	if (ArkBot.gatherer.clicking) {
-		        		ArkBot.gatherer.StartStop();
-		        		ArkBot.gatherer.Drop();
-		        		ArkBot.gatherer.StartStop();
+	        	if (ArkBot.state.gatherer.dropping) {
+		        	if (ArkBot.state.gatherer.clicking) {
+		        		ArkBot.state.gatherer.StartStop();
+		        		ArkBot.state.gatherer.Drop();
+		        		ArkBot.state.gatherer.StartStop();
 		        	} else {
-		        		ArkBot.gatherer.Drop();
+		        		ArkBot.state.gatherer.Drop();
 		        	}
 	        	}
 	        }

@@ -1,13 +1,20 @@
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
-public class ServerStruct {
+public class ClientStruct {
 	private String username;
 	private String address;
 	private ArkBotState state;
 	
-	public ServerStruct (String user, String addr, ArkBotState ste) {
-		this.username = user;
-		this.address = addr;
-		this.state = ste;
+	public ClientStruct () {
+		this.username = ArkBotSettings.GetSetting("Username");
+		try {
+			this.address = InetAddress.getLocalHost().toString();
+		} catch (UnknownHostException e) {
+			ArkBotGUI.GUIText("CLIENT ERROR: Could not determine local IP./n" + e);
+			e.printStackTrace();
+		}
+		this.state = ArkBot.state;
 	}
 	
 	// Getters

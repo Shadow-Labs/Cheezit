@@ -14,6 +14,14 @@ public class ArkBotLog {
 		String time = new SimpleDateFormat("ddmmyyHHmmss").format(Calendar.getInstance().getTime());
 		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
 		
+		//Create /Logs directory if not exists
+		File logsDir = new File("ArkBotFiles/Logs");
+		if (!logsDir.exists()) {
+			System.out.println("Creating Logs Directory.");
+			logsDir.mkdir();
+		}
+		
+		
 		try {
 			File logfile = new File("ArkBotFiles/Logs/ArkBotLog_" + ArkBot.version + "_" + time + ".txt");
 			System.out.println("ArkBotFiles/Logs/ArkBotLog_" + ArkBot.version + "_" + time + ".txt");

@@ -67,8 +67,8 @@ public class AutoGatherer {
 				// Do Nothing
 			} else {
 				// Drop All
-				ArkBot.act.ExtInvSearch(mat);
-				ArkBot.act.DropAll();
+				ArkBot.state.act.ExtInvSearch(mat);
+				ArkBot.state.act.DropAll();
 			}
 			i++;
 		}

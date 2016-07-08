@@ -1,7 +1,7 @@
 import java.net.*;
 import java.io.*;
 
-public class ArkBotServer {
+public class Server {
 	
 	
 	

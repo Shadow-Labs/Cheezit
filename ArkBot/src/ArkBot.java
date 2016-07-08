@@ -38,16 +38,14 @@ public class ArkBot {
 	public static boolean connect;
 	public static boolean connection;
 	public static boolean serverStart;
-	public static ArkBotServer server;
+	public static Server server;
 	public static ArkBotClient client;
 	public static Robot bot;
 	public static MouseDrag drag;
 	public static Global global;
 	public static ArkBotLog log;
-	public static CharacterActions act;
-	public static Tamer tame;
-	public static Breeder breed;
-	public static AutoGatherer gatherer;
+	public static ArkBotState state;
+	public static ClientStruct cStruct;
 	public static Updater updt;
 	public static ScreenReader screenReader;
 	public static Point p;
@@ -73,20 +71,20 @@ public class ArkBot {
 		connect = false;
 		connection = false;
 		serverStart = false;
-		server = new ArkBotServer();
+		server = new Server();
 		client = new ArkBotClient();
 		bot = new Robot();
 		drag = new MouseDrag();
 		log = new ArkBotLog();
-		act = new CharacterActions();
-		tame = new Tamer();
-		breed = new Breeder();
-		gatherer = new AutoGatherer();
 		updt = new Updater();
 		screenReader = new ScreenReader();
 		global = new Global(1440, 900);
 		ArkBotGUI gui = new ArkBotGUI(version, p);
 		ArkBotSettings settings = new ArkBotSettings();
+
+		state = new ArkBotState();
+		cStruct = new ClientStruct();
+		
 		gui.Initialize();
 		gui.SetupPrompt();
 
@@ -146,9 +144,9 @@ public class ArkBot {
         
         while (true) {
         	//drum.Drumming();
-        	tame.Tamin();
-        	breed.Breedin();
-        	gatherer.Gatherin();
+        	state.tame.Tamin();
+        	state.breed.Breedin();
+        	state.gatherer.Gatherin();
         	
         	// Server Start - Password: ArkBotFTW
         	if (serverStart) {
