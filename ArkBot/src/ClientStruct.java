@@ -13,6 +13,7 @@ public class ClientStruct implements Serializable {
 		try {
 			this.address = InetAddress.getLocalHost().toString();
 		} catch (UnknownHostException e) {
+			ArkBot.log.WriteLog("CLIENT ERROR: Could not determine local IP./n" + e);
 			ArkBotGUI.GUIText("CLIENT ERROR: Could not determine local IP./n" + e);
 			e.printStackTrace();
 		}

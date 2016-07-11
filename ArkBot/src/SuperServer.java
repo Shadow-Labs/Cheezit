@@ -16,6 +16,7 @@ public class SuperServer extends Thread {
 			fromClient = new ObjectInputStream(socket.getInputStream());
 			toClient = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
+			ArkBot.log.WriteLog("SERVER ERROR: Could not establish Object Stream./n" + e);
 			ArkBotGUI.GUIText("SERVER ERROR: Could not establish Object Stream./n" + e);
 			e.printStackTrace();
 		}
@@ -26,9 +27,11 @@ public class SuperServer extends Thread {
 		try {
 			clientStruct = (ClientStruct)fromClient.readObject();
 		} catch (ClassNotFoundException e) {
+			ArkBot.log.WriteLog("SERVER ERROR: Class not found./n" + e);
 			ArkBotGUI.GUIText("SERVER ERROR: Class not found./n" + e);
 			e.printStackTrace();
 		} catch (IOException e) {
+			ArkBot.log.WriteLog("SERVER ERROR: Could not recieve client struct./n" + e);
 			ArkBotGUI.GUIText("SERVER ERROR: Could not recieve client struct./n" + e);
 			e.printStackTrace();
 		}
