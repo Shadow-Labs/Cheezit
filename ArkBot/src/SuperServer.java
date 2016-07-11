@@ -4,13 +4,15 @@ import java.io.ObjectOutputStream;
 import java.net.*;
 
 public class SuperServer extends Thread {
+	private int id = 0;
 	private Socket socket = null;
 	private ObjectInputStream fromClient = null;
 	private ObjectOutputStream toClient = null;
 	public ClientStruct clientStruct = new ClientStruct();
 	
-	public SuperServer(Socket socket) {
+	public SuperServer(int id, Socket socket) {
 		super("SuperServer");
+		this.id = id;
 		this.socket = socket;
 		try {
 			fromClient = new ObjectInputStream(socket.getInputStream());
@@ -26,6 +28,12 @@ public class SuperServer extends Thread {
 		//Client State Test
 		try {
 			clientStruct = (ClientStruct)fromClient.readObject();
+			Server.serverList.put(id, clientStruct);
+			ArkBotGUI.GUIText("Client Username: " + Server.serverList.get(id).getUser());
+			ArkBotGUI.GUIText("Client IP: " + Server.serverList.get(id).getAddr());
+			ArkBotGUI.GUIText("Breed State: " + Server.serverList.get(id).getState().breed);
+			ArkBotGUI.GUIText("Tame State: " + Server.serverList.get(id).getState().tame);
+			ArkBotGUI.GUIText("Gather State: " + Server.serverList.get(id).getState().gatherer);
 		} catch (ClassNotFoundException e) {
 			ArkBot.log.WriteLog("SERVER ERROR: Class not found./n" + e);
 			ArkBotGUI.GUIText("SERVER ERROR: Class not found./n" + e);
@@ -34,10 +42,7 @@ public class SuperServer extends Thread {
 			ArkBot.log.WriteLog("SERVER ERROR: Could not recieve client struct./n" + e);
 			ArkBotGUI.GUIText("SERVER ERROR: Could not recieve client struct./n" + e);
 			e.printStackTrace();
-		}
-		
-		ArkBotGUI.GUIText("Client Username: " + clientStruct.getUser());
-		
+		}	
 		
 	}
 	

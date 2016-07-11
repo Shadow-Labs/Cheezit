@@ -17,6 +17,8 @@ import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -54,6 +56,7 @@ public class ArkBotGUI extends JFrame
 	WarDrum drum;
 	public static JFrame GUI;
 	public static JTextArea textLog;
+	public static JTextArea clientText;
 	public static JTextArea chatText;
 	public static JLabel mousePos;
 	public static JLabel Runtime;
@@ -744,6 +747,24 @@ public class ArkBotGUI extends JFrame
 		ArkBot.log.WriteLog("Console: " + timeStamp + ": " + text);
 	}
 	
+	public static void refreshClientText () {
+		String clients = "";
+		String id = "default";
+		String user = "default";
+		String cntrlByUser = "default";
+		ClientStruct cStruct;
+		Iterator it = Server.serverList.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry elem = (Map.Entry)it.next();
+			id = (String)elem.getKey();
+			cStruct = (ClientStruct)elem.getValue();
+			user = cStruct.getUser();
+			cntrlByUser = cStruct.getCntrlUser();
+			clients += "\n" + id + ":" + user + " " + cntrlByUser; 
+		}
+		clientText.setText(clients);
+	}
+	
 	public static void ChatText (String text) {
 		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
 		chatText.setText(chatText.getText() + "\n" + timeStamp + ": " + text);
@@ -777,6 +798,114 @@ public class ArkBotGUI extends JFrame
 	private void ServerClientSelector() {
 		
 	}
+	
+	public static void Serverize() {
+		// Remove Non Server Essential Panels/Frames
+        ArkBotGUI.GUI.getContentPane().removeAll();
+        
+        JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/ArkBotBackground.png").getImage());
+        bgPanel.setLayout(new BorderLayout());
+        
+        // Add Server GUI Components
+        // Title Panel
+        JPanel Title = new JPanel();
+        Title.setLayout(new BorderLayout());
+        Title.setOpaque(false);
+        JLabel image = new JLabel("", new ImageIcon(img.getScaledInstance(200, 200, 0)), JLabel.CENTER);
+        JPanel imgPanel = new JPanel(new BorderLayout());
+        imgPanel.setOpaque(false);
+        imgPanel.add(image);
+        
+        // Client Display Panel
+        JPanel clientDisplay = new JPanel();
+        clientDisplay.setLayout(new GridLayout(0,1));
+        clientDisplay.setOpaque(false);
+        
+        //{{ clientDisplay
+        JPanel clientListP = new JPanel();
+        clientListP.setLayout(new BorderLayout());
+        clientListP.setOpaque(false);
+        clientListP.setBorder(BorderFactory.createTitledBorder(new EmptyBorder(0,0,0,0), "ArkBot Clients", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        
+        clientText = new JTextArea(24, 10);
+        DefaultCaret cCaret = (DefaultCaret)textLog.getCaret();
+        cCaret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        Font cFont = new Font("Arial", Font.PLAIN, 12);
+        clientText.setFont(cFont);
+        clientText.setForeground(Color.WHITE);
+        clientText.setEditable ( false );
+        clientText.setLineWrap(true);
+        clientText.setOpaque(false);
+        JScrollPane cScroll = new JScrollPane ( clientText );
+        cScroll.setOpaque(false);
+        cScroll.getViewport().setOpaque(false);
+        cScroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED );
+        cScroll.setHorizontalScrollBarPolicy ( ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );
+        //}}
+        
+        // Text Display Panel
+        JPanel textDisplay = new JPanel();
+        textDisplay.setLayout(new GridLayout(0,1));
+        textDisplay.setOpaque(false);
+        
+        //{{ textLog
+        JPanel Logger = new JPanel();
+        Logger.setLayout(new BorderLayout());
+        Logger.setOpaque(false);
+        Logger.setBorder(BorderFactory.createTitledBorder(new EmptyBorder(0,0,0,0), "ArkBot Log", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        
+        textLog = new JTextArea(14, 10);
+        DefaultCaret tCaret = (DefaultCaret)textLog.getCaret();
+        tCaret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        Font tFont = new Font("Arial", Font.PLAIN, 12);
+        textLog.setFont(tFont);
+        textLog.setForeground(Color.WHITE);
+        textLog.setEditable ( false );
+        textLog.setLineWrap(true);
+        textLog.setOpaque(false);
+        JScrollPane tScroll = new JScrollPane ( textLog );
+        tScroll.setOpaque(false);
+        tScroll.getViewport().setOpaque(false);
+        tScroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED );
+        tScroll.setHorizontalScrollBarPolicy ( ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );
+        //}}
+        
+        //{{ Mouse Position
+        JPanel mousePanel = new JPanel();
+        mousePanel.setLayout(new GridLayout(1,3));
+        PointerInfo q = MouseInfo.getPointerInfo();
+        Point p = q.getLocation();
+        long elapsed = (System.currentTimeMillis() - start);
+        String display = String.format("%02d:%02d:%02d", elapsed / 3600000, (elapsed % 3600000) / 60, (elapsed % 3600000));
+        Runtime = new JLabel("Runtime: " + display, JLabel.RIGHT);
+        mousePos = new JLabel("Mouse: " + p.x + " " + p.y + "                        ");
+        JLabel currentVersion = new JLabel("          ArkBot " + ArkBot.version + "                ", JLabel.RIGHT);
+        mousePanel.add(mousePos);
+        mousePanel.add(currentVersion);
+        mousePanel.add(Runtime);
+        //}}
+        
+        Title.add(imgPanel, BorderLayout.CENTER);
+        
+        clientListP.add(cScroll, BorderLayout.NORTH);
+        
+        Logger.add(tScroll, BorderLayout.NORTH);
+        Logger.add(mousePanel, BorderLayout.SOUTH);
+        
+        clientDisplay.add(clientListP, BorderLayout.SOUTH);
+        textDisplay.add(Logger, BorderLayout.SOUTH);
+                
+        bgPanel.add(Title, BorderLayout.NORTH);
+        bgPanel.add(clientDisplay, BorderLayout.CENTER);
+        bgPanel.add(textDisplay, BorderLayout.SOUTH);
+        
+        GUI.add(bgPanel);
+        GUI.setContentPane(bgPanel); 
+        
+        ArkBotGUI.GUI.revalidate();
+        ArkBotGUI.GUI.repaint();
+	}
+	
 	
 	private void LoadingScreen() {
 		JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/LoadingScreenBackground.png").getImage());

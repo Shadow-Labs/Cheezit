@@ -155,6 +155,7 @@ public class ArkBot {
         		if (JOptionPane.showInputDialog(ArkBotGUI.GUI, "Server Password:").equals("asdf")) {
             		while (serverRun) {
             			System.out.println("SERVER");
+            			ArkBotGUI.Serverize();
             			server.Start();
             		}
         		} else {
