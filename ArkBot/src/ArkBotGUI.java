@@ -747,7 +747,8 @@ public class ArkBotGUI extends JFrame
 		ArkBot.log.WriteLog("Console: " + timeStamp + ": " + text);
 	}
 	
-	public static void refreshClientText () {
+	public static void refreshClientText() {
+		ArkBotGUI.GUIText("Running refresh");
 		String clients = "";
 		String id = "default";
 		String user = "default";
@@ -760,8 +761,10 @@ public class ArkBotGUI extends JFrame
 			cStruct = (ClientStruct)elem.getValue();
 			user = cStruct.getUser();
 			cntrlByUser = cStruct.getCntrlUser();
-			clients += "\n" + id + ":" + user + " " + cntrlByUser; 
+			clients += "\n" + id + ":" + user + " " + cntrlByUser;
+			ArkBotGUI.GUIText("Clients: " + clients);
 		}
+		ArkBotGUI.GUIText("Supposed to be above:" + clients);
 		clientText.setText(clients);
 	}
 	
@@ -892,7 +895,7 @@ public class ArkBotGUI extends JFrame
         Logger.add(tScroll, BorderLayout.NORTH);
         Logger.add(mousePanel, BorderLayout.SOUTH);
         
-        clientDisplay.add(clientListP, BorderLayout.SOUTH);
+        clientDisplay.add(clientListP, BorderLayout.NORTH);
         textDisplay.add(Logger, BorderLayout.SOUTH);
                 
         bgPanel.add(Title, BorderLayout.NORTH);

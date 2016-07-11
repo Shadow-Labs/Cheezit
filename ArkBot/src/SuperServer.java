@@ -34,6 +34,7 @@ public class SuperServer extends Thread {
 			ArkBotGUI.GUIText("Breed State: " + Server.serverList.get(id).getState().breed);
 			ArkBotGUI.GUIText("Tame State: " + Server.serverList.get(id).getState().tame);
 			ArkBotGUI.GUIText("Gather State: " + Server.serverList.get(id).getState().gatherer);
+			ArkBotGUI.refreshClientText();
 		} catch (ClassNotFoundException e) {
 			ArkBot.log.WriteLog("SERVER ERROR: Class not found./n" + e);
 			ArkBotGUI.GUIText("SERVER ERROR: Class not found./n" + e);
