@@ -15,10 +15,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -753,11 +755,12 @@ public class ArkBotGUI extends JFrame
 		String id = "default";
 		String user = "default";
 		String cntrlByUser = "default";
+		Map.Entry<Integer,ClientStruct> elem = new AbstractMap.SimpleEntry<Integer, ClientStruct>(0, ArkBot.cStruct);
 		ClientStruct cStruct;
 		Iterator it = Server.serverList.entrySet().iterator();
 		while (it.hasNext()) {
-			Map.Entry elem = (Map.Entry)it.next();
-			id = (String)elem.getKey();
+			elem = (Map.Entry)it.next();
+			id = elem.getKey().toString();
 			cStruct = (ClientStruct)elem.getValue();
 			user = cStruct.getUser();
 			cntrlByUser = cStruct.getCntrlUser();
