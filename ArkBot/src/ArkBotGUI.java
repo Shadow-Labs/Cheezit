@@ -456,6 +456,7 @@ public class ArkBotGUI extends JFrame
 	        			JOptionPane.showConfirmDialog(GUI, AGBPanel, "Material Selection", JOptionPane.PLAIN_MESSAGE);
 	        			
 	        			int i = 0;
+	        			ArkBot.state.gatherer.keepMats.clear();
 	        			while (i < ArkBot.state.gatherer.materials.length) {
 	        				if (boxes[i].isSelected()) {
 	        					ArkBot.state.gatherer.keepMats.add(ArkBot.state.gatherer.materials[i]);

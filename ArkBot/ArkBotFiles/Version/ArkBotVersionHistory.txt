@@ -2,7 +2,6 @@ ArkBot Version Updates/History
 
 
 Future Implementations
-- Upgrade AutoClicker to AutoGatherer (Need to work on dropping)
 - Input Recorder
 - Inventory StackCount
 - Meat Splitter Implementation
@@ -27,6 +26,7 @@ v0.2.0
 - Revamped AutoDrop Functionality
 - Tamer now allows float values
 - AutoDrop wait() to prevent spazzing
+- AutoGather will now "forget" previous drop selections
 - Fixed Updater?
 
 ---------------

@@ -171,7 +171,7 @@ public class ArkBot {
         	if (connect && !connection) {
         		clientThread.start();
         	} else if (!connect && connection) {
-        		clientThread.stop();
+        		clientThread.interrupt();
         	}
         	System.out.println("CLIENT");
         	
