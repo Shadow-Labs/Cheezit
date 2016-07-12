@@ -501,14 +501,13 @@ public class ArkBotGUI extends JFrame
         
         // ClientConnect - Button
         JButton ClientButton = new JButton("Connect");
-        if (ArkBot.connection) {
-			ClientButton.setText("Disconnect");
-		}
         ClientButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (ArkBot.connection) {
+        			ClientButton.setText("Connect");
         			ArkBot.connect = false;
         		} else {
+        			ClientButton.setText("Disconnect");
         			ArkBot.connect = true;;
         		}
         	}
@@ -768,7 +767,6 @@ public class ArkBotGUI extends JFrame
 			clients += "\n" + id + ":" + user + " " + cntrlByUser;
 			ArkBotGUI.GUIText("Clients: " + clients);
 		}
-		ArkBotGUI.GUIText("Supposed to be above:" + clients);
 		clientText.setText(clients);
 	}
 	

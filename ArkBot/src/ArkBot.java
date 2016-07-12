@@ -9,6 +9,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -129,6 +132,12 @@ public class ArkBot {
 
         try {
             GlobalScreen.registerNativeHook();
+         // Clear previous logging configurations.
+            LogManager.getLogManager().reset();
+
+            // Get the logger for "org.jnativehook" and set the level to off.
+            Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
+            logger.setLevel(Level.OFF);
         }
         catch (NativeHookException ex) {
             System.err.println("There was a problem registering the native hook.");
@@ -138,12 +147,9 @@ public class ArkBot {
         }
 
         GlobalScreen.addNativeKeyListener(new ShortcutManager());
-
-        Thread clientThread = new Thread(new ArkBotClient());
         
-        //Screen Reader loop management
-        int i = 0;
-        
+        Thread clientThread = null;
+        int keepRunning = 0;
         while (true) {
         	//drum.Drumming();
         	state.tame.Tamin();
@@ -169,12 +175,19 @@ public class ArkBot {
         	
         	// Client Connection
         	if (connect && !connection) {
+                clientThread = new Thread(new ArkBotClient());
         		clientThread.start();
+        		//Allow thread to make connection
+        		bot.delay(500);
         	} else if (!connect && connection) {
         		clientThread.interrupt();
+        		//Allow thread to disconnect
+        		bot.delay(500);
         	}
-        	System.out.println("CLIENT");
-        	
+        	keepRunning++;
+        	if (keepRunning%32 == 0) {
+        		System.out.println("CLIENT");
+        	}
         	
 //        	if (i == 100) {
 //        		screenReader.Grab(0);
