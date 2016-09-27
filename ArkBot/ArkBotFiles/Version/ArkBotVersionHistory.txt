@@ -32,12 +32,17 @@ v0.2.0
 ---------------
 
 Current Version:
-v0.1.7
-- AutoDrop v1.0
+v0.1.8
+- Taming v1.1
+	- Implemented AutoDrink
+	- Updated Input Method
 
 ---------------
 
 Past Versions:
+v0.1.7
+- AutoDrop v1.0
+
 v0.1.6
 - Updated GUI
 - AutoDrop is now optional

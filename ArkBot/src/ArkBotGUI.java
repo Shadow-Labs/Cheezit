@@ -11,6 +11,8 @@ import java.awt.Point;
 import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,6 +41,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.Timer;
@@ -299,7 +302,7 @@ public class ArkBotGUI extends JFrame
         JPanel PTaming = new JPanel();
         PTaming.setLayout(new FlowLayout(FlowLayout.LEFT));
         PTaming.setOpaque(false);
-        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.ORANGE), "Taming v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.ORANGE), "Taming v1.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Taming - Button
         JButton tameButton = new JButton("Start Taming");
@@ -316,21 +319,61 @@ public class ArkBotGUI extends JFrame
         					+ "1) Bot has dino inventory open.\n"
         					+ "2) Narcotics are the first items in dino's inventory.\n"
         					+ "3) To stop taming, press the taming button between narcotic applications.\n"
-        					+ "4) AutoFeed function requires food as top rows in player's inventory.\n\n"
+        					+ "4) AutoFeed function requires food as top rows in player's inventory.\n"
+        					+ "5) AutoDrink function requires canteen in the hotbar starting from 1.\n\n"
         					+ "Time between narcotics (seconds)"));
         			
-        			ArkBot.state.tame.foodWait = Float.parseFloat(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
-        					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
-        			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.state.tame.time + " seconds.");
-        			if (ArkBot.state.tame.foodWait != 0) {
-        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.state.tame.foodWait + " seconds.");
-        			} else {
-        				ArkBotGUI.GUIText("No AutoFeed.");
-        			}
+        			JTextField autoFeed = new JTextField(5);
+        			JTextField autoDrink = new JTextField(5);
+        			autoFeed.setText("0");
+        			autoDrink.setText("0");
         			
-        			ArkBot.state.tame.taming = true;
-        			tameButton.setText("Stop Taming ");
-        			tameButton.setBackground(Color.GREEN);
+        			// Add Listener to remove "0" from text fields
+        			autoFeed.addFocusListener(new FocusListener() {
+        				public void focusGained(FocusEvent e) {
+        					autoFeed.setText("");
+        				}
+        				public void focusLost(FocusEvent e) {
+        					//Nothing
+        				}
+        			});
+        			autoDrink.addFocusListener(new FocusListener() {
+        				public void focusGained(FocusEvent e) {
+        					autoDrink.setText("");
+        				}
+        				public void focusLost(FocusEvent e) {
+        					//Nothing
+        				}
+        			});
+        			
+        			JPanel autoValuesP = new JPanel();
+        			autoValuesP.add(new JLabel("AutoFeed (sec):"));
+        			autoValuesP.add(autoFeed);
+        			autoValuesP.add(new JLabel("AutoDrink (min):"));
+        			autoValuesP.add(autoDrink);
+        			int result = JOptionPane.showConfirmDialog(null, autoValuesP, 
+        		               "AutoFeed/Drink Values", JOptionPane.OK_CANCEL_OPTION);
+        		    if (result == JOptionPane.OK_OPTION) {
+        		       ArkBot.state.tame.foodWait = Integer.parseInt(autoFeed.getText());
+        		       ArkBot.state.tame.waterWait = Integer.parseInt(autoDrink.getText());
+	           			ArkBotGUI.GUIText("Begin Taming at 1 Narcotic every " + ArkBot.state.tame.time + " seconds.");
+	           			if (ArkBot.state.tame.foodWait != 0) {
+	           				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.state.tame.foodWait + " seconds.");
+	           			} else {
+	           				ArkBotGUI.GUIText("No AutoFeed.");
+	           			}
+	           			if (ArkBot.state.tame.waterWait != 0) {
+	           				ArkBotGUI.GUIText("AutoDrink every " + ArkBot.state.tame.waterWait + " minutes.");
+	           			} else {
+	           				ArkBotGUI.GUIText("No AutoDrink.");
+	           			}
+	           			
+	           			ArkBot.state.tame.taming = true;
+	           			tameButton.setText("Stop Taming ");
+	           			tameButton.setBackground(Color.GREEN);
+        		    } else if (result == JOptionPane.CANCEL_OPTION) {
+        		    	// Do nothing
+        		    }
         		}
         	}
         });
@@ -356,41 +399,44 @@ public class ArkBotGUI extends JFrame
         			breedButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("Stopped Breeding.");
         		} else {
-        			int breedNumber = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
-        					+ "1) Bot has fridge inventory open.\n"
-        					+ "2) To stop breeding, press the breeding button while bot is turning.\n"
-        					+ "3) AutoFeed function requires food in slot 5 of the hotbar.\n\n"
-        					+ "Number of breeds:"));
-        			
-        			int c = breedNumber;
-        			// Add Fridge
-        			ArkBot.state.breed.breedSetup.add(0);
-        			while (c != 0) {
-        				String breedType = (String)JOptionPane.showInputDialog(GUI,"Proceeding left, breed " + (breedNumber - (c - 1)) + " of " + breedNumber + ".",
-        	                    "Breed Types", JOptionPane.PLAIN_MESSAGE, icon, BreedOptions, "Carnivore");
-        				if (breedType.equals("Carnivore")) {
-        					ArkBot.state.breed.breedSetup.add(1);
-        					ArkBot.state.breed.carns++;
-        				} else {
-        					ArkBot.state.breed.breedSetup.add(2);
-        					ArkBot.state.breed.herbs++;
-        				}
-        				c--;
+        			int result = JOptionPane.showConfirmDialog(GUI, "NOTE: Breeding is currently unstable and will likely mess up your breeds. Use at your own risk.","WARNING", JOptionPane.OK_CANCEL_OPTION);
+        			if (result == JOptionPane.OK_OPTION) {
+	        			int breedNumber = Integer.parseInt(JOptionPane.showInputDialog(GUI, "Instructions: \n"
+	        					+ "1) Bot has fridge inventory open.\n"
+	        					+ "2) To stop breeding, press the breeding button while bot is turning.\n"
+	        					+ "3) AutoFeed function requires food in slot 5 of the hotbar.\n\n"
+	        					+ "Number of breeds:"));
+	        			
+	        			int c = breedNumber;
+	        			// Add Fridge
+	        			ArkBot.state.breed.breedSetup.add(0);
+	        			while (c != 0) {
+	        				String breedType = (String)JOptionPane.showInputDialog(GUI,"Proceeding left, breed " + (breedNumber - (c - 1)) + " of " + breedNumber + ".",
+	        	                    "Breed Types", JOptionPane.PLAIN_MESSAGE, icon, BreedOptions, "Carnivore");
+	        				if (breedType.equals("Carnivore")) {
+	        					ArkBot.state.breed.breedSetup.add(1);
+	        					ArkBot.state.breed.carns++;
+	        				} else {
+	        					ArkBot.state.breed.breedSetup.add(2);
+	        					ArkBot.state.breed.herbs++;
+	        				}
+	        				c--;
+	        			}
+	        			
+	        			ArkBotGUI.GUIText("Begin breeding " + ArkBot.state.breed.carns + " carnivores and " + ArkBot.state.breed.herbs + " herbivores.");
+	        			
+	        			ArkBot.state.breed.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
+	        					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
+	        			if (ArkBot.state.breed.foodWait != 0) {
+	        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.state.breed.foodWait + " seconds.");
+	        			} else {
+	        				ArkBotGUI.GUIText("No AutoFeed.");
+	        			}
+	        			
+	        			ArkBot.state.breed.breeding = true;
+	        			breedButton.setText("Stop Breeding");
+	        			breedButton.setBackground(Color.GREEN);
         			}
-        			
-        			ArkBotGUI.GUIText("Begin breeding " + ArkBot.state.breed.carns + " carnivores and " + ArkBot.state.breed.herbs + " herbivores.");
-        			
-        			ArkBot.state.breed.foodWait = Integer.parseInt(JOptionPane.showInputDialog(GUI, "AutoFeed Functionality"
-        					+ "Time between AutoFeed (seconds), enter 0 for no AutoFeed"));
-        			if (ArkBot.state.breed.foodWait != 0) {
-        				ArkBotGUI.GUIText("AutoFeed every " + ArkBot.state.breed.foodWait + " seconds.");
-        			} else {
-        				ArkBotGUI.GUIText("No AutoFeed.");
-        			}
-        			
-        			ArkBot.state.breed.breeding = true;
-        			breedButton.setText("Stop Breeding");
-        			breedButton.setBackground(Color.GREEN);
         		}
         	}
         });
@@ -497,7 +543,7 @@ public class ArkBotGUI extends JFrame
         JPanel ClientConnect = new JPanel();
         ClientConnect.setLayout(new FlowLayout(FlowLayout.LEFT));
         ClientConnect.setOpaque(false);
-        ClientConnect.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Connect to ArkBot Server", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        ClientConnect.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Connect to ArkBot Server v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
         
         // ClientConnect - Button
         JButton ClientButton = new JButton("Connect");
