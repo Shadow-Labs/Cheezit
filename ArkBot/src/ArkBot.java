@@ -72,6 +72,8 @@ public class ArkBot {
 		}
 		//}}
 		
+
+		ArkBotSettings settings = new ArkBotSettings();
 		connect = false;
 		connection = false;
 		serverStart = false;
@@ -83,9 +85,8 @@ public class ArkBot {
 		log = new ArkBotLog();
 		updt = new Updater();
 		screenReader = new ScreenReader();
-		global = new Global(1440, 900);
+		global = new Global();
 		ArkBotGUI gui = new ArkBotGUI(version, p);
-		ArkBotSettings settings = new ArkBotSettings();
 
 		state = new ArkBotState();
 		cStruct = new ClientStruct();
@@ -186,7 +187,7 @@ public class ArkBot {
         	}
         	keepRunning++;
         	if (keepRunning%32 == 0) {
-        		System.out.println("CLIENT");
+        		//System.out.println("CLIENT");
         	}
         	
 //        	if (i == 100) {

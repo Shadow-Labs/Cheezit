@@ -20,6 +20,8 @@ public class ArkBotSettings {
 	public static void ResetSettings() {
 		setdic.put("Username", "default");
 		setdic.put("SetupPrompt", "true");
+		setdic.put("ResX", "1440");
+		setdic.put("ResY", "900");
 		setdic.put("AndrewIsAwesome", "true");
 		WriteSettings(true);
 	}

@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.KeyboardFocusManager;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
@@ -26,6 +27,7 @@ import java.util.Map.Entry;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -49,6 +51,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultCaret;
+import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
 
 
 public class ArkBotGUI extends JFrame
@@ -115,7 +118,7 @@ public class ArkBotGUI extends JFrame
         GUI.setSize(480,935);
         GUI.setResizable(false);
         GUI.setLocation(1440, 0);
-        GUI.setLayout(new FlowLayout());
+        GUI.setLayout(new GridLayout());
         GUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         //{{ Menu
@@ -155,8 +158,129 @@ public class ArkBotGUI extends JFrame
         		ArkBot.serverStart = false;
         	}
         });
-        // Settings
+        // Edit Settings
         JMenuItem iEdit = new JMenuItem("Edit");
+        iEdit.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//{{ Server Settings Frame
+        		JFrame sframe = new JFrame("Settings");
+        		sframe.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    	Object[] options = {"Yes", "No", "Cancel" };
+                    	int ans = JOptionPane.showOptionDialog(GUI, "Would you like to save changes?", "Save", 
+                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.PLAIN_MESSAGE, icon, options, options[1]);
+                        if (ans == JOptionPane.YES_OPTION){
+                        	// Save
+                        	ArkBot.global.save();
+                        	// Quit Window
+                        	sframe.setVisible(false);
+                        	sframe.disable();
+                        	ArkBotGUI.GUIText("Yes");
+                        } else if (ans == JOptionPane.NO_OPTION) {
+                        	// Quit Window
+                        	sframe.setVisible(false);
+                        	sframe.disable();
+                        	ArkBotGUI.GUIText("No");
+                        } else {
+                        	// Do Nothing
+                        	ArkBotGUI.GUIText("Cancel");
+                        }
+                    }
+                });
+        		sframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        		sframe.setLayout(new GridLayout());
+        		
+        		//{{ Window Settings Panel
+        		JPanel wSett = new JPanel();
+        		wSett.setLayout(new GridLayout(4,3));
+        		
+        		JLabel LwTitle = new JLabel("Set Resolution");
+        		JLabel LxRes = new JLabel("X:");
+        		JLabel LyRes = new JLabel("Y:");
+        		JTextField TAxRes = new JTextField("" + Global.ResX);
+        		TAxRes.setForeground(Color.GRAY);
+        		JTextField TAyRes = new JTextField("" + Global.ResY);
+        		TAyRes.setForeground(Color.GRAY);
+        		
+        		// Add Listener to remove default values from text fields
+        		LwTitle.requestFocusInWindow();
+    			TAxRes.addFocusListener(new FocusListener() {
+    				public void focusGained(FocusEvent e) {
+    					TAxRes.setText("");
+    					TAxRes.setForeground(Color.BLACK);
+    				}
+    				public void focusLost(FocusEvent e) {
+    					//Nothing
+    				}
+    			});
+    			TAyRes.addFocusListener(new FocusListener() {
+    				public void focusGained(FocusEvent e) {
+    					TAyRes.setText("");
+    					TAyRes.setForeground(Color.BLACK);
+    				}
+    				public void focusLost(FocusEvent e) {
+    					//Nothing
+    				}
+    			});
+    			
+        		JButton BWSet = new JButton("Set");
+        		BWSet.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// Get values from text field
+						int newX = ArkBot.global.ResX;
+						int newY = ArkBot.global.ResY;
+						boolean err = false;
+						if (InputCheck.isInt(TAxRes.getText())) {
+							newX = Integer.parseInt(TAxRes.getText());
+						} else {
+							JOptionPane.showMessageDialog(sframe, "Invalid x Resolution.");
+							err = true;
+						} 
+						if (InputCheck.isInt(TAyRes.getText())) {
+							newY = Integer.parseInt(TAyRes.getText());
+						} else {
+							JOptionPane.showMessageDialog(sframe, "Invalid y Resolution.");
+							err = true;
+						}
+						
+						if (!err) {
+							if (newX <= 500 || newY <= 500) {
+								JOptionPane.showMessageDialog(sframe, "Resolution must be greater than 500x500.");
+							} else {
+								ArkBot.global.ResX = newX;
+								ArkBot.global.ResY = newY;
+								ArkBotGUI.GUIText("Set resolution to " + ArkBot.global.ResX + "x" + ArkBot.global.ResY + ".");
+							}
+						}
+						
+					}
+        			
+        		});
+        		
+        		wSett.add(LwTitle);
+        		wSett.add(Box.createHorizontalStrut(1));
+        		wSett.add(LxRes);
+        		wSett.add(TAxRes);
+        		wSett.add(LyRes);
+        		wSett.add(TAyRes);
+        		wSett.add(Box.createHorizontalStrut(1));
+        		wSett.add(BWSet);
+        		
+        		//}}
+        		
+        		sframe.add(wSett);
+        		int width = 300;
+        		int height = 125;
+        		sframe.setBounds(Global.CENTER.x - (width/2), Global.CENTER.y - (height/2), width, height);
+        		sframe.setVisible(true);
+        		sframe.requestFocusInWindow();
+        		//}}
+        	}
+        });
         JMenuItem iSetDefault = new JMenuItem("Set Default");
         
         mFile.add(iAbout);

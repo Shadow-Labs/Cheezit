@@ -38,16 +38,16 @@ public class Global {
 	static Point APPLY;
 	static Point SAVE;
 	
-	public Global(int ResX, int ResY) {
+	public Global() {
 		HOST = "76.181.91.208";
 		PORT = 3132;
+		Global.ResX = Integer.parseInt(ArkBotSettings.GetSetting("ResX"));
+		Global.ResY = Integer.parseInt(ArkBotSettings.GetSetting("ResY"));
 		
 		Point center = new Point(ResX/2, ResY/2);
 		PAUSE = 50;
 		
 		if (ResX == 1440 && ResY == 900) {
-			Global.ResX = ResX;
-			Global.ResY = ResY;
 			
 			CHATBOX = new Rectangle(12, 260, 450, 140);
 			TRIBELOG = new Rectangle();
@@ -131,6 +131,39 @@ public class Global {
 					new Point(438,640)
 					};
 			INV_POINTS = points;
+		// Other Resolutions
+		} else {
+			CHATBOX = new Rectangle(12, 260, 450, 140);
+			TRIBELOG = new Rectangle();
+			STATS = new Rectangle();
+			
+			CHAR_INV_SEARCH_BAR = new Point(470, 150);
+			CHAR_INV_SCROLL_BOT = new Point(481, 563);
+			CHAR_INV_SCROLLTEST_PIXEL = new Point(481,232);
+			CHAR_INV_FIRSTSLOT = new Point(75, 275);
+			CHAR_INV_FIRSTSLOT_NAME = new Point(75, 300);
+			CHAR_INV_USEITEM = new Point(184, 582);
+			EXT_INV_SEARCHBAR = new Point(928, 128);
+			EXT_INV_REMOTEUSE = new Point(884, 653);
+			EXT_INV_DROPALL = new Point (630, 675);
+			EXT_INV_FIRSTSLOT = new Point(550, 320);
+			EXT_INV_CENTERSLOT = new Point(710, 320);
+			DROP_ACCEPT = new Point(600, 530);
+			FOCUS = new Point(center.x, 160);
+			CENTER = new Point(center);
+			OPTIONS = new Point(center.x, 423);
+			MENU_INVENTORY = new Point(center.x, 508);
+			CAMERA_FOV = new Point(634, 385);
+			H_SENSITIVITY = new Point(678, 440);
+			V_SENSITIVITY = new Point(678, 475);
+			APPLY = new Point(797, 852);
+			SAVE = new Point(582, 852);
 		}
+	}
+	
+	// Save Relevant Global Values to Settings
+	public void save() {
+		ArkBotSettings.UpdateSetting("ResX", Integer.toString(Global.ResX));
+		ArkBotSettings.UpdateSetting("ResY", Integer.toString(Global.ResY));
 	}
 }
