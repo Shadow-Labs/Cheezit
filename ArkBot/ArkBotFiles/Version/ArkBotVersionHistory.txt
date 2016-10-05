@@ -11,6 +11,8 @@ Future Implementations
 
 Known Bugs
 - Manual Download downloading screen is all white?
+- Need to delete ArkBotSettings.txt before able to run
+	newest version of ArkBot
 - CharacterActions ItemExists() does not work
 
 ---------------
