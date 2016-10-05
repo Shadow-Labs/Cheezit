@@ -1,6 +1,5 @@
 ArkBot Version Updates/History
 
-
 Future Implementations
 - Input Recorder
 - Inventory StackCount
@@ -10,7 +9,6 @@ Future Implementations
 - NarcoticStorage
 - Narcotics Start to finish
 
-
 Known Bugs
 - Manual Download downloading screen is all white?
 - CharacterActions ItemExists() does not work
@@ -19,7 +17,6 @@ Known Bugs
 
 Next Version:
 v0.2.0
-- Added MenuBar
 - Client Functionality
 - Client States
 - Server Functionality
@@ -32,14 +29,25 @@ v0.2.0
 ---------------
 
 Current Version:
-v0.1.8
-- Taming v1.1
-	- Implemented AutoDrink
-	- Updated Input Method
+v0.1.9
+- Initial Customizable Settings Implementation
+	- Set Default Implementation
+- About Tab
+- Version History Tab
+- Work In Progress Windows for unimplemented features
+- Initial Custom Resolution Update (UNTESTED)
+	- Set via Settings
+
 
 ---------------
 
 Past Versions:
+v0.1.8
+- Taming v1.1
+	- Implemented AutoDrink
+	- Updated Input Method
+- Added MenuBar
+	
 v0.1.7
 - AutoDrop v1.0
 

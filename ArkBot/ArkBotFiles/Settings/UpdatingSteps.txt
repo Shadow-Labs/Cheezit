@@ -1,1 +1,8 @@
 Steps to follow when upgrading version.
+1. Delete Log Files
+2. Delete ArkBotSettings File
+3. Delete outdated .jar file
+4. Update VersionHistory.txt
+5. Update CurrentVersion.txt
+6. Export as .jar
+7. Push to git

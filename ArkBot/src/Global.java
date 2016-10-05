@@ -46,36 +46,34 @@ public class Global {
 		
 		Point center = new Point(ResX/2, ResY/2);
 		PAUSE = 50;
+	
+		CHATBOX = new Rectangle(12, 260, 450, 140);
+		TRIBELOG = new Rectangle();
+		STATS = new Rectangle();
 		
-		if (ResX == 1440 && ResY == 900) {
-			
-			CHATBOX = new Rectangle(12, 260, 450, 140);
-			TRIBELOG = new Rectangle();
-			STATS = new Rectangle();
-			
-			CHAR_INV_SEARCH_BAR = new Point(470, 150);
-			CHAR_INV_SCROLL_BOT = new Point(481, 563);
-			CHAR_INV_SCROLLTEST_PIXEL = new Point(481,232);
-			CHAR_INV_FIRSTSLOT = new Point(75, 275);
-			CHAR_INV_FIRSTSLOT_NAME = new Point(75, 300);
-			CHAR_INV_USEITEM = new Point(184, 582);
-			EXT_INV_SEARCHBAR = new Point(928, 128);
-			EXT_INV_REMOTEUSE = new Point(884, 653);
-			EXT_INV_DROPALL = new Point (630, 675);
-			EXT_INV_FIRSTSLOT = new Point(550, 320);
-			EXT_INV_CENTERSLOT = new Point(710, 320);
-			DROP_ACCEPT = new Point(600, 530);
-			FOCUS = new Point(center.x, 160);
-			CENTER = new Point(center);
-			OPTIONS = new Point(center.x, 423);
-			MENU_INVENTORY = new Point(center.x, 508);
-			CAMERA_FOV = new Point(634, 385);
-			H_SENSITIVITY = new Point(678, 440);
-			V_SENSITIVITY = new Point(678, 475);
-			APPLY = new Point(797, 852);
-			SAVE = new Point(582, 852);
-			
-			
+		CHAR_INV_SEARCH_BAR = new Point(470, 150);
+		CHAR_INV_SCROLL_BOT = new Point(481, 563);
+		CHAR_INV_SCROLLTEST_PIXEL = new Point(481,232);
+		CHAR_INV_FIRSTSLOT = new Point(75, 275);
+		CHAR_INV_FIRSTSLOT_NAME = new Point(75, 300);
+		CHAR_INV_USEITEM = new Point(184, 582);
+		EXT_INV_SEARCHBAR = new Point(928, 128);
+		EXT_INV_REMOTEUSE = new Point(884, 653);
+		EXT_INV_DROPALL = new Point (630, 675);
+		EXT_INV_FIRSTSLOT = new Point(550, 320);
+		EXT_INV_CENTERSLOT = new Point(710, 320);
+		DROP_ACCEPT = new Point(600, 530);
+		FOCUS = new Point(center.x, 160);
+		CENTER = new Point(center);
+		OPTIONS = new Point(center.x, 423);
+		MENU_INVENTORY = new Point(center.x, 508);
+		CAMERA_FOV = new Point(634, 385);
+		H_SENSITIVITY = new Point(678, 440);
+		V_SENSITIVITY = new Point(678, 475);
+		APPLY = new Point(797, 852);
+		SAVE = new Point(582, 852);
+		
+		
 //			Point[] points = {
 //					new Point(82,280),
 //					new Point(172,280),
@@ -103,67 +101,75 @@ public class Global {
 //					new Point(352,640),
 //					new Point(442,640)
 //					};
-			Point[] points = {
-					new Point(78,280),
-					new Point(168,280),
-					new Point(258,280),
-					new Point(348,280),
-					new Point(438,280),
-					new Point(78,370),
-					new Point(168,370),
-					new Point(258,370),
-					new Point(348,370),
-					new Point(438,370),
-					new Point(78,460),
-					new Point(168,460),
-					new Point(258,460),
-					new Point(348,460),
-					new Point(438,460),
-					new Point(78,550),
-					new Point(168,550),
-					new Point(258,550),
-					new Point(348,550),
-					new Point(438,550),
-					new Point(78,640),
-					new Point(168,640),
-					new Point(258,640),
-					new Point(348,640),
-					new Point(438,640)
-					};
-			INV_POINTS = points;
-		// Other Resolutions
-		} else {
-			CHATBOX = new Rectangle(12, 260, 450, 140);
-			TRIBELOG = new Rectangle();
-			STATS = new Rectangle();
-			
-			CHAR_INV_SEARCH_BAR = new Point(470, 150);
-			CHAR_INV_SCROLL_BOT = new Point(481, 563);
-			CHAR_INV_SCROLLTEST_PIXEL = new Point(481,232);
-			CHAR_INV_FIRSTSLOT = new Point(75, 275);
-			CHAR_INV_FIRSTSLOT_NAME = new Point(75, 300);
-			CHAR_INV_USEITEM = new Point(184, 582);
-			EXT_INV_SEARCHBAR = new Point(928, 128);
-			EXT_INV_REMOTEUSE = new Point(884, 653);
-			EXT_INV_DROPALL = new Point (630, 675);
-			EXT_INV_FIRSTSLOT = new Point(550, 320);
-			EXT_INV_CENTERSLOT = new Point(710, 320);
-			DROP_ACCEPT = new Point(600, 530);
-			FOCUS = new Point(center.x, 160);
-			CENTER = new Point(center);
-			OPTIONS = new Point(center.x, 423);
-			MENU_INVENTORY = new Point(center.x, 508);
-			CAMERA_FOV = new Point(634, 385);
-			H_SENSITIVITY = new Point(678, 440);
-			V_SENSITIVITY = new Point(678, 475);
-			APPLY = new Point(797, 852);
-			SAVE = new Point(582, 852);
-		}
+		Point[] points = {
+				new Point(78,280),
+				new Point(168,280),
+				new Point(258,280),
+				new Point(348,280),
+				new Point(438,280),
+				new Point(78,370),
+				new Point(168,370),
+				new Point(258,370),
+				new Point(348,370),
+				new Point(438,370),
+				new Point(78,460),
+				new Point(168,460),
+				new Point(258,460),
+				new Point(348,460),
+				new Point(438,460),
+				new Point(78,550),
+				new Point(168,550),
+				new Point(258,550),
+				new Point(348,550),
+				new Point(438,550),
+				new Point(78,640),
+				new Point(168,640),
+				new Point(258,640),
+				new Point(348,640),
+				new Point(438,640)
+				};
+		INV_POINTS = points;
 	}
 	
 	// Save Relevant Global Values to Settings
 	public void save() {
 		ArkBotSettings.UpdateSetting("ResX", Integer.toString(Global.ResX));
 		ArkBotSettings.UpdateSetting("ResY", Integer.toString(Global.ResY));
+	}
+	
+	// Set Resolution
+	public void setRes() {
+		ArkBotGUI.GUIText("Set ArkBot Resolution to " + ResX + "x" + ResY);
+		Global.ResX = Integer.parseInt(ArkBotSettings.GetSetting("ResX"));
+		Global.ResY = Integer.parseInt(ArkBotSettings.GetSetting("ResY"));
+		float xScale = (float)Global.ResX / 1440 ;
+		float yScale = (float)Global.ResY / 900;
+		Point center = new Point(ResX/2, ResY/2);
+		
+		CHATBOX.setBounds(Math.round(12 * xScale), Math.round(260 * yScale), Math.round(450 * xScale), Math.round(140 * yScale));
+		TRIBELOG = new Rectangle();
+		STATS = new Rectangle();
+		
+		CHAR_INV_SEARCH_BAR.setLocation(Math.round(470 * xScale), Math.round(150 * yScale));
+		CHAR_INV_SCROLL_BOT.setLocation(Math.round(481 * xScale), Math.round(563 * yScale));
+		CHAR_INV_SCROLLTEST_PIXEL.setLocation(Math.round(481 * xScale), Math.round(232 * yScale));
+		CHAR_INV_FIRSTSLOT.setLocation(Math.round(75 * xScale), Math.round(275 * yScale));
+		CHAR_INV_FIRSTSLOT_NAME.setLocation(Math.round(75 * xScale), Math.round(300 * yScale));
+		CHAR_INV_USEITEM.setLocation(Math.round(184 * xScale), Math.round(582 * yScale));
+		EXT_INV_SEARCHBAR.setLocation(Math.round(928 * xScale), Math.round(128 * yScale));
+		EXT_INV_REMOTEUSE.setLocation(Math.round(884 * xScale), Math.round(653 * yScale));
+		EXT_INV_DROPALL.setLocation(Math.round(630 * xScale), Math.round(675 * yScale));
+		EXT_INV_FIRSTSLOT.setLocation(Math.round(550 * xScale), Math.round(320 * yScale));
+		EXT_INV_CENTERSLOT.setLocation(Math.round(710 * xScale), Math.round(320 * yScale));
+		DROP_ACCEPT.setLocation(Math.round(600 * xScale), Math.round(530 * yScale));
+		FOCUS.setLocation(center.x, Math.round(160 * yScale));
+		CENTER.setLocation(center);
+		OPTIONS.setLocation(center.x, Math.round(423 * yScale));
+		MENU_INVENTORY.setLocation(center.x, Math.round(508 * yScale));
+		CAMERA_FOV.setLocation(Math.round(634 * xScale), Math.round(385 * yScale));
+		H_SENSITIVITY.setLocation(Math.round(678 * xScale), Math.round(440 * yScale));
+		V_SENSITIVITY.setLocation(Math.round(678 * xScale), Math.round(475 * yScale));
+		APPLY.setLocation(Math.round(797 * xScale), Math.round(852 * yScale));
+		SAVE.setLocation(Math.round(582 * xScale), Math.round(852 * yScale));
 	}
 }

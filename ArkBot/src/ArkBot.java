@@ -187,7 +187,7 @@ public class ArkBot {
         	}
         	keepRunning++;
         	if (keepRunning%32 == 0) {
-        		//System.out.println("CLIENT");
+        		System.out.println("CLIENT");
         	}
         	
 //        	if (i == 100) {

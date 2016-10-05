@@ -1,5 +1,0 @@
-Username = TeeHee!
-SetupPrompt = true
-ResY = 1080
-ResX = 1920
-AndrewIsAwesome = true

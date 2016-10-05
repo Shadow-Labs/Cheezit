@@ -1,12 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.KeyboardFocusManager;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
@@ -15,21 +13,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -44,14 +40,12 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.Timer;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultCaret;
-import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
 
 
 public class ArkBotGUI extends JFrame
@@ -131,6 +125,61 @@ public class ArkBotGUI extends JFrame
         
         // File
         JMenuItem iAbout = new JMenuItem("About");
+        iAbout.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Object[] options = {"Awesome!" };
+        		//{{ About Message
+        		String message = "Hey There!\n "
+        				+ "So you've gotten a hold of my attempt to autonomize Ark which I have taken to \n"
+        				+ "calling ArkBot. This bot is my most ambitious programming endeavor and I hope that \n"
+        				+ "you'll find it useful in one way or another. My Goals with this bot are as follows\n\n"
+        				+ "GOALS\n-------\n"
+        				+ "1. Undetectable.\n"
+        				+ "By utilizing only the mouse and keyboard controls I hope to emulate\n"
+        				+ "real player behaviors, thus making it hard to detect. As of now, ArkBot has been \n"
+        				+ "undetected on BattleEye'd Official Ark Servers. (knock on wood).\n\n"
+        				+ "2. Reliable.\n"
+        				+ "Always a work in progress, I try to incorporate redundancies into the \n"
+        				+ "\tbot so that when you setup a tame overnight, you can sleep easy knowing the tame\n"
+        				+ "\twill go uninhibited.\n\n"
+        				+ "3. Open Communication.\n"
+        				+ "I always look forward to hearing ideas from users based on \n"
+        				+ "\twhat they want or need from ArkBot. By using ArkBot, you're part of the ArkBot\n"
+        				+ "\tdevelopment team. Most of the features on ArkBot were suggested by its users.\n\n"
+        				+ "4. Ease of Use.\n"
+        				+ "While I readily admit the GUI isn't too snazzy (I'm only a one man\n"
+        				+ "\tteam, cut me some slack!), I am particularly prideful of the updating feature\n"
+        				+ "\timplemented in ArkBot. Once installed, ArkBot will look for updates and prompt\n"
+        				+ "\tyou when a new update is avaliable where it will automattically download and\n"
+        				+ "\tupdate itself with the newest patches/features.\n\n"
+        				+ "If you yourself knows some java programming or know someone who does, put me in touch!\n\n"
+        				+ "Thanks using ArkBot! Let me know what you think,\n"
+        				+ "\t-RedLeeder\n\n";
+        		//}}
+        		JOptionPane.showOptionDialog(null, message, "About ArkBot", 
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        	}
+        });
+        JMenuItem iFeatures = new JMenuItem("Version History");
+        iFeatures.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Get History File
+        		FileReader in;
+        		String data = ArkBot.updt.getData("https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/ArkBotVersionHistory.txt");
+
+        		JTextArea verArea = new JTextArea(data);
+        		verArea.setEditable(false);
+        		JScrollPane scrollPane = new JScrollPane(verArea);  
+        		verArea.setLineWrap(true);  
+        		verArea.setWrapStyleWord(true); 
+        		scrollPane.setPreferredSize( new Dimension( 400, 500 ) );
+        		Object[] options = {"Great Stuff!" };
+        		JOptionPane.showOptionDialog(null, scrollPane, "ArkBot Version History", 
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        	};
+        });
         JMenuItem iQuit = new JMenuItem("Quit");
         iQuit.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -141,8 +190,32 @@ public class ArkBotGUI extends JFrame
         });
         // Client
         JMenuItem iConnect = new JMenuItem("Connect");
+        iConnect.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Object[] options = {"Can't Wait!" };
+        		JOptionPane.showOptionDialog(GUI, "Work In Progress...", "Slow down there!", 
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        	}
+        });
         JMenuItem iDisconnect = new JMenuItem("Disconnect");
+        iDisconnect.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Object[] options = {"Can't Wait!" };
+        		JOptionPane.showOptionDialog(GUI, "Work In Progress...", "Slow down there!", 
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        	}
+        });
         JMenuItem iControl = new JMenuItem("Control");
+        iControl.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Object[] options = {"Can't Wait!" };
+        		JOptionPane.showOptionDialog(GUI, "Work In Progress...", "Slow down there!", 
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        	}
+        });
         // Server
         JMenuItem iStart = new JMenuItem("Start");
         iStart.addActionListener(new ActionListener() {
@@ -168,7 +241,7 @@ public class ArkBotGUI extends JFrame
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                     	Object[] options = {"Yes", "No", "Cancel" };
-                    	int ans = JOptionPane.showOptionDialog(GUI, "Would you like to save changes?", "Save", 
+                    	int ans = JOptionPane.showOptionDialog(null, "Would you like to save changes?", "Save", 
                                 JOptionPane.YES_NO_CANCEL_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, icon, options, options[1]);
                         if (ans == JOptionPane.YES_OPTION){
@@ -177,15 +250,12 @@ public class ArkBotGUI extends JFrame
                         	// Quit Window
                         	sframe.setVisible(false);
                         	sframe.disable();
-                        	ArkBotGUI.GUIText("Yes");
                         } else if (ans == JOptionPane.NO_OPTION) {
                         	// Quit Window
                         	sframe.setVisible(false);
                         	sframe.disable();
-                        	ArkBotGUI.GUIText("No");
                         } else {
                         	// Do Nothing
-                        	ArkBotGUI.GUIText("Cancel");
                         }
                     }
                 });
@@ -253,7 +323,7 @@ public class ArkBotGUI extends JFrame
 							} else {
 								ArkBot.global.ResX = newX;
 								ArkBot.global.ResY = newY;
-								ArkBotGUI.GUIText("Set resolution to " + ArkBot.global.ResX + "x" + ArkBot.global.ResY + ".");
+								ArkBot.global.setRes();
 							}
 						}
 						
@@ -282,8 +352,25 @@ public class ArkBotGUI extends JFrame
         	}
         });
         JMenuItem iSetDefault = new JMenuItem("Set Default");
+        iSetDefault.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Object[] options = {"Yes", "No"};
+            	int ans = JOptionPane.showOptionDialog(GUI, "Would you like to reset settings?", "Reset Settings", 
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, icon, options, options[1]);
+                if (ans == JOptionPane.YES_OPTION){
+                	// Reset Settings
+                	ArkBotGUI.GUIText("ArkBot Settings have been reset to default values.\n"
+                			+ "Please Restart ArkBot for changes to take effect.");
+                	ArkBotSettings.ResetSettings();
+                } else if (ans == JOptionPane.NO_OPTION) {
+                	// Do Nothing
+                }
+        	}
+        });
         
         mFile.add(iAbout);
+        mFile.add(iFeatures);
         mFile.add(iQuit);
         mClient.add(iConnect);
         mClient.add(iDisconnect);
@@ -673,6 +760,10 @@ public class ArkBotGUI extends JFrame
         JButton ClientButton = new JButton("Connect");
         ClientButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		Object[] options = {"Can't Wait!" };
+        		JOptionPane.showOptionDialog(GUI, "Work In Progress...", "Slow down there!", 
+                        JOptionPane.OK_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
         		if (ArkBot.connection) {
         			ClientButton.setText("Connect");
         			ArkBot.connect = false;
@@ -955,7 +1046,7 @@ public class ArkBotGUI extends JFrame
 			JPanel msgPanel = new JPanel();
 			msgPanel.setLayout(new BorderLayout());
 			JLabel requirements = new JLabel("<html>Please ensure the following are true:<br>"
-					+ "1) Ark Resolution is set to 1440 x 900, Windowed<br>"
+					+ "1) Ark Resolution is set via Settings<br>"
 				    + "2) Ark window is located in the top left corner of your default monitor<br>"
 				    + "3) You are currently logged in/connected to a server<br>"
 				    + "4) Inventory is in small mode (press q while in inventory)<br> </html>");
