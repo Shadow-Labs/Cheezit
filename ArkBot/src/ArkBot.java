@@ -156,6 +156,7 @@ public class ArkBot {
         	state.tame.Tamin();
         	state.breed.Breedin();
         	state.gatherer.Gatherin();
+        	state.healer.Healin();
         	
         	// Server Start - Password: ArkBotFTW
         	if (serverStart) {

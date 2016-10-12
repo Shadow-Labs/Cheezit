@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -345,7 +346,9 @@ public class ArkBotGUI extends JFrame
         		sframe.add(wSett);
         		int width = 300;
         		int height = 125;
-        		sframe.setBounds(Global.CENTER.x - (width/2), Global.CENTER.y - (height/2), width, height);
+        		sframe.pack();
+        		sframe.setLocationRelativeTo(null);
+        		sframe.setSize(width, height);
         		sframe.setVisible(true);
         		sframe.requestFocusInWindow();
         		//}}
@@ -562,7 +565,7 @@ public class ArkBotGUI extends JFrame
         			autoValuesP.add(autoFeed);
         			autoValuesP.add(new JLabel("AutoDrink (min):"));
         			autoValuesP.add(autoDrink);
-        			int result = JOptionPane.showConfirmDialog(null, autoValuesP, 
+        			int result = JOptionPane.showConfirmDialog(GUI, autoValuesP, 
         		               "AutoFeed/Drink Values", JOptionPane.OK_CANCEL_OPTION);
         		    if (result == JOptionPane.OK_OPTION) {
         		       ArkBot.state.tame.foodWait = Integer.parseInt(autoFeed.getText());
@@ -675,7 +678,7 @@ public class ArkBotGUI extends JFrame
               add(panelHolder[m][n]);
            }
         }
-        JButton AutoGatherButton = new JButton("Start AutoGathering");
+        JButton AutoGatherButton = new JButton("Enable AutoGather");
         AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
         JCheckBox AutoDrop = new JCheckBox("AutoDrop Functionality");
         JCheckBox boxes[] = new JCheckBox[ArkBot.state.gatherer.materials.length];
@@ -703,7 +706,7 @@ public class ArkBotGUI extends JFrame
         			ArkBot.state.gatherer.gathering = false;
         			ArkBot.state.gatherer.clicking = false;
         			ArkBot.state.gatherer.dropping = false;
-        			AutoGatherButton.setText("Start AutoGathering");
+        			AutoGatherButton.setText("Enable AutoGather");
         			AutoGatherButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("[ACTION] Stopped AutoGatherer.");
         		} else {
@@ -724,7 +727,7 @@ public class ArkBotGUI extends JFrame
         			ArkBot.state.gatherer.gathering = true;
         			ArkBotGUI.GUIText("Press '-' to begin AutoClicking every " + ArkBot.state.gatherer.pause + " seconds.");
 
-        			AutoGatherButton.setText("Stop AutoGathering");
+        			AutoGatherButton.setText("Disable AutoGather");
         			AutoGatherButton.setBackground(Color.GREEN);
         		}
         	}
@@ -733,6 +736,39 @@ public class ArkBotGUI extends JFrame
         PAutoGatherer.add(AutoGatherButton);
       //}}
         
+        //{{ AuotHealer - Panel
+        JPanel PAutoHealer = new JPanel();
+        PAutoHealer.setLayout(new FlowLayout(FlowLayout.LEFT));
+        PAutoHealer.setOpaque(false);
+        PAutoHealer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.RED), "AutoHealer v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        
+        // AutoHealer - Button
+        JButton AutoHealButton = new JButton("Enable AutoHeal");
+        AutoHealButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (ArkBot.state.healer.heal) {
+        			ArkBotGUI.GUIText("Disabled AutoHeal.");
+        			AutoHealButton.setText("Enable AutoHeal");
+            		AutoHealButton.setBackground(new JButton().getBackground());
+            		
+            		ArkBot.state.healer.abort = false;
+            		ArkBot.state.healer.heal = false;
+        			
+        		} else {
+        			ArkBotGUI.GUIText("Enabled AutoHealer\n\t'-' = 100 Health\n\t'*' = 1000 Health\n\t'/' = Abort.");
+        			
+            		AutoHealButton.setText("Disable AutoHeal");
+            		AutoHealButton.setBackground(Color.GREEN);
+            		
+            		ArkBot.state.healer.heal = true;
+        		}
+        	}
+        });
+
+        PAutoHealer.add(AutoHealButton);
+        PAutoHealer.setVisible(true);
+        //}}        
+
         //{{ Download Zip - Panel
         JPanel PDZip = new JPanel();
         PDZip.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -777,24 +813,7 @@ public class ArkBotGUI extends JFrame
         ClientConnect.add(ClientButton);
         ClientConnect.setVisible(true);
         //}}
-        
-        //{{ Something2 - Panel
-        JPanel Something2 = new JPanel();
-        Something2.setLayout(new FlowLayout(FlowLayout.LEFT));
-        Something2.setOpaque(false);
-        Something2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something2", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
-        
-        // Something2 - Button
-        JButton Something2Button = new JButton("Something 2");
-        Something2Button.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		// Something
-        	}
-        });
 
-        Something2.add(Something2Button);
-        Something2.setVisible(false);
-        //}}
         
         //{{ Something3 - Panel
         JPanel Something3 = new JPanel();
@@ -899,9 +918,9 @@ public class ArkBotGUI extends JFrame
         Main.add(PTaming);
         Main.add(PBreeding);
         Main.add(PAutoGatherer);
+        Main.add(PAutoHealer);
         Main.add(PDZip);
         Main.add(ClientConnect);
-        Main.add(Something2);
         Main.add(Something3);
         Main.add(Something4);
         Main.add(Something5);

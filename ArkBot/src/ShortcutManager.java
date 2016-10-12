@@ -49,6 +49,24 @@ public class ShortcutManager implements NativeKeyListener {
 	        	}
 	        }
         }
+        
+        // AutoHealingShortcuts
+        if (ArkBot.state.healer.heal) {
+	        if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("Minus") || NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Subtract")) {
+	        	ArkBotGUI.GUIText("[HEALER]: Added 100 Health to Queue.");
+	        	ArkBot.state.healer.healcount += 1;
+	        	ArkBot.state.healer.healing = true;
+	        } else if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Multiply")) {
+	        	ArkBotGUI.GUIText("[HEALER]: Added 1000 Health to Queue.");
+	        	ArkBot.state.healer.healcount += 10;
+	        	ArkBot.state.healer.healing = true;
+	        } else if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Divide")) {
+	        	ArkBotGUI.GUIText("[HEALER]: Aborted Healing.");
+	        	ArkBot.state.healer.abort = true;
+	        	ArkBot.state.healer.healing = false;
+	        	ArkBot.state.healer.healcount = 0;	        	
+	        }
+        }
     }
 
     public void nativeKeyTyped(NativeKeyEvent e) {

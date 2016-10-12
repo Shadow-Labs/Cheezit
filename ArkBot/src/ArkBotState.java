@@ -7,11 +7,13 @@ public class ArkBotState implements Serializable {
 	public static Tamer tame;
 	public static Breeder breed;
 	public static AutoGatherer gatherer;
+	public static AutoHealer healer;
 	
 	public ArkBotState() throws AWTException {
 		act = new CharacterActions();
 		tame = new Tamer();
 		breed = new Breeder();
 		gatherer = new AutoGatherer();
+		healer = new AutoHealer();
 	}
 }
