@@ -1,12 +1,21 @@
 import java.awt.event.KeyEvent;
 
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
+
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
 public class ShortcutManager implements NativeKeyListener {
+	
     public void nativeKeyPressed(NativeKeyEvent e) {
+    	
+    	// Check to see if nextKey is requested
+    	if (Global.nextKey) {
+    		Global.lastPressed = e.getKeyCode();
+    	}
+    	
  //       System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
         //ArkBotGUI.GUIText("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 
@@ -34,10 +43,10 @@ public class ShortcutManager implements NativeKeyListener {
         
         // AutoGatheringShortcuts
         if (ArkBot.state.gatherer.gathering) {
-	        if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("Minus") || NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Subtract")) {
+	        if (e.getKeyCode() == Global.AGatherStartStop) {
 	        	System.out.println("gather: " + ArkBot.state.gatherer.gathering + " click: " + ArkBot.state.gatherer.clicking);
 	        	ArkBot.state.gatherer.StartStop();
-	        } else if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Multiply")) {
+	        } else if (e.getKeyCode() == Global.AGatherDrop) {
 	        	if (ArkBot.state.gatherer.dropping) {
 		        	if (ArkBot.state.gatherer.clicking) {
 		        		ArkBot.state.gatherer.StartStop();
@@ -52,15 +61,15 @@ public class ShortcutManager implements NativeKeyListener {
         
         // AutoHealingShortcuts
         if (ArkBot.state.healer.heal) {
-	        if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("Minus") || NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Subtract")) {
+	        if (e.getKeyCode() ==  Global.AHealIncOne) {
 	        	ArkBotGUI.GUIText("[HEALER]: Added 100 Health to Queue.");
 	        	ArkBot.state.healer.healcount += 1;
 	        	ArkBot.state.healer.healing = true;
-	        } else if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Multiply")) {
+	        } else if (e.getKeyCode() == Global.AHealIncTen) {
 	        	ArkBotGUI.GUIText("[HEALER]: Added 1000 Health to Queue.");
 	        	ArkBot.state.healer.healcount += 10;
 	        	ArkBot.state.healer.healing = true;
-	        } else if (NativeKeyEvent.getKeyText(e.getKeyCode()).equals("NumPad Divide")) {
+	        } else if (e.getKeyCode() == Global.AHealAbort) {
 	        	ArkBotGUI.GUIText("[HEALER]: Aborted Healing.");
 	        	ArkBot.state.healer.abort = true;
 	        	ArkBot.state.healer.healing = false;

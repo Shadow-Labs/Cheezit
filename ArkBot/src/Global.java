@@ -11,6 +11,9 @@ public class Global {
 	static int ResX;
 	static int ResY;
 	
+	static boolean nextKey;
+	static int lastPressed;
+	
 	static Rectangle CHATBOX;
 	static Rectangle TRIBELOG;
 	static Rectangle STATS;
@@ -38,9 +41,20 @@ public class Global {
 	static Point APPLY;
 	static Point SAVE;
 	
+	// Shortcuts
+	static int AGatherStartStop;
+	static int AGatherDrop;
+	static int AHealIncOne;
+	static int AHealIncTen;
+	static int AHealAbort;
+	
 	public Global() {
 		HOST = "76.181.91.208";
 		PORT = 3132;
+		
+		nextKey = false;
+		lastPressed = -1;
+		
 		Global.ResX = Integer.parseInt(ArkBotSettings.GetSetting("ResX"));
 		Global.ResY = Integer.parseInt(ArkBotSettings.GetSetting("ResY"));
 		
@@ -73,6 +87,12 @@ public class Global {
 		APPLY = new Point(797, 852);
 		SAVE = new Point(582, 852);
 		
+		// Found Via jnativehook
+		AGatherStartStop = ArkBotSettings.GetShortcut("AGatherStartStop");
+		AGatherDrop = ArkBotSettings.GetShortcut("AGatherDrop");
+		AHealIncOne = ArkBotSettings.GetShortcut("AHealIncOne");
+		AHealIncTen = ArkBotSettings.GetShortcut("AHealIncTen");
+		AHealAbort = ArkBotSettings.GetShortcut("AHealAbort");
 		
 //			Point[] points = {
 //					new Point(82,280),
@@ -132,9 +152,18 @@ public class Global {
 	}
 	
 	// Save Relevant Global Values to Settings
-	public void save() {
+	public void saveSett() {
 		ArkBotSettings.UpdateSetting("ResX", Integer.toString(ResX));
 		ArkBotSettings.UpdateSetting("ResY", Integer.toString(ResY));
+	}
+	
+	// Save Relevant Global Values to Shortcuts
+	public void saveShort() {
+		ArkBotSettings.UpdateShortcut("AGatherStartStop", AGatherStartStop);
+		ArkBotSettings.UpdateShortcut("AGatherDrop", AGatherDrop);
+		ArkBotSettings.UpdateShortcut("AHealIncOne", AHealIncOne);
+		ArkBotSettings.UpdateShortcut("AHealIncTen", AHealIncTen);
+		ArkBotSettings.UpdateShortcut("AHealAbort", AHealAbort);
 	}
 	
 	// Set Resolution

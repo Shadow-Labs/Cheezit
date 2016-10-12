@@ -1,7 +1,7 @@
 ArkBot Version Updates/History
 
 Future Implementations
-- Hotkey Manager
+
 - Input Recorder
 - Inventory StackCount
 - Meat Splitter Implementation
@@ -13,9 +13,6 @@ Future Implementations
 - Client States
 - Server Functionality
 - Revamped AutoDrop Functionality
-- Tamer now allows float values
-- AutoDrop wait() to prevent spazzing
-- AutoGather will now "forget" previous drop selections
 - Fixed Updater?
 
 Known Bugs
@@ -28,7 +25,9 @@ Known Bugs
 
 Next Version:
 v0.2.0
-
+- AutoHealer Implementation
+- Hotkey Manager
+- Fixed Resolution Bug (UNTESTED)
 
 ---------------
 

@@ -48,6 +48,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultCaret;
 
+import org.jnativehook.keyboard.NativeKeyEvent;
+
 
 public class ArkBotGUI extends JFrame
 {
@@ -57,6 +59,14 @@ public class ArkBotGUI extends JFrame
 	ArkBotLog log;
 	InputRecorder recorder;
 	WarDrum drum;
+	
+	// Hotkey Values
+	int tempAGStartStop = Global.AGatherStartStop;
+	int tempAGDrop = Global.AGatherDrop;
+	int tempAHIncOne = Global.AHealIncOne;
+	int tempAHIncTen = Global.AHealIncTen;
+	int tempAHAbort = Global.AHealAbort;
+	
 	public static JFrame GUI;
 	public static JTextArea textLog;
 	public static JTextArea clientText;
@@ -233,8 +243,8 @@ public class ArkBotGUI extends JFrame
         	}
         });
         // Edit Settings
-        JMenuItem iEdit = new JMenuItem("Edit");
-        iEdit.addActionListener(new ActionListener() {
+        JMenuItem iEditSett = new JMenuItem("Edit Settings");
+        iEditSett.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//{{ Server Settings Frame
         		JFrame sframe = new JFrame("Settings");
@@ -247,7 +257,7 @@ public class ArkBotGUI extends JFrame
                                 JOptionPane.PLAIN_MESSAGE, icon, options, options[1]);
                         if (ans == JOptionPane.YES_OPTION){
                         	// Save
-                        	ArkBot.global.save();
+                        	ArkBot.global.saveSett();
                         	ArkBot.global.setRes();
                         	// Quit Window
                         	sframe.setVisible(false);
@@ -325,7 +335,7 @@ public class ArkBotGUI extends JFrame
 							} else {
 								ArkBot.global.ResX = newX;
 								ArkBot.global.ResY = newY;
-								ArkBot.global.save();
+								ArkBot.global.saveSett();
 								ArkBot.global.setRes();
 							}
 						}
@@ -356,6 +366,198 @@ public class ArkBotGUI extends JFrame
         		//}}
         	}
         });
+        // Edit Shortcuts
+        JMenuItem iEditShort = new JMenuItem("Edit Shortcuts");
+        iEditShort.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//{{ Server Shortcut Frame
+        		JFrame sframe = new JFrame("Shortcuts");
+        		sframe.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    	Object[] options = {"Yes", "No", "Cancel" };
+                    	int ans = JOptionPane.showOptionDialog(null, "Would you like to save changes?", "Save", 
+                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.PLAIN_MESSAGE, icon, options, options[1]);
+                        if (ans == JOptionPane.YES_OPTION){
+                        	// Save
+                        	// Set new hotkeys
+                        	if (tempAGStartStop == tempAGDrop) {
+    							JOptionPane.showMessageDialog(sframe, "Identical AutoGather Hotkeys.");
+    						} else if (tempAHIncOne == tempAHIncTen || tempAHIncOne == tempAHAbort || tempAHIncTen == tempAHAbort) {
+    							JOptionPane.showMessageDialog(sframe, "Identical AutoHeal Hotkeys.");
+    						} else {
+	    						Global.AGatherStartStop = tempAGStartStop;
+	    						Global.AGatherDrop = tempAGDrop;
+	    						Global.AHealIncOne = tempAHIncOne;
+	    						Global.AHealIncTen = tempAHIncTen;
+	    						Global.AHealAbort = tempAHAbort;
+	                        	ArkBot.global.saveShort();
+	                        	// Quit Window
+	                        	sframe.setVisible(false);
+	                        	sframe.disable();
+    						}
+                        } else if (ans == JOptionPane.NO_OPTION) {
+                        	// Quit Window
+                        	sframe.setVisible(false);
+                        	sframe.disable();
+                        } else {
+                        	// Do Nothing
+                        }
+                    }
+                });
+        		sframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        		sframe.setLayout(new GridLayout());
+        		
+        		//{{ Window Shortcuts Panel
+        		JPanel wShort = new JPanel();
+        		wShort.setLayout(new GridLayout(8,3));
+        		
+        		JLabel LAGTitle = new JLabel("AutoGather");
+        		JLabel LAGStartStop = new JLabel("Start/Stop:");
+        		JButton BAGStartStop = new JButton(NativeKeyEvent.getKeyText(Global.AGatherStartStop));
+        		JLabel LAGDrop = new JLabel("Drop:");
+        		JButton BAGDrop = new JButton(NativeKeyEvent.getKeyText(Global.AGatherDrop));
+        		JLabel LAHTitle = new JLabel("AutoHeal");
+        		JLabel LAHIncOne = new JLabel("Increment by 1:");
+        		JButton BAHIncOne = new JButton(NativeKeyEvent.getKeyText(Global.AHealIncOne));
+        		JLabel LAHIncTen = new JLabel("Increment by 10:");
+        		JButton BAHIncTen = new JButton(NativeKeyEvent.getKeyText(Global.AHealIncTen));
+        		JLabel LAHAbort = new JLabel("Abort:");
+        		JButton BAHAbort = new JButton(NativeKeyEvent.getKeyText(Global.AHealAbort));
+        		
+        		//{{ Button Listeners
+        		BAGStartStop.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BAGStartStop.setText("Press New Hotkey");
+						Global.nextKey = true;
+						while (Global.lastPressed < 0) {
+							System.out.println("Waiting For Pressed");
+						}
+						tempAGStartStop = Global.lastPressed;
+						Global.lastPressed = -1;
+						Global.nextKey = false;
+						BAGStartStop.setText(NativeKeyEvent.getKeyText(tempAGStartStop));
+					}
+        		});
+        		BAGDrop.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BAGDrop.setText("Press New Hotkey");
+						Global.nextKey = true;
+						while (Global.lastPressed < 0) {
+							System.out.println("Waiting For Pressed");
+						}
+						tempAGDrop = Global.lastPressed;
+						Global.lastPressed = -1;
+						Global.nextKey = false;
+						BAGDrop.setText(NativeKeyEvent.getKeyText(tempAGDrop));
+					}
+        		});
+        		BAHIncOne.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BAHIncOne.setText("Press New Hotkey");
+						Global.nextKey = true;
+						while (Global.lastPressed < 0) {
+							System.out.println("Waiting For Pressed");
+						}
+						tempAHIncOne = Global.lastPressed;
+						Global.lastPressed = -1;
+						Global.nextKey = false;
+						BAHIncOne.setText(NativeKeyEvent.getKeyText(tempAHIncOne));
+					}
+        		});
+        		BAHIncTen.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BAHIncTen.setText("Press New Hotkey");
+						Global.nextKey = true;
+						while (Global.lastPressed < 0) {
+							System.out.println("Waiting For Pressed");
+						}
+						tempAHIncTen = Global.lastPressed;
+						Global.lastPressed = -1;
+						Global.nextKey = false;
+						BAHIncTen.setText(NativeKeyEvent.getKeyText(tempAHIncTen));
+					}
+        		});
+        		BAHAbort.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BAHAbort.setText("Press New Hotkey");
+						Global.nextKey = true;
+						while (Global.lastPressed < 0) {
+							System.out.println("Waiting For Pressed");
+						}
+						tempAHAbort = Global.lastPressed;
+						Global.lastPressed = -1;
+						Global.nextKey = false;
+						BAHAbort.setText(NativeKeyEvent.getKeyText(tempAHAbort));
+					}
+        		});
+        		
+        		//}}
+    			
+        		JButton BWSet = new JButton("Set");
+        		BWSet.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// Set new hotkeys
+						if (tempAGStartStop == tempAGDrop) {
+							JOptionPane.showMessageDialog(sframe, "Identical AutoGather Hotkeys.");
+						} else if (tempAHIncOne == tempAHIncTen || tempAHIncOne == tempAHAbort || tempAHIncTen == tempAHAbort) {
+							JOptionPane.showMessageDialog(sframe, "Identical AutoHeal Hotkeys.");
+						} else {
+							Global.AGatherStartStop = tempAGStartStop;
+							Global.AGatherDrop = tempAGDrop;
+							Global.AHealIncOne = tempAHIncOne;
+							Global.AHealIncTen = tempAHIncTen;
+							Global.AHealAbort = tempAHAbort;
+							ArkBotSettings.UpdateShortcut("AGatherStartStop", tempAGStartStop);
+							ArkBotSettings.UpdateShortcut("AGatherDrop", tempAGDrop);
+							ArkBotSettings.UpdateShortcut("AHealIncOne", tempAHIncOne);
+							ArkBotSettings.UpdateShortcut("AHealIncTen", tempAHIncTen);
+							ArkBotSettings.UpdateShortcut("AHealAbort", tempAHAbort);
+						}
+					}
+        			
+        		});
+
+        		wShort.add(Box.createHorizontalStrut(1));
+        		wShort.add(LAGTitle);
+        		wShort.add(LAGStartStop);
+        		wShort.add(BAGStartStop);
+        		wShort.add(LAGDrop);
+        		wShort.add(BAGDrop);
+        		wShort.add(Box.createHorizontalStrut(1));
+        		wShort.add(LAHTitle);
+        		wShort.add(LAHIncOne);
+        		wShort.add(BAHIncOne);
+        		wShort.add(LAHIncTen);
+        		wShort.add(BAHIncTen);
+        		wShort.add(LAHAbort);
+        		wShort.add(BAHAbort);
+        		wShort.add(Box.createHorizontalStrut(1));
+        		wShort.add(BWSet);
+        		
+        		//}}
+        		
+        		sframe.add(wShort);
+        		int width = 300;
+        		int height = 300;
+        		sframe.pack();
+        		sframe.setLocationRelativeTo(null);
+        		sframe.setSize(width, height);
+        		sframe.setVisible(true);
+        		sframe.requestFocusInWindow();
+        		//}}
+        	}
+        	
+        });
         JMenuItem iSetDefault = new JMenuItem("Set Default");
         iSetDefault.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -382,7 +584,8 @@ public class ArkBotGUI extends JFrame
         mClient.add(iControl);
         mServer.add(iStart);
         mServer.add(iStop);
-        mSettings.add(iEdit);
+        mSettings.add(iEditSett);
+        mSettings.add(iEditShort);
         mSettings.add(iSetDefault);
         
         menuBar.add(mFile);
