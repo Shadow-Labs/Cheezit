@@ -248,6 +248,7 @@ public class ArkBotGUI extends JFrame
                         if (ans == JOptionPane.YES_OPTION){
                         	// Save
                         	ArkBot.global.save();
+                        	ArkBot.global.setRes();
                         	// Quit Window
                         	sframe.setVisible(false);
                         	sframe.disable();
@@ -324,6 +325,7 @@ public class ArkBotGUI extends JFrame
 							} else {
 								ArkBot.global.ResX = newX;
 								ArkBot.global.ResY = newY;
+								ArkBot.global.save();
 								ArkBot.global.setRes();
 							}
 						}

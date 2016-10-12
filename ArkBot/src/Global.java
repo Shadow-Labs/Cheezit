@@ -133,17 +133,17 @@ public class Global {
 	
 	// Save Relevant Global Values to Settings
 	public void save() {
-		ArkBotSettings.UpdateSetting("ResX", Integer.toString(Global.ResX));
-		ArkBotSettings.UpdateSetting("ResY", Integer.toString(Global.ResY));
+		ArkBotSettings.UpdateSetting("ResX", Integer.toString(ResX));
+		ArkBotSettings.UpdateSetting("ResY", Integer.toString(ResY));
 	}
 	
 	// Set Resolution
 	public void setRes() {
 		ArkBotGUI.GUIText("Set ArkBot Resolution to " + ResX + "x" + ResY);
-		Global.ResX = Integer.parseInt(ArkBotSettings.GetSetting("ResX"));
-		Global.ResY = Integer.parseInt(ArkBotSettings.GetSetting("ResY"));
-		float xScale = (float)Global.ResX / 1440 ;
-		float yScale = (float)Global.ResY / 900;
+		ResX = Integer.parseInt(ArkBotSettings.GetSetting("ResX"));
+		ResY = Integer.parseInt(ArkBotSettings.GetSetting("ResY"));
+		float xScale = (float)ResX / 1440 ;
+		float yScale = (float)ResY / 900;
 		Point center = new Point(ResX/2, ResY/2);
 		
 		CHATBOX.setBounds(Math.round(12 * xScale), Math.round(260 * yScale), Math.round(450 * xScale), Math.round(140 * yScale));
