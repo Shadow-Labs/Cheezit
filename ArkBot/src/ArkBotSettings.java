@@ -32,11 +32,12 @@ public class ArkBotSettings {
 	}
 	
 	public static void ResetShortcuts() {
-		shortdic.put("AGatherStartStop", 74); // Keypad Minus
-		shortdic.put("AGatherDrop", 55); // Keypad Multiply
-		shortdic.put("AHealIncOne", 74); // Keypad Minus
-		shortdic.put("AHealIncTen", 55); // Keypad Multiply
-		shortdic.put("AHealAbort", 3637); // Keypad Divide
+		shortdic.put("AGatherStartStop", 74); 	// Keypad Minus
+		shortdic.put("AGatherDrop", 55); 		// Keypad Multiply
+		shortdic.put("AHealIncOne", 74); 		// Keypad Minus
+		shortdic.put("AHealIncTen", 55); 		// Keypad Multiply
+		shortdic.put("AHealAbort", 3637);		// Keypad Divide
+		shortdic.put("MSplit", 78);				// Keypad Plus
 		WriteShortcuts(true);
 	}
 	

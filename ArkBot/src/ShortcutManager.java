@@ -76,6 +76,19 @@ public class ShortcutManager implements NativeKeyListener {
 	        	ArkBot.state.healer.healcount = 0;	        	
 	        }
         }
+        
+        // MeatSplitterShortcuts
+        if (ArkBot.state.splitter.split) {
+	        if (e.getKeyCode() ==  Global.MSplitter) {
+	        	if (ArkBot.state.splitter.splitting) {
+		        	ArkBotGUI.GUIText("[SPLITTER]: Stopped");
+		        	ArkBot.state.splitter.splitting = false;
+	        	} else {
+	        		ArkBotGUI.GUIText("[SPLITTER]: Started");
+		        	ArkBot.state.splitter.splitting = true;
+	        	}
+	        }
+        }
     }
 
     public void nativeKeyTyped(NativeKeyEvent e) {

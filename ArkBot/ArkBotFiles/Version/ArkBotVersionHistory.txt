@@ -3,16 +3,10 @@ ArkBot Version Updates/History
 Future Implementations
 
 - Input Recorder
-- Inventory StackCount
-- Meat Splitter Implementation
-- NarcoGather
-- NarcoticBuilder
-- NarcoticStorage
-- Narcotics Start to finish
+- Help Menu
 - Client Functionality
 - Client States
 - Server Functionality
-- Revamped AutoDrop Functionality
 - Fixed Updater?
 
 Known Bugs
@@ -24,14 +18,21 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.2.0
-- AutoHealer Implementation
-- Hotkey Manager
-- Fixed Resolution Bug (UNTESTED)
+v0.2.1
 
 ---------------
 
 Current Version:
+v0.2.0
+- Meat Splitter Initial Implementation
+- AutoHealer Implementation
+- Fixed Resolution Bug (UNTESTED)
+- Hotkey Manager
+
+
+---------------
+
+Past Versions:
 v0.1.9
 - Initial Customizable Settings Implementation
 	- Set Default Implementation
@@ -40,11 +41,7 @@ v0.1.9
 - Work In Progress Windows for unimplemented features
 - Initial Custom Resolution Update (UNTESTED)
 	- Set via Settings
-
-
----------------
-
-Past Versions:
+	
 v0.1.8
 - Taming v1.1
 	- Implemented AutoDrink

@@ -1,0 +1,5 @@
+Username = RedLeeder
+SetupPrompt = false
+ResY = 900
+AndrewIsAwesome = true
+ResX = 1440

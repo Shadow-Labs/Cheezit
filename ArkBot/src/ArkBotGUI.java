@@ -66,6 +66,7 @@ public class ArkBotGUI extends JFrame
 	int tempAHIncOne = Global.AHealIncOne;
 	int tempAHIncTen = Global.AHealIncTen;
 	int tempAHAbort = Global.AHealAbort;
+	int tempMSplit = Global.MSplitter;
 	
 	public static JFrame GUI;
 	public static JTextArea textLog;
@@ -164,7 +165,7 @@ public class ArkBotGUI extends JFrame
         				+ "\tyou when a new update is avaliable where it will automattically download and\n"
         				+ "\tupdate itself with the newest patches/features.\n\n"
         				+ "If you yourself knows some java programming or know someone who does, put me in touch!\n\n"
-        				+ "Thanks using ArkBot! Let me know what you think,\n"
+        				+ "Thanks for using ArkBot! Let me know what you think,\n"
         				+ "\t-RedLeeder\n\n";
         		//}}
         		JOptionPane.showOptionDialog(null, message, "About ArkBot", 
@@ -412,7 +413,7 @@ public class ArkBotGUI extends JFrame
         		
         		//{{ Window Shortcuts Panel
         		JPanel wShort = new JPanel();
-        		wShort.setLayout(new GridLayout(8,3));
+        		wShort.setLayout(new GridLayout(10,3));
         		
         		JLabel LAGTitle = new JLabel("AutoGather");
         		JLabel LAGStartStop = new JLabel("Start/Stop:");
@@ -426,6 +427,9 @@ public class ArkBotGUI extends JFrame
         		JButton BAHIncTen = new JButton(NativeKeyEvent.getKeyText(Global.AHealIncTen));
         		JLabel LAHAbort = new JLabel("Abort:");
         		JButton BAHAbort = new JButton(NativeKeyEvent.getKeyText(Global.AHealAbort));
+        		JLabel LMSTitle = new JLabel("Meat Splitter");
+        		JLabel LMSplit = new JLabel("Meat Splitter Start/Stop:");
+        		JButton BMSplit = new JButton(NativeKeyEvent.getKeyText(Global.MSplitter));
         		
         		//{{ Button Listeners
         		BAGStartStop.addActionListener(new ActionListener() {
@@ -498,6 +502,20 @@ public class ArkBotGUI extends JFrame
 						BAHAbort.setText(NativeKeyEvent.getKeyText(tempAHAbort));
 					}
         		});
+        		BMSplit.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BMSplit.setText("Press New Hotkey");
+						Global.nextKey = true;
+						while (Global.lastPressed < 0) {
+							System.out.println("Waiting For Pressed");
+						}
+						tempMSplit = Global.lastPressed;
+						Global.lastPressed = -1;
+						Global.nextKey = false;
+						BMSplit.setText(NativeKeyEvent.getKeyText(tempMSplit));
+					}
+        		});
         		
         		//}}
     			
@@ -522,6 +540,7 @@ public class ArkBotGUI extends JFrame
 							ArkBotSettings.UpdateShortcut("AHealIncOne", tempAHIncOne);
 							ArkBotSettings.UpdateShortcut("AHealIncTen", tempAHIncTen);
 							ArkBotSettings.UpdateShortcut("AHealAbort", tempAHAbort);
+							ArkBotSettings.UpdateShortcut("MSplit", tempMSplit);
 						}
 					}
         			
@@ -541,6 +560,10 @@ public class ArkBotGUI extends JFrame
         		wShort.add(BAHIncTen);
         		wShort.add(LAHAbort);
         		wShort.add(BAHAbort);
+        		wShort.add(Box.createHorizontalStrut(1));
+        		wShort.add(LMSTitle);
+        		wShort.add(LMSplit);
+        		wShort.add(BMSplit);
         		wShort.add(Box.createHorizontalStrut(1));
         		wShort.add(BWSet);
         		
@@ -945,7 +968,7 @@ public class ArkBotGUI extends JFrame
         JPanel PAutoHealer = new JPanel();
         PAutoHealer.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoHealer.setOpaque(false);
-        PAutoHealer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.RED), "AutoHealer v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
+        PAutoHealer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.RED), "AutoHealer v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // AutoHealer - Button
         JButton AutoHealButton = new JButton("Enable AutoHeal");
@@ -974,6 +997,35 @@ public class ArkBotGUI extends JFrame
         PAutoHealer.setVisible(true);
         //}}        
 
+        //{{ MeatSplitter - Panel
+        JPanel PMeatSplitter = new JPanel();
+        PMeatSplitter.setLayout(new FlowLayout(FlowLayout.LEFT));
+        PMeatSplitter.setOpaque(false);
+        PMeatSplitter.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK), "Meat Splitter v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        
+        // Something3 - Button
+        JButton BMeatSplitter = new JButton("Enable MeatSplitter");
+        BMeatSplitter.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (ArkBot.state.splitter.split) {
+        			ArkBotGUI.GUIText("[SPLITTER]: Disabled");
+        			BMeatSplitter.setText("Enable MeatSplitter");
+        			BMeatSplitter.setBackground(new JButton().getBackground());
+            		ArkBot.state.splitter.split = false;
+        			
+        		} else {
+        			ArkBotGUI.GUIText("[SPLITTER]: Enabled");
+        			BMeatSplitter.setText("Disable MeatSplitter");
+        			BMeatSplitter.setBackground(Color.GREEN);
+            		ArkBot.state.splitter.split = true;
+        		}
+        	}
+        });
+
+        PMeatSplitter.add(BMeatSplitter);
+        PMeatSplitter.setVisible(true);
+        //}}
+        
         //{{ Download Zip - Panel
         JPanel PDZip = new JPanel();
         PDZip.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -1017,25 +1069,6 @@ public class ArkBotGUI extends JFrame
 
         ClientConnect.add(ClientButton);
         ClientConnect.setVisible(true);
-        //}}
-
-        
-        //{{ Something3 - Panel
-        JPanel Something3 = new JPanel();
-        Something3.setLayout(new FlowLayout(FlowLayout.LEFT));
-        Something3.setOpaque(false);
-        Something3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Something3", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
-        
-        // Something3 - Button
-        JButton Something3Button = new JButton("Something 3");
-        Something3Button.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		// Something
-        	}
-        });
-
-        Something3.add(Something3Button);
-        Something3.setVisible(false);
         //}}
         
         //{{ Something4 - Panel
@@ -1124,9 +1157,9 @@ public class ArkBotGUI extends JFrame
         Main.add(PBreeding);
         Main.add(PAutoGatherer);
         Main.add(PAutoHealer);
+        Main.add(PMeatSplitter);
         Main.add(PDZip);
         Main.add(ClientConnect);
-        Main.add(Something3);
         Main.add(Something4);
         Main.add(Something5);
         Main.add(Something6);

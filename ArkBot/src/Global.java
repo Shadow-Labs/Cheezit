@@ -47,6 +47,7 @@ public class Global {
 	static int AHealIncOne;
 	static int AHealIncTen;
 	static int AHealAbort;
+	static int MSplitter;
 	
 	public Global() {
 		HOST = "76.181.91.208";
@@ -93,6 +94,7 @@ public class Global {
 		AHealIncOne = ArkBotSettings.GetShortcut("AHealIncOne");
 		AHealIncTen = ArkBotSettings.GetShortcut("AHealIncTen");
 		AHealAbort = ArkBotSettings.GetShortcut("AHealAbort");
+		MSplitter = ArkBotSettings.GetShortcut("MSplit");
 		
 //			Point[] points = {
 //					new Point(82,280),

@@ -157,6 +157,7 @@ public class ArkBot {
         	state.breed.Breedin();
         	state.gatherer.Gatherin();
         	state.healer.Healin();
+        	state.splitter.Splittin();
         	
         	// Server Start - Password: ArkBotFTW
         	if (serverStart) {

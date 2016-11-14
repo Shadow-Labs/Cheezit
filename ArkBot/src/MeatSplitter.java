@@ -1,62 +1,47 @@
-import java.awt.AWTException;
+import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 
 public class MeatSplitter {
-	private Robot bot;
-	MouseDrag drag;
-	CharacterActions action;
-	public MeatSplitter()  throws AWTException {
-		this.bot = ArkBot.bot;
-		action = new CharacterActions();
+	Robot bot;
+	public boolean split;
+	public boolean splitting;
+	
+	public MeatSplitter() {
+		bot = ArkBot.bot;
+		split = false;
+		splitting = false;
 	}
-	public void CharInvSearch() {
-		
+	
+	public void Splittin() {
+		if (split && splitting) {
+			Split();
+		}
 	}
 	
-//	public void SplitAll() {
-//		int stacks = action.InvSearch("Fiber");
-//		if (stacks >= 20) {
-//			drag.move(Global.CHAR_INV_SCROLL_BOT);
-//			leftClick();
-//			
-//			
-//		}
-//	}
+	public void Split() {
+		int splitcount = 0;
+		bot.keyPress(29); // Left Control
+		while (split && splitting && splitcount <= 20) {
+			MousePressDragRelease();
+			splitcount++;
+		}
+		bot.keyRelease(29); // Left Control
+		splitting = false;
+		ArkBotGUI.GUIText("[SPLITTER] Finished Stack Split");
+	}
 	
-//	public void SplitStack(Point q, int stacks) {
-//		if (stacks == 0) {
-//			ArkBotGUI.GUIText("[ACTION]: No stacks to split");
-//		} else {
-//			ArkBotGUI.GUIText("[ACTION]: Splitting stacks");
-//			
-//			Point k = new Point(q.x - (int) ((Math.random() * 5) + 5), q.y - (int) ((Math.random() * 10) + 20));
-//			// WHILE CYAN split,
-//			drag.move(q);
-//			bot.keyPress(KeyEvent.VK_CONTROL);
-//			int pixelRange = 7;
-//			System.out.println(action.PixelRange(q, pixelRange) + " Split " + stacks);
-//			while (action.PixelRange(q, pixelRange) && stacks > 0) {
-//				System.out.println(action.PixelRange(q, pixelRange) + " Split " + stacks);
-//				drag.move(q);
-//				bot.delay(PAUSE);
-//				bot.mousePress(InputEvent.BUTTON1_MASK);
-//				drag.move(k);
-//				bot.mouseRelease(InputEvent.BUTTON1_MASK);
-//				k = new Point(q.x - (int) ((Math.random() * 5) + 5), q.y - (int) ((Math.random() * 10) + 20));
-//			}
-//			bot.keyRelease(KeyEvent.VK_CONTROL);
-//		}
-//	}
-	
-	  private void leftClick()
-	  {
-	    bot.mousePress(InputEvent.BUTTON1_MASK);
-	    bot.delay(200);
-	    bot.mouseRelease(InputEvent.BUTTON1_MASK);
-	    bot.delay(200);
-	  }
+	private void MousePressDragRelease() {
+		Point start = MouseInfo.getPointerInfo().getLocation();
+        
+        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        for(int i = 0; i <= 10;  i++) {
+        	bot.mouseMove((start.x + i), (start.y + i));
+        }
+        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        
+        bot.mouseMove(start.x, start.y);
+	}
 
 }
