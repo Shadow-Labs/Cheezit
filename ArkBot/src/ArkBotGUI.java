@@ -1001,7 +1001,7 @@ public class ArkBotGUI extends JFrame
         JPanel PMeatSplitter = new JPanel();
         PMeatSplitter.setLayout(new FlowLayout(FlowLayout.LEFT));
         PMeatSplitter.setOpaque(false);
-        PMeatSplitter.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK), "Meat Splitter v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PMeatSplitter.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK), "Meat Splitter v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Something3 - Button
         JButton BMeatSplitter = new JButton("Enable MeatSplitter");
