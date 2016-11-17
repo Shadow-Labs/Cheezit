@@ -18,21 +18,23 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.2.1
+v0.2.2
 
 ---------------
 
 Current Version:
+v0.2.1
+- Meat Splitter 1 Stack Split Implentation
+
+---------------
+
+Past Versions:
 v0.2.0
 - Meat Splitter Initial Implementation
 - AutoHealer Implementation
 - Fixed Resolution Bug (UNTESTED)
 - Hotkey Manager
 
-
----------------
-
-Past Versions:
 v0.1.9
 - Initial Customizable Settings Implementation
 	- Set Default Implementation

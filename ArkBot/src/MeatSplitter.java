@@ -2,6 +2,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 public class MeatSplitter {
 	Robot bot;
@@ -22,25 +23,23 @@ public class MeatSplitter {
 	
 	public void Split() {
 		int splitcount = 0;
-		bot.keyPress(29); // Left Control
-		while (split && splitting && splitcount <= 20) {
+        bot.keyPress(KeyEvent.VK_CONTROL); // Left Control
+		while (split && splitting && splitcount <= 30) {
 			MousePressDragRelease();
 			splitcount++;
 		}
-		bot.keyRelease(29); // Left Control
+		bot.keyRelease(KeyEvent.VK_CONTROL); // Left Control
 		splitting = false;
 		ArkBotGUI.GUIText("[SPLITTER] Finished Stack Split");
 	}
 	
 	private void MousePressDragRelease() {
 		Point start = MouseInfo.getPointerInfo().getLocation();
-        
         bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        for(int i = 0; i <= 10;  i++) {
-        	bot.mouseMove((start.x + i), (start.y + i));
+        for(int i = 0; i <= 5;  i++) {
+        	bot.mouseMove((start.x + (3*i)), (start.y + (3*i)));
         }
-        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        
+        bot.mouseRelease(InputEvent.BUTTON1_MASK);
         bot.mouseMove(start.x, start.y);
 	}
 
