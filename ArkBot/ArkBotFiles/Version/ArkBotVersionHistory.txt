@@ -10,6 +10,7 @@ Future Implementations
 - Fixed Updater?
 
 Known Bugs
+- Broke Updater...need to reset settings before it'll check for updates?
 - Manual Download downloading screen is all white?
 - Need to delete ArkBotSettings.txt before able to run
 	newest version of ArkBot
