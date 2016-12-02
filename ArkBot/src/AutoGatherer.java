@@ -8,10 +8,11 @@ public class AutoGatherer {
 	public String [] materials = {"Metal", "Stone", "Flint", "Obsidian", "Crystal", "Oil", "Wood", "Thatch", "Fiber",
 			"Hide", "Amarberry", "Azulberry", "Tintoberry", "Mejoberry", "Narcoberry", "Stimberry", "Seed", 
 			"Mushroom", "Flower", "Raw Meat", "Prime Meat", "Spoiled Meat"};
-	public ArrayList<String> keepMats = new ArrayList<String>();
+	public ArrayList<String> dropMats = new ArrayList<String>();
 	public boolean gathering;
 	public boolean clicking;
 	public boolean dropping;
+	public boolean drop;
 	public float pause;
 	
 	public AutoGatherer() {
@@ -19,6 +20,7 @@ public class AutoGatherer {
 		gathering = false;
 		clicking = false;
 		dropping = false;
+		drop = false;
 	}
 	
 	public void Gatherin() {
@@ -36,6 +38,16 @@ public class AutoGatherer {
 				System.out.print("\nClick");
 				leftClick();
 				bot.delay((int)(pause * 1000));
+				
+				// Check for drop
+				if (drop && dropping) {
+					Drop();
+				}
+			}
+			
+			// Check for drop
+			if (drop && dropping) {
+				Drop();
 			}
 		}
 	}
@@ -55,17 +67,14 @@ public class AutoGatherer {
 		
 		// Open Ext Inv
 		bot.keyPress(KeyEvent.VK_F);
-		bot.delay(500);
+		bot.delay(700);
 		bot.keyRelease(KeyEvent.VK_F);
-		bot.delay(Global.PAUSE);
-		
+		bot.delay(Global.PAUSE);		
 		
 		int i = 0;
-		while (i < materials.length && gathering) {
-			String mat = materials[i];
-			if (keepMats.contains(mat)) {
-				// Do Nothing
-			} else {
+		while (i < dropMats.size() && gathering && dropping) {
+			String mat = dropMats.get(i);
+			if (dropMats.contains(mat)) {
 				// Drop All
 				ArkBot.state.act.ExtInvSearch(mat);
 				ArkBot.state.act.DropAll();

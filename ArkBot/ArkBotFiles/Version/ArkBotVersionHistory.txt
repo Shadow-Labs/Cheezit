@@ -18,17 +18,24 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.2.2
+v0.2.3
 
 ---------------
 
 Current Version:
-v0.2.1
-- Meat Splitter 1 Stack Split Implentation
+v0.2.2
+- AutoGather 1.5
+	- AutoDrop can now be interrupted
+	- AutoDrop QuickSets
+	- AutoDrop Optimization
+- Updated Server Info for testing
 
 ---------------
 
 Past Versions:
+v0.2.1
+- Meat Splitter 1 Stack Split Implentation
+
 v0.2.0
 - Meat Splitter Initial Implementation
 - AutoHealer Implementation

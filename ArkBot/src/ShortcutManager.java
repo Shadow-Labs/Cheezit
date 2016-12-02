@@ -47,14 +47,14 @@ public class ShortcutManager implements NativeKeyListener {
 	        	System.out.println("gather: " + ArkBot.state.gatherer.gathering + " click: " + ArkBot.state.gatherer.clicking);
 	        	ArkBot.state.gatherer.StartStop();
 	        } else if (e.getKeyCode() == Global.AGatherDrop) {
-	        	if (ArkBot.state.gatherer.dropping) {
-		        	if (ArkBot.state.gatherer.clicking) {
-		        		ArkBot.state.gatherer.StartStop();
-		        		ArkBot.state.gatherer.Drop();
-		        		ArkBot.state.gatherer.StartStop();
-		        	} else {
-		        		ArkBot.state.gatherer.Drop();
-		        	}
+	        	if (ArkBot.state.gatherer.drop) {
+	        		// Actively Dropping
+	        		if (ArkBot.state.gatherer.dropping) {
+	        			ArkBot.state.gatherer.dropping = false;
+	        		// Not dropping
+	        		} else {
+	        			ArkBot.state.gatherer.dropping = true;
+	        		}
 	        	}
 	        }
         }

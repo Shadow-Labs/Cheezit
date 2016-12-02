@@ -50,7 +50,7 @@ public class Global {
 	static int MSplitter;
 	
 	public Global() {
-		HOST = "76.181.91.208";
+		HOST = "23.28.220.129";
 		PORT = 3132;
 		
 		nextKey = false;

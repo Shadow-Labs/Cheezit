@@ -889,7 +889,7 @@ public class ArkBotGUI extends JFrame
         JPanel PAutoGatherer = new JPanel();
         PAutoGatherer.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoGatherer.setOpaque(false);
-        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer v1.5", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // AutoGatherer - Button
         JPanel AGBPanel = new JPanel();
@@ -909,6 +909,7 @@ public class ArkBotGUI extends JFrame
         JButton AutoGatherButton = new JButton("Enable AutoGather");
         AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
         JCheckBox AutoDrop = new JCheckBox("AutoDrop Functionality");
+        AutoDrop.setSelected(true);
         JCheckBox boxes[] = new JCheckBox[ArkBot.state.gatherer.materials.length];
 		i = 0;
 		int m = 0;
@@ -928,6 +929,131 @@ public class ArkBotGUI extends JFrame
 			}
 			System.out.println(i + " " + m + " " + n);
 		}
+		
+		//{{ AutoDrop Panel
+		JPanel AutoDropPanel = new JPanel();
+		AutoDropPanel.setLayout(new GridLayout(10,1));
+		JButton ADmf = new JButton("Metal/Flint");
+		JButton ADmfs = new JButton("Metal/Flint/Stone");
+		JButton ADmfsco = new JButton("Mtl/Flnt/Stn/Obs/Crys");
+		JButton ADwt = new JButton("Wood/Thatch");
+		JButton ADSetClear = new JButton("Set/Clear All");
+		
+			//{{ Action Listeners
+			ADmf.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		for (int i = 0; i < boxes.length; i++) {
+	        			if (ArkBot.state.gatherer.materials[i].equals("Metal")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Flint")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Oil")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Fiber")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Hide")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Raw Meat")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Prime Meat")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Spoiled Meat")) {
+	            			boxes[i].setSelected(true);
+	        			} else {
+	        				boxes[i].setSelected(false);
+	        			}
+	        		}
+	        	}
+	        	});
+			ADmfs.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		for (int i = 0; i < boxes.length; i++) {
+	        			if (ArkBot.state.gatherer.materials[i].equals("Metal")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Flint")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Stone")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Oil")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Fiber")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Hide")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Raw Meat")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Prime Meat")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Spoiled Meat")) {
+	            			boxes[i].setSelected(true);
+	        			} else {
+	        				boxes[i].setSelected(false);
+	        			}
+	        		}
+	        	}
+	        	});
+			ADmfsco.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		for (int i = 0; i < boxes.length; i++) {
+	        			if (ArkBot.state.gatherer.materials[i].equals("Metal")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Flint")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Stone")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Crystal")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Obsidian")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Oil")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Fiber")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Hide")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Raw Meat")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Prime Meat")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Spoiled Meat")) {
+	            			boxes[i].setSelected(true);
+	        			} else {
+	        				boxes[i].setSelected(false);
+	        			}
+	        		}
+	        	}
+	        	});
+			ADwt.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		for (int i = 0; i < boxes.length; i++) {
+	        			if (ArkBot.state.gatherer.materials[i].equals("Wood")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Thatch")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Metal")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Flint")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Stone")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Crystal")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Obsidian")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Oil")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Fiber")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Hide")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Raw Meat")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Prime Meat")
+	        					|| ArkBot.state.gatherer.materials[i].equals("Spoiled Meat")) {
+	            			boxes[i].setSelected(true);
+	        			} else {
+	        				boxes[i].setSelected(false);
+	        			}
+	        		}
+	        	}
+	        	});
+			ADSetClear.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		if (boxes[0].isSelected()) {
+		        		for (int i = 0; i < boxes.length; i++) {
+		            			boxes[i].setSelected(false);
+		        		}
+	        		} else {
+	        			for (int i = 0; i < boxes.length; i++) {
+	            			boxes[i].setSelected(true);
+	        		}
+	        		}
+	        	}
+	        	});
+			//}}
+		
+		AutoDropPanel.add(ADmf);
+		AutoDropPanel.add(Box.createHorizontalStrut(1));
+		AutoDropPanel.add(ADmfs);
+		AutoDropPanel.add(Box.createHorizontalStrut(1));
+		AutoDropPanel.add(ADmfsco);
+		AutoDropPanel.add(Box.createHorizontalStrut(1));
+		AutoDropPanel.add(ADwt);
+		AutoDropPanel.add(Box.createHorizontalStrut(1));
+		AutoDropPanel.add(Box.createHorizontalStrut(1));
+		AutoDropPanel.add(ADSetClear);
+		
+		// JPanel
+		JPanel AutoDropBigPanel = new JPanel();
+		AutoDropBigPanel.add(AutoDropPanel);
+		AutoDropBigPanel.add(AGBPanel);
+			
+		//}}
+		
         AutoGatherButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (ArkBot.state.gatherer.gathering) {
@@ -938,22 +1064,43 @@ public class ArkBotGUI extends JFrame
         			AutoGatherButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("[ACTION] Stopped AutoGatherer.");
         		} else {
-        			ArkBot.state.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, AutoDrop, "AutoClicker Delay (seconds)"));
+        			ArkBot.state.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, AutoDrop, "0.25"));
         			if (AutoDrop.isSelected()) {
-        				ArkBot.state.gatherer.dropping = true;        				
-	        			JOptionPane.showConfirmDialog(GUI, AGBPanel, "Material Selection", JOptionPane.PLAIN_MESSAGE);
+        				ArkBot.state.gatherer.drop = true;        				
+	        			JOptionPane.showConfirmDialog(GUI, AutoDropBigPanel, "Material Selection", JOptionPane.PLAIN_MESSAGE);
 	        			
 	        			int i = 0;
-	        			ArkBot.state.gatherer.keepMats.clear();
+	        			ArkBot.state.gatherer.dropMats.clear();
 	        			while (i < ArkBot.state.gatherer.materials.length) {
-	        				if (boxes[i].isSelected()) {
-	        					ArkBot.state.gatherer.keepMats.add(ArkBot.state.gatherer.materials[i]);
+	        				if (!boxes[i].isSelected()) {
+	        					ArkBot.state.gatherer.dropMats.add(ArkBot.state.gatherer.materials[i]);
+	        					
+	        					// Consolidate Berries if possible
+	        					if (ArkBot.state.gatherer.dropMats.contains("Amarberry")
+	        							&& ArkBot.state.gatherer.dropMats.contains("Azulberry")
+	        							&& ArkBot.state.gatherer.dropMats.contains("Tintoberry")
+	        							&& ArkBot.state.gatherer.dropMats.contains("Mejoberry")
+	        							&& ArkBot.state.gatherer.dropMats.contains("Narcoberry")
+	        							&& ArkBot.state.gatherer.dropMats.contains("Stimberry")) {
+	        						
+	        						// Remove Berry Types
+	        						ArkBot.state.gatherer.dropMats.remove("Amarberry");
+	        						ArkBot.state.gatherer.dropMats.remove("Azulberry");
+	        						ArkBot.state.gatherer.dropMats.remove("Tintoberry");
+	        						ArkBot.state.gatherer.dropMats.remove("Mejoberry");
+	        						ArkBot.state.gatherer.dropMats.remove("Narcoberry");
+	        						ArkBot.state.gatherer.dropMats.remove("Stimberry");
+	        						
+	        						// Add Generic "Berry"
+	        						ArkBot.state.gatherer.dropMats.add("berry");
+	        					}
 	        				}
 	        				i++;
 	        			}
         			}
         			ArkBot.state.gatherer.gathering = true;
-        			ArkBotGUI.GUIText("Press '-' to begin AutoClicking every " + ArkBot.state.gatherer.pause + " seconds.");
+        			ArkBotGUI.GUIText("Press '" + NativeKeyEvent.getKeyText(Global.AGatherStartStop) + "' to begin AutoClicking every "
+        					+ "" + ArkBot.state.gatherer.pause + " seconds.");
 
         			AutoGatherButton.setText("Disable AutoGather");
         			AutoGatherButton.setBackground(Color.GREEN);
