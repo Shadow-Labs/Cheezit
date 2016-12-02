@@ -220,15 +220,6 @@ public class Updater {
     }
     private void launch() throws FileNotFoundException, UnsupportedEncodingException
     {
-//        // Copy Settings
-//    	Scanner SettScanner = new Scanner( new File("ArkBotFiles\\Settings\\ArkBotSettings.txt"), "UTF-8" );
-//    	String oldSettings = SettScanner.useDelimiter("\\A").next();
-//    	SettScanner.close(); // Put this call in a finally block
-//    	
-//    	// Copy Shortcuts
-//    	Scanner SettShortcuts = new Scanner( new File("ArkBotFiles\\Settings\\ArkBotSettings.txt"), "UTF-8" );
-//    	String oldShortcuts = SettShortcuts.useDelimiter("\\A").next();
-//    	SettShortcuts.close(); // Put this call in a finally block
     	
     	String[] run = {"java","-jar","ArkBot" + webVersion + ".jar"};
         try {
@@ -242,10 +233,6 @@ public class Updater {
         PrintWriter writer = new PrintWriter ("ArkBotFiles\\Version\\CurrentVersion.txt", "UTF-8");
         writer.print(webVersion);
         writer.close();
-        
-//        // Copy Settings
-//        PrintWriter settingWriter = new PrintWriter ("ArkBotFiles\\Settings\\ArkBotSettings.txt", "UTF-8");
-//        setting
         
         // Reset Settings
         //ArkBotSettings.ResetSettings();
