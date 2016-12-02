@@ -24,7 +24,7 @@ public class MeatSplitter {
 	public void Split() {
 		int splitcount = 0;
         bot.keyPress(KeyEvent.VK_CONTROL); // Left Control
-		while (split && splitting && splitcount <= 30) {
+		while (split && splitting && splitcount <= 20) {
 			MousePressDragRelease();
 			splitcount++;
 		}
@@ -40,6 +40,7 @@ public class MeatSplitter {
         	bot.mouseMove((start.x + (3*i)), (start.y + (3*i)));
         }
         bot.mouseRelease(InputEvent.BUTTON1_MASK);
+        bot.delay(1000); // Prevent Double Clicking?
         bot.mouseMove(start.x, start.y);
 	}
 

@@ -883,7 +883,7 @@ public class ArkBotGUI extends JFrame
         	}
         });
         PBreeding.add(breedButton);
-      //}}
+        //}}
         
         //{{ AutoGatherer - Panel
         JPanel PAutoGatherer = new JPanel();
@@ -962,7 +962,7 @@ public class ArkBotGUI extends JFrame
         });
         
         PAutoGatherer.add(AutoGatherButton);
-      //}}
+        //}}
         
         //{{ AuotHealer - Panel
         JPanel PAutoHealer = new JPanel();

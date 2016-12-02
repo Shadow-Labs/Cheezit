@@ -30,6 +30,7 @@ public class Tamer {
 		long foodStart = System.currentTimeMillis();
 		long waterStart = System.currentTimeMillis();
 		long narcStart = System.currentTimeMillis();
+		long inactivityTime = System.currentTimeMillis();
 		int waterSlot = 1;
 		int waterRep = 0;
 		int val;
@@ -90,6 +91,27 @@ public class Tamer {
 				
 				waterRep++;
 				waterStart = System.currentTimeMillis();
+			}
+			
+			// Inactivity
+			if (System.currentTimeMillis() - inactivityTime > 15 * 1000) {
+				// Exit Inventory
+				bot.keyPress(KeyEvent.VK_F);
+				bot.delay(500);
+				bot.keyRelease(KeyEvent.VK_F);
+				bot.delay(1000);
+				
+				// Jump!
+				bot.keyPress(KeyEvent.VK_SPACE);
+				bot.delay(500);
+				bot.keyRelease(KeyEvent.VK_SPACE);
+				bot.delay(Global.PAUSE);
+				
+				// Open Inventory
+				bot.keyPress(KeyEvent.VK_F);
+				bot.delay(500);
+				bot.keyRelease(KeyEvent.VK_F);
+				bot.delay(1000);
 			}
 		}
 	}
