@@ -20,6 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Enumeration;
+import java.util.Scanner;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -219,7 +220,17 @@ public class Updater {
     }
     private void launch() throws FileNotFoundException, UnsupportedEncodingException
     {
-        String[] run = {"java","-jar","ArkBot" + webVersion + ".jar"};
+//        // Copy Settings
+//    	Scanner SettScanner = new Scanner( new File("ArkBotFiles\\Settings\\ArkBotSettings.txt"), "UTF-8" );
+//    	String oldSettings = SettScanner.useDelimiter("\\A").next();
+//    	SettScanner.close(); // Put this call in a finally block
+//    	
+//    	// Copy Shortcuts
+//    	Scanner SettShortcuts = new Scanner( new File("ArkBotFiles\\Settings\\ArkBotSettings.txt"), "UTF-8" );
+//    	String oldShortcuts = SettShortcuts.useDelimiter("\\A").next();
+//    	SettShortcuts.close(); // Put this call in a finally block
+    	
+    	String[] run = {"java","-jar","ArkBot" + webVersion + ".jar"};
         try {
             Runtime.getRuntime().exec(run);
         } catch (Exception ex) {
@@ -232,8 +243,12 @@ public class Updater {
         writer.print(webVersion);
         writer.close();
         
+//        // Copy Settings
+//        PrintWriter settingWriter = new PrintWriter ("ArkBotFiles\\Settings\\ArkBotSettings.txt", "UTF-8");
+//        setting
+        
         // Reset Settings
-        ArkBotSettings.ResetSettings();
+        //ArkBotSettings.ResetSettings();
         
         ArkBot.log.CloseLog();
         System.exit(0);
