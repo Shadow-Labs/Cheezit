@@ -88,7 +88,7 @@ public class AutoGatherer {
 		bot.keyRelease(KeyEvent.VK_ESCAPE);
 		bot.delay(Global.PAUSE);
 		
-		
+		ArkBot.state.gatherer.dropping = false;
 		ArkBotGUI.GUIText("[ACTION] Finished dropping.");
 	}
 	
