@@ -161,7 +161,7 @@ public class Updater {
 	        fOut.flush();
 	        fOut.close();
 	        is.close();
-	        ArkBotGUI.GUIText("Download Complete");
+	        ArkBotGUI.GUIText("Download Complete.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
