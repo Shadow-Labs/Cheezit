@@ -230,12 +230,12 @@ public class Updater {
 //    	String oldShortcuts = SettShortcuts.useDelimiter("\\A").next();
 //    	SettShortcuts.close(); // Put this call in a finally block
     	
-//    	String[] run = {"java","-jar","ArkBot" + webVersion + ".jar"};
-//        try {
-//            Runtime.getRuntime().exec(run);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
+    	String[] run = {"java","-jar","ArkBot" + webVersion + ".jar"};
+        try {
+            Runtime.getRuntime().exec(run);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         
         // Update Version
         ArkBotGUI.GUIText("Updated CurrentVersion.txt");
