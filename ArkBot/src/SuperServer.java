@@ -31,7 +31,7 @@ public class SuperServer extends Thread {
 			Server.serverList.put(id, clientStruct);
 			ArkBotGUI.GUIText("Client Username: " + Server.serverList.get(id).getUser());
 			ArkBotGUI.GUIText("Client IP: " + Server.serverList.get(id).getAddr());
-			ArkBotGUI.GUIText("Breed State: " + Server.serverList.get(id).getState().breed);
+			ArkBotGUI.GUIText("Breed State: " + Server.serverList.get(id).getState().breeder);
 			ArkBotGUI.GUIText("Tame State: " + Server.serverList.get(id).getState().tame);
 			ArkBotGUI.GUIText("Gather State: " + Server.serverList.get(id).getState().gatherer);
 			ArkBotGUI.refreshClientText();

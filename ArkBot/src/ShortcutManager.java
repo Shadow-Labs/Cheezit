@@ -59,6 +59,19 @@ public class ShortcutManager implements NativeKeyListener {
 	        }
         }
         
+        // BreedingShortcuts
+        if (ArkBot.state.breeder.breed) {
+        	if (e.getKeyCode() ==  Global.BreederStartStop) {
+        		if (ArkBot.state.breeder.breeding) {
+        			ArkBotGUI.GUIText("[BREEDER]: Paused.");
+        			ArkBot.state.breeder.breeding = false;
+        		} else {
+        			ArkBotGUI.GUIText("[BREEDER]: Resumed.");
+        			ArkBot.state.breeder.breeding = true;
+        		}
+        	}
+        }
+        
         // AutoHealingShortcuts
         if (ArkBot.state.healer.heal) {
 	        if (e.getKeyCode() ==  Global.AHealIncOne) {

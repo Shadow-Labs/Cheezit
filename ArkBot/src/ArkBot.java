@@ -154,7 +154,7 @@ public class ArkBot {
         while (true) {
         	//drum.Drumming();
         	state.tame.Tamin();
-        	state.breed.Breedin();
+        	state.breeder.Breedin();
         	state.gatherer.Gatherin();
         	state.healer.Healin();
         	state.splitter.Splittin();

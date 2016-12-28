@@ -19,17 +19,22 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.2.4
+v0.2.5
+- Resolution Bug Fixed
 
 ---------------
 
 Current Version:
-v0.2.3
-- Fixed Updater Settings Bug
+v0.2.4
+- Breeder 1.0 Initial implementation
 
 ---------------
 
 Past Versions:
+
+v0.2.3
+- Fixed Updater Settings Bug
+
 v0.2.2
 - AutoGather 1.5
 	- AutoDrop can now be interrupted

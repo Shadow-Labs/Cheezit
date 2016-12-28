@@ -277,7 +277,7 @@ public class ArkBotGUI extends JFrame
         		
         		//{{ Window Settings Panel
         		JPanel wSett = new JPanel();
-        		wSett.setLayout(new GridLayout(4,3));
+        		wSett.setLayout(new GridLayout(5,3));
         		
         		JLabel LwTitle = new JLabel("Set Resolution");
         		JLabel LxRes = new JLabel("X:");
@@ -286,6 +286,7 @@ public class ArkBotGUI extends JFrame
         		TAxRes.setForeground(Color.GRAY);
         		JTextField TAyRes = new JTextField("" + Global.ResY);
         		TAyRes.setForeground(Color.GRAY);
+        		JCheckBox CFulscrn = new JCheckBox("Fullscreen");
         		
         		// Add Listener to remove default values from text fields
         		LwTitle.requestFocusInWindow();
@@ -352,13 +353,15 @@ public class ArkBotGUI extends JFrame
         		wSett.add(LyRes);
         		wSett.add(TAyRes);
         		wSett.add(Box.createHorizontalStrut(1));
+        		wSett.add(CFulscrn);
+        		wSett.add(Box.createHorizontalStrut(1));
         		wSett.add(BWSet);
         		
         		//}}
         		
         		sframe.add(wSett);
         		int width = 300;
-        		int height = 125;
+        		int height = 150;
         		sframe.pack();
         		sframe.setLocationRelativeTo(null);
         		sframe.setSize(width, height);
@@ -824,6 +827,7 @@ public class ArkBotGUI extends JFrame
       //}}
         
         //{{ Breeding - Panel
+        /*
         JPanel PBreeding = new JPanel();
         PBreeding.setLayout(new FlowLayout(FlowLayout.LEFT));
         PBreeding.setOpaque(false);
@@ -883,7 +887,42 @@ public class ArkBotGUI extends JFrame
         	}
         });
         PBreeding.add(breedButton);
+        */
         //}}
+        
+      //{{ Breeding - Panel
+        JPanel PBreeding = new JPanel();
+        PBreeding.setLayout(new FlowLayout(FlowLayout.LEFT));
+        PBreeding.setOpaque(false);
+        PBreeding.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.MAGENTA), "Breeding v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        
+     // Breeding - Button
+        JButton breedButton = new JButton("Enable Breeder");
+        breedButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (ArkBot.state.breeder.breed) {
+        			ArkBotGUI.GUIText("Disabled Breeder.");
+        			breedButton.setText("Enable Breeder");
+        			breedButton.setBackground(new JButton().getBackground());
+            		
+            		ArkBot.state.breeder.abort = false;
+            		ArkBot.state.breeder.breed = false;
+        			
+        		} else {
+        			ArkBotGUI.GUIText("Enabled Breeder: Press " + NativeKeyEvent.getKeyText(Global.AGatherStartStop) + "to begin breeding.");
+        			
+        			breedButton.setText("Disable Breeder");
+        			breedButton.setBackground(Color.GREEN);
+            		
+            		ArkBot.state.breeder.breed = true;
+        		}
+        	}
+        });
+
+        PBreeding.add(breedButton);
+        PBreeding.setVisible(true);
+        //}}
+        
         
         //{{ AutoGatherer - Panel
         JPanel PAutoGatherer = new JPanel();

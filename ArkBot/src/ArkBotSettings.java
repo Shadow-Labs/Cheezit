@@ -27,6 +27,7 @@ public class ArkBotSettings {
 		setdic.put("SetupPrompt", "true");
 		setdic.put("ResX", "1440");
 		setdic.put("ResY", "900");
+		setdic.put("FullScreen", "false");
 		setdic.put("AndrewIsAwesome", "true");
 		WriteSettings(true);
 	}
@@ -37,6 +38,7 @@ public class ArkBotSettings {
 		shortdic.put("AHealIncOne", 74); 		// Keypad Minus
 		shortdic.put("AHealIncTen", 55); 		// Keypad Multiply
 		shortdic.put("AHealAbort", 3637);		// Keypad Divide
+		shortdic.put("BreederStartStop", 74);	// Keypad Minus
 		shortdic.put("MSplit", 78);				// Keypad Plus
 		WriteShortcuts(true);
 	}
