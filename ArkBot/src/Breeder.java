@@ -26,9 +26,9 @@ public class Breeder {
 		while (breeding && !abort) {
 			// Transfer Food Attempts
 			bot.keyPress(KeyEvent.VK_T);
-			bot.delay(500);
+			bot.delay(50);
 			bot.keyRelease(KeyEvent.VK_T);
-			bot.delay(1000);
+			bot.delay(345);
 		}
 		abort = false;
 	}
