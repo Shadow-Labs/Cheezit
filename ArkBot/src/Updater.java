@@ -35,20 +35,29 @@ import javax.swing.JProgressBar;
 //http://www.dreamincode.net/forums/topic/190944-creating-an-updater-in-java/
 public class Updater {
 	public static String webVersion = "";
-	private static String versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
+	private static String versionURL = "";
 	private static String jarURL = "";
-	private static String zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
+	private static String zipURL = "";
 	private String root = "update/";
 	
 	public Updater() {
 		try {
+			// Published Version
+			if (Global.DEV == 0) {
+				versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
+				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
+				zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
+			// Development Version
+			} else {
+				versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/published/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
+				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/published/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
+				zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/published.zip";
+			}
 			webVersion = getLatestVersion();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
-		zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
 	}
 	
 	public static String getLatestVersion() throws Exception{

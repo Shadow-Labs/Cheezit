@@ -1,7 +1,7 @@
-Username = asdf
+Username = RedLeeder
 FullScreen = false
-Fullscreen = false
 SetupPrompt = false
+Development = 0
 ResY = 900
 ResX = 1440
 AndrewIsAwesome = true

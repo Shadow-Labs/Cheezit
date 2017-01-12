@@ -102,6 +102,19 @@ public class ShortcutManager implements NativeKeyListener {
 	        	}
 	        }
         }
+        
+     // Autopilot Shortcuts
+        if (ArkBot.state.piloter.pilot) {
+	        if (e.getKeyCode() ==  Global.APilot) {
+	        	if (ArkBot.state.piloter.piloting) {
+		        	ArkBotGUI.GUIText("[AUTOPILOT]: Paused");
+		        	ArkBot.state.piloter.piloting = false;
+	        	} else {
+	        		ArkBotGUI.GUIText("[AUTOPILOT]: Resumed");
+		        	ArkBot.state.piloter.piloting = true;
+	        	}
+	        }
+        }
     }
 
     public void nativeKeyTyped(NativeKeyEvent e) {

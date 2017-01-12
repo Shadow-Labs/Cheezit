@@ -9,6 +9,7 @@ public class ArkBotState implements Serializable {
 	public static AutoGatherer gatherer;
 	public static AutoHealer healer;
 	public static MeatSplitter splitter;
+	public static Autopilot piloter;
 	
 	public ArkBotState() throws AWTException {
 		act = new CharacterActions();
@@ -17,5 +18,6 @@ public class ArkBotState implements Serializable {
 		gatherer = new AutoGatherer();
 		healer = new AutoHealer();
 		splitter = new MeatSplitter();
+		piloter = new Autopilot();
 	}
 }

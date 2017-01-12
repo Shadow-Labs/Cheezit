@@ -8,6 +8,7 @@ Future Implementations
 - Client States
 - Server Functionality
 - Fixed Updater?
+- Simplify Shortcuts (use dictionary and supply shortcut window with loop)
 
 Known Bugs
 - Broke Updater...need to reset settings before it'll check for updates?
@@ -19,18 +20,23 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.2.5
+v0.2.7
 - Resolution Bug Fixed
 
 ---------------
 
 Current Version:
-v0.2.4
-- Breeder 1.0 Initial implementation
+v0.2.6
+- Autopilot Initial Implementation
 
 ---------------
 
 Past Versions:
+v0.2.5
+- ArkBot Development Separation
+
+v0.2.4
+- Breeder 1.0 Initial implementation
 
 v0.2.3
 - Fixed Updater Settings Bug

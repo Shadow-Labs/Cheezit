@@ -158,6 +158,7 @@ public class ArkBot {
         	state.gatherer.Gatherin();
         	state.healer.Healin();
         	state.splitter.Splittin();
+        	state.piloter.Pilotin();
         	
         	// Server Start - Password: ArkBotFTW
         	if (serverStart) {

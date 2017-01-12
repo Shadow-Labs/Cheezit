@@ -12,6 +12,8 @@ public class Global {
 	static int ResY;
 	static boolean fullscreen;
 	
+	static int DEV;
+	
 	static boolean nextKey;
 	static int lastPressed;
 	
@@ -50,6 +52,7 @@ public class Global {
 	static int AHealAbort;
 	static int BreederStartStop;
 	static int MSplitter;
+	static int APilot;
 	
 	public Global() {
 		HOST = "23.28.220.129";
@@ -65,6 +68,8 @@ public class Global {
 		} else {
 			Global.fullscreen = false;
 		}
+		
+		Global.DEV = Integer.parseInt(ArkBotSettings.GetSetting("Development"));
 		
 		Point center = new Point(ResX/2, ResY/2);
 		PAUSE = 50;
@@ -103,6 +108,7 @@ public class Global {
 		AHealAbort = ArkBotSettings.GetShortcut("AHealAbort");
 		BreederStartStop = ArkBotSettings.GetShortcut("BreederStartStop");
 		MSplitter = ArkBotSettings.GetShortcut("MSplit");
+		APilot = ArkBotSettings.GetShortcut("APilot");
 		
 //			Point[] points = {
 //					new Point(82,280),
@@ -181,6 +187,7 @@ public class Global {
 		ArkBotSettings.UpdateShortcut("AHealAbort", AHealAbort);
 		ArkBotSettings.UpdateShortcut("BreederStartStop", BreederStartStop);
 		ArkBotSettings.UpdateShortcut("MSplit", MSplitter);
+		ArkBotSettings.UpdateShortcut("APilot", APilot);
 	}
 	
 	// Set Resolution

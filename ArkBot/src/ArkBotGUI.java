@@ -67,6 +67,7 @@ public class ArkBotGUI extends JFrame
 	int tempAHIncTen = Global.AHealIncTen;
 	int tempAHAbort = Global.AHealAbort;
 	int tempMSplit = Global.MSplitter;
+	int tempAPilot = Global.APilot;
 	
 	public static JFrame GUI;
 	public static JTextArea textLog;
@@ -101,7 +102,13 @@ public class ArkBotGUI extends JFrame
 	
 	public void Initialize() {
 		LoadingScreen();
-        GUI = new JFrame("ArkBot " + version);
+		String ttle = "";
+		if (Global.DEV == 0) {
+			ttle = "ArkBot " + version;
+		} else {
+			ttle = "ArkBot " + version + " (DEVELOPMENT)";
+		}
+        GUI = new JFrame(ttle);
 
         JPanel bgPanel = new BgPanel(new ImageIcon("ArkBotFiles/Images/ArkBotBackground.png").getImage());
         bgPanel.setLayout(new BorderLayout());
@@ -178,7 +185,7 @@ public class ArkBotGUI extends JFrame
         	public void actionPerformed(ActionEvent e) {
         		// Get History File
         		FileReader in;
-        		String data = ArkBot.updt.getData("https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/ArkBotVersionHistory.txt");
+        		String data = ArkBot.updt.getData("https://raw.githubusercontent.com/Shadow-Labs/Cheezit/published/ArkBot/ArkBotFiles/Version/ArkBotVersionHistory.txt");
 
         		JTextArea verArea = new JTextArea(data);
         		verArea.setEditable(false);
@@ -397,6 +404,8 @@ public class ArkBotGUI extends JFrame
 	    						Global.AHealIncOne = tempAHIncOne;
 	    						Global.AHealIncTen = tempAHIncTen;
 	    						Global.AHealAbort = tempAHAbort;
+	    						Global.MSplitter = tempMSplit;
+	    						Global.APilot = tempAPilot;
 	                        	ArkBot.global.saveShort();
 	                        	// Quit Window
 	                        	sframe.setVisible(false);
@@ -416,7 +425,7 @@ public class ArkBotGUI extends JFrame
         		
         		//{{ Window Shortcuts Panel
         		JPanel wShort = new JPanel();
-        		wShort.setLayout(new GridLayout(10,3));
+        		wShort.setLayout(new GridLayout(12,3));
         		
         		JLabel LAGTitle = new JLabel("AutoGather");
         		JLabel LAGStartStop = new JLabel("Start/Stop:");
@@ -430,6 +439,9 @@ public class ArkBotGUI extends JFrame
         		JButton BAHIncTen = new JButton(NativeKeyEvent.getKeyText(Global.AHealIncTen));
         		JLabel LAHAbort = new JLabel("Abort:");
         		JButton BAHAbort = new JButton(NativeKeyEvent.getKeyText(Global.AHealAbort));
+        		JLabel LAPTitle = new JLabel("Autopilot");
+        		JLabel LAPilot = new JLabel("Autopilot Start/Stop:");
+        		JButton BAPilot = new JButton(NativeKeyEvent.getKeyText(Global.APilot));
         		JLabel LMSTitle = new JLabel("Meat Splitter");
         		JLabel LMSplit = new JLabel("Meat Splitter Start/Stop:");
         		JButton BMSplit = new JButton(NativeKeyEvent.getKeyText(Global.MSplitter));
@@ -505,6 +517,20 @@ public class ArkBotGUI extends JFrame
 						BAHAbort.setText(NativeKeyEvent.getKeyText(tempAHAbort));
 					}
         		});
+        		BAPilot.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BAPilot.setText("Press New Hotkey");
+						Global.nextKey = true;
+						while (Global.lastPressed < 0) {
+							System.out.println("Waiting For Pressed");
+						}
+						tempAPilot = Global.lastPressed;
+						Global.lastPressed = -1;
+						Global.nextKey = false;
+						BAPilot.setText(NativeKeyEvent.getKeyText(tempAPilot));
+					}
+        		});
         		BMSplit.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -538,12 +564,15 @@ public class ArkBotGUI extends JFrame
 							Global.AHealIncOne = tempAHIncOne;
 							Global.AHealIncTen = tempAHIncTen;
 							Global.AHealAbort = tempAHAbort;
+							Global.MSplitter = tempMSplit;
+							Global.APilot = tempAPilot;
 							ArkBotSettings.UpdateShortcut("AGatherStartStop", tempAGStartStop);
 							ArkBotSettings.UpdateShortcut("AGatherDrop", tempAGDrop);
 							ArkBotSettings.UpdateShortcut("AHealIncOne", tempAHIncOne);
 							ArkBotSettings.UpdateShortcut("AHealIncTen", tempAHIncTen);
 							ArkBotSettings.UpdateShortcut("AHealAbort", tempAHAbort);
 							ArkBotSettings.UpdateShortcut("MSplit", tempMSplit);
+							ArkBotSettings.UpdateShortcut("APilot", tempAPilot);
 						}
 					}
         			
@@ -564,6 +593,10 @@ public class ArkBotGUI extends JFrame
         		wShort.add(LAHAbort);
         		wShort.add(BAHAbort);
         		wShort.add(Box.createHorizontalStrut(1));
+        		wShort.add(LAPTitle);
+        		wShort.add(LAPilot);
+        		wShort.add(BAPilot);
+        		wShort.add(Box.createHorizontalStrut(1));
         		wShort.add(LMSTitle);
         		wShort.add(LMSplit);
         		wShort.add(BMSplit);
@@ -574,7 +607,7 @@ public class ArkBotGUI extends JFrame
         		
         		sframe.add(wShort);
         		int width = 300;
-        		int height = 300;
+        		int height = 400;
         		sframe.pack();
         		sframe.setLocationRelativeTo(null);
         		sframe.setSize(width, height);
@@ -1182,6 +1215,38 @@ public class ArkBotGUI extends JFrame
         PAutoHealer.add(AutoHealButton);
         PAutoHealer.setVisible(true);
         //}}        
+        
+        
+        //{{ Autopilot - Panel
+        JPanel PAutopilot = new JPanel();
+        PAutopilot.setLayout(new FlowLayout(FlowLayout.LEFT));
+        PAutopilot.setOpaque(false);
+        PAutopilot.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.YELLOW), "Autopilot v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        
+        // Autopilot - Button
+        JButton BAutoPilot = new JButton("Enable Autopilot");
+        BAutoPilot.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (ArkBot.state.piloter.pilot) {
+        			ArkBotGUI.GUIText("[AUTOPILOT]: Disabled");
+        			BAutoPilot.setText("Enable Autopilot");
+        			BAutoPilot.setBackground(new JButton().getBackground());
+            		ArkBot.state.piloter.pilot = false;
+        			
+        		} else {
+        			ArkBotGUI.GUIText("[AUTOPILOT]: Enabled");
+        			BAutoPilot.setText("Disable Autopilot");
+        			BAutoPilot.setBackground(Color.GREEN);
+            		ArkBot.state.piloter.pilot = true;
+        		}
+        	}
+        });
+
+        PAutopilot.add(BAutoPilot);
+        PAutopilot.setVisible(true);
+        //}}
+        
+        
 
         //{{ MeatSplitter - Panel
         JPanel PMeatSplitter = new JPanel();
@@ -1343,13 +1408,14 @@ public class ArkBotGUI extends JFrame
         Main.add(PBreeding);
         Main.add(PAutoGatherer);
         Main.add(PAutoHealer);
+        Main.add(PAutopilot);
         Main.add(PMeatSplitter);
         Main.add(PDZip);
         Main.add(ClientConnect);
         Main.add(Something4);
         Main.add(Something5);
         Main.add(Something6);
-        Main.add(Something7);
+        //Main.add(Something7);
         
         
         // Text Display Panel
@@ -1412,7 +1478,13 @@ public class ArkBotGUI extends JFrame
         String display = String.format("%02d:%02d:%02d", elapsed / 3600000, (elapsed % 3600000) / 60, (elapsed % 3600000));
         Runtime = new JLabel("Runtime: " + display, JLabel.RIGHT);
         mousePos = new JLabel("Mouse: " + p.x + " " + p.y + "                        ");
-        JLabel currentVersion = new JLabel("          ArkBot " + version + "                ", JLabel.RIGHT);
+        String lbl = "";
+        if (Global.DEV == 0) {
+        	lbl = "          ArkBot " + version + "                ";
+        } else {
+        	lbl = "          ArkBot " + version + " (DEVELOPMENT)  ";
+        }
+        JLabel currentVersion = new JLabel(lbl, JLabel.RIGHT);
         mousePanel.add(mousePos);
         mousePanel.add(currentVersion);
         mousePanel.add(Runtime);
@@ -1435,7 +1507,11 @@ public class ArkBotGUI extends JFrame
         
         GUI.setVisible(true);
 		timer.start();
-        GUIText("Welcome to ArkBot " + version + " " + ArkBotSettings.GetSetting("Username") +"!");
+		if (Global.DEV == 0) {
+			GUIText("Welcome to ArkBot " + version + " " + ArkBotSettings.GetSetting("Username") +"!");
+		} else {
+			GUIText("Welcome to ArkBot " + version + " (DEVELOPMENT) " + ArkBotSettings.GetSetting("Username") +"!");
+		}
 	}
 	
 	public static void SetMouse() {
