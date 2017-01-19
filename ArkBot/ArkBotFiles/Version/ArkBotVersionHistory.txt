@@ -11,6 +11,7 @@ Future Implementations
 - Simplify Shortcuts (use dictionary and supply shortcut window with loop)
 
 Known Bugs
+- Client state isn't writing to clientStruct on SuperServer (it's using ArkBot.state instead)
 - Broke Updater...need to reset settings before it'll check for updates?
 - Manual Download downloading screen is all white?
 - Need to delete ArkBotSettings.txt before able to run

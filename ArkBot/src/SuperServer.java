@@ -29,6 +29,15 @@ public class SuperServer extends Thread {
 		try {
 			clientStruct = (ClientStruct)fromClient.readObject();
 			Server.serverList.put(id, clientStruct);
+			ArkBotGUI.GUIText("Client Username: " + Server.serverList.get(id).getUser());
+			ArkBotGUI.GUIText("Client IP: " + Server.serverList.get(id).getAddr());
+			ArkBotGUI.GUIText("Breed State: " + Server.serverList.get(id).getState().breeder.breed);
+			ArkBotGUI.GUIText("Tame State: " + Server.serverList.get(id).getState().tame.taming);
+			ArkBotGUI.GUIText("Gather State: " + Server.serverList.get(id).getState().gatherer.gathering);
+			ArkBotGUI.GUIText("Healer State: " + Server.serverList.get(id).getState().healer.heal);
+			ArkBotGUI.GUIText("Autopilot State: " + Server.serverList.get(id).getState().piloter.pilot);
+			ArkBotGUI.GUIText("MeatSplitter State: " + Server.serverList.get(id).getState().splitter.split);
+			ArkBotGUI.refreshClientText();
 		} catch (ClassNotFoundException e) {
 			ArkBot.log.WriteLog("SERVER ERROR: Class not found./n" + e);
 			ArkBotGUI.GUIText("SERVER ERROR: Class not found./n" + e);
@@ -42,15 +51,19 @@ public class SuperServer extends Thread {
 		while (Server.serverList.get(id).getState().connected) {
 			try {
 				clientStruct = (ClientStruct)fromClient.readObject();
+				clientStruct.setState(clientStruct.getState());
 				System.out.println(Server.serverList.get(id).getState().piloter.pilot + " " + clientStruct.getState().piloter.pilot);
 				// Only update when client changes
 				if (Server.serverList.get(id).getState() != null && Server.serverList.get(id).getState() != clientStruct.getState()) {
 					Server.serverList.put(id, clientStruct);
 					ArkBotGUI.GUIText("Client Username: " + Server.serverList.get(id).getUser());
 					ArkBotGUI.GUIText("Client IP: " + Server.serverList.get(id).getAddr());
-					ArkBotGUI.GUIText("Breed State: " + Server.serverList.get(id).getState().breeder);
-					ArkBotGUI.GUIText("Tame State: " + Server.serverList.get(id).getState().tame);
-					ArkBotGUI.GUIText("Gather State: " + Server.serverList.get(id).getState().gatherer);
+					ArkBotGUI.GUIText("Breed State: " + Server.serverList.get(id).getState().breeder.breed);
+					ArkBotGUI.GUIText("Tame State: " + Server.serverList.get(id).getState().tame.taming);
+					ArkBotGUI.GUIText("Gather State: " + Server.serverList.get(id).getState().gatherer.gathering);
+					ArkBotGUI.GUIText("Healer State: " + Server.serverList.get(id).getState().healer.heal);
+					ArkBotGUI.GUIText("Autopilot State: " + Server.serverList.get(id).getState().piloter.pilot);
+					ArkBotGUI.GUIText("MeatSplitter State: " + Server.serverList.get(id).getState().splitter.split);
 					ArkBotGUI.refreshClientText();
 				}
 			} catch (ClassNotFoundException e) {
