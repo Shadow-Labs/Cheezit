@@ -46,8 +46,10 @@ public class ArkBotClient implements Runnable{
 			//	            }
 			//	        }
 				    	
-				    	// Send Client State
-				    	toServer.writeObject(ArkBot.cStruct);
+				    	while (ArkBot.connect && ArkBot.connection) {
+							// Send Client State
+					    	toServer.writeObject(ArkBot.cStruct);
+						}
 				    	
 				    } catch (UnknownHostException e) {
 				    	ArkBot.log.WriteLog("CLIENT: Unknown Host " + hostName);
@@ -57,7 +59,6 @@ public class ArkBotClient implements Runnable{
 				        ArkBotGUI.GUIText("CLIENT: Unable to create I/O Connection " + hostName);
 				    }
 			}
-
 		}
 		
 	}
