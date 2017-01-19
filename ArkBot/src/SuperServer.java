@@ -8,7 +8,6 @@ public class SuperServer extends Thread {
 	private Socket socket = null;
 	private ObjectInputStream fromClient = null;
 	private ObjectOutputStream toClient = null;
-	public ClientStruct prevClientStruct = new ClientStruct();
 	public ClientStruct clientStruct = new ClientStruct();
 	
 	public SuperServer(int id, Socket socket) {
@@ -27,12 +26,25 @@ public class SuperServer extends Thread {
 	
 	public void run() {
 		//Client State Test
-		while (true) {
+		try {
+			clientStruct = (ClientStruct)fromClient.readObject();
+			Server.serverList.put(id, clientStruct);
+		} catch (ClassNotFoundException e) {
+			ArkBot.log.WriteLog("SERVER ERROR: Class not found./n" + e);
+			ArkBotGUI.GUIText("SERVER ERROR: Class not found./n" + e);
+			e.printStackTrace();
+		} catch (IOException e) {
+			ArkBot.log.WriteLog("SERVER ERROR: Could not recieve client struct./n" + e);
+			ArkBotGUI.GUIText("SERVER ERROR: Could not recieve client struct./n" + e);
+			e.printStackTrace();
+		}
+		System.out.println(Server.serverList.get(id).getState().connected);
+		while (Server.serverList.get(id).getState().connected) {
 			try {
 				clientStruct = (ClientStruct)fromClient.readObject();
-				System.out.println(prevClientStruct.getState().piloter.pilot + " " + clientStruct.getState().piloter.pilot);
+				System.out.println(Server.serverList.get(id).getState().piloter.pilot + " " + clientStruct.getState().piloter.pilot);
 				// Only update when client changes
-				if (prevClientStruct != null && prevClientStruct.getState() != clientStruct.getState()) {
+				if (Server.serverList.get(id).getState() != null && Server.serverList.get(id).getState() != clientStruct.getState()) {
 					Server.serverList.put(id, clientStruct);
 					ArkBotGUI.GUIText("Client Username: " + Server.serverList.get(id).getUser());
 					ArkBotGUI.GUIText("Client IP: " + Server.serverList.get(id).getAddr());
@@ -40,7 +52,6 @@ public class SuperServer extends Thread {
 					ArkBotGUI.GUIText("Tame State: " + Server.serverList.get(id).getState().tame);
 					ArkBotGUI.GUIText("Gather State: " + Server.serverList.get(id).getState().gatherer);
 					ArkBotGUI.refreshClientText();
-					prevClientStruct = clientStruct;
 				}
 			} catch (ClassNotFoundException e) {
 				ArkBot.log.WriteLog("SERVER ERROR: Class not found./n" + e);
