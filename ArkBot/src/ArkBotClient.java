@@ -48,6 +48,7 @@ public class ArkBotClient implements Runnable{
 				    	
 				    	while (ArkBot.connect && ArkBot.connection) {
 							// Send Client State
+				    		ArkBot.cStruct.setState(ArkBot.state);
 					    	toServer.writeObject(ArkBot.cStruct);
 						}
 				    	
