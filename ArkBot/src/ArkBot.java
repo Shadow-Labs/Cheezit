@@ -179,11 +179,13 @@ public class ArkBot {
         	
         	// Client Connection
         	if (connect && !connection) {
+    			ArkBotState.connected = true;
                 clientThread = new Thread(new ArkBotClient());
         		clientThread.start();
         		//Allow thread to make connection
         		bot.delay(500);
         	} else if (!connect && connection) {
+        		ArkBotState.connected = false;
         		clientThread.interrupt();
         		//Allow thread to disconnect
         		bot.delay(500);
