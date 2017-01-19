@@ -1,7 +1,7 @@
 Username = RedLeeder
 FullScreen = false
 SetupPrompt = false
-Development = 0
+Development = 1
 ResY = 900
 ResX = 1440
 AndrewIsAwesome = true

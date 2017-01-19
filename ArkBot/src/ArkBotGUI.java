@@ -211,19 +211,27 @@ public class ArkBotGUI extends JFrame
         JMenuItem iConnect = new JMenuItem("Connect");
         iConnect.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Object[] options = {"Can't Wait!" };
-        		JOptionPane.showOptionDialog(GUI, "Work In Progress...", "Slow down there!", 
-                        JOptionPane.OK_OPTION,
-                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        		if (Global.DEV == 0) {
+	        		Object[] options = {"Can't Wait!" };
+	        		JOptionPane.showOptionDialog(GUI, "Work In Progress...", "Slow down there!", 
+	                        JOptionPane.OK_OPTION,
+	                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        		} else {
+        			ArkBot.connect = true;
+        		}
         	}
         });
         JMenuItem iDisconnect = new JMenuItem("Disconnect");
         iDisconnect.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Object[] options = {"Can't Wait!" };
-        		JOptionPane.showOptionDialog(GUI, "Work In Progress...", "Slow down there!", 
-                        JOptionPane.OK_OPTION,
-                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        		if (Global.DEV == 0) {
+	        		Object[] options = {"Can't Wait!" };
+	        		JOptionPane.showOptionDialog(GUI, "Work In Progress...", "Slow down there!", 
+	                        JOptionPane.OK_OPTION,
+	                        JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+        		} else {
+        			ArkBot.connect = false;
+        		}
         	}
         });
         JMenuItem iControl = new JMenuItem("Control");

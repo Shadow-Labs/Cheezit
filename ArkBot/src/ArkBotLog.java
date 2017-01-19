@@ -23,7 +23,7 @@ public class ArkBotLog {
 		
 		
 		try {
-			File logfile = new File("ArkBotFiles/Logs/ArkBotLog_" + ArkBot.version + "_" + time + ".txt");
+			File logfile = new File("ArkBotFiles/Logs/", "ArkBotLog_" + ArkBot.version + "_" + time + ".txt");
 			System.out.println("ArkBotFiles/Logs/ArkBotLog_" + ArkBot.version + "_" + time + ".txt");
 			if (logfile.createNewFile()){
 				//Uhhh

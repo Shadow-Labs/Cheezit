@@ -160,7 +160,7 @@ public class ArkBot {
         	state.splitter.Splittin();
         	state.piloter.Pilotin();
         	
-        	// Server Start - Password: ArkBotFTW
+        	// Server Start - Password: asdf
         	if (serverStart) {
         		if (JOptionPane.showInputDialog(ArkBotGUI.GUI, "Server Password:").equals("asdf")) {
             		while (serverRun) {
