@@ -30,8 +30,9 @@ public class SuperServer extends Thread {
 		while (true) {
 			try {
 				clientStruct = (ClientStruct)fromClient.readObject();
+				System.out.println(prevClientStruct.getState().piloter.pilot + " " + clientStruct.getState().piloter.pilot);
 				// Only update when client changes
-				if (prevClientStruct != null && prevClientStruct != clientStruct) {
+				if (prevClientStruct != null && prevClientStruct.getState() != clientStruct.getState()) {
 					Server.serverList.put(id, clientStruct);
 					ArkBotGUI.GUIText("Client Username: " + Server.serverList.get(id).getUser());
 					ArkBotGUI.GUIText("Client IP: " + Server.serverList.get(id).getAddr());
