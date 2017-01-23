@@ -31,7 +31,7 @@ public class SuperServer extends Thread {
 			ArkBotState ste = tempStruct.getState();
 			clientStruct = tempStruct;
 			clientStruct.setState(ste);
-			ArkBotGUI.GUIText("Meat:" + ste.splitter.split);
+			ArkBotGUI.GUIText("Pilote:" + ste.piloter.pilot);
 			//clientStruct = (ClientStruct)fromClient.readObject();
 			Server.serverList.put(id, clientStruct);
 			ArkBotGUI.GUIText("Client Username: " + Server.serverList.get(id).getUser());
