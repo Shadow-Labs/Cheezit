@@ -49,7 +49,7 @@ public class ArkBotClient implements Runnable{
 				    	while (ArkBot.connect && ArkBot.connection) {
 							// Send Client State
 				    		ArkBot.cStruct.setState(ArkBot.state);
-				    		System.out.println(ArkBot.cStruct.getState().piloter.pilot);
+				    		ArkBotGUI.GUIText("Pilot: " + ArkBot.cStruct.getState().piloter.pilot);
 					    	toServer.writeObject(ArkBot.cStruct);
 						}
 				    	

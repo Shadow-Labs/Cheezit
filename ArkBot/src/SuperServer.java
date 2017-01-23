@@ -8,7 +8,7 @@ public class SuperServer extends Thread {
 	private Socket socket = null;
 	private ObjectInputStream fromClient = null;
 	private ObjectOutputStream toClient = null;
-	public ClientStruct clientStruct = new ClientStruct();
+	public ClientStruct clientStruct;
 	
 	public SuperServer(int id, Socket socket) {
 		super("SuperServer");
@@ -27,7 +27,12 @@ public class SuperServer extends Thread {
 	public void run() {
 		//Client State Test
 		try {
-			clientStruct = (ClientStruct)fromClient.readObject();
+			ClientStruct tempStruct = (ClientStruct)fromClient.readObject();
+			ArkBotState ste = tempStruct.getState();
+			clientStruct = tempStruct;
+			clientStruct.setState(ste);
+			ArkBotGUI.GUIText("Meat:" + ste.splitter.split);
+			//clientStruct = (ClientStruct)fromClient.readObject();
 			Server.serverList.put(id, clientStruct);
 			ArkBotGUI.GUIText("Client Username: " + Server.serverList.get(id).getUser());
 			ArkBotGUI.GUIText("Client IP: " + Server.serverList.get(id).getAddr());
