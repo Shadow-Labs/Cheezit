@@ -151,7 +151,16 @@ public class ArkBot {
         
         Thread clientThread = null;
         int keepRunning = 0;
+        int i = 0;
         while (true) {
+        	// GPS Testing
+        	if (i == 100) {
+        		screenReader.Grab(3);
+        		i = 0;
+        	}
+        	i++;
+            screenReader.Grab(3);
+            
         	//drum.Drumming();
         	state.tame.Tamin();
         	state.breeder.Breedin();
@@ -190,10 +199,10 @@ public class ArkBot {
         		//Allow thread to disconnect
         		bot.delay(500);
         	}
-        	keepRunning++;
-        	if (keepRunning%32 == 0) {
-        		System.out.println("CLIENT: " + ArkBot.cStruct.getState().connected);
-        	}
+//        	keepRunning++;
+//        	if (keepRunning%32 == 0) {
+//        		System.out.println("CLIENT: " + ArkBot.cStruct.getState().connected);
+//        	}
         	
 //        	if (i == 100) {
 //        		screenReader.Grab(0);
@@ -210,7 +219,6 @@ public class ArkBot {
 //        new TesseractExample();
         // Setup Ark
         //setup.Begin();
-	    
 
 	  }
 	}

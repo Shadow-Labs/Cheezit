@@ -101,7 +101,9 @@ public class ArkBotGUI extends JFrame
 	}
 	
 	public void Initialize() {
-		LoadingScreen();
+		if (Global.DEV == 0) {
+			LoadingScreen();
+		}
 		String ttle = "";
 		if (Global.DEV == 0) {
 			ttle = "ArkBot " + version;

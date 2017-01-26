@@ -20,6 +20,7 @@ public class Global {
 	static Rectangle CHATBOX;
 	static Rectangle TRIBELOG;
 	static Rectangle STATS;
+	static Rectangle GPS;
 	
 	static Point[] INV_POINTS;
 	static Point CHAR_INV_SEARCH_BAR;
@@ -77,6 +78,7 @@ public class Global {
 		CHATBOX = new Rectangle(12, 260, 450, 140);
 		TRIBELOG = new Rectangle();
 		STATS = new Rectangle();
+		GPS = new Rectangle(12, 260, 450, 140); // Placeholder rectangle
 		
 		CHAR_INV_SEARCH_BAR = new Point(470, 150);
 		CHAR_INV_SCROLL_BOT = new Point(481, 563);
