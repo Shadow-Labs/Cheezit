@@ -29,7 +29,7 @@ public class ScreenReader {
 		// GPS
 		case 3: g.Grab(Global.GPS);
 				g.GPSConvert();
-				result = Decode();
+				//result = Decode();
 				break;
 		
 		}

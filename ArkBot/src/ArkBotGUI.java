@@ -68,6 +68,7 @@ public class ArkBotGUI extends JFrame
 	int tempAHAbort = Global.AHealAbort;
 	int tempMSplit = Global.MSplitter;
 	int tempAPilot = Global.APilot;
+	int tempAFish = Global.AFish;
 	
 	public static JFrame GUI;
 	public static JTextArea textLog;
@@ -416,6 +417,7 @@ public class ArkBotGUI extends JFrame
 	    						Global.AHealAbort = tempAHAbort;
 	    						Global.MSplitter = tempMSplit;
 	    						Global.APilot = tempAPilot;
+	    						Global.AFish = tempAFish;
 	                        	ArkBot.global.saveShort();
 	                        	// Quit Window
 	                        	sframe.setVisible(false);
@@ -435,7 +437,7 @@ public class ArkBotGUI extends JFrame
         		
         		//{{ Window Shortcuts Panel
         		JPanel wShort = new JPanel();
-        		wShort.setLayout(new GridLayout(12,3));
+        		wShort.setLayout(new GridLayout(14,3));
         		
         		JLabel LAGTitle = new JLabel("AutoGather");
         		JLabel LAGStartStop = new JLabel("Start/Stop:");
@@ -455,6 +457,9 @@ public class ArkBotGUI extends JFrame
         		JLabel LMSTitle = new JLabel("Meat Splitter");
         		JLabel LMSplit = new JLabel("Meat Splitter Start/Stop:");
         		JButton BMSplit = new JButton(NativeKeyEvent.getKeyText(Global.MSplitter));
+        		JLabel LAFTitle = new JLabel("AutoFisher");
+        		JLabel LAFish = new JLabel("AutoFish Start/Stop:");
+        		JButton BAFish = new JButton(NativeKeyEvent.getKeyText(Global.AFish));
         		
         		//{{ Button Listeners
         		BAGStartStop.addActionListener(new ActionListener() {
@@ -555,7 +560,20 @@ public class ArkBotGUI extends JFrame
 						BMSplit.setText(NativeKeyEvent.getKeyText(tempMSplit));
 					}
         		});
-        		
+        		BAFish.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BAFish.setText("Press New Hotkey");
+						Global.nextKey = true;
+						while (Global.lastPressed < 0) {
+							System.out.println("Waiting For Pressed");
+						}
+						tempAFish = Global.lastPressed;
+						Global.lastPressed = -1;
+						Global.nextKey = false;
+						BAFish.setText(NativeKeyEvent.getKeyText(tempAFish));
+					}
+        		});
         		//}}
     			
         		JButton BWSet = new JButton("Set");
@@ -576,6 +594,7 @@ public class ArkBotGUI extends JFrame
 							Global.AHealAbort = tempAHAbort;
 							Global.MSplitter = tempMSplit;
 							Global.APilot = tempAPilot;
+							Global.AFish = tempAFish;
 							ArkBotSettings.UpdateShortcut("AGatherStartStop", tempAGStartStop);
 							ArkBotSettings.UpdateShortcut("AGatherDrop", tempAGDrop);
 							ArkBotSettings.UpdateShortcut("AHealIncOne", tempAHIncOne);
@@ -583,6 +602,7 @@ public class ArkBotGUI extends JFrame
 							ArkBotSettings.UpdateShortcut("AHealAbort", tempAHAbort);
 							ArkBotSettings.UpdateShortcut("MSplit", tempMSplit);
 							ArkBotSettings.UpdateShortcut("APilot", tempAPilot);
+							ArkBotSettings.UpdateShortcut("AFish", tempAFish);
 						}
 					}
         			
@@ -611,13 +631,17 @@ public class ArkBotGUI extends JFrame
         		wShort.add(LMSplit);
         		wShort.add(BMSplit);
         		wShort.add(Box.createHorizontalStrut(1));
+        		wShort.add(LAFTitle);
+        		wShort.add(LAFish);
+        		wShort.add(BAFish);
+        		wShort.add(Box.createHorizontalStrut(1));
         		wShort.add(BWSet);
         		
         		//}}
         		
         		sframe.add(wShort);
         		int width = 300;
-        		int height = 400;
+        		int height = 450;
         		sframe.pack();
         		sframe.setLocationRelativeTo(null);
         		sframe.setSize(width, height);
@@ -1257,6 +1281,7 @@ public class ArkBotGUI extends JFrame
         //}}
         
         
+        
 
         //{{ MeatSplitter - Panel
         JPanel PMeatSplitter = new JPanel();
@@ -1286,6 +1311,36 @@ public class ArkBotGUI extends JFrame
         PMeatSplitter.add(BMeatSplitter);
         PMeatSplitter.setVisible(true);
         //}}
+        
+        //{{ Autopilot - Panel
+        JPanel PAutoFisher = new JPanel();
+        PAutoFisher.setLayout(new FlowLayout(FlowLayout.LEFT));
+        PAutoFisher.setOpaque(false);
+        PAutoFisher.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "AutoFisher v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        
+        // Autopilot - Button
+        JButton BAutoFisher = new JButton("Enable AutoFisher");
+        BAutoFisher.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if (ArkBot.state.fisher.fish) {
+        			ArkBotGUI.GUIText("[AUTOFISHER]: Disabled");
+        			BAutoFisher.setText("Enable AutoFisher");
+        			BAutoFisher.setBackground(new JButton().getBackground());
+            		ArkBot.state.fisher.fish = false;
+        			
+        		} else {
+        			ArkBotGUI.GUIText("[AUTOFISHER]: Enabled");
+        			BAutoFisher.setText("Disable AutoFisher");
+        			BAutoFisher.setBackground(Color.GREEN);
+            		ArkBot.state.fisher.fish = true;
+        		}
+        	}
+        });
+
+        PAutoFisher.add(BAutoFisher);
+        PAutoFisher.setVisible(true);
+        //}}
+        
         
         //{{ Download Zip - Panel
         JPanel PDZip = new JPanel();
@@ -1420,9 +1475,9 @@ public class ArkBotGUI extends JFrame
         Main.add(PAutoHealer);
         Main.add(PAutopilot);
         Main.add(PMeatSplitter);
+        Main.add(PAutoFisher);
         Main.add(PDZip);
         Main.add(ClientConnect);
-        Main.add(Something4);
         Main.add(Something5);
         Main.add(Something6);
         //Main.add(Something7);

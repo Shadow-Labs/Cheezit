@@ -54,6 +54,7 @@ public class Global {
 	static int BreederStartStop;
 	static int MSplitter;
 	static int APilot;
+	static int AFish;
 	
 	public Global() {
 		HOST = "23.28.220.129";
@@ -111,6 +112,7 @@ public class Global {
 		BreederStartStop = ArkBotSettings.GetShortcut("BreederStartStop");
 		MSplitter = ArkBotSettings.GetShortcut("MSplit");
 		APilot = ArkBotSettings.GetShortcut("APilot");
+		AFish = ArkBotSettings.GetShortcut("AFish");
 		
 //			Point[] points = {
 //					new Point(82,280),
@@ -190,6 +192,7 @@ public class Global {
 		ArkBotSettings.UpdateShortcut("BreederStartStop", BreederStartStop);
 		ArkBotSettings.UpdateShortcut("MSplit", MSplitter);
 		ArkBotSettings.UpdateShortcut("APilot", APilot);
+		ArkBotSettings.UpdateShortcut("AFish", AFish);
 	}
 	
 	// Set Resolution

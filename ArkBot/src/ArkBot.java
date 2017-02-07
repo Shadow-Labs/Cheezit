@@ -154,12 +154,12 @@ public class ArkBot {
         int i = 0;
         while (true) {
         	// GPS Testing
-        	if (i == 100) {
-        		screenReader.Grab(3);
-        		i = 0;
-        	}
-        	i++;
-            screenReader.Grab(3);
+//        	if (i == 100) {
+//        		screenReader.Grab(3);
+//        		i = 0;
+//        	}
+//        	i++;
+//            screenReader.Grab(3);
             
         	//drum.Drumming();
         	state.tame.Tamin();

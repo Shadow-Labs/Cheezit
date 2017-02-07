@@ -20,10 +20,10 @@ public class ShortcutManager implements NativeKeyListener {
         //ArkBotGUI.GUIText("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 
     	// ServerStartShortcut (Home)
-        if (e.getKeyCode() == 0xE47) {
-        	ArkBot.serverStart = !ArkBot.serverStart;
-        	ArkBot.serverRun = !ArkBot.serverRun;
-        }
+//        if (e.getKeyCode() == 0xE47) {
+//        	ArkBot.serverStart = !ArkBot.serverStart;
+//        	ArkBot.serverRun = !ArkBot.serverRun;
+//        }
     	
     	
     	
@@ -103,7 +103,7 @@ public class ShortcutManager implements NativeKeyListener {
 	        }
         }
         
-     // Autopilot Shortcuts
+        // Autopilot Shortcuts
         if (ArkBot.state.piloter.pilot) {
 	        if (e.getKeyCode() ==  Global.APilot) {
 	        	if (ArkBot.state.piloter.piloting) {
@@ -112,6 +112,19 @@ public class ShortcutManager implements NativeKeyListener {
 	        	} else {
 	        		ArkBotGUI.GUIText("[AUTOPILOT]: Resumed");
 		        	ArkBot.state.piloter.piloting = true;
+	        	}
+	        }
+        }
+        
+        // AutoFisher Shortcuts
+        if (ArkBot.state.fisher.fish) {
+	        if (e.getKeyCode() ==  Global.AFish) {
+	        	if (ArkBot.state.fisher.fishing) {
+		        	ArkBotGUI.GUIText("[AUTOFISHING]: Paused");
+		        	ArkBot.state.fisher.fishing = false;
+	        	} else {
+	        		ArkBotGUI.GUIText("[AUTOFISHING]: Resumed");
+		        	ArkBot.state.fisher.fishing = true;
 	        	}
 	        }
         }

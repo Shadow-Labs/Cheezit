@@ -88,7 +88,7 @@ public class ImageGrab {
 	public void GPSConvert() {
 		BufferedImage inputFile = null;
         try {
-            inputFile = ImageIO.read(new File("ArkBotFiles/OCRImages/GPS/gpstest1.jpg"));
+            inputFile = ImageIO.read(new File("ArkBotFiles/OCRImages/GPS/GPS5.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,12 +97,13 @@ public class ImageGrab {
             for (int y = 0; y < inputFile.getHeight(); y++) {
                 int rgba = inputFile.getRGB(x, y);
                 Color col = new Color(rgba, true);
-                int rl = 65;
+                int rl = 150;
                 int ul = 100;
                 int ll = 0;
+                int bl = 20;
                 if (col.getRed() > rl && 
                 		col.getGreen() > ll && col.getGreen() < ul && 
-                		col.getBlue() > ll && col.getBlue() < ul) {
+                		col.getBlue() < bl) {
                 	col = new Color(0, 0, 0);
                 } else {
                     col = new Color(255,255,255);
@@ -112,7 +113,7 @@ public class ImageGrab {
         }
 
         try {
-            File outputFile = new File("ArkBotFiles/OCRImages/ImageGrab/GPSConvert.png");
+            File outputFile = new File("ArkBotFiles/OCRImages/ImageGrab/GPS5C.png");
             ImageIO.write(inputFile, "png", outputFile);
         } catch (IOException e) {
             e.printStackTrace();

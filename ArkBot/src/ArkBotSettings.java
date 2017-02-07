@@ -42,6 +42,7 @@ public class ArkBotSettings {
 		shortdic.put("BreederStartStop", 74);	// Keypad Minus
 		shortdic.put("MSplit", 78);				// Keypad Plus
 		shortdic.put("APilot", 74);				// Keypad Minus
+		shortdic.put("AFish", 74);				// Keypad Minus
 		WriteShortcuts(true);
 	}
 	

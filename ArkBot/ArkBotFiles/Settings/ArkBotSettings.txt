@@ -3,5 +3,5 @@ FullScreen = false
 SetupPrompt = false
 Development = 1
 ResY = 900
-ResX = 1440
 AndrewIsAwesome = true
+ResX = 1440

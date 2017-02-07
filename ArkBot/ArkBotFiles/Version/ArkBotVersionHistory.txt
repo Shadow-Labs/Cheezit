@@ -23,6 +23,7 @@ Known Bugs
 Next Version:
 v0.2.7
 - Resolution Bug Fixed
+- Removed "Home" Server Shortcut
 
 ---------------
 
