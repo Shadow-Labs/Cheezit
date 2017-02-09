@@ -19,6 +19,7 @@ public class Global {
 	
 	static Rectangle CHATBOX;
 	static Rectangle TRIBELOG;
+	static Rectangle FISHING;
 	static Rectangle STATS;
 	static Rectangle GPS;
 	
@@ -78,6 +79,7 @@ public class Global {
 	
 		CHATBOX = new Rectangle(12, 260, 450, 140);
 		TRIBELOG = new Rectangle();
+		FISHING = new Rectangle();
 		STATS = new Rectangle();
 		GPS = new Rectangle(12, 260, 450, 140); // Placeholder rectangle
 		
@@ -207,6 +209,7 @@ public class Global {
 		
 		CHATBOX.setBounds(Math.round(12 * xScale), Math.round(260 * yScale), Math.round(450 * xScale), Math.round(140 * yScale));
 		TRIBELOG = new Rectangle();
+		FISHING = new Rectangle();
 		STATS = new Rectangle();
 		
 		if (fullscreen) {
