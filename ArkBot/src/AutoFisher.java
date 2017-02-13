@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -8,11 +10,44 @@ public class AutoFisher {
 	public boolean fish;
 	public boolean fishing;
 	private BufferedImage fprompt;
+	private char letter;
+	private Point[] points;
+	private boolean[] bools;
 	
 	public AutoFisher() {
 		bot = ArkBot.bot;
 		fish = false;
 		fishing = false;
+		points = new Point[14];
+		points[0] = new Point(15, 13);
+		points[1] = new Point(28, 13);
+		points[2] = new Point(58, 13);
+		points[3] = new Point(83, 13);
+		points[4] = new Point(99, 13);
+		points[5] = new Point(28, 47);
+		points[6] = new Point(56, 47);
+		points[7] = new Point(76, 47);
+		points[8] = new Point(88, 47);
+		points[9] = new Point(26, 80);
+		points[10] = new Point(57, 80);
+		points[11] = new Point(85, 80);
+		points[12] = new Point(71, 96);
+		points[13] = new Point(39, 61);
+		bools = new boolean[14];
+		bools[0] = false;
+		bools[1] = false;
+		bools[2] = false;
+		bools[3] = false;
+		bools[4] = false;
+		bools[5] = false;
+		bools[6] = false;
+		bools[7] = false;
+		bools[8] = false;
+		bools[9] = false;
+		bools[10] = false;
+		bools[11] = false;
+		bools[12] = false;
+		bools[13] = false;
 	}
 	
 	public void Fishin() {
@@ -51,11 +86,68 @@ public class AutoFisher {
 		return hooked;
 	}
 	
+	private void setBools (BufferedImage image) {
+		for(int i = 0; i <= 12; i++) {
+			int rgba = image.getRGB((int)points[i].getX(),(int)points[i].getY());
+			Color c = new Color(rgba, true);
+			if (c.getBlue() >= 250 && c.getGreen() >= 250 && c.getRed() >= 250) {
+				bools[i] = true;
+			} else {
+				bools[i] = false;
+			}
+		}
+	}
 	private char GetLetter(BufferedImage image) {
-		char letter = 0;
-		
+		letter = 'f';
+		setBools(image);
+				
 		// Based on pixels, get letter
-		
+		// Q
+		if (bools[5] && bools[8] && bools[12]) {
+			letter = 'q';
+			return 'q';
+		}
+		// W
+		if (bools[0] && bools[4] && !bools[10]) {
+			letter = 'w';
+			return 'w';
+		}
+		// E
+		if (bools[2] && bools[6] && bools[7] && bools[13]) {
+			letter = 'e';
+			return 'e';
+		}
+		// A
+		if (bools[2] && bools[7] && bools[9] && bools[11]) {
+			letter = 'a';
+			return 'a';
+		}
+		// S
+		if (bools[2] && bools[6] && bools[7] && !bools[13]) {
+			letter = 's';
+			return 's';
+		}
+		// D
+		if (bools[1] && bools[2] && bools[5] && bools[8] && bools[10]) {
+			letter = 'd';
+			return 'd';
+		}
+		// Z
+		if (bools[2] && bools[3] && bools[6] && bools[10]) {
+			letter = 'z';
+			return 'z';
+		}
+		// X
+		if (bools[1] && bools[3] && bools[6] && bools[9] && bools[11]) {
+			letter = 'x';
+			return 'x';
+		}
+		// C
+		if (bools[2] && bools[3] && bools[5] && bools[13]) {
+			letter = 'c';
+			return 'c';
+		}
+				
 		return letter;
 	}
 	

@@ -79,7 +79,7 @@ public class Global {
 	
 		CHATBOX = new Rectangle(12, 260, 450, 140);
 		TRIBELOG = new Rectangle();
-		FISHING = new Rectangle();
+		FISHING = new Rectangle(847, 726, 115, 115);
 		STATS = new Rectangle();
 		GPS = new Rectangle(12, 260, 450, 140); // Placeholder rectangle
 		
@@ -209,7 +209,7 @@ public class Global {
 		
 		CHATBOX.setBounds(Math.round(12 * xScale), Math.round(260 * yScale), Math.round(450 * xScale), Math.round(140 * yScale));
 		TRIBELOG = new Rectangle();
-		FISHING = new Rectangle();
+		FISHING = new Rectangle(Math.round(847 * xScale), Math.round(726 * yScale), 115, 115);
 		STATS = new Rectangle();
 		
 		if (fullscreen) {

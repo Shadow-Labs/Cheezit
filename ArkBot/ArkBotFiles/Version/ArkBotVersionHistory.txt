@@ -21,19 +21,24 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.2.7
+v0.2.8
 - Resolution Bug Fixed
-- Removed "Home" Server Shortcut
+- Autofisher v1.0
+
 
 ---------------
 
 Current Version:
-v0.2.6
-- Autopilot Initial Implementation
+v0.2.7
+- Removed "Home" Server Shortcut
+- Temp fix for "Current Version" Bug that prevents startup on fresh download
 
 ---------------
 
 Past Versions:
+v0.2.6
+- Autopilot Initial Implementation
+
 v0.2.5
 - ArkBot Development Separation
 

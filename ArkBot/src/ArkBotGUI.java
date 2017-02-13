@@ -1338,7 +1338,7 @@ public class ArkBotGUI extends JFrame
         });
 
         PAutoFisher.add(BAutoFisher);
-        PAutoFisher.setVisible(true);
+        PAutoFisher.setVisible(false);
         //}}
         
         
