@@ -39,8 +39,9 @@ public class MeatSplitter {
         for(int i = 0; i <= 5;  i++) {
         	bot.mouseMove((start.x + (3*i)), (start.y + (3*i)));
         }
+        ArkBotGUI.GUIText("here");
         bot.mouseRelease(InputEvent.BUTTON1_MASK);
-        bot.delay(1000); // Prevent Double Clicking?
+        bot.delay(100); // Prevent Double Clicking?
         bot.mouseMove(start.x, start.y);
 	}
 

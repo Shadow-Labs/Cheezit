@@ -199,10 +199,10 @@ public class ArkBot {
         		//Allow thread to disconnect
         		bot.delay(500);
         	}
-//        	keepRunning++;
-//        	if (keepRunning%32 == 0) {
-//        		System.out.println("CLIENT: " + ArkBot.cStruct.getState().connected);
-//        	}
+        	keepRunning++;
+        	if (keepRunning%32 == 0) {
+        		System.out.println("CLIENT: " + ArkBot.cStruct.getState().connected);
+        	}
         	
 //        	if (i == 100) {
 //        		screenReader.Grab(0);
