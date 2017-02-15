@@ -58,7 +58,6 @@ public class ArkBot {
 	
 	public static void main(String[] args) throws AWTException
 	{
-		System.out.println("hi");
 		//{{ Get Version
 		try {
 			File vfile = new File("ArkBotFiles/Version/CurrentVersion.txt");
@@ -81,11 +80,7 @@ public class ArkBot {
 		serverRun = false;
 		server = new Server();
 		client = new ArkBotClient();
-
-		System.out.println("hi");
 		bot = new Robot();
-
-		System.out.println("hi");
 		drag = new MouseDrag();
 		log = new ArkBotLog();
 		updt = new Updater();

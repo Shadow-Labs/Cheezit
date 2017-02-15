@@ -44,14 +44,14 @@ public class Updater {
 		try {
 			// Published Version
 			if (Global.DEV == 0) {
-				versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
-				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
-				zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
-			// Development Version
-			} else {
 				versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/published/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
 				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/published/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
 				zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/published.zip";
+			// Development Version
+			} else {
+				versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
+				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
+				zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
 			}
 			webVersion = getLatestVersion();
 		} catch (Exception e) {
