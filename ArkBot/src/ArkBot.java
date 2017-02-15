@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -44,13 +43,13 @@ public class ArkBot {
 	public static boolean serverRun;
 	public static Server server;
 	public static ArkBotClient client;
-	public static Robot bot;
 	public static MouseDrag drag;
 	public static Global global;
 	public static ArkBotLog log;
 	public static ArkBotState state;
 	public static ClientStruct cStruct;
 	public static Updater updt;
+	public static Robot bot;
 	public static ScreenReader screenReader;
 	public static Point p;
 	public static String version;
@@ -58,6 +57,7 @@ public class ArkBot {
 	
 	public static void main(String[] args) throws AWTException
 	{
+		System.out.println("hi");
 		//{{ Get Version
 		try {
 			File vfile = new File("ArkBotFiles/Version/CurrentVersion.txt");
