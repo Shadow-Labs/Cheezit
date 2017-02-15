@@ -71,7 +71,7 @@ public class ArkBot {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		//}}
+		//}} 
 		
 
 		ArkBotSettings settings = new ArkBotSettings();
