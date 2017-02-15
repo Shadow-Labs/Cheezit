@@ -81,7 +81,11 @@ public class ArkBot {
 		serverRun = false;
 		server = new Server();
 		client = new ArkBotClient();
+
+		System.out.println("hi");
 		bot = new Robot();
+
+		System.out.println("hi");
 		drag = new MouseDrag();
 		log = new ArkBotLog();
 		updt = new Updater();

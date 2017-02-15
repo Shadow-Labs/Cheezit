@@ -24,7 +24,7 @@ public class MeatSplitter {
 	public void Split() {
 		int splitcount = 0;
         bot.keyPress(KeyEvent.VK_CONTROL); // Left Control
-		while (split && splitting && splitcount <= 20) {
+		while (split && splitting && splitcount <= 21) {
 			MousePressDragRelease();
 			splitcount++;
 		}
@@ -35,13 +35,16 @@ public class MeatSplitter {
 	
 	private void MousePressDragRelease() {
 		Point start = MouseInfo.getPointerInfo().getLocation();
+		bot.keyPress(KeyEvent.VK_CONTROL); // Left Control
         bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        bot.keyPress(KeyEvent.VK_CONTROL); // Left Control
         for(int i = 0; i <= 5;  i++) {
-        	bot.mouseMove((start.x + (3*i)), (start.y + (3*i)));
+        	bot.keyPress(KeyEvent.VK_CONTROL); // Left Control
+        	bot.mouseMove((start.x + (4*i)), (start.y + (4*i)));
+        	bot.keyPress(KeyEvent.VK_CONTROL); // Left Control
         }
-        ArkBotGUI.GUIText("here");
         bot.mouseRelease(InputEvent.BUTTON1_MASK);
-        bot.delay(100); // Prevent Double Clicking?
+        bot.delay(155); // Prevent Double Clicking?
         bot.mouseMove(start.x, start.y);
 	}
 

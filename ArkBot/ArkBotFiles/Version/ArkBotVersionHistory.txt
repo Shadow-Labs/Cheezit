@@ -32,6 +32,7 @@ Current Version:
 v0.2.7
 - Removed "Home" Server Shortcut
 - Temp fix for "Current Version" Bug that prevents startup on fresh download
+- Fixed Meatsplitter
 
 ---------------
 
