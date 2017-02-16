@@ -168,6 +168,7 @@ public class ArkBot {
         	state.healer.Healin();
         	state.splitter.Splittin();
         	state.piloter.Pilotin();
+        	state.fisher.Fishin();
         	
         	// Server Start - Password: asdf
         	if (serverStart) {

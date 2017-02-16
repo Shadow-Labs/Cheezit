@@ -20,6 +20,7 @@ public class Global {
 	static Rectangle CHATBOX;
 	static Rectangle TRIBELOG;
 	static Rectangle FISHING;
+	static Rectangle FISHHOOKED;
 	static Rectangle STATS;
 	static Rectangle GPS;
 	

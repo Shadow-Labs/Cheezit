@@ -120,10 +120,10 @@ public class ShortcutManager implements NativeKeyListener {
         if (ArkBot.state.fisher.fish) {
 	        if (e.getKeyCode() ==  Global.AFish) {
 	        	if (ArkBot.state.fisher.fishing) {
-		        	ArkBotGUI.GUIText("[AUTOFISHING]: Paused");
+		        	ArkBotGUI.GUIText("[AUTOFISHER]: Paused");
 		        	ArkBot.state.fisher.fishing = false;
 	        	} else {
-	        		ArkBotGUI.GUIText("[AUTOFISHING]: Resumed");
+	        		ArkBotGUI.GUIText("[AUTOFISHER]: Resumed");
 		        	ArkBot.state.fisher.fishing = true;
 	        	}
 	        }

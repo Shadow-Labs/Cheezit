@@ -9,7 +9,7 @@ public class AutoFisher {
 	Robot bot;
 	public boolean fish;
 	public boolean fishing;
-	private BufferedImage fprompt;
+	public BufferedImage fprompt;
 	private char letter;
 	private Point[] points;
 	private boolean[] bools;
@@ -59,17 +59,18 @@ public class AutoFisher {
 	public void Fish() {
         while (fish && fishing) {
         	// Cast
-        	leftClick();
+        	//leftClick();
         	
         	fprompt = bot.createScreenCapture(Global.FISHING);
-        	while (fish && fishing && !HookedFish(fprompt)) {
+        	while (fish && fishing && !HookedFish(bot.createScreenCapture(Global.FISHHOOKED))) {
         		fprompt = bot.createScreenCapture(Global.FISHING);
         	}
         	
         	while (fish && fishing && HookedFish(fprompt)) {
 	        	// Get and Press Letter
 	        	char letter = GetLetter(fprompt);
-	        	PressChar(letter);
+	        	ArkBotGUI.GUIText("Fishing Letter: " + letter);
+	        	//PressChar(letter);
 	        	
 	        	// Next Letter
         		fprompt = bot.createScreenCapture(Global.FISHING);
@@ -79,15 +80,16 @@ public class AutoFisher {
 	}
 	
 	private boolean HookedFish(BufferedImage image) {
-		boolean hooked = false;
+		boolean hooked = true;
 		
 		// Based on pixels, determine if letter is present
+		// boolean needs to be true the entire time the fish is hooked
 		
 		return hooked;
 	}
 	
 	private void setBools (BufferedImage image) {
-		for(int i = 0; i <= 12; i++) {
+		for(int i = 0; i <= 13; i++) {
 			int rgba = image.getRGB((int)points[i].getX(),(int)points[i].getY());
 			Color c = new Color(rgba, true);
 			if (c.getBlue() >= 250 && c.getGreen() >= 250 && c.getRed() >= 250) {

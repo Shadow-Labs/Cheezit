@@ -1312,13 +1312,13 @@ public class ArkBotGUI extends JFrame
         PMeatSplitter.setVisible(true);
         //}}
         
-        //{{ Autopilot - Panel
+        //{{ AutoFisher - Panel
         JPanel PAutoFisher = new JPanel();
         PAutoFisher.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoFisher.setOpaque(false);
         PAutoFisher.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "AutoFisher v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
-        // Autopilot - Button
+        // AutoFisher - Button
         JButton BAutoFisher = new JButton("Enable AutoFisher");
         BAutoFisher.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -1338,7 +1338,7 @@ public class ArkBotGUI extends JFrame
         });
 
         PAutoFisher.add(BAutoFisher);
-        PAutoFisher.setVisible(false);
+        PAutoFisher.setVisible(true);
         //}}
         
         
