@@ -20,7 +20,6 @@ public class Global {
 	static Rectangle CHATBOX;
 	static Rectangle TRIBELOG;
 	static Rectangle FISHING;
-	static Rectangle FISHHOOKED;
 	static Rectangle STATS;
 	static Rectangle GPS;
 	
@@ -80,7 +79,7 @@ public class Global {
 	
 		CHATBOX = new Rectangle(12, 260, 450, 140);
 		TRIBELOG = new Rectangle();
-		FISHING = new Rectangle(847, 726, 115, 115);
+		FISHING = new Rectangle(483, 726, 479, 115);
 		STATS = new Rectangle();
 		GPS = new Rectangle(12, 260, 450, 140); // Placeholder rectangle
 		

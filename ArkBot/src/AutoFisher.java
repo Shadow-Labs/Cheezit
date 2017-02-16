@@ -18,36 +18,28 @@ public class AutoFisher {
 		bot = ArkBot.bot;
 		fish = false;
 		fishing = false;
-		points = new Point[14];
-		points[0] = new Point(15, 13);
-		points[1] = new Point(28, 13);
-		points[2] = new Point(58, 13);
-		points[3] = new Point(83, 13);
-		points[4] = new Point(99, 13);
-		points[5] = new Point(28, 47);
-		points[6] = new Point(56, 47);
-		points[7] = new Point(76, 47);
-		points[8] = new Point(88, 47);
-		points[9] = new Point(26, 80);
-		points[10] = new Point(57, 80);
-		points[11] = new Point(85, 80);
-		points[12] = new Point(71, 96);
-		points[13] = new Point(39, 61);
-		bools = new boolean[14];
-		bools[0] = false;
-		bools[1] = false;
-		bools[2] = false;
-		bools[3] = false;
-		bools[4] = false;
-		bools[5] = false;
-		bools[6] = false;
-		bools[7] = false;
-		bools[8] = false;
-		bools[9] = false;
-		bools[10] = false;
-		bools[11] = false;
-		bools[12] = false;
-		bools[13] = false;
+		points = new Point[17];
+		points[0] = new Point(379, 13);		// Letter vvv
+		points[1] = new Point(392, 13);
+		points[2] = new Point(422, 13);
+		points[3] = new Point(447, 13);
+		points[4] = new Point(463, 13);
+		points[5] = new Point(392, 47);
+		points[6] = new Point(420, 47);
+		points[7] = new Point(440, 47);
+		points[8] = new Point(452, 47);
+		points[9] = new Point(390, 80);
+		points[10] = new Point(421, 80);
+		points[11] = new Point(449, 80);
+		points[12] = new Point(435, 96);
+		points[13] = new Point(403, 61);	// Letter ^^^
+		points[14] = new Point(45, 14);		// Hooked vvv
+		points[15] = new Point(210, 58);
+		points[16] = new Point(277, 58);	// Hooked ^^^
+		bools = new boolean[17];
+		for (int i = 0; i < bools.length; i++) {
+			bools[i] = false;
+		}
 	}
 	
 	public void Fishin() {
@@ -62,11 +54,13 @@ public class AutoFisher {
         	//leftClick();
         	
         	fprompt = bot.createScreenCapture(Global.FISHING);
-        	while (fish && fishing && !HookedFish(bot.createScreenCapture(Global.FISHHOOKED))) {
+        	setBools(fprompt);
+        	while (fish && fishing && !HookedFish()) {
         		fprompt = bot.createScreenCapture(Global.FISHING);
+        		setBools(fprompt);
         	}
         	
-        	while (fish && fishing && HookedFish(fprompt)) {
+        	while (fish && fishing && HookedFish()) {
 	        	// Get and Press Letter
 	        	char letter = GetLetter(fprompt);
 	        	ArkBotGUI.GUIText("Fishing Letter: " + letter);
@@ -79,17 +73,17 @@ public class AutoFisher {
         fishing = false;
 	}
 	
-	private boolean HookedFish(BufferedImage image) {
-		boolean hooked = true;
-		
-		// Based on pixels, determine if letter is present
-		// boolean needs to be true the entire time the fish is hooked
-		
+	private boolean HookedFish() {
+		boolean hooked = false;
+		// Determine if fish is hooked
+		if (bools[14] && bools[15] && bools[16]) {
+			hooked = true;
+		}
 		return hooked;
 	}
 	
 	private void setBools (BufferedImage image) {
-		for(int i = 0; i <= 13; i++) {
+		for(int i = 0; i < bools.length; i++) {
 			int rgba = image.getRGB((int)points[i].getX(),(int)points[i].getY());
 			Color c = new Color(rgba, true);
 			if (c.getBlue() >= 250 && c.getGreen() >= 250 && c.getRed() >= 250) {
@@ -149,7 +143,6 @@ public class AutoFisher {
 			letter = 'c';
 			return 'c';
 		}
-				
 		return letter;
 	}
 	
