@@ -63,8 +63,13 @@ public class Updater {
 	public static String getLatestVersion() throws Exception{
 		String data = getData(versionURL);
 		webVersion = data.substring(0,6);
-		ArkBotGUI.GUIText("Local Version: " + ArkBot.version);
-		ArkBotGUI.GUIText("Web Version: " + webVersion);
+		if (Global.DEV == 0) {
+			ArkBotGUI.GUIText("Local Version: " + ArkBot.version);
+			ArkBotGUI.GUIText("Web Version: " + webVersion);
+		} else {
+			ArkBotGUI.GUIText("Local Version: " + ArkBot.version + "(DEV)");
+			ArkBotGUI.GUIText("Web Version: " + webVersion + "(DEV)");
+		}
 		return data.substring(0, 6);
 	}
 	
