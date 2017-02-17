@@ -9,6 +9,8 @@ Future Implementations
 - Server Functionality
 - Fixed Updater?
 - Simplify Shortcuts (use dictionary and supply shortcut window with loop)
+- Registration Account Management
+- GPS READING AUTOPILOT 2.0 MOTHER TRUCKERSSSSS
 
 Known Bugs
 - Client state isn't writing to clientStruct on SuperServer (it's using ArkBot.state instead)

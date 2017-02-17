@@ -5,19 +5,27 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import javax.swing.KeyStroke;
+
 public class AutoFisher {
 	Robot bot;
+	private RobotStuff r;
 	public boolean fish;
 	public boolean fishing;
+	public boolean meatDrop;
 	public BufferedImage fprompt;
+	private int poleCount;
 	private char letter;
 	private Point[] points;
 	private boolean[] bools;
 	
 	public AutoFisher() {
 		bot = ArkBot.bot;
+		r = new RobotStuff(bot);
+		poleCount = 1;
 		fish = false;
 		fishing = false;
+		meatDrop = true;
 		points = new Point[17];
 		points[0] = new Point(379, 13);		// Letter vvv
 		points[1] = new Point(392, 13);
@@ -51,8 +59,45 @@ public class AutoFisher {
 	public void Fish() {
         while (fish && fishing) {
         	// Cast
-        	//leftClick();
+        	ArkBotGUI.GUIText("[AUTOFISHER] Casting");
+        	leftClick();
         	
+    		// Open Inv
+    		bot.keyPress(KeyEvent.VK_I);
+    		bot.delay(700);
+    		bot.keyRelease(KeyEvent.VK_I);
+    		bot.delay(Global.PAUSE);
+        	
+        	// Drop Meat
+        	if (meatDrop) {
+        		dropMeat();
+        	}
+        	
+        	// Check for Pole Break
+        	boolean pole = poleExists(poleCount);
+        	if (!pole) {
+        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Bad");
+        		poleCount++;
+        	} else {
+        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Good");
+        	}
+        	
+        	// Exit Ext Inv
+    		bot.keyPress(KeyEvent.VK_ESCAPE);
+    		bot.delay(Global.PAUSE);
+    		bot.keyRelease(KeyEvent.VK_ESCAPE);
+    		bot.delay(Global.PAUSE);
+    		
+    		// Switch Poles
+    		if (!pole) {
+    			bot.delay(500);
+	    		r.type((char)(poleCount + '0'));
+	    		ArkBotGUI.GUIText("[AUTOFISHER] Switched to pole " + poleCount);
+	    		bot.delay(3000);
+	    		ArkBotGUI.GUIText("[AUTOFISHER] Casting");
+	    		leftClick();
+    		}
+    		
         	fprompt = bot.createScreenCapture(Global.FISHING);
         	setBools(fprompt);
         	while (fish && fishing && !HookedFish()) {
@@ -63,8 +108,10 @@ public class AutoFisher {
         	while (fish && fishing && HookedFish()) {
 	        	// Get and Press Letter
 	        	char letter = GetLetter(fprompt);
-	        	ArkBotGUI.GUIText("Fishing Letter: " + letter);
-	        	//PressChar(letter);
+	        	ArkBotGUI.GUIText("[FISHER] Letter: " + letter);
+	        	PressChar(letter);
+	        	// Pause for game to prompt next letter/randomize
+	        	bot.delay(r.randomPause(750, 2000));
 	        	
 	        	// Next Letter
         		fprompt = bot.createScreenCapture(Global.FISHING);
@@ -94,7 +141,7 @@ public class AutoFisher {
 		}
 	}
 	private char GetLetter(BufferedImage image) {
-		letter = 'f';
+		letter = ' ';
 		setBools(image);
 				
 		// Based on pixels, get letter
@@ -161,8 +208,6 @@ public class AutoFisher {
 			  		  break;
 			case 'd': keycode = KeyEvent.VK_D;
 			  		  break;
-			case 'f': keycode = KeyEvent.VK_F;
-			  		  break;
 			case 'z': keycode = KeyEvent.VK_Z;
 			  		  break;
 			case 'x': keycode = KeyEvent.VK_X;
@@ -172,10 +217,39 @@ public class AutoFisher {
 		}
 		
 		// Press Key
-		bot.keyPress(keycode);
-		bot.delay(Global.PAUSE);
-		bot.keyRelease(keycode);
-		bot.delay(Global.PAUSE);
+		if (keycode != 0) {
+			bot.keyPress(keycode);
+			bot.delay(Global.PAUSE);
+			bot.keyRelease(keycode);
+			bot.delay(Global.PAUSE);
+		}
+	}
+	
+	// Drop Meat
+	private void dropMeat() {
+		ArkBotGUI.GUIText("[AUTOFISHER] Dropping Meat.");		
+		ArkBot.state.act.CharInvSearch("Meat");
+		ArkBot.state.act.CharDropAll();
+	}
+	
+	private boolean poleExists(int hotbar) {
+		boolean pole = false;
+		BufferedImage image = bot.createScreenCapture(Global.PlAYERINVENTORY);
+		
+		int rgba = image.getRGB((int)Global.PLYR_INV_HEALTH[hotbar-1].getX(),(int)Global.PLYR_INV_HEALTH[hotbar-1].getY());
+		Color c = new Color(rgba, true);
+		// Green Health
+		if (c.getRed() >= 85 && c.getRed() <= 105 
+				&& c.getGreen() >= 165 && c.getGreen() <= 185
+				&& c.getBlue() >= 65 && c.getBlue() <= 85) {
+			pole = true;
+		// Red Health
+		} else if (c.getRed() >= 145 && c.getRed() <= 165 
+					&& c.getGreen() >= 85 && c.getGreen() <= 95
+					&& c.getBlue() >= 60 && c.getBlue() <= 80) {
+			pole = true;
+		}
+		return pole;
 	}
 	
 	private void leftClick()

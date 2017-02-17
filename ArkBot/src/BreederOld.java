@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class BreederOld {
 	Robot bot;
 	CharacterActions act;
-	RobotType robtype;
+	RobotStuff robtype;
 	ArrayList breedSetup;
 	int herbs;
 	int carns;
@@ -18,7 +18,7 @@ public class BreederOld {
 	public BreederOld() throws AWTException {
 		bot = ArkBot.bot;
 		act = new CharacterActions();
-		robtype = new RobotType(bot);
+		robtype = new RobotStuff(bot);
 		breedSetup = new ArrayList();
 		herbs = 0;
 		carns = 0;

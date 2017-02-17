@@ -7,14 +7,14 @@ import java.awt.event.KeyEvent;
 
 public class Tamer {
 	Robot bot;
-	RobotType robtype;
+	RobotStuff robtype;
 	boolean taming;
 	float time;
 	float foodWait;
 	float waterWait;
 	public Tamer() throws AWTException {
 		bot = ArkBot.bot;
-		robtype = new RobotType(bot);
+		robtype = new RobotStuff(bot);
 		taming = false;
 		time = 0;
 		foodWait = 0;

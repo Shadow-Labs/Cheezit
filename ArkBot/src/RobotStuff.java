@@ -2,11 +2,11 @@ import static java.awt.event.KeyEvent.*;
 
 import java.awt.Robot;
 
-public class RobotType {
+public class RobotStuff {
 
     private Robot bot;
     
-    public RobotType(Robot bot) {
+    public RobotStuff(Robot bot) {
         this.bot = bot;
     }
 
@@ -136,6 +136,10 @@ public class RobotType {
         doType(keyCodes, offset + 1, length - 1);
         //bot.delay(ArkBot.global.PAUSE);
         bot.keyRelease(keyCodes[offset]);
+    }
+    
+    public int randomPause(int min, int max) {
+    	return (int)(Math.random() * (max - min)) + min;
     }
 
 }

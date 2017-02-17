@@ -7,13 +7,13 @@ import java.awt.event.KeyEvent;
 
 public class BroodMotherCollector {
 	Robot bot;
-	RobotType robtype;
+	RobotStuff robtype;
 	boolean brooding;
 	int time;
 	int foodWait;
 	public BroodMotherCollector() throws AWTException {
 		bot = ArkBot.bot;
-		robtype = new RobotType(bot);
+		robtype = new RobotStuff(bot);
 		brooding = false;
 		time = 5;
 		foodWait = 15;

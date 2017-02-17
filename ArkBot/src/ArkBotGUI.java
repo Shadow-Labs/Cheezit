@@ -1318,6 +1318,14 @@ public class ArkBotGUI extends JFrame
         PAutoFisher.setOpaque(false);
         PAutoFisher.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "AutoFisher v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
+        // Meat Drop Prompt
+        JCheckBox MeatDrop = new JCheckBox("Drop Meat");
+        MeatDrop.setSelected(true);
+        
+		// JPanel
+		JPanel MeatDropPanel = new JPanel();
+		MeatDropPanel.add(MeatDrop);
+        
         // AutoFisher - Button
         JButton BAutoFisher = new JButton("Enable AutoFisher");
         BAutoFisher.addActionListener(new ActionListener() {
@@ -1329,7 +1337,14 @@ public class ArkBotGUI extends JFrame
             		ArkBot.state.fisher.fish = false;
         			
         		} else {
-        			ArkBotGUI.GUIText("[AUTOFISHER]: Enabled");
+        			JOptionPane.showConfirmDialog(GUI, MeatDropPanel, "Meat Drop Functionality", JOptionPane.PLAIN_MESSAGE);
+        			if (MeatDrop.isSelected()) {
+        				ArkBot.state.fisher.meatDrop = true;
+            			ArkBotGUI.GUIText("[AUTOFISHER]: Enabled with meat drop");
+        			} else {
+        				ArkBot.state.fisher.meatDrop = false;
+            			ArkBotGUI.GUIText("[AUTOFISHER]: Enabled without meat drop");
+        			}
         			BAutoFisher.setText("Disable AutoFisher");
         			BAutoFisher.setBackground(Color.GREEN);
             		ArkBot.state.fisher.fish = true;

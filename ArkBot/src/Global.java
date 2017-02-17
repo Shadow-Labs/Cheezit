@@ -20,16 +20,19 @@ public class Global {
 	static Rectangle CHATBOX;
 	static Rectangle TRIBELOG;
 	static Rectangle FISHING;
+	static Rectangle PlAYERINVENTORY;
 	static Rectangle STATS;
 	static Rectangle GPS;
 	
 	static Point[] INV_POINTS;
+	static Point[] PLYR_INV_HEALTH;
 	static Point CHAR_INV_SEARCH_BAR;
 	static Point CHAR_INV_SCROLL_BOT;
 	static Point CHAR_INV_SCROLLTEST_PIXEL;
 	static Point CHAR_INV_FIRSTSLOT;
 	static Point CHAR_INV_FIRSTSLOT_NAME;
 	static Point CHAR_INV_USEITEM;
+	static Point CHAR_INV_DROPALL;
 	static Point EXT_INV_SEARCHBAR;
 	static Point EXT_INV_REMOTEUSE;
 	static Point EXT_INV_DROPALL;
@@ -80,6 +83,7 @@ public class Global {
 		CHATBOX = new Rectangle(12, 260, 450, 140);
 		TRIBELOG = new Rectangle();
 		FISHING = new Rectangle(483, 726, 479, 115);
+		PlAYERINVENTORY = new Rectangle(30, 682, 444, 173);
 		STATS = new Rectangle();
 		GPS = new Rectangle(12, 260, 450, 140); // Placeholder rectangle
 		
@@ -89,6 +93,7 @@ public class Global {
 		CHAR_INV_FIRSTSLOT = new Point(75, 275);
 		CHAR_INV_FIRSTSLOT_NAME = new Point(75, 300);
 		CHAR_INV_USEITEM = new Point(184, 582);
+		CHAR_INV_DROPALL = new Point(300,610);
 		EXT_INV_SEARCHBAR = new Point(928, 128);
 		EXT_INV_REMOTEUSE = new Point(884, 653);
 		EXT_INV_DROPALL = new Point (630, 675);
@@ -143,7 +148,7 @@ public class Global {
 //					new Point(352,640),
 //					new Point(442,640)
 //					};
-		Point[] points = {
+		INV_POINTS =  new Point[] {
 				new Point(78,280),
 				new Point(168,280),
 				new Point(258,280),
@@ -170,7 +175,18 @@ public class Global {
 				new Point(348,640),
 				new Point(438,640)
 				};
-		INV_POINTS = points;
+		PLYR_INV_HEALTH = new Point[] {
+				new Point(42,79),
+				new Point(132,79),
+				new Point(222,79),
+				new Point(312,79),
+				new Point(402,79),
+				new Point(42,170),
+				new Point(132,170),
+				new Point(222,170),
+				new Point(312,170),
+				new Point(402,170)
+			};
 	}
 	
 	// Save Relevant Global Values to Settings
@@ -220,6 +236,7 @@ public class Global {
 			CHAR_INV_FIRSTSLOT.setLocation(Math.round(75 * xScale), Math.round((275 * yScale)-yoffset));
 			CHAR_INV_FIRSTSLOT_NAME.setLocation(Math.round(75 * xScale), Math.round((300 * yScale)-yoffset));
 			CHAR_INV_USEITEM.setLocation(Math.round(184 * xScale), Math.round((582 * yScale)-yoffset));
+			CHAR_INV_DROPALL.setLocation(Math.round(300 * xScale), Math.round((610 * yScale)-yoffset));
 			EXT_INV_SEARCHBAR.setLocation(Math.round(928 * xScale), Math.round((128 * yScale)-yoffset));
 			EXT_INV_REMOTEUSE.setLocation(Math.round(884 * xScale), Math.round((653 * yScale)-yoffset));
 			EXT_INV_DROPALL.setLocation(Math.round(630 * xScale), Math.round((675 * yScale)-yoffset));
@@ -242,6 +259,7 @@ public class Global {
 			CHAR_INV_FIRSTSLOT.setLocation(Math.round(75 * xScale), Math.round(275 * yScale));
 			CHAR_INV_FIRSTSLOT_NAME.setLocation(Math.round(75 * xScale), Math.round(300 * yScale));
 			CHAR_INV_USEITEM.setLocation(Math.round(184 * xScale), Math.round(582 * yScale));
+			CHAR_INV_DROPALL.setLocation(Math.round(300 * xScale), Math.round((610 * yScale)));
 			EXT_INV_SEARCHBAR.setLocation(Math.round(928 * xScale), Math.round(128 * yScale));
 			EXT_INV_REMOTEUSE.setLocation(Math.round(884 * xScale), Math.round(653 * yScale));
 			EXT_INV_DROPALL.setLocation(Math.round(630 * xScale), Math.round(675 * yScale));

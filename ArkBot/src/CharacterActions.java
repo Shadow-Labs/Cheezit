@@ -12,12 +12,12 @@ public class CharacterActions {
 	private Robot bot;
 	private Point p;
 	private int PAUSE;
-	RobotType robtype;
+	RobotStuff robtype;
 	public CharacterActions()  throws AWTException {
 		this.bot = ArkBot.bot;
 		this.p = ArkBot.p;
 		this.PAUSE = ArkBot.global.PAUSE;
-		robtype = new RobotType(bot);
+		robtype = new RobotStuff(bot);
 	}
 	
 	//--------------------Character Action Functionality-------------------
@@ -39,22 +39,16 @@ public class CharacterActions {
 	public void CharInvSearch(String type) {
 		ArkBotGUI.GUIText("[ACTION]: Searching character inventory");
 		p = MouseInfo.getPointerInfo().getLocation();
-		ArkBot.drag.move(ArkBot.global.CHAR_INV_SEARCH_BAR);
+		ArkBot.drag.set(ArkBot.global.CHAR_INV_SEARCH_BAR);
 		leftClick();
-
-		int i = 10;
-		while (i > 0) {
-			bot.keyPress(KeyEvent.VK_BACK_SPACE);
-			bot.delay(Global.PAUSE);
-			bot.keyRelease(KeyEvent.VK_BACK_SPACE);
-			bot.delay(Global.PAUSE);
-			
-			bot.keyPress(KeyEvent.VK_DELETE);
-			bot.delay(Global.PAUSE);
-			bot.keyRelease(KeyEvent.VK_DELETE);
-			bot.delay(Global.PAUSE);
-			i--;
-		}
+		leftClick();
+		
+		bot.keyPress(KeyEvent.VK_BACK_SPACE);
+		
+		leftClick();
+		leftClick();
+		
+		bot.keyPress(KeyEvent.VK_BACK_SPACE);
 		
 		robtype.type(type);
 		
@@ -128,6 +122,17 @@ public class CharacterActions {
 	}
 	public void DropAll(){
 		ArkBot.drag.set(ArkBot.global.EXT_INV_DROPALL);
+		ArkBot.bot.delay(PAUSE);
+		leftClick();
+		ArkBot.bot.delay(PAUSE);
+		ArkBot.drag.set(ArkBot.global.DROP_ACCEPT);
+		ArkBot.bot.delay(PAUSE);
+		leftClick();
+		ArkBot.bot.delay(PAUSE);
+	}
+	
+	public void CharDropAll(){
+		ArkBot.drag.set(ArkBot.global.CHAR_INV_DROPALL);
 		ArkBot.bot.delay(PAUSE);
 		leftClick();
 		ArkBot.bot.delay(PAUSE);
