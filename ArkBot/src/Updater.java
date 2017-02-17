@@ -45,15 +45,22 @@ public class Updater {
 			// Published Version
 			if (ArkBotSettings.GetSetting("Development") == "0") {
 				versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/published/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
-				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/published/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
 				zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/published.zip";
 			// Development Version
 			} else {
 				versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/master/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
-				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
 				zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/master.zip";
 			}
+			
 			webVersion = getLatestVersion();
+			
+			// Published Version
+			if (ArkBotSettings.GetSetting("Development") == "0") {
+				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/published/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
+			// Development Version
+			} else {
+				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/master/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
