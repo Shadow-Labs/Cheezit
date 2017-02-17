@@ -187,7 +187,6 @@ public class Updater {
 			e.printStackTrace();
 		}
 		
-		
         try {
 			Thread.sleep(250);
 			lScreen.dispose();
