@@ -11,6 +11,7 @@ Future Implementations
 - Simplify Shortcuts (use dictionary and supply shortcut window with loop)
 - Registration Account Management
 - GPS READING AUTOPILOT 2.0 MOTHER TRUCKERSSSSS
+- Resolution Fix
 
 Known Bugs
 - Client state isn't writing to clientStruct on SuperServer (it's using ArkBot.state instead)
@@ -23,22 +24,23 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.2.8
-- Resolution Bug Fixed
-- Autofisher v1.0
-
+v0.2.9
+- 1920x1080 Fullscreen Resolution Support
 
 ---------------
 
 Current Version:
+v0.2.8
+- Autofisher v1.0
+
+---------------
+
+Past Versions:
 v0.2.7
 - Removed "Home" Server Shortcut
 - Temp fix for "Current Version" Bug that prevents startup on fresh download
 - Fixed Meatsplitter
 
----------------
-
-Past Versions:
 v0.2.6
 - Autopilot Initial Implementation
 

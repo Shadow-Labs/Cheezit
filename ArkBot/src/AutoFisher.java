@@ -64,9 +64,9 @@ public class AutoFisher {
         	
     		// Open Inv
     		bot.keyPress(KeyEvent.VK_I);
-    		bot.delay(700);
-    		bot.keyRelease(KeyEvent.VK_I);
     		bot.delay(Global.PAUSE);
+    		bot.keyRelease(KeyEvent.VK_I);
+    		bot.delay(2000);
         	
         	// Drop Meat
         	if (meatDrop) {
@@ -86,13 +86,22 @@ public class AutoFisher {
     		bot.keyPress(KeyEvent.VK_ESCAPE);
     		bot.delay(Global.PAUSE);
     		bot.keyRelease(KeyEvent.VK_ESCAPE);
-    		bot.delay(Global.PAUSE);
+    		bot.delay(700);
     		
     		// Switch Poles
     		if (!pole) {
     			bot.delay(500);
-	    		r.type((char)(poleCount + '0'));
-	    		ArkBotGUI.GUIText("[AUTOFISHER] Switched to pole " + poleCount);
+    			if (poleCount != 10) {
+    				r.type((char)(poleCount + '0'));
+    	    		ArkBotGUI.GUIText("[AUTOFISHER] Switched to pole " + poleCount);
+    			} else if (poleCount == 10){
+    				r.type((char)(0 + '0'));
+    	    		ArkBotGUI.GUIText("[AUTOFISHER] Switched to pole " + poleCount);
+    			} else {
+    				poleCount = 1;
+    				ArkBot.state.fisher.fish = false;
+    				ArkBotGUI.GUIText("[AUTOFISHER] Uh Ohh! You've run out of poles!");
+    			}
 	    		bot.delay(3000);
 	    		ArkBotGUI.GUIText("[AUTOFISHER] Casting");
 	    		leftClick();
