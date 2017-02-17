@@ -1316,7 +1316,7 @@ public class ArkBotGUI extends JFrame
         JPanel PAutoFisher = new JPanel();
         PAutoFisher.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoFisher.setOpaque(false);
-        PAutoFisher.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "AutoFisher v0.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PAutoFisher.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "AutoFisher v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Meat Drop Prompt
         JCheckBox MeatDrop = new JCheckBox("Drop Meat");
