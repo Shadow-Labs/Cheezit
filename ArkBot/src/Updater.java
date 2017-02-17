@@ -43,7 +43,7 @@ public class Updater {
 	public Updater() {
 		try {
 			// Published Version
-			if (Global.DEV == 0) {
+			if (ArkBotSettings.GetSetting("Development") == "0") {
 				versionURL = "https://raw.githubusercontent.com/Shadow-Labs/Cheezit/published/ArkBot/ArkBotFiles/Version/CurrentVersion.txt";
 				jarURL = "https://github.com/Shadow-Labs/Cheezit/blob/published/ArkBot/ArkBot" + webVersion + ".jar?raw=true";
 				zipURL = "https://github.com/Shadow-Labs/Cheezit/archive/published.zip";
@@ -369,7 +369,7 @@ public class Updater {
 //    }
     private boolean newVersionExists() throws Exception {
     	boolean version = false;
-    	if (!ArkBot.version.equals(getLatestVersion())) {
+    	if (!ArkBot.version.equals(webVersion)) {
     		version = true;
     	}
     	return version;

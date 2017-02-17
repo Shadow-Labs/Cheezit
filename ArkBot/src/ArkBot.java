@@ -83,7 +83,6 @@ public class ArkBot {
 		bot = new Robot();
 		drag = new MouseDrag();
 		log = new ArkBotLog();
-		updt = new Updater();
 		screenReader = new ScreenReader();
 		global = new Global();
 		ArkBotGUI gui = new ArkBotGUI(version, p);
@@ -94,7 +93,8 @@ public class ArkBot {
 		gui.Initialize();
 		gui.SetupPrompt();
 
-		
+
+		updt = new Updater();
 		
         MouseObserver mo = new MouseObserver(ArkBotGUI.GUI);
         mo.addMouseMotionListener(new MouseMotionListener() {
