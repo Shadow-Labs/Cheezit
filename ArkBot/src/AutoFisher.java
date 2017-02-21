@@ -64,6 +64,7 @@ public class AutoFisher {
         	// Cast
         	ArkBotGUI.GUIText("[AUTOFISHER] Casting");
         	leftClick();
+        	bot.delay(3000);
         	
     		// Open Inv
     		bot.keyPress(KeyEvent.VK_I);
