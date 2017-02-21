@@ -1316,15 +1316,18 @@ public class ArkBotGUI extends JFrame
         JPanel PAutoFisher = new JPanel();
         PAutoFisher.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoFisher.setOpaque(false);
-        PAutoFisher.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "AutoFisher v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PAutoFisher.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "AutoFisher v1.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Meat Drop Prompt
         JCheckBox MeatDrop = new JCheckBox("Drop Meat");
-        MeatDrop.setSelected(true);
+        MeatDrop.setSelected(false);
+        JCheckBox PoleSwitch = new JCheckBox("Pole Switching (Beta)");
+        PoleSwitch.setSelected(false);
         
 		// JPanel
 		JPanel MeatDropPanel = new JPanel();
 		MeatDropPanel.add(MeatDrop);
+		MeatDropPanel.add(PoleSwitch);
         
         // AutoFisher - Button
         JButton BAutoFisher = new JButton("Enable AutoFisher");
@@ -1338,12 +1341,20 @@ public class ArkBotGUI extends JFrame
         			
         		} else {
         			JOptionPane.showConfirmDialog(GUI, MeatDropPanel, "Meat Drop Functionality", JOptionPane.PLAIN_MESSAGE);
+        			ArkBotGUI.GUIText("[AUTOFISHER]: Enabled");
         			if (MeatDrop.isSelected()) {
         				ArkBot.state.fisher.meatDrop = true;
-            			ArkBotGUI.GUIText("[AUTOFISHER]: Enabled with meat drop");
+            			ArkBotGUI.GUIText("[AUTOFISHER]: MeatDrop: true");
         			} else {
         				ArkBot.state.fisher.meatDrop = false;
-            			ArkBotGUI.GUIText("[AUTOFISHER]: Enabled without meat drop");
+            			ArkBotGUI.GUIText("[AUTOFISHER]: MeatDrop: false");
+        			}
+        			if (PoleSwitch.isSelected()) {
+        				ArkBot.state.fisher.poleSwitch = true;
+            			ArkBotGUI.GUIText("[AUTOFISHER]: PoleSwitch: true");
+        			} else {
+        				ArkBot.state.fisher.poleSwitch = false;
+            			ArkBotGUI.GUIText("[AUTOFISHER]: PoleSwitch: false");
         			}
         			BAutoFisher.setText("Disable AutoFisher");
         			BAutoFisher.setBackground(Color.GREEN);

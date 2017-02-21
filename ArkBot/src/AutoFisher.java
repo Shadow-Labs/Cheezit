@@ -12,9 +12,11 @@ public class AutoFisher {
 	private RobotStuff r;
 	public boolean fish;
 	public boolean fishing;
+	public boolean poleSwitch;
 	public boolean meatDrop;
 	public BufferedImage fprompt;
 	private int poleCount;
+	private boolean pole;
 	private char letter;
 	private Point[] points;
 	private boolean[] bools;
@@ -25,7 +27,8 @@ public class AutoFisher {
 		poleCount = 1;
 		fish = false;
 		fishing = false;
-		meatDrop = true;
+		poleSwitch = false;
+		meatDrop = false;
 		points = new Point[17];
 		points[0] = new Point(379, 13);		// Letter vvv
 		points[1] = new Point(392, 13);
@@ -74,12 +77,14 @@ public class AutoFisher {
         	}
         	
         	// Check for Pole Break
-        	boolean pole = poleExists(poleCount);
-        	if (!pole) {
-        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Bad");
-        		poleCount++;
-        	} else {
-        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Good");
+        	if (poleSwitch) {
+	        	pole = poleExists(poleCount);
+	        	if (!pole) {
+	        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Bad");
+	        		poleCount++;
+	        	} else {
+	        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Good");
+	        	}
         	}
         	
         	// Exit Ext Inv
@@ -89,22 +94,24 @@ public class AutoFisher {
     		bot.delay(700);
     		
     		// Switch Poles
-    		if (!pole) {
-    			bot.delay(500);
-    			if (poleCount != 10) {
-    				r.type((char)(poleCount + '0'));
-    	    		ArkBotGUI.GUIText("[AUTOFISHER] Switched to pole " + poleCount);
-    			} else if (poleCount == 10){
-    				r.type((char)(0 + '0'));
-    	    		ArkBotGUI.GUIText("[AUTOFISHER] Switched to pole " + poleCount);
-    			} else {
-    				poleCount = 1;
-    				ArkBot.state.fisher.fish = false;
-    				ArkBotGUI.GUIText("[AUTOFISHER] Uh Ohh! You've run out of poles!");
-    			}
-	    		bot.delay(3000);
-	    		ArkBotGUI.GUIText("[AUTOFISHER] Casting");
-	    		leftClick();
+    		if (poleSwitch) {
+	    		if (!pole) {
+	    			bot.delay(500);
+	    			if (poleCount != 10) {
+	    				r.type((char)(poleCount + '0'));
+	    	    		ArkBotGUI.GUIText("[AUTOFISHER] Switched to pole " + poleCount);
+	    			} else if (poleCount == 10){
+	    				r.type((char)(0 + '0'));
+	    	    		ArkBotGUI.GUIText("[AUTOFISHER] Switched to pole " + poleCount);
+	    			} else {
+	    				poleCount = 1;
+	    				ArkBot.state.fisher.fish = false;
+	    				ArkBotGUI.GUIText("[AUTOFISHER] Uh Ohh! You've run out of poles!");
+	    			}
+		    		bot.delay(3000);
+		    		ArkBotGUI.GUIText("[AUTOFISHER] Casting");
+		    		leftClick();
+	    		}
     		}
     		
         	fprompt = bot.createScreenCapture(Global.FISHING);
