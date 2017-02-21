@@ -128,7 +128,7 @@ public class AutoFisher {
 	        	ArkBotGUI.GUIText("[FISHER] Letter: " + letter);
 	        	PressChar(letter);
 	        	// Pause for game to prompt next letter/randomize
-	        	bot.delay(r.randomPause(750, 2000));
+	        	bot.delay(r.randomPause(750, 1250));
 	        	
 	        	// Next Letter
         		fprompt = bot.createScreenCapture(Global.FISHING);
