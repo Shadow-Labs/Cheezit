@@ -61,11 +61,6 @@ public class AutoFisher {
 	
 	public void Fish() {
         while (fish && fishing) {
-        	// Cast
-        	ArkBotGUI.GUIText("[AUTOFISHER] Casting");
-        	leftClick();
-        	bot.delay(3000);
-        	
     		// Open Inv
 //    		bot.keyPress(KeyEvent.VK_I);
 //    		bot.delay(Global.PAUSE);
@@ -115,6 +110,11 @@ public class AutoFisher {
 	    		}
     		}
     		
+        	// Cast
+        	ArkBotGUI.GUIText("[AUTOFISHER] Casting");
+        	leftClick();
+        	bot.delay(3000);
+    		
         	fprompt = bot.createScreenCapture(Global.FISHING);
         	setBools(fprompt);
         	while (fish && fishing && !HookedFish()) {
@@ -128,7 +128,7 @@ public class AutoFisher {
 	        	ArkBotGUI.GUIText("[FISHER] Letter: " + letter);
 	        	PressChar(letter);
 	        	// Pause for game to prompt next letter/randomize
-	        	bot.delay(r.randomPause(600, 800));
+	        	bot.delay(r.randomPause(250, 500));
 	        	
 	        	// Next Letter
         		fprompt = bot.createScreenCapture(Global.FISHING);
