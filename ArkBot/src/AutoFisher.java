@@ -67,10 +67,10 @@ public class AutoFisher {
         	bot.delay(3000);
         	
     		// Open Inv
-    		bot.keyPress(KeyEvent.VK_I);
-    		bot.delay(Global.PAUSE);
-    		bot.keyRelease(KeyEvent.VK_I);
-    		bot.delay(2000);
+//    		bot.keyPress(KeyEvent.VK_I);
+//    		bot.delay(Global.PAUSE);
+//    		bot.keyRelease(KeyEvent.VK_I);
+//    		bot.delay(2000);
         	
         	// Drop Meat
         	if (meatDrop) {
@@ -89,10 +89,10 @@ public class AutoFisher {
         	}
         	
         	// Exit Ext Inv
-    		bot.keyPress(KeyEvent.VK_ESCAPE);
-    		bot.delay(Global.PAUSE);
-    		bot.keyRelease(KeyEvent.VK_ESCAPE);
-    		bot.delay(700);
+//    		bot.keyPress(KeyEvent.VK_ESCAPE);
+//    		bot.delay(Global.PAUSE);
+//    		bot.keyRelease(KeyEvent.VK_ESCAPE);
+//    		bot.delay(700);
     		
     		// Switch Poles
     		if (poleSwitch) {
