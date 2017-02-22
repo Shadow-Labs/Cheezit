@@ -61,33 +61,35 @@ public class AutoFisher {
 	
 	public void Fish() {
         while (fish && fishing) {
-    		// Open Inv
-//    		bot.keyPress(KeyEvent.VK_I);
-//    		bot.delay(Global.PAUSE);
-//    		bot.keyRelease(KeyEvent.VK_I);
-//    		bot.delay(2000);
-        	
-        	// Drop Meat
-        	if (meatDrop) {
-        		dropMeat();
-        	}
-        	
-        	// Check for Pole Break
-        	if (poleSwitch) {
-	        	pole = poleExists(poleCount);
-	        	if (!pole) {
-	        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Bad");
-	        		poleCount++;
-	        	} else {
-	        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Good");
+        	if (meatDrop || poleSwitch) {
+	    		// Open Inv
+	    		bot.keyPress(KeyEvent.VK_I);
+	    		bot.delay(Global.PAUSE);
+	    		bot.keyRelease(KeyEvent.VK_I);
+	    		bot.delay(500);
+	        	
+	        	// Drop Meat
+	        	if (meatDrop) {
+	        		dropMeat();
 	        	}
+	        	
+	        	// Check for Pole Break
+	        	if (poleSwitch) {
+		        	pole = poleExists(poleCount);
+		        	if (!pole) {
+		        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Bad");
+		        		poleCount++;
+		        	} else {
+		        		ArkBotGUI.GUIText("[AUTOFISHER] Pole Status: Good");
+		        	}
+	        	}
+	        	
+	        	// Exit Ext Inv
+	    		bot.keyPress(KeyEvent.VK_ESCAPE);
+	    		bot.delay(Global.PAUSE);
+	    		bot.keyRelease(KeyEvent.VK_ESCAPE);
+	    		bot.delay(700);
         	}
-        	
-        	// Exit Ext Inv
-//    		bot.keyPress(KeyEvent.VK_ESCAPE);
-//    		bot.delay(Global.PAUSE);
-//    		bot.keyRelease(KeyEvent.VK_ESCAPE);
-//    		bot.delay(700);
     		
     		// Switch Poles
     		if (poleSwitch) {
