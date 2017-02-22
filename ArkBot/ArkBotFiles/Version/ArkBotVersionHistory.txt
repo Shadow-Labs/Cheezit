@@ -31,12 +31,17 @@ v0.2.9
 
 Current Version:
 v0.2.8
-- Autofisher v1.0
-- Fixed Updator for the last time?
+- AutoFisher v1.1
+	- Optional Meatdrop
+	- Optional PoleSwitch (Beta)
 
 ---------------
 
 Past Versions:
+v0.2.8
+- Autofisher v1.0
+- Fixed Updator for the last time?
+
 v0.2.7
 - Removed "Home" Server Shortcut
 - Temp fix for "Current Version" Bug that prevents startup on fresh download
