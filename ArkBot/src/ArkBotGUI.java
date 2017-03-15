@@ -833,17 +833,17 @@ public class ArkBotGUI extends JFrame
         JPanel PTaming = new JPanel();
         PTaming.setLayout(new FlowLayout(FlowLayout.LEFT));
         PTaming.setOpaque(false);
-        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.ORANGE), "Taming v1.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PTaming.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Taming v1.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
         
         // Taming - Button
         JButton tameButton = new JButton("Start Taming");
-        tameButton.setMnemonic(KeyEvent.VK_ASTERISK);
+		tameButton.setBackground(Color.GRAY);
         tameButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (ArkBot.state.tame.taming) {
         			ArkBot.state.tame.taming = false;
         			tameButton.setText("Start Taming");
-        			tameButton.setBackground(new JButton().getBackground());
+        			tameButton.setBackground(Color.GRAY);
         			ArkBotGUI.GUIText("Stopped Taming.");
         		} else {
         			ArkBot.state.tame.time = Float.parseFloat(JOptionPane.showInputDialog(GUI, "Instructions: \n"
@@ -980,16 +980,17 @@ public class ArkBotGUI extends JFrame
         JPanel PBreeding = new JPanel();
         PBreeding.setLayout(new FlowLayout(FlowLayout.LEFT));
         PBreeding.setOpaque(false);
-        PBreeding.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.MAGENTA), "Breeding v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PBreeding.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Breeding v1.0", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.GRAY));
         
      // Breeding - Button
         JButton breedButton = new JButton("Enable Breeder");
+		breedButton.setBackground(Color.GRAY);
         breedButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if (ArkBot.state.breeder.breed) {
         			ArkBotGUI.GUIText("Disabled Breeder.");
         			breedButton.setText("Enable Breeder");
-        			breedButton.setBackground(new JButton().getBackground());
+        			breedButton.setBackground(Color.GRAY);
             		
             		ArkBot.state.breeder.abort = false;
             		ArkBot.state.breeder.breed = false;
@@ -1338,6 +1339,8 @@ public class ArkBotGUI extends JFrame
         PAutoFisher.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "AutoFisher v1.1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // Meat Drop Prompt
+        JCheckBox HaxMode = new JCheckBox("Hax Mode");
+        HaxMode.setSelected(false);
         JCheckBox MeatDrop = new JCheckBox("Drop Meat");
         MeatDrop.setSelected(false);
         JCheckBox PoleSwitch = new JCheckBox("Pole Switching (Beta)");
@@ -1345,6 +1348,8 @@ public class ArkBotGUI extends JFrame
         
 		// JPanel
 		JPanel MeatDropPanel = new JPanel();
+		MeatDropPanel.setLayout(new GridLayout(3,1));
+		MeatDropPanel.add(HaxMode);
 		MeatDropPanel.add(MeatDrop);
 		MeatDropPanel.add(PoleSwitch);
         
@@ -1361,6 +1366,13 @@ public class ArkBotGUI extends JFrame
         		} else {
         			JOptionPane.showConfirmDialog(GUI, MeatDropPanel, "Meat Drop Functionality", JOptionPane.PLAIN_MESSAGE);
         			ArkBotGUI.GUIText("[AUTOFISHER]: Enabled");
+        			if (HaxMode.isSelected()) {
+        				ArkBot.state.fisher.haxMode = true;
+            			ArkBotGUI.GUIText("[AUTOFISHER]: Hax Mode: true");
+        			} else {
+        				ArkBot.state.fisher.haxMode = false;
+            			ArkBotGUI.GUIText("[AUTOFISHER]: Hax Mode: false");
+        			}
         			if (MeatDrop.isSelected()) {
         				ArkBot.state.fisher.meatDrop = true;
             			ArkBotGUI.GUIText("[AUTOFISHER]: MeatDrop: true");
@@ -1412,6 +1424,7 @@ public class ArkBotGUI extends JFrame
         
         // ClientConnect - Button
         JButton ClientButton = new JButton("Connect");
+		ClientButton.setBackground(Color.GRAY);
         ClientButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		Object[] options = {"Can't Wait!" };
@@ -1635,7 +1648,7 @@ public class ArkBotGUI extends JFrame
 	
 	public static void GUIText (String text) {
 		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
-		textLog.setText(textLog.getText() + "\n" + timeStamp + ": " + text);
+		textLog.append("\n" + timeStamp + ": " + text);
 		ArkBot.log.WriteLog("Console: " + timeStamp + ": " + text);
 	}
 	

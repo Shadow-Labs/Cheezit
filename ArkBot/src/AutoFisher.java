@@ -14,6 +14,7 @@ public class AutoFisher {
 	public boolean fishing;
 	public boolean poleSwitch;
 	public boolean meatDrop;
+	public boolean haxMode;
 	public BufferedImage fprompt;
 	private int poleCount;
 	private boolean pole;
@@ -29,6 +30,7 @@ public class AutoFisher {
 		fishing = false;
 		poleSwitch = false;
 		meatDrop = false;
+		haxMode = false;
 		points = new Point[17];
 		points[0] = new Point(379, 13);		// Letter vvv
 		points[1] = new Point(392, 13);
@@ -129,11 +131,22 @@ public class AutoFisher {
 	        	char letter = GetLetter(fprompt);
 	        	ArkBotGUI.GUIText("[FISHER] Letter: " + letter);
 	        	PressChar(letter);
-	        	// Pause for game to prompt next letter/randomize
-	        	bot.delay(r.randomPause(350, 500));
 	        	
-	        	// Next Letter
-        		fprompt = bot.createScreenCapture(Global.FISHING);
+	        	// Hax Mode
+	        	if (haxMode) {
+		        	fprompt = bot.createScreenCapture(Global.FISHING);
+		        	setBools(fprompt);
+		        	while (!HookedFish()) {
+		        		fprompt = bot.createScreenCapture(Global.FISHING);
+			        	setBools(fprompt);
+		        	}
+	        	} else {
+		        	// Pause for game to prompt next letter/randomize
+		        	bot.delay(r.randomPause(350, 500));
+	
+		        	// Next Letter
+	        		fprompt = bot.createScreenCapture(Global.FISHING);
+	        	}
         	}
         }
         fishing = false;
@@ -152,7 +165,8 @@ public class AutoFisher {
 		for(int i = 0; i < bools.length; i++) {
 			int rgba = image.getRGB((int)points[i].getX(),(int)points[i].getY());
 			Color c = new Color(rgba, true);
-			if (c.getBlue() >= 250 && c.getGreen() >= 250 && c.getRed() >= 250) {
+			if ((c.getBlue() >= 250 && c.getGreen() >= 250 && c.getRed() >= 250) ||
+					(c.getBlue() < 20 && c.getGreen() >= 250 && c.getRed() <= 20)) {
 				bools[i] = true;
 			} else {
 				bools[i] = false;
