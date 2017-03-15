@@ -119,14 +119,17 @@ public class ArkBotGUI extends JFrame
         GUI.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-            	Object[] options = {"Yes", "No" };
-                if (JOptionPane.showOptionDialog(GUI, "Are you sure you want to quit ArkBot?", "Quit", 
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.PLAIN_MESSAGE, icon, options, options[1]) == JOptionPane.YES_OPTION){
-                	ArkBotGUI.timer.stop();
-                	log.CloseLog();
-                    System.exit(0);
-                }
+//            	Object[] options = {"Yes", "No" };
+//                if (JOptionPane.showOptionDialog(GUI, "Are you sure you want to quit ArkBot?", "Quit", 
+//                    JOptionPane.YES_NO_OPTION,
+//                    JOptionPane.PLAIN_MESSAGE, icon, options, options[1]) == JOptionPane.YES_OPTION){
+//                	ArkBotGUI.timer.stop();
+//                	log.CloseLog();
+//                    System.exit(0);
+//                }
+            	ArkBotGUI.timer.stop();
+            	log.CloseLog();
+                System.exit(0);
             }
         });
         
@@ -297,14 +300,17 @@ public class ArkBotGUI extends JFrame
         		JPanel wSett = new JPanel();
         		wSett.setLayout(new GridLayout(5,3));
         		
-        		JLabel LwTitle = new JLabel("Set Resolution");
+        		JLabel LwTitle = new JLabel("Set Resolution (BETA)");
         		JLabel LxRes = new JLabel("X:");
         		JLabel LyRes = new JLabel("Y:");
         		JTextField TAxRes = new JTextField("" + Global.ResX);
         		TAxRes.setForeground(Color.GRAY);
         		JTextField TAyRes = new JTextField("" + Global.ResY);
         		TAyRes.setForeground(Color.GRAY);
-        		JCheckBox CFulscrn = new JCheckBox("Fullscreen");
+        		JCheckBox CFulscrn = new JCheckBox("Fullscreen (BETA)");
+        		CFulscrn.setSelected(Global.fullscreen);
+        		JCheckBox CNormFulscrn = new JCheckBox("1920x1080 Fullscreen");
+        		CNormFulscrn.setSelected(Global.normFullscreen);
         		
         		// Add Listener to remove default values from text fields
         		LwTitle.requestFocusInWindow();
@@ -332,31 +338,42 @@ public class ArkBotGUI extends JFrame
 
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						// Get values from text field
-						int newX = ArkBot.global.ResX;
-						int newY = ArkBot.global.ResY;
-						boolean err = false;
-						if (InputCheck.isInt(TAxRes.getText())) {
-							newX = Integer.parseInt(TAxRes.getText());
-						} else {
-							JOptionPane.showMessageDialog(sframe, "Invalid x Resolution.");
-							err = true;
-						} 
-						if (InputCheck.isInt(TAyRes.getText())) {
-							newY = Integer.parseInt(TAyRes.getText());
-						} else {
-							JOptionPane.showMessageDialog(sframe, "Invalid y Resolution.");
-							err = true;
-						}
 						
-						if (!err) {
-							if (newX <= 500 || newY <= 500) {
-								JOptionPane.showMessageDialog(sframe, "Resolution must be greater than 500x500.");
+						// Check First, Ignore rest if checked
+						if (CNormFulscrn.isSelected()) {
+							ArkBot.global.ResX = 1920;
+							ArkBot.global.ResY = 1080;
+							ArkBot.global.normFullscreen = true;
+							ArkBot.global.saveSett();
+							ArkBot.global.setRes();
+							sframe.dispose();
+						} else {
+							// Get values from text field
+							int newX = ArkBot.global.ResX;
+							int newY = ArkBot.global.ResY;
+							boolean err = false;
+							if (InputCheck.isInt(TAxRes.getText())) {
+								newX = Integer.parseInt(TAxRes.getText());
 							} else {
-								ArkBot.global.ResX = newX;
-								ArkBot.global.ResY = newY;
-								ArkBot.global.saveSett();
-								ArkBot.global.setRes();
+								JOptionPane.showMessageDialog(sframe, "Invalid x Resolution.");
+								err = true;
+							} 
+							if (InputCheck.isInt(TAyRes.getText())) {
+								newY = Integer.parseInt(TAyRes.getText());
+							} else {
+								JOptionPane.showMessageDialog(sframe, "Invalid y Resolution.");
+								err = true;
+							}
+							
+							if (!err) {
+								if (newX <= 500 || newY <= 500) {
+									JOptionPane.showMessageDialog(sframe, "Resolution must be greater than 500x500.");
+								} else {
+									ArkBot.global.ResX = newX;
+									ArkBot.global.ResY = newY;
+									ArkBot.global.saveSett();
+									ArkBot.global.setRes();
+								}
 							}
 						}
 						
@@ -370,15 +387,17 @@ public class ArkBotGUI extends JFrame
         		wSett.add(TAxRes);
         		wSett.add(LyRes);
         		wSett.add(TAyRes);
-        		wSett.add(Box.createHorizontalStrut(1));
+        		//wSett.add(Box.createHorizontalStrut(1));
         		wSett.add(CFulscrn);
         		wSett.add(Box.createHorizontalStrut(1));
+        		wSett.add(CNormFulscrn);
+        		//wSett.add(Box.createHorizontalStrut(1));
         		wSett.add(BWSet);
         		
         		//}}
         		
         		sframe.add(wSett);
-        		int width = 300;
+        		int width = 400;
         		int height = 150;
         		sframe.pack();
         		sframe.setLocationRelativeTo(null);

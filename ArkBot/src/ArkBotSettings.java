@@ -28,6 +28,7 @@ public class ArkBotSettings {
 		setdic.put("ResX", "1440");
 		setdic.put("ResY", "900");
 		setdic.put("FullScreen", "false");
+		setdic.put("NormFullScreen", "false");
 		setdic.put("Development", "0");
 		setdic.put("AndrewIsAwesome", "true");
 		WriteSettings(true);

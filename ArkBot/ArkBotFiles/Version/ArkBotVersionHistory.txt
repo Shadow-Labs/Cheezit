@@ -26,6 +26,7 @@ Known Bugs
 Next Version:
 v0.2.9
 - 1920x1080 Fullscreen Resolution Support
+- Removed Quit Prompt, yes I'm sure
 
 ---------------
 

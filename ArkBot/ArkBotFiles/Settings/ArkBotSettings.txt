@@ -1,7 +1,9 @@
-Username = RedLeeder
-FullScreen = false
 SetupPrompt = false
+Username = RedLeeder
+NormFullscreen = true
+Fullscreen = false
+ResY = 1080
 Development = 1
-ResY = 900
+FullScreen = false
+ResX = 1920
 AndrewIsAwesome = true
-ResX = 1440

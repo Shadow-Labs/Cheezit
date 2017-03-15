@@ -11,6 +11,7 @@ public class Global {
 	static int ResX;
 	static int ResY;
 	static boolean fullscreen;
+	static boolean normFullscreen;
 	
 	static int DEV;
 	
@@ -69,10 +70,15 @@ public class Global {
 		
 		Global.ResX = Integer.parseInt(ArkBotSettings.GetSetting("ResX"));
 		Global.ResY = Integer.parseInt(ArkBotSettings.GetSetting("ResY"));
-		if (ArkBotSettings.GetSetting("Fullscreen") == "true") {
+		if (ArkBotSettings.GetSetting("Fullscreen").contains("t")) {
 			Global.fullscreen = true;
 		} else {
 			Global.fullscreen = false;
+		}
+		if (ArkBotSettings.GetSetting("NormFullscreen").contains("t")) {
+			Global.normFullscreen = true;
+		} else {
+			Global.normFullscreen = false;
 		}
 		
 		Global.DEV = Integer.parseInt(ArkBotSettings.GetSetting("Development"));
@@ -198,6 +204,12 @@ public class Global {
 		} else {
 			ArkBotSettings.UpdateSetting("Fullscreen", "false");
 		}
+		
+		if (normFullscreen) {
+			ArkBotSettings.UpdateSetting("NormFullscreen", "true");
+		} else {
+			ArkBotSettings.UpdateSetting("NormFullscreen", "false");
+		}
 	}
 	
 	// Save Relevant Global Values to Shortcuts
@@ -219,6 +231,7 @@ public class Global {
 		ResX = Integer.parseInt(ArkBotSettings.GetSetting("ResX"));
 		ResY = Integer.parseInt(ArkBotSettings.GetSetting("ResY"));
 		fullscreen = ArkBotSettings.GetSetting("Fullscreen").startsWith("t");
+		normFullscreen = ArkBotSettings.GetSetting("NormFullscreen").startsWith("t");
 		float xScale = (float)ResX / 1440 ;
 		float yScale = (float)ResY / 900;
 		Point center = new Point(ResX/2, ResY/2);
@@ -252,6 +265,31 @@ public class Global {
 			V_SENSITIVITY.setLocation(Math.round(678 * xScale), Math.round((475 * yScale)-yoffset));
 			APPLY.setLocation(Math.round(797 * xScale), Math.round((852 * yScale)-yoffset));
 			SAVE.setLocation(Math.round(582 * xScale), Math.round((852 * yScale)-yoffset));
+			
+		} else if (normFullscreen) {
+			CHAR_INV_SEARCH_BAR.setLocation(640,90);
+//			CHAR_INV_SCROLL_BOT.setLocation();
+//			CHAR_INV_SCROLLTEST_PIXEL.setLocation();
+			CHAR_INV_FIRSTSLOT.setLocation(93,264);
+//			CHAR_INV_FIRSTSLOT_NAME.setLocation();
+			CHAR_INV_USEITEM.setLocation(160,675);
+			CHAR_INV_DROPALL.setLocation(400,720);
+			EXT_INV_SEARCHBAR.setLocation(1245,60);
+			EXT_INV_REMOTEUSE.setLocation(1120,770);
+			EXT_INV_DROPALL.setLocation(800,800);
+			EXT_INV_FIRSTSLOT.setLocation(732,332);
+//			EXT_INV_CENTERSLOT.setLocation();
+			DROP_ACCEPT.setLocation(817,612);
+//			FOCUS.setLocation();
+			CENTER.setLocation(center);
+//			OPTIONS.setLocation();
+//			MENU_INVENTORY.setLocation();
+//			CAMERA_FOV.setLocation();
+//			H_SENSITIVITY.setLocation();
+//			V_SENSITIVITY.setLocation();
+//			APPLY.setLocation();
+//			SAVE.setLocation();		
+			
 		} else {
 			CHAR_INV_SEARCH_BAR.setLocation(Math.round(470 * xScale), Math.round(150 * yScale));
 			CHAR_INV_SCROLL_BOT.setLocation(Math.round(481 * xScale), Math.round(563 * yScale));
