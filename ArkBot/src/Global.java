@@ -88,24 +88,28 @@ public class Global {
 	
 		CHATBOX = new Rectangle(12, 260, 450, 140);
 		TRIBELOG = new Rectangle();
-		FISHING = new Rectangle(483, 726, 479, 115);
+		//FISHING = new Rectangle(483, 726, 479, 115); OLD
+		FISHING = new Rectangle(646, 858, 643, 167);
 		PlAYERINVENTORY = new Rectangle(30, 682, 444, 173);
 		STATS = new Rectangle();
 		GPS = new Rectangle(12, 260, 450, 140); // Placeholder rectangle
 		
-		CHAR_INV_SEARCH_BAR = new Point(470, 150);
+		//CHAR_INV_SEARCH_BAR = new Point(470, 150);
+		CHAR_INV_SEARCH_BAR = new Point(327, 182);
 		CHAR_INV_SCROLL_BOT = new Point(481, 563);
 		CHAR_INV_SCROLLTEST_PIXEL = new Point(481,232);
 		CHAR_INV_FIRSTSLOT = new Point(75, 275);
 		CHAR_INV_FIRSTSLOT_NAME = new Point(75, 300);
 		CHAR_INV_USEITEM = new Point(184, 582);
-		CHAR_INV_DROPALL = new Point(300,610);
+		//CHAR_INV_DROPALL = new Point(300,610);
+		CHAR_INV_DROPALL = new Point(433,184);
 		EXT_INV_SEARCHBAR = new Point(928, 128);
 		EXT_INV_REMOTEUSE = new Point(884, 653);
 		EXT_INV_DROPALL = new Point (630, 675);
 		EXT_INV_FIRSTSLOT = new Point(550, 320);
 		EXT_INV_CENTERSLOT = new Point(710, 320);
-		DROP_ACCEPT = new Point(600, 530);
+		//DROP_ACCEPT = new Point(600, 530);
+		DROP_ACCEPT = new Point(804, 592);
 		FOCUS = new Point(center.x, 160);
 		CENTER = new Point(center);
 		OPTIONS = new Point(center.x, 423);
@@ -238,7 +242,8 @@ public class Global {
 		
 		CHATBOX.setBounds(Math.round(12 * xScale), Math.round(260 * yScale), Math.round(450 * xScale), Math.round(140 * yScale));
 		TRIBELOG = new Rectangle();
-		FISHING = new Rectangle(Math.round(847 * xScale), Math.round(726 * yScale), 115, 115);
+		//FISHING = new Rectangle(Math.round(847 * xScale), Math.round(726 * yScale), 115, 115);
+		//FISHING = new Rectangle(Math.round(847 * xScale), Math.round(726 * yScale), 167, 167);
 		STATS = new Rectangle();
 		
 		if (fullscreen) {

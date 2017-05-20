@@ -65,6 +65,7 @@ public class ArkBotLog {
 		if (text == null) {
 		} else {
 			writer.println(text);
+			writer.flush();
 		}
 	}
 	

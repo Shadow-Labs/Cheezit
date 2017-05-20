@@ -1648,7 +1648,7 @@ public class ArkBotGUI extends JFrame
 	
 	public static void GUIText (String text) {
 		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
-		textLog.append("\n" + timeStamp + ": " + text);
+		textLog.setText(textLog.getText() + "\n" + timeStamp + ": " + text);
 		ArkBot.log.WriteLog("Console: " + timeStamp + ": " + text);
 	}
 	

@@ -24,25 +24,28 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.2.9
+v0.3.1
 - 1920x1080 Fullscreen Resolution Support
-- Removed Quit Prompt, yes I'm sure
-- Implemented Fishing HaxMode
 
 ---------------
 
 Current Version:
-v0.2.8
-- AutoFisher v1.1
-	- Optional Meatdrop
-	- Optional PoleSwitch (Beta)
+v0.3.0
+- Removed Quit Prompt, yes I'm sure
+- Fishing set to 1920x1080 New GUI Support
+- Fishing HaxMode
 
 ---------------
 
 Past Versions:
+v0.2.9
+- AutoFisher v1.1
+	- Optional Meatdrop
+	- Optional PoleSwitch (Beta)
+
 v0.2.8
 - Autofisher v1.0
-- Fixed Updator for the last time?
+- Fixed Updater for the last time?
 
 v0.2.7
 - Removed "Home" Server Shortcut
