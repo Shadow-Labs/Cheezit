@@ -95,7 +95,9 @@ public class ArkBotGUI extends JFrame
 		    }
 		});
 		
+		
 		img = new ImageIcon("ArkBotFiles/Images/ArkBotLogo.png").getImage();
+		//icon = new ImageIcon(this.getClass().getResource("/resources/ArkBotLogo.png"));
         icon = new ImageIcon(img.getScaledInstance(100, 100, 0));
         icon2 = new ImageIcon(new ImageIcon("ArkBotFiles/Images/ShadowLabsSmall.png").getImage().getScaledInstance(100, 100, 0));
 		

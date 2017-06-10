@@ -1,9 +1,9 @@
+Username = asdf
 SetupPrompt = false
-Username = RedLeeder
 NormFullscreen = true
 Fullscreen = false
 ResY = 1080
-Development = 1
+Development = 0
 FullScreen = false
 ResX = 1920
 AndrewIsAwesome = true
