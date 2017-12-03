@@ -24,20 +24,23 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.3.1
+v0.3.2
 - 1920x1080 Fullscreen Resolution Support
 
 ---------------
 
 Current Version:
+v0.3.1
+- Updated Fishing to new GUI
+
+---------------
+
+Past Versions:
 v0.3.0
 - Removed Quit Prompt, yes I'm sure
 - Fishing set to 1920x1080 New GUI Support
 - Fishing HaxMode
 
----------------
-
-Past Versions:
 v0.2.9
 - AutoFisher v1.1
 	- Optional Meatdrop

@@ -89,7 +89,10 @@ public class Global {
 		CHATBOX = new Rectangle(12, 260, 450, 140);
 		TRIBELOG = new Rectangle();
 		//FISHING = new Rectangle(483, 726, 479, 115); OLD
-		FISHING = new Rectangle(646, 858, 643, 167);
+		//FISHING = new Rectangle(646, 858, 643, 167); NEW
+//		FISHING = new Rectangle(775, 912, 540, 187); // Even Newer
+
+		FISHING = new Rectangle(697, 855, 529, 175); // Newest
 		PlAYERINVENTORY = new Rectangle(30, 682, 444, 173);
 		STATS = new Rectangle();
 		GPS = new Rectangle(12, 260, 450, 140); // Placeholder rectangle
