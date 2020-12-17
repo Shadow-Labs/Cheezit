@@ -67,7 +67,7 @@ public class AutoGatherer {
 		
 		// Open Ext Inv
 		bot.keyPress(KeyEvent.VK_F);
-		bot.delay(700);
+		bot.delay(300);
 		bot.keyRelease(KeyEvent.VK_F);
 		bot.delay(Global.PAUSE);		
 		

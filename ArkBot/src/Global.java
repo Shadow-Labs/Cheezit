@@ -106,13 +106,19 @@ public class Global {
 		CHAR_INV_USEITEM = new Point(184, 582);
 		//CHAR_INV_DROPALL = new Point(300,610);
 		CHAR_INV_DROPALL = new Point(433,184);
-		EXT_INV_SEARCHBAR = new Point(928, 128);
+//		EXT_INV_SEARCHBAR = new Point(928, 128);
 		EXT_INV_REMOTEUSE = new Point(884, 653);
-		EXT_INV_DROPALL = new Point (630, 675);
+//		EXT_INV_DROPALL = new Point (630, 675);
 		EXT_INV_FIRSTSLOT = new Point(550, 320);
 		EXT_INV_CENTERSLOT = new Point(710, 320);
 		//DROP_ACCEPT = new Point(600, 530);
-		DROP_ACCEPT = new Point(804, 592);
+//		DROP_ACCEPT = new Point(804, 592);
+
+		//Modified for 2020Ark?
+		EXT_INV_SEARCHBAR = new Point(1425,181);
+		EXT_INV_DROPALL = new Point(1530,181);
+		DROP_ACCEPT = new Point(804,593);
+		
 		FOCUS = new Point(center.x, 160);
 		CENTER = new Point(center);
 		OPTIONS = new Point(center.x, 423);
@@ -282,12 +288,12 @@ public class Global {
 //			CHAR_INV_FIRSTSLOT_NAME.setLocation();
 			CHAR_INV_USEITEM.setLocation(160,675);
 			CHAR_INV_DROPALL.setLocation(400,720);
-			EXT_INV_SEARCHBAR.setLocation(1245,60);
+			EXT_INV_SEARCHBAR.setLocation(1425,181);
 			EXT_INV_REMOTEUSE.setLocation(1120,770);
-			EXT_INV_DROPALL.setLocation(800,800);
+			EXT_INV_DROPALL.setLocation(1530,181);
 			EXT_INV_FIRSTSLOT.setLocation(732,332);
 //			EXT_INV_CENTERSLOT.setLocation();
-			DROP_ACCEPT.setLocation(817,612);
+			DROP_ACCEPT.setLocation(804,593);
 //			FOCUS.setLocation();
 			CENTER.setLocation(center);
 //			OPTIONS.setLocation();
