@@ -24,18 +24,19 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.3.2
-- 1920x1080 Fullscreen Resolution Support
+v0.3.3
+TBD
 
 ---------------
 
 Current Version:
-v0.3.1
-- Updated Fishing to new GUI
-
+v0.3.2
+- 1920x1080 Fullscreen Resolution Support (Andrew's 2020 ArkBot Update)
 ---------------
 
 Past Versions:
+v0.3.1
+- Updated Fishing to new GUI
 v0.3.0
 - Removed Quit Prompt, yes I'm sure
 - Fishing set to 1920x1080 New GUI Support
