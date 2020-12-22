@@ -1017,7 +1017,7 @@ public class ArkBotGUI extends JFrame
         JPanel PAutoGatherer = new JPanel();
         PAutoGatherer.setLayout(new FlowLayout(FlowLayout.LEFT));
         PAutoGatherer.setOpaque(false);
-        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer v1.5", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
+        PAutoGatherer.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GREEN), "AutoGatherer v1.6", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, Color.WHITE));
         
         // AutoGatherer - Button
         JPanel AGBPanel = new JPanel();
@@ -1034,10 +1034,20 @@ public class ArkBotGUI extends JFrame
               add(panelHolder[m][n]);
            }
         }
+
+        JCheckBox GatherSpaceButton = new JCheckBox("Press Space");
+        GatherSpaceButton.setSelected(false);
+        
         JButton AutoGatherButton = new JButton("Enable AutoGather");
         AutoGatherButton.setMnemonic(KeyEvent.VK_MINUS);
         JCheckBox AutoDrop = new JCheckBox("AutoDrop Functionality");
         AutoDrop.setSelected(true);
+        
+        JPanel GatherOptionsPanel = new JPanel();
+        GatherOptionsPanel.setLayout(new BoxLayout(GatherOptionsPanel, BoxLayout.PAGE_AXIS));
+        GatherOptionsPanel.add(GatherSpaceButton);
+        GatherOptionsPanel.add(AutoDrop);
+        
         JCheckBox boxes[] = new JCheckBox[ArkBot.state.gatherer.materials.length];
 		i = 0;
 		int m = 0;
@@ -1192,7 +1202,7 @@ public class ArkBotGUI extends JFrame
         			AutoGatherButton.setBackground(new JButton().getBackground());
         			ArkBotGUI.GUIText("[ACTION] Stopped AutoGatherer.");
         		} else {
-        			ArkBot.state.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, AutoDrop, "0.25"));
+        			ArkBot.state.gatherer.pause = Float.parseFloat(JOptionPane.showInputDialog(GUI, GatherOptionsPanel, "0.25"));
         			if (AutoDrop.isSelected()) {
         				ArkBot.state.gatherer.drop = true;        				
 	        			JOptionPane.showConfirmDialog(GUI, AutoDropBigPanel, "Material Selection", JOptionPane.PLAIN_MESSAGE);
@@ -1226,9 +1236,15 @@ public class ArkBotGUI extends JFrame
 	        				i++;
 	        			}
         			}
+        			if (GatherSpaceButton.isSelected()) {
+        				ArkBot.state.gatherer.SPACE = true;
+        			} else {
+        				ArkBot.state.gatherer.SPACE = false;
+        			}
         			ArkBot.state.gatherer.gathering = true;
         			ArkBotGUI.GUIText("Press '" + NativeKeyEvent.getKeyText(Global.AGatherStartStop) + "' to begin AutoClicking every "
         					+ "" + ArkBot.state.gatherer.pause + " seconds.");
+        			ArkBotGUI.GUIText("Space Press: " + ArkBot.state.gatherer.SPACE);
 
         			AutoGatherButton.setText("Disable AutoGather");
         			AutoGatherButton.setBackground(Color.GREEN);

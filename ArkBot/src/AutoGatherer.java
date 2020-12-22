@@ -10,6 +10,7 @@ public class AutoGatherer {
 			"Mushroom", "Flower", "Raw Meat", "Prime Meat", "Spoiled Meat"};
 	public ArrayList<String> dropMats = new ArrayList<String>();
 	public boolean gathering;
+	public boolean SPACE;
 	public boolean clicking;
 	public boolean dropping;
 	public boolean drop;
@@ -18,6 +19,7 @@ public class AutoGatherer {
 	public AutoGatherer() {
 		this.bot = ArkBot.bot;
 		gathering = false;
+		SPACE = false;
 		clicking = false;
 		dropping = false;
 		drop = false;
@@ -36,7 +38,7 @@ public class AutoGatherer {
 			while (clicking) {
 				// Neccessary to run..smh
 				System.out.print("\nClick");
-				leftClick();
+				press();
 				bot.delay((int)(pause * 1000));
 				
 				// Check for drop
@@ -92,11 +94,18 @@ public class AutoGatherer {
 		ArkBotGUI.GUIText("[ACTION] Finished dropping.");
 	}
 	
-	private void leftClick()
+	private void press()
 	  {
-	    bot.mousePress(InputEvent.BUTTON1_MASK);
-	    bot.delay(10);
-	    bot.mouseRelease(InputEvent.BUTTON1_MASK);
-	    bot.delay(10);
+		if (!SPACE) {
+		    bot.mousePress(InputEvent.BUTTON1_MASK);
+		    bot.delay(10);
+		    bot.mouseRelease(InputEvent.BUTTON1_MASK);
+		    bot.delay(10);
+		} else {
+			bot.keyPress(KeyEvent.VK_SPACE);
+		    bot.delay(10);
+			bot.keyRelease(KeyEvent.VK_SPACE);
+		    bot.delay(10);
+		}
 	  }
 }

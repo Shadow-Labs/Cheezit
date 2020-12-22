@@ -1,9 +1,0 @@
-Username = asdf
-SetupPrompt = false
-NormFullscreen = true
-Fullscreen = false
-ResY = 1080
-Development = 0
-FullScreen = false
-ResX = 1920
-AndrewIsAwesome = true
