@@ -24,17 +24,19 @@ Known Bugs
 ---------------
 
 Next Version:
-v0.3.3
+v0.3.4
 TBD
 
 ---------------
 
 Current Version:
-v0.3.2
-- 1920x1080 Fullscreen Resolution Support (Andrew's 2020 ArkBot Update)
+v0.3.4
+- Added Spacepress functionality to AutoGather
 ---------------
 
 Past Versions:
+v0.3.2
+- 1920x1080 Fullscreen Resolution Support (Andrew's 2020 ArkBot Update)
 v0.3.1
 - Updated Fishing to new GUI
 v0.3.0
